@@ -3,11 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class M_pegawai extends CI_Model
+class M_user extends CI_Model
 {
 
-    public $table = 'tb_pegawai';
-    public $id = 'id_pegawai';
+    public $table = 'tb_user';
+    public $id = 'id_user';
     public $order = 'DESC';
 
     function __construct()
@@ -53,6 +53,11 @@ class M_pegawai extends CI_Model
     {
         $this->db->where($this->id, $id);
         $this->db->delete($this->table);
+    }
+
+    function cek_login($where){
+        $this->db->join('tb_pegawai', 'tb_pegawai.nip = tb_user.nip', 'left');   
+        return $this->db->get_where($this->table,$where);
     }
 
 }

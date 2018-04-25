@@ -8,7 +8,7 @@
                     <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
                 </button>
             </div>
-            <a class="navbar-brand" href="#pablo"><?php echo $page_title; ?></a>
+            <a class="navbar-brand" href="#pablo"><?php if($this->uri->segment(1)!="" and $this->uri->segment(2)=="" and $this->uri->segment(1)=="laporan_surat_masuk" and $this->uri->segment(1)=="laporan_surat_keluar" and $this->uri->segment(1)=="profile"){echo "Data ";} echo $page_title; ?></a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>

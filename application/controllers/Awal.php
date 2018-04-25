@@ -5,7 +5,7 @@ class Awal extends CI_Controller {
 
     function __construct()    {
         parent::__construct();
-        $this->load->model('M_pegawai');
+        $this->load->model('M_user');
     }
 
     public function index()
@@ -25,15 +25,15 @@ class Awal extends CI_Controller {
         $where = array(
             'username' => $username,
             );
-        $cek_fase_1 = $this->M_pegawai->cek_login($where)->num_rows();
-        $cek_fase_2 = $this->M_pegawai->cek_login($where)->row();
+        $cek_fase_1 = $this->M_user->cek_login($where)->num_rows();
+        $cek_fase_2 = $this->M_user->cek_login($where)->row();
         if($cek_fase_1 > 0){
             $this->load->library('encrypt'); 
             $key = 'vyanarypratamabanyuwangi12345678';
             $password_encrypt =  $this->encrypt->decode($cek_fase_2->password, $key);
             if ($password==$password_encrypt) {
                 $data_session = array(
-                    'id_pegawai' => $cek_fase_2->id_pegawai,
+                    'id_user' => $cek_fase_2->id_user,
                     'nama' => $cek_fase_2->nama,
                     'level_user' => $cek_fase_2->level_user,
                     'status_login' => "login"
