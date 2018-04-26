@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Bagian extends CI_Controller {
+class Jabatan extends CI_Controller {
 
     function __construct()    {
         parent::__construct();
-        $this->load->model('M_bagian');
+        $this->load->model('M_jabatan');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
         }
@@ -16,82 +16,81 @@ class Bagian extends CI_Controller {
     }
 
     public function index(){
-        $bagian = $this->M_bagian->get_all();
+        $jabatan = $this->M_jabatan->get_all();
 
         $data = array(
-            'data_bagian'  => $bagian,
+            'data_jabatan'  => $jabatan,
             'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))),
         );
-        $this->load->view('bagian/v_bagian',$data);
+        $this->load->view('jabatan/v_jabatan',$data);
     }
 
     public function tambah(){
         $data = array(
             'page_title' => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
         );
-        $this->load->view('bagian/v_tambah_bagian',$data);
+        $this->load->view('jabatan/v_tambah_jabatan',$data);
     }
 
     public function edit($id){
-        $row = $this->M_bagian->get_by_id($id);
+        $row = $this->M_jabatan->get_by_id($id);
         if ($row) {
             $data = array(
-                'id_bagian'=> $row->id_bagian,
-                'bagian'          => $row->bagian,
-                'kepala_bagian'   => $row->kepala_bagian,
+                'id_jabatan'=> $row->id_jabatan,
+                'jabatan'          => $row->jabatan,
+                
                 'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
-            $this->load->view('bagian/v_edit_bagian', $data);
+            $this->load->view('jabatan/v_edit_jabatan', $data);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
-            redirect(site_url('bagian'));
+            redirect(site_url('jabatan'));
 
         }
     }
 
     function simpan(){
 
-        $kepala_bagian = $_POST['kepala_bagian'];
-        $bagian= $_POST['bagian'];
+        $jabatan= $_POST['jabatan'];
         $data = array(  
-            'bagian'          => $bagian,
-            'kepala_bagian'   => $kepala_bagian,
+            'id_jabatan' => "",
+            'jabatan'    => $jabatan, 
         );
 
-        $result = $this->M_bagian->insert($data);
+        $result = $this->M_jabatan->insert($data);
         if($result>=0){
             $this->session->set_flashdata("sukses", "<div class='alert alert-success'><i class='fa fa-check'></i> <strong> Simpan data BERHASIL dilakukan</strong></div>");
-            header('location:'.base_url().'bagian');
+            header('location:'.base_url().'jabatan');
         }else{
             $this->session->set_flashdata("alert", "<div class='alert alert-danger'><i class='fa fa-exclamation'></i> <strong> Simpan data GAGAL di lakukan</strong></div>");
-            header('location:'.base_url().'bagian');
+            header('location:'.base_url().'jabatan');
         }
     }
 
     function editaction(){
         $data = array(
-            'id_bagian'=> $this->input->post('id'),
-            'bagian'          => $this->input->post('bagian'),
-            'kepala_bagian'   => $this->input->post('kepala_bagian'),
+            'id_jabatan'=> $this->input->post('id'),
+            'jabatan'          => $this->input->post('jabatan'),
+            
         );
-        $res = $this->M_bagian->update($data['id_bagian'],$data);
+        $res = $this->M_jabatan->update($data['id_jabatan'],$data);
         if($res>=0){
             $this->session->set_flashdata("sukses", "<div class='alert alert-success'><i class='fa fa-check'></i> <strong> Update data BERHASIL dilakukan</strong></div>");
-            header('location:'.base_url().'bagian');
+            header('location:'.base_url().'jabatan');
         }else{
             $this->session->set_flashdata("alert", "<div class='alert alert-danger'><i class='fa fa-exclamation'></i> <strong> Update data GAGAL di lakukan</strong></div>");
-            header('location:'.base_url().'bagian');
+            header('location:'.base_url().'jabatan');
         }       
     }
 
-    function hapus($id_bagian = 1){
-        $result = $this->M_bagian->delete($id_bagian);
+    function hapus($id_jabatan = 1){
+        $result = $this->M_jabatan->delete($id_jabatan);
         if($result>=0){
             $this->session->set_flashdata("sukses", "<div class='alert alert-success'><i class='fa fa-check'></i> <strong> Hapus data BERHASIL dilakukan</strong></div>");
-            header('location:'.base_url().'bagian');
+            header('location:'.base_url().'jabatan');
         }else{
             $this->session->set_flashdata("alert", "<div class='alert alert-danger'><i class='fa fa-exclamation'></i> <strong> Hapus data GAGAL di lakukan</strong></div>");
-            header('location:'.base_url().'bagian');
+            header('location:'.base_url().'jabatan');
         }   
     }
 }

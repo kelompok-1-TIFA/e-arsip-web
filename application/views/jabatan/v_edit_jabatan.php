@@ -15,22 +15,15 @@
                         <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/editaction') ?>" class="form-horizontal">
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Bagian</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold">Jabatan</label>
                                     <div class="col-md-10">
                                       <div class="form-group has-default">
-                                          <input type="text" name="bagian" value="<?php echo $bagian ?>" placeholder="Masukkan data bagian..." class="form-control" required>
-                                          <input type="hidden" name="id" value="<?php echo $id_bagian ?>" placeholder="Masukkan bagian..." class="form-control" required>
+                                          <input type="text" name="jabatan" value="<?php echo $jabatan ?>" placeholder="Masukkan data jabatan..." class="form-control" required>
+                                          <input type="hidden" name="id" value="<?php echo $id_jabatan ?>" placeholder="Masukkan jabatan..." class="form-control" required>
                                       </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Kepala Bagian</label>
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                            <input type="text" value="<?php echo $kepala_bagian ?>" placeholder="Masukkan data bagian..." name="kepala_bagian" class="form-control" required>
-                                        </div>
-                                    </div>
-                                </div>
+                               
                                 <div class="row pull-right my-3">
                                     <div class="col-12 ">
                                         <button type="submit" class="btn btn-primary"><i class="material-icons">mode_edit</i> Update</button>
