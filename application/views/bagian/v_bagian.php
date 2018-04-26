@@ -21,7 +21,7 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>kepala bagian</th>
+                                            <th>kepala bagian1</th>
                                             <th>bagian</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
