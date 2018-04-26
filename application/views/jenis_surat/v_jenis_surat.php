@@ -14,7 +14,7 @@
                         </div>
                         <div class="card-body">
                             <div class="toolbar">
-                                <a title="Tambah Data" href="<?php echo base_url('jenis_surat/tambah') ?>" class="btn btn-primary btn-round"><i class="material-icons">add</i> Tambah Data</a>
+                                <a title="Tambah Data" href="<?php echo base_url('jenis_surat/tambah') ?>" class="btn btn-primary btn-round"><i class="material-icons">add</i> Tambah Data 2</a>
                             </div>
                             <div class="material-datatables">
                                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
