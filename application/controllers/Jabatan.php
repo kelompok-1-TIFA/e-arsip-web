@@ -20,7 +20,7 @@ class Jabatan extends CI_Controller {
 
         $data = array(
             'data_jabatan'  => $jabatan,
-            'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))),
+            'page_title'    => ucwords(str_replace("_", " ", $this->uri->segment(1))),
         );
         $this->load->view('jabatan/v_jabatan',$data);
     }
