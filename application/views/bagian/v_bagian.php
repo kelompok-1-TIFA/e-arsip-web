@@ -21,8 +21,8 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>kepala bagian</th>
-                                            <th>bagian</th>
+                                            <th>Bagian</th>
+                                            <th>Kepala Bagian</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                     </thead>
@@ -31,8 +31,8 @@
                                         <tr>
                                             <td><?php echo ++$no; ?></td>
 
-                                             <td><?php echo $bagian->kepala_bagian ?></td>   
-                                            <td><?php echo $bagian->bagian ?></td>
+                                             <td><?php echo $bagian->bagian ?></td>   
+                                            <td><?php echo $bagian->kepala_bagian ?></td>
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url('bagian/edit/'.$bagian->id_bagian) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a href="#" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
