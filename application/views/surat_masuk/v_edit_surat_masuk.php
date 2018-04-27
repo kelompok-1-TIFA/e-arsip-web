@@ -15,19 +15,19 @@
                         <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/editaction') ?>" class="form-horizontal">
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Bagian</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold">surat_masuk</label>
                                     <div class="col-md-10">
                                       <div class="form-group has-default">
-                                          <input type="text" name="bagian" value="<?php echo $bagian ?>" placeholder="Masukkan data bagian..." class="form-control" required>
-                                          <input type="hidden" name="id" value="<?php echo $id_bagian ?>" placeholder="Masukkan bagian..." class="form-control" required>
+                                          <input type="text" name="surat_masuk" value="<?php echo $surat_masuk ?>" placeholder="Masukkan data surat_masuk..." class="form-control" required>
+                                          <input type="hidden" name="id" value="<?php echo $id_surat_masuk ?>" placeholder="Masukkan surat_masuk..." class="form-control" required>
                                       </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Kepala Bagian</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold">Kepala surat_masuk</label>
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                            <input type="text" value="<?php echo $kepala_bagian ?>" placeholder="Masukkan data bagian..." name="kepala_bagian" class="form-control" required>
+                                            <input type="text" value="<?php echo $kepala_surat_masuk ?>" placeholder="Masukkan data surat_masuk..." name="kepala_surat_masuk" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

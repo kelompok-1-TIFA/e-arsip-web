@@ -42,7 +42,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Jenis Surat </label>
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                             <select class="selectpicker" name="id_jenis_surat" data-style="btn select-with-transition" multiple title="Pilih Pegawai" data-size="7">
+                                             <select class="selectpicker" name="id_jenis_surat" data-style="btn select-with-transition" multiple title="Pilih Surat" data-size="7">
                                     <option disabled> Multiple Options</option>
                                     <option value="2">Paris </option>
                                     <option value="3">Bucharest</option>
