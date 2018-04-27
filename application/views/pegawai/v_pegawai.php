@@ -14,27 +14,48 @@
                         </div>
                         <div class="card-body">
                             <div class="toolbar">
-                                <a title="Tambah Data" href="<?php echo base_url('surat_masuk/tambah') ?>" class="btn btn-primary btn-round"><i class="material-icons">add</i> Tambah Data</a>
+                                <a title="Tambah Data" href="<?php echo base_url('pegawai/tambah') ?>" class="btn btn-primary btn-round"><i class="material-icons">add</i> Tambah Data</a>
                             </div>
                             <div class="material-datatables">
                                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>No.</th>
+                                            <th>Nip</th>
+                                            <th>Jabatan</th>
                                             <th>Bagian</th>
-                                            <th>Kepala Bagian</th>
+                                            <th>Nama</th>
+                                            <th>Jenis Kelamin</th>
+                                            
+                                            <th>Agama</th>
+                                            
+                                            <th>Alamat</th>
+                                           
+                                            <th>Foto</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $no=0; foreach ($data_surat_masuk as $surat_masuk): ?>
+                                        <?php $no=0; foreach ($data_pegawai as $pegawai): ?>
                                         <tr>
                                             <td><?php echo ++$no; ?></td>
 
-                                             <td><?php echo $bagian->bagian ?></td>   
-                                            <td><?php echo $bagian->kepala_bagian ?></td>
+                                             <td><?php echo $pegawai->nip ?></td>   
+                                            <td><?php echo $pegawai->id_bagian ?></td>
+                                            <td><?php echo $pegawai->id_jabatan ?></td>
+                                            
+                                            <td><?php echo $pegawai->nama ?></td>
+                                            <td><?php echo $pegawai->jenis_kelamin ?></td>
+                                            
+                                            <td><?php echo $pegawai->agama ?></td>
+                                            
+                                            <td><?php echo $pegawai->alamat ?></td>
+                                            
+                                            <td><?php echo $pegawai->foto ?></td>
+                                            
+
                                             <td class="text-right td-actions">
-                                                <a href="<?php echo base_url('bagian/edit/'.$bagian->id_bagian) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
+                                                <a href="<?php echo base_url('pegawai/edit/'.$pegawai->nip) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a href="#" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
                                             </td>
                                         </tr>

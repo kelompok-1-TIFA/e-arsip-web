@@ -24,7 +24,7 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Kepala surat_masuk</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold">surat_masuk</label>
                                     <div class="col-md-10">
                                         <div class="form-group">
                                             <input type="text" value="<?php echo $kepala_surat_masuk ?>" placeholder="Masukkan data surat_masuk..." name="kepala_surat_masuk" class="form-control" required>
