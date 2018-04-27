@@ -7,7 +7,7 @@ class M_pegawai extends CI_Model
 {
 
     public $table = 'tb_pegawai';
-    public $id = 'id_pegawai';
+    public $id = 'nip';
     public $order = 'DESC';
 
     function __construct()
