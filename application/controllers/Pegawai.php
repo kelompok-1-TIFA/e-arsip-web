@@ -34,7 +34,6 @@ class Pegawai extends CI_Controller {
         if ($row) {
             $data = array(
                 'nip'		=> $row->nip,
-                'pegawai'   => $row->pegawai,
                 'page_title'=> ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('pegawai/v_edit_pegawai', $data);

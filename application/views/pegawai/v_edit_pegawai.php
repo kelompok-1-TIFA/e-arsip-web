@@ -4,7 +4,7 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-info card-header-icon">
                           <div class="card-icon">
@@ -15,160 +15,139 @@
                         <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/editaction') ?>" class="form-horizontal">
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Nip</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="nip" value="<?php echo $nip ?>" placeholder="Masukkan data nip..." class="form-control" required>
-                                          <!-- <input type="hidden" name="id" value="<?php echo $nip ?>" placeholder="Masukkan bagian..." class="form-control" required> -->
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Bagian</label>
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                            <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Bagian" data-size="7" name="id_bagian">
-                                    <option disabled> Multiple Options</option>
-                                    <option value="2">Paris </option>
-                                    <option value="3">Bucharest</option>
-                                    <option value="4">Rome</option>
-                                    <option value="5">New York</option>
-                                    <option value="6">Miami </option>
-                                    <option value="7">Piatra Neamt</option>
-                                    <option value="8">Paris </option>
-                                    <option value="9">Bucharest</option>
-                                    <option value="10">Rome</option>
-                                    <option value="11">New York</option>
-                                    <option value="12">Miami </option>
-                                    <option value="13">Piatra Neamt</option>
-                                    <option value="14">Paris </option>
-                                    <option value="15">Bucharest</option>
-                                    <option value="16">Rome</option>
-                                    <option value="17">New York</option>
-                                    <option value="18">Miami </option>
-                                    <option value="19">Piatra Neamt</option>
-                                </select>
+                                    <div class="col-md-6">
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">assignment_ind</i></label>
+                                            <div class="col-md-10">
+                                              <div class="form-group ">
+                                                <label class="bmd-label-floating">NIP</label>
+                                                <input type="text" value="<?php echo $nip ?>" name="nip" class="form-control" required>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">account_balance</i></label>
+                                            <div class="col-md-10">
+                                              <div class="form-group mt-0">
+                                                <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Bagian" data-size="7" name="id_bagian">
+                                                  <option disabled> Multiple Options</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">class</i></label>
+                                            <div class="col-md-10">
+                                              <div class="form-group mt-0">
+                                                <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Jabatan" data-size="7" name="id_jabatan">
+                                                  <option disabled> Multiple Options</option>
+                                                </select>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">assignment_late</i></label>
+                                            <div class="col-md-10">
+                                              <div class="form-group">
+                                                <label class="bmd-label-floating">NIAP</label>
+                                                <input type="text" value="<?php echo $nip ?>" name="niap" class="form-control" required>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">face</i></label>
+                                            <div class="col-md-10">
+                                                <div class="form-group">
+                                                    <label class="bmd-label-floating">Nama Pegawai</label>
+                                                    <input type="text" value="<?php echo $nip ?>" name="nama" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">usb</i></label>
+                                            <div class="col-md-10">
+                                                <div class="form-group mt-0">
+                                                    <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Jenis Kelamin" data-size="7" name="jenis_kelamin">
+                                                        <option disabled> Multiple Options</option>
+                                                        <option value="2">Paris </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">my_location</i></label>
+                                            <div class="col-md-10">
+                                                <div class="form-group ">
+                                                    <label class="bmd-label-floating">Tempat Lahir</label>
+                                                    <input type="text" value="<?php echo $nip ?>" name="tempat_lahir" class="form-control" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">date_range</i></label>
+                                            <div class="col-md-10">
+                                                <div class="form-group mt-2">
+                                                    <label for="exampleEmail" class="bmd-label-floating">Tanggal Lahir</label>
+                                                    <input type="text" name="tgl_lahir" class="form-control datepicker" required value="<?php echo date("m/d/Y"); ?>">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Jabatan</label>
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                             <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Jabatan" data-size="7" name="id_jabatan">
-                                    <option disabled> Multiple Options</option>
-                                    <option value="2">Paris </option>
-                                    <option value="3">Bucharest</option>
-                                    <option value="4">Rome</option>
-                                    <option value="5">New York</option>
-                                    <option value="6">Miami </option>
-                                    <option value="7">Piatra Neamt</option>
-                                    <option value="8">Paris </option>
-                                    <option value="9">Bucharest</option>
-                                    <option value="10">Rome</option>
-                                    <option value="11">New York</option>
-                                    <option value="12">Miami </option>
-                                    <option value="13">Piatra Neamt</option>
-                                    <option value="14">Paris </option>
-                                    <option value="15">Bucharest</option>
-                                    <option value="16">Rome</option>
-                                    <option value="17">New York</option>
-                                    <option value="18">Miami </option>
-                                    <option value="19">Piatra Neamt</option>
-                                </select>
+                                    <div class="col-md-6">
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">location_city</i></label>
+                                            <div class="col-md-10">
+                                                <div class="form-group ">
+                                                    <label class="bmd-label-floating">Agama</label>
+                                                    <input value="<?php echo $nip ?>" type="text" name="agama" class="form-control" required>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Niap</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="niap" placeholder="Masukkan bagian..." class="form-control" required >
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Nama</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="nip" value="<?php echo $nama ?>" placeholder="Masukkan data nama..." class="form-control" required>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Jenis Kelamin</label>
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                             <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Jenis Kelamin" data-size="7" name="jenis_kelamin">
-                                    <option disabled> Multiple Options</option>
-                                    <option value="2">Paris </option>
-                                    
-                                </select>
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">vpn_key</i></label>
+                                            <div class="col-md-10">
+                                              <div class="form-group ">
+                                                <label class="bmd-label-floating">Pangkat</label>
+                                                  <input type="text" value="<?php echo $nip ?>" name="pangkat" class="form-control" required>
+                                              </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Tempat Lahir</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="tempat_lahir" placeholder="Masukkan tempat lahir..." class="form-control" required>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Tanggal Lahir</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="date" name="tgl_lahir" placeholder="Masukkan Tanggal Lahir..." class="form-control" required>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Agama</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="agama" placeholder="Masukkan agama..." class="form-control" required>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Pangkat</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="pangkat" placeholder="Masukkan pangkat..." class="form-control" required>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Alamat</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="alamat" placeholder="Masukkan alamat..." class="form-control" required>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">No Hp</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="no_hp" placeholder="Masukkan No Hp..." class="form-control" required>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Pendidikan Terakhir</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="pendidikan_terakhir" placeholder="Masukkan Pendidikan Terakhir..." class="form-control" required>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">SK Pengangkatan</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="sk_pengangkatan" placeholder="Masukkan SK Pengangkatan..." class="form-control" required>
-                                      </div>
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">location_on</i></label>
+                                            <div class="col-md-10">
+                                              <div class="form-group ">
+                                                <label class="bmd-label-floating">Alamat</label>
+                                                <textarea name="alamat" required class="form-control"><?php echo $nip ?></textarea>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">phone</i></label>
+                                            <div class="col-md-10">
+                                              <div class="form-group ">
+                                                    <label class="bmd-label-floating">No. Handphone</label>
+                                                    <input type="text" value="<?php echo $nip ?>" name="no_hp" class="form-control" required>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">school</i></label>
+                                            <div class="col-md-10">
+                                              <div class="form-group ">
+                                                    <label class="bmd-label-floating">Pendidikan Terakhir</label>
+                                                  <input type="text" value="<?php echo $nip ?>" name="pendidikan_terakhir" class="form-control" required>
+                                              </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">assignment</i></label>
+                                            <div class="col-md-10">
+                                              <div class="form-group ">
+                                                <label class="bmd-label-floating">SK Pengangkatan</label>
+                                                  <input type="text" value="<?php echo $nip ?>" name="sk_pengangkatan" class="form-control" required>
+                                              </div>
+                                            </div>
+                                        </div>          
                                     </div>
                                 </div>
                                 <div class="row pull-right my-3">
