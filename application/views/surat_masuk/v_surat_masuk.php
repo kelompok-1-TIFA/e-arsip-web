@@ -21,8 +21,15 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Bagian</th>
-                                            <th>Kepala Bagian</th>
+                                            <th>No Surat</th>
+                                            <th>Asal Surat</th>
+                                            <th>Isi Singkat</th>
+                                            
+                                            <th>Tanggal Surat</th>
+                                            
+                                            
+                                            <th>File</th>
+
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                     </thead>
@@ -31,10 +38,16 @@
                                         <tr>
                                             <td><?php echo ++$no; ?></td>
 
-                                             <td><?php echo $bagian->bagian ?></td>   
-                                            <td><?php echo $bagian->kepala_bagian ?></td>
+                                             <td><?php echo $surat_masuk->no_surat ?></td>   
+                                            <td><?php echo $surat_masuk->asal_surat ?></td>
+                                            <td><?php echo $surat_masuk->isi_singkat ?></td>
+                                            
+                                            <td><?php echo $surat_masuk->tgl_surat ?></td>
+                                            
+                                            
+                                            <td><?php echo $surat_masuk->file ?></td>
                                             <td class="text-right td-actions">
-                                                <a href="<?php echo base_url('bagian/edit/'.$bagian->id_bagian) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
+                                                <a href="<?php echo base_url('bagian/edit/'.$bagian->id_surat_masuk) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a href="#" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
                                             </td>
                                         </tr>
