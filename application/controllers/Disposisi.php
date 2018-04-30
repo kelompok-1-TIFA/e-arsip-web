@@ -12,6 +12,12 @@ class Disposisi extends CI_Controller {
     }
 
     public function index(){
-      echo "Disposisi";
+        $disposisi = $this->M_disposisi->get_all();
+
+        $data = array(
+            'data_disposisi'  => $disposisi,
+            'page_title'   => ucwords(str_replace("_", " ", $this->uri->segment(1))),
+        );
+        $this->load->view('bagian/v_bagian',$data);
     }
 }
