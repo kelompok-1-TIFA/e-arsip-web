@@ -34,8 +34,7 @@ class Surat_masuk extends CI_Controller {
         if ($row) {
             $data = array(
                 'id_surat_masuk'=> $row->id_surat_masuk,
-                'surat_masuk'          => $row->surat_masuk,
-                
+                'no_surat'      => $row->no_surat,
                 'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('surat_masuk/v_edit_surat_masuk', $data);
@@ -54,10 +53,10 @@ class Surat_masuk extends CI_Controller {
 
     function simpan(){
 
-        $surat_masuk= $_POST['surat_masuk'];
+        $no_surat= $_POST['no_surat'];
         $data = array(  
             'id_surat_masuk' => "",
-            'surat_masuk'    => $surat_masuk, 
+            'no_surat'    => $no_surat, 
         );
 
         $result = $this->M_surat_masuk->insert($data);
@@ -85,7 +84,7 @@ class Surat_masuk extends CI_Controller {
     function editaction(){
         $data = array(
             'id_surat_masuk'=> $this->input->post('id'),
-            'surat_masuk'          => $this->input->post('surat_masuk'),
+            'no_surat'          => $this->input->post('no_surat'),
             
         );
         $res = $this->M_surat_masuk->update($data['id_surat_masuk'],$data);

@@ -16,7 +16,7 @@ class Surat_keluar extends CI_Controller {
         $surat_keluar = $this->M_surat_keluar->get_all();
 
         $data = array(
-            'data_surat_keluar'  => $surat_keluar,
+            'data_surat_keluar' => $surat_keluar,
             'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))),
         );
         $this->load->view('surat_keluar/v_surat_keluar',$data);
@@ -33,10 +33,9 @@ class Surat_keluar extends CI_Controller {
         $row = $this->M_surat_keluar->get_by_id($id);
         if ($row) {
             $data = array(
-                'id_surat_keluar'=> $row->id_surat_keluar,
-                'surat_keluar'          => $row->surat_keluar,
-                
-                'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+                'id_surat_keluar'   => $row->id_surat_keluar,
+                'no_surat'          => $row->no_surat,
+                'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('surat_keluar/v_edit_surat_keluar', $data);
         } else {
@@ -54,10 +53,10 @@ class Surat_keluar extends CI_Controller {
 
     function simpan(){
 
-        $surat_keluar= $_POST['surat_keluar'];
+        $no_surat= $_POST['no_surat'];
         $data = array(  
-            'id_surat_keluar' => "",
-            'surat_keluar'    => $surat_keluar, 
+            'id_surat_keluar'   => "",
+            'no_surat'          => $no_surat, 
         );
 
         $result = $this->M_surat_keluar->insert($data);
@@ -85,7 +84,7 @@ class Surat_keluar extends CI_Controller {
     function editaction(){
         $data = array(
             'id_surat_keluar'=> $this->input->post('id'),
-            'surat_keluar'          => $this->input->post('surat_keluar'),
+            'no_surat'       => $this->input->post('no_surat'),
             
         );
         $res = $this->M_surat_keluar->update($data['id_surat_keluar'],$data);

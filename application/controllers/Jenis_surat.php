@@ -66,14 +66,25 @@ class Jenis_surat extends CI_Controller {
 
         $result = $this->M_jenis_surat->insert($data);
         if($result>=0){
-            $this->session->set_flashdata("sukses", 'swal({
-                title: "Berhasi!",
-                text: "Data Berhasil diSimpan!",
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-success",
-                type: "success"
-            }).catch(swal.noop)');
-            header('location:'.base_url().'jenis_surat');
+            if(mkdir("assets/uploads/file/".$jenis_surat)){
+                $this->session->set_flashdata("sukses", 'swal({
+                    title: "Berhasi!",
+                    text: "Data Berhasil diSimpan!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-success",
+                    type: "success"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'jenis_surat');
+            }else{
+                $this->session->set_flashdata("alert", 'swal({
+                    title: "Gagal!",
+                    text: "Data Gagal diSimpan!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-danger",
+                    type: "error"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'jenis_surat');
+            }
         }else{
             $this->session->set_flashdata("alert", 'swal({
                 title: "Gagal!",
@@ -116,6 +127,8 @@ class Jenis_surat extends CI_Controller {
 
     function hapus(){
         $id = $this->input->post("id");
+        $row = $this->M_jenis_surat->get_by_id($id);
+        rmdir("assets/uploads/file/".$row->jenis_surat);
         $result = $this->M_jenis_surat->delete($id);
         header('location:'.base_url().'jenis_surat'); 
     }
