@@ -28,14 +28,14 @@
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach ($data_bagian as $bagian): ?>
-                                        <tr>
+                                        <tr id="datanya">
                                             <td><?php echo ++$no; ?></td>
 
                                              <td><?php echo $bagian->bagian ?></td>   
                                             <td><?php echo $bagian->kepala_bagian ?></td>
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url('bagian/edit/'.$bagian->id_bagian) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
-                                                <a href="#" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
+                                                <a onclick="deletedata(<?php echo $bagian->id_bagian.",'".$bagian->bagian."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>
@@ -66,13 +66,58 @@ $(document).ready(function() {
             search: "_INPUT_",
             searchPlaceholder: "Search records",
         }
-
     });
-
 
     var table = $('#datatables').DataTable();
         $('.card .material-datatables label').addClass('form-group');
     });
 
+</script>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        <?php echo $this->session->flashdata('sukses'); ?>
+        <?php echo $this->session->flashdata('alert'); ?>
+        <?php echo $this->session->flashdata('message'); ?>
+    });
+    
+
+    function deletedata(id,datanya){
+        swal({
+            title: "Anda Yakin?",
+            text: "Data "+datanya+" Akan Dihapus Secara Permanen!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Yes, delete it!',
+            buttonsStyling: false
+        }).then(function(){
+            $.ajax({
+                url: "<?php echo base_url('bagian/hapus') ?>",
+                type: "post",
+                data: {id:id},
+                success:function(){
+                    swal({
+                        title: 'Berhasil!',
+                        text: 'Data Berhasil Di Hapus.',
+                        type: 'success',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    })
+                    $("#datanya").fadeTo("slow", 0.7, function(){
+                        $(this).remove();
+                    })
+                },error:function(){
+                    swal({
+                        title: 'Gagal!',
+                        text: 'Data Gagal Di Hapus.',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-danger",
+                        buttonsStyling: false
+                    })
+                }
+            });
+        }).catch(swal.noop)
+    }
 </script>
 </html>

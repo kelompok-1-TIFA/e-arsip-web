@@ -45,7 +45,7 @@
                                 <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse <?php if($this->uri->segment(1)=="jenis_surat" OR $this->uri->segment(1)=="pegawai" OR $this->uri->segment(1)=="bagian"){echo "show";}?> ml-4" id="pagesExamples">
+                        <div class="collapse <?php if($this->uri->segment(1)=="jenis_surat" OR $this->uri->segment(1)=="pegawai" OR $this->uri->segment(1)=="bagian" OR $this->uri->segment(1)=="jabatan"){echo "show";}?> ml-4" id="pagesExamples">
                             <ul class="nav">
                                 <li class="nav-item <?php if($this->uri->segment(1)=="jenis_surat"){echo "active";}?>">
                                     <a class="nav-link" href="<?php echo base_url('jenis_surat'); ?>">

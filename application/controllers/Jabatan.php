@@ -43,7 +43,13 @@ class Jabatan extends CI_Controller {
             );
             $this->load->view('jabatan/v_edit_jabatan', $data);
         } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
+            $this->session->set_flashdata('message', 'swal({
+                title: "Alert",
+                text: "Data Tidak Ditemukan !",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-danger",
+                type: "warning"
+            }).catch(swal.noop)');
             redirect(site_url('jabatan'));
 
         }
@@ -59,10 +65,22 @@ class Jabatan extends CI_Controller {
 
         $result = $this->M_jabatan->insert($data);
         if($result>=0){
-            $this->session->set_flashdata("sukses", "<div class='alert alert-success'><i class='fa fa-check'></i> <strong> Simpan data BERHASIL dilakukan</strong></div>");
+            $this->session->set_flashdata("sukses", 'swal({
+                title: "Berhasi!",
+                text: "Data Berhasil diSimpan!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "success"
+            }).catch(swal.noop)');
             header('location:'.base_url().'jabatan');
         }else{
-            $this->session->set_flashdata("alert", "<div class='alert alert-danger'><i class='fa fa-exclamation'></i> <strong> Simpan data GAGAL di lakukan</strong></div>");
+            $this->session->set_flashdata("alert", 'swal({
+                title: "Gagal!",
+                text: "Data Gagal diSimpan!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-danger",
+                type: "error"
+            }).catch(swal.noop)');
             header('location:'.base_url().'jabatan');
         }
     }
@@ -75,22 +93,29 @@ class Jabatan extends CI_Controller {
         );
         $res = $this->M_jabatan->update($data['id_jabatan'],$data);
         if($res>=0){
-            $this->session->set_flashdata("sukses", "<div class='alert alert-success'><i class='fa fa-check'></i> <strong> Update data BERHASIL dilakukan</strong></div>");
+            $this->session->set_flashdata("sukses", 'swal({
+                title: "Berhasi!",
+                text: "Data Berhasil diUpdate!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "success"
+            }).catch(swal.noop)');
             header('location:'.base_url().'jabatan');
         }else{
-            $this->session->set_flashdata("alert", "<div class='alert alert-danger'><i class='fa fa-exclamation'></i> <strong> Update data GAGAL di lakukan</strong></div>");
+            $this->session->set_flashdata("alert", 'swal({
+                title: "Gagal!",
+                text: "Data Gagal diUpdate!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-danger",
+                type: "error"
+            }).catch(swal.noop)');
             header('location:'.base_url().'jabatan');
         }       
     }
 
-    function hapus($id_jabatan = 1){
-        $result = $this->M_jabatan->delete($id_jabatan);
-        if($result>=0){
-            $this->session->set_flashdata("sukses", "<div class='alert alert-success'><i class='fa fa-check'></i> <strong> Hapus data BERHASIL dilakukan</strong></div>");
-            header('location:'.base_url().'jabatan');
-        }else{
-            $this->session->set_flashdata("alert", "<div class='alert alert-danger'><i class='fa fa-exclamation'></i> <strong> Hapus data GAGAL di lakukan</strong></div>");
-            header('location:'.base_url().'jabatan');
-        }   
+    function hapus(){
+        $id = $this->input->post("id");
+        $result = $this->M_jabatan->delete($id);
+        header('location:'.base_url().'jabatan'); 
     }
 }

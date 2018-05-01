@@ -22,41 +22,27 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Nip</th>
+                                            <th>Nama</th>
                                             <th>Jabatan</th>
                                             <th>Bagian</th>
-                                            <th>Nama</th>
                                             <th>Jenis Kelamin</th>
-                                            
-                                            <th>Agama</th>
-                                            
-                                            <th>Alamat</th>
-                                           
                                             <th>Foto</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach ($data_pegawai as $pegawai): ?>
-                                        <tr>
+                                        <tr id="datanya">
                                             <td><?php echo ++$no; ?></td>
-
-                                             <td><?php echo $pegawai->nip ?></td>   
+                                            <td><?php echo $pegawai->nip ?></td>
+                                            <td><?php echo $pegawai->nama ?></td>   
                                             <td><?php echo $pegawai->id_bagian ?></td>
                                             <td><?php echo $pegawai->id_jabatan ?></td>
-                                            
-                                            <td><?php echo $pegawai->nama ?></td>
                                             <td><?php echo $pegawai->jenis_kelamin ?></td>
-                                            
-                                            <td><?php echo $pegawai->agama ?></td>
-                                            
-                                            <td><?php echo $pegawai->alamat ?></td>
-                                            
                                             <td><?php echo $pegawai->foto ?></td>
-                                            
-
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url('pegawai/edit/'.$pegawai->nip) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
-                                                <a href="#" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
+                                                <a onclick="deletedata(<?php echo $pegawai->nip.",'".$pegawai->nama."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>
@@ -75,25 +61,68 @@
 <script src="<?php echo base_url() ?>assets/js/plugins/jquery.datatables.js"></script>
 <script type="text/javascript">
 
-$(document).ready(function() {
-    $('#datatables').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search records",
-        }
-
-    });
-
-
-    var table = $('#datatables').DataTable();
+    $(document).ready(function() {
+        $('#datatables').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+            }
+        });
+        var table = $('#datatables').DataTable();
         $('.card .material-datatables label').addClass('form-group');
     });
 
+</script>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        <?php echo $this->session->flashdata('sukses'); ?>
+        <?php echo $this->session->flashdata('alert'); ?>
+        <?php echo $this->session->flashdata('message'); ?>
+    });
+
+    function deletedata(id,datanya){
+        swal({
+            title: "Anda Yakin?",
+            text: "Data "+datanya+" Akan Dihapus Secara Permanen!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Yes, delete it!',
+            buttonsStyling: false
+        }).then(function(){
+            $.ajax({
+                url: "<?php echo base_url('pegawai/hapus') ?>",
+                type: "post",
+                data: {id:id},
+                success:function(){
+                    swal({
+                        title: 'Berhasil!',
+                        text: 'Data Berhasil Di Hapus.',
+                        type: 'success',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    })
+                    $("#datanya").fadeTo("slow", 0.7, function(){
+                        $(this).remove();
+                    })
+                },error:function(){
+                    swal({
+                        title: 'Gagal!',
+                        text: 'Data Gagal Di Hapus.',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-danger",
+                        buttonsStyling: false
+                    })
+                }
+            });
+        }).catch(swal.noop)
+    }
 </script>
 </html>

@@ -28,13 +28,13 @@
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach ($data_jenis_surat as $jenis_surat): ?>
-                                        <tr>
+                                        <tr id="datanya">
                                             <td><?php echo ++$no; ?></td>
                                             <td><?php echo $jenis_surat->kode ?></td>
                                             <td><?php echo $jenis_surat->jenis_surat ?></td>
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url('jenis_surat/edit/'.$jenis_surat->id_jenis_surat) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
-                                                <a href="#" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
+                                                <a onclick="deletedata(<?php echo $jenis_surat->id_jenis_surat.",'".$jenis_surat->jenis_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>
@@ -73,5 +73,51 @@ $(document).ready(function() {
         $('.card .material-datatables label').addClass('form-group');
     });
 
+</script>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        <?php echo $this->session->flashdata('sukses'); ?>
+        <?php echo $this->session->flashdata('alert'); ?>
+        <?php echo $this->session->flashdata('message'); ?>
+    });
+
+    function deletedata(id,datanya){
+        swal({
+            title: "Anda Yakin?",
+            text: "Data "+datanya+" Akan Dihapus Secara Permanen!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Yes, delete it!',
+            buttonsStyling: false
+        }).then(function(){
+            $.ajax({
+                url: "<?php echo base_url('jenis_surat/hapus') ?>",
+                type: "post",
+                data: {id:id},
+                success:function(){
+                    swal({
+                        title: 'Berhasil!',
+                        text: 'Data Berhasil Di Hapus.',
+                        type: 'success',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    })
+                    $("#datanya").fadeTo("slow", 0.7, function(){
+                        $(this).remove();
+                    })
+                },error:function(){
+                    swal({
+                        title: 'Gagal!',
+                        text: 'Data Gagal Di Hapus.',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-danger",
+                        buttonsStyling: false
+                    })
+                }
+            });
+        }).catch(swal.noop)
+    }
 </script>
 </html>

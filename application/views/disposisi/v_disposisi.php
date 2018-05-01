@@ -79,4 +79,9 @@ $(document).ready(function() {
     });
 
 </script>
+<script type="text/javascript">
+    <?php echo $this->session->flashdata('sukses'); ?>
+    <?php echo $this->session->flashdata('alert'); ?>
+    <?php echo $this->session->flashdata('message'); ?>
+</script>
 </html>

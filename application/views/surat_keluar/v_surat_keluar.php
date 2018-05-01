@@ -22,32 +22,25 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>No Surat</th>
-                                            
-                                            <th>Isi Singkat</th>
-                                            
-                                            
-                                            <th>Tanggal Surat</th>
-                                            
-                                            <th>Keterangan</th>
+                                            <th>Tujuan</th>
+                                            <th>Perihal</th>
+                                            <th>Tanggal Arsip</th>
+                                            <th>File</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach ($data_surat_keluar as $surat_keluar): ?>
-                                        <tr>
+                                        <tr id="datanya">
                                             <td><?php echo ++$no; ?></td>
-
-                                             <td><?php echo $surat_keluar->no_surat ?></td>   
-                                            
-                                            <td><?php echo $surat_keluar->isi_singkat ?></td>
-                                            
-                                            
-                                            <td><?php echo $surat_keluar->tgl_surat ?></td>
-                                            
-                                            <td><?php echo $surat_keluar->keterangan ?></td>
+                                            <td><?php echo $surat_keluar->no_surat ?></td>   
+                                            <td><?php echo $surat_keluar->tujuan ?></td>
+                                            <td><?php echo $surat_keluar->perihal ?></td>
+                                            <td><?php echo $surat_keluar->tgl_arsip ?></td>
+                                            <td><?php echo $surat_keluar->file ?></td>
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url('surat_keluar/edit/'.$surat_keluar->id_surat_keluar) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
-                                                <a href="#" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
+                                                <a onclick="deletedata(<?php echo $surat_keluar->id_surat_keluar.",'".$surat_keluar->no_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>
@@ -86,5 +79,51 @@ $(document).ready(function() {
         $('.card .material-datatables label').addClass('form-group');
     });
 
+</script>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        <?php echo $this->session->flashdata('sukses'); ?>
+        <?php echo $this->session->flashdata('alert'); ?>
+        <?php echo $this->session->flashdata('message'); ?>
+    });
+
+    function deletedata(id,datanya){
+        swal({
+            title: "Anda Yakin?",
+            text: "Data "+datanya+" Akan Dihapus Secara Permanen!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Yes, delete it!',
+            buttonsStyling: false
+        }).then(function(){
+            $.ajax({
+                url: "<?php echo base_url('surat_keluar/hapus') ?>",
+                type: "post",
+                data: {id:id},
+                success:function(){
+                    swal({
+                        title: 'Berhasil!',
+                        text: 'Data Berhasil Di Hapus.',
+                        type: 'success',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    })
+                    $("#datanya").fadeTo("slow", 0.7, function(){
+                        $(this).remove();
+                    })
+                },error:function(){
+                    swal({
+                        title: 'Gagal!',
+                        text: 'Data Gagal Di Hapus.',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-danger",
+                        buttonsStyling: false
+                    })
+                }
+            });
+        }).catch(swal.noop)
+    }
 </script>
 </html>

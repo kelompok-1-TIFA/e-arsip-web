@@ -40,7 +40,13 @@ class Surat_masuk extends CI_Controller {
             );
             $this->load->view('surat_masuk/v_edit_surat_masuk', $data);
         } else {
-            $this->session->set_flashdata('message', 'Record Not Found');
+             $this->session->set_flashdata('message', 'swal({
+                title: "Alert",
+                text: "Data Tidak Ditemukan !",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-danger",
+                type: "warning"
+            }).catch(swal.noop)');
             redirect(site_url('surat_masuk'));
 
         }
@@ -56,10 +62,22 @@ class Surat_masuk extends CI_Controller {
 
         $result = $this->M_surat_masuk->insert($data);
         if($result>=0){
-            $this->session->set_flashdata("sukses", "<div class='alert alert-success'><i class='fa fa-check'></i> <strong> Simpan data BERHASIL dilakukan</strong></div>");
+            $this->session->set_flashdata("sukses", 'swal({
+                title: "Berhasi!",
+                text: "Data Berhasil diSimpan!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "success"
+            }).catch(swal.noop)');
             header('location:'.base_url().'surat_masuk');
         }else{
-            $this->session->set_flashdata("alert", "<div class='alert alert-danger'><i class='fa fa-exclamation'></i> <strong> Simpan data GAGAL di lakukan</strong></div>");
+            $this->session->set_flashdata("alert", 'swal({
+                title: "Gagal!",
+                text: "Data Gagal diSimpan!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-danger",
+                type: "error"
+            }).catch(swal.noop)');
             header('location:'.base_url().'surat_masuk');
         }
     }
@@ -72,22 +90,29 @@ class Surat_masuk extends CI_Controller {
         );
         $res = $this->M_surat_masuk->update($data['id_surat_masuk'],$data);
         if($res>=0){
-            $this->session->set_flashdata("sukses", "<div class='alert alert-success'><i class='fa fa-check'></i> <strong> Update data BERHASIL dilakukan</strong></div>");
+            $this->session->set_flashdata("sukses", 'swal({
+                title: "Berhasi!",
+                text: "Data Berhasil diUpdate!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-success",
+                type: "success"
+            }).catch(swal.noop)');
             header('location:'.base_url().'surat_masuk');
         }else{
-            $this->session->set_flashdata("alert", "<div class='alert alert-danger'><i class='fa fa-exclamation'></i> <strong> Update data GAGAL di lakukan</strong></div>");
+            $this->session->set_flashdata("alert", 'swal({
+                title: "Gagal!",
+                text: "Data Gagal diUpdate!",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-danger",
+                type: "error"
+            }).catch(swal.noop)');
             header('location:'.base_url().'surat_masuk');
         }       
     }
 
-    function hapus($id_surat_masuk = 1){
-        $result = $this->M_surat_masuk->delete($id_surat_masuk);
-        if($result>=0){
-            $this->session->set_flashdata("sukses", "<div class='alert alert-success'><i class='fa fa-check'></i> <strong> Hapus data BERHASIL dilakukan</strong></div>");
-            header('location:'.base_url().'surat_masuk');
-        }else{
-            $this->session->set_flashdata("alert", "<div class='alert alert-danger'><i class='fa fa-exclamation'></i> <strong> Hapus data GAGAL di lakukan</strong></div>");
-            header('location:'.base_url().'surat_masuk');
-        }   
+    function hapus(){
+        $id = $this->input->post("id");
+        $result = $this->M_jenis_surat->delete($id);
+        header('location:'.base_url().'surat_masuk');    
     }
 }
