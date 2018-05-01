@@ -6,6 +6,8 @@ class Pegawai extends CI_Controller {
     function __construct()    {
         parent::__construct();
         $this->load->model('M_pegawai');
+        $this->load->model('M_bagian');
+        $this->load->model('M_jabatan');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
         }
@@ -13,7 +15,7 @@ class Pegawai extends CI_Controller {
     }
 
     public function index(){
-        $pegawai = $this->M_pegawai->get_all();
+        $pegawai = $this->M_pegawai->get_where(" LEFT JOIN tb_bagian ON tb_bagian.id_bagian=tb_pegawai.id_bagian_pegawai LEFT JOIN tb_jabatan ON tb_jabatan.id_jabatan=tb_pegawai.id_jabatan_pegawai");
 
         $data = array(
             'data_pegawai'  => $pegawai,
@@ -24,6 +26,8 @@ class Pegawai extends CI_Controller {
 
     public function tambah(){
         $data = array(
+            'data_bagian' => $this->M_bagian->get_all(),
+            'data_jabatan' => $this->M_jabatan->get_all(),
             'page_title' => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
         );
         $this->load->view('pegawai/v_tambah_pegawai',$data);
@@ -33,8 +37,11 @@ class Pegawai extends CI_Controller {
         $row = $this->M_pegawai->get_by_id($id);
         if ($row) {
             $data = array(
-                'nip'		=> $row->nip,
-                'page_title'=> ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+                'nip'   		=> $row->nip,
+                'nama'          => $row->nama,
+                'data_bagian'   => $this->M_bagian->get_all(),
+                'data_jabatan'  => $this->M_jabatan->get_all(),
+                'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('pegawai/v_edit_pegawai', $data);
         } else {

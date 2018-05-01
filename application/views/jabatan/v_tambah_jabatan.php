@@ -16,10 +16,11 @@
                             <div class="card-body">
                                 
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Jabatan</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">supervisor_account</i></label>
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                            <input type="text" placeholder="Masukkan jabatan..." name="jabatan" class="form-control" required>
+                                            <label class="bmd-label-floating">Jabatan</label>
+                                            <input type="text" name="jabatan" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

@@ -22,6 +22,11 @@ class M_bagian extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_where($where)
+    {
+        return $this->db->query('select * from tb_bagian '.$where)->result();
+    }
+
     // get data by id
     function get_by_id($id)
     {

@@ -36,8 +36,8 @@
                                             <td><?php echo ++$no; ?></td>
                                             <td><?php echo $pegawai->nip ?></td>
                                             <td><?php echo $pegawai->nama ?></td>   
-                                            <td><?php echo $pegawai->id_bagian ?></td>
-                                            <td><?php echo $pegawai->id_jabatan ?></td>
+                                            <td><?php echo $pegawai->jabatan ?></td>
+                                            <td><?php echo $pegawai->bagian ?></td>
                                             <td><?php echo $pegawai->jenis_kelamin ?></td>
                                             <td><?php echo $pegawai->foto ?></td>
                                             <td class="text-right td-actions">

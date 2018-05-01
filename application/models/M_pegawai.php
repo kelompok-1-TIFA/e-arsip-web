@@ -23,9 +23,7 @@ class M_pegawai extends CI_Model
     }
     function get_where($where)
     {
-        $this->db->where($where);
-        $this->db->order_by($this->id, $this->order);
-        return $this->db->get($this->table)->result();
+        return $this->db->query('select * from tb_pegawai '.$where)->result();
     }
 
     // get data by id

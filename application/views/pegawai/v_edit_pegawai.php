@@ -21,7 +21,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                 <label class="bmd-label-floating">NIP</label>
-                                                <input type="text" value="<?php echo $nip ?>" name="nip" class="form-control" required>
+                                                <input type="text" disabled value="<?php echo $nip ?>" name="nip" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>
@@ -29,8 +29,10 @@
                                             <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">account_balance</i></label>
                                             <div class="col-md-10">
                                               <div class="form-group mt-0">
-                                                <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Bagian" data-size="7" name="id_bagian">
-                                                  <option disabled> Multiple Options</option>
+                                                <select class="selectpicker" data-style="btn select-with-transition" title="Pilih Bagian" data-size="7" name="id_bagian">
+                                                    <?php foreach ($data_bagian as $bagian): ?>
+                                                        <option <?php if($bagian->id_bagian==$id_bagian_pegawai){echo "SELECTED";} ?> value="<?php echo $bagian->id_bagian ?>"> <?php echo $bagian->bagian; ?></option>
+                                                    <?php endforeach ?>
                                                 </select>
                                               </div>
                                             </div>
@@ -39,8 +41,10 @@
                                             <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">class</i></label>
                                             <div class="col-md-10">
                                               <div class="form-group mt-0">
-                                                <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Jabatan" data-size="7" name="id_jabatan">
-                                                  <option disabled> Multiple Options</option>
+                                                <select class="selectpicker" data-style="btn select-with-transition"  title="Pilih Jabatan" data-size="7" name="id_jabatan">
+                                                    <?php foreach ($data_jabatan as $jabatan): ?>
+                                                        <option <?php if($jabatan->id_jabatan==$id_jabatan_pegawai){echo "SELECTED";} ?> value="<?php echo $jabatan->id_jabatan ?>"> <?php echo $jabatan->jabatan; ?></option>
+                                                    <?php endforeach ?>
                                                 </select>
                                               </div>
                                             </div>
@@ -50,7 +54,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group">
                                                 <label class="bmd-label-floating">NIAP</label>
-                                                <input type="text" value="<?php echo $nip ?>" name="niap" class="form-control" required>
+                                                <input value="<?php echo $nip ?>" type="text"  name="niap" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>
@@ -59,7 +63,7 @@
                                             <div class="col-md-10">
                                                 <div class="form-group">
                                                     <label class="bmd-label-floating">Nama Pegawai</label>
-                                                    <input type="text" value="<?php echo $nip ?>" name="nama" class="form-control" required>
+                                                    <input value="<?php echo $nama ?>" type="text"  name="nama" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -67,9 +71,9 @@
                                             <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">usb</i></label>
                                             <div class="col-md-10">
                                                 <div class="form-group mt-0">
-                                                    <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Jenis Kelamin" data-size="7" name="jenis_kelamin">
-                                                        <option disabled> Multiple Options</option>
-                                                        <option value="2">Paris </option>
+                                                    <select class="selectpicker" data-style="btn select-with-transition"  title="Pilih Jenis Kelamin" data-size="7" name="jenis_kelamin">
+                                                        <option <?php if($jenis_kelamin=="Laki - Laki"){echo "SELECTED";} ?> value="Laki - Laki"> Laki - Laki </option>
+                                                        <option <?phpif($jenis_kelamin=="Perempuan"){echo "SELECTED";} ?> value="Perempuan"> Perempuan </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -79,7 +83,7 @@
                                             <div class="col-md-10">
                                                 <div class="form-group ">
                                                     <label class="bmd-label-floating">Tempat Lahir</label>
-                                                    <input type="text" value="<?php echo $nip ?>" name="tempat_lahir" class="form-control" required>
+                                                    <input value="<?php echo $nip ?>" type="text"  name="tempat_lahir" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -117,7 +121,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                 <label class="bmd-label-floating">Alamat</label>
-                                                <textarea name="alamat" required class="form-control"><?php echo $nip ?></textarea>
+                                                <textarea name="alamat" value="<?php echo $nip ?>" required class="form-control"></textarea>
                                               </div>
                                             </div>
                                         </div>
@@ -135,7 +139,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                     <label class="bmd-label-floating">Pendidikan Terakhir</label>
-                                                  <input type="text" value="<?php echo $nip ?>" name="pendidikan_terakhir" class="form-control" required>
+                                                  <input type="text"  name="pendidikan_terakhir" value="<?php echo $nip ?>" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>
@@ -144,12 +148,13 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                 <label class="bmd-label-floating">SK Pengangkatan</label>
-                                                  <input type="text" value="<?php echo $nip ?>" name="sk_pengangkatan" class="form-control" required>
+                                                  <input type="text" value="<?php echo $nip ?>" value=""  name="sk_pengangkatan" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>          
                                     </div>
                                 </div>
+
                                 <div class="row pull-right my-3">
                                     <div class="col-12 ">
                                         <button type="submit" class="btn btn-primary"><i class="material-icons">mode_edit</i> Update</button>

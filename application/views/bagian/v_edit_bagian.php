@@ -15,19 +15,24 @@
                         <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/editaction') ?>" class="form-horizontal">
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Bagian</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">account_balance</i></label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="bagian" value="<?php echo $bagian ?>" placeholder="Masukkan data bagian..." class="form-control" required>
-                                          <input type="hidden" name="id" value="<?php echo $id_bagian ?>" placeholder="Masukkan bagian..." class="form-control" required>
+                                      <div class="form-group">
+                                        <label class="bmd-label-floating">Bagian</label>
+                                        <input type="text" name="bagian" value="<?php echo $bagian ?>" class="form-control" required>
+                                        <input type="hidden" name="id" value="<?php echo $id_bagian ?>" class="form-control" required>
                                       </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Kepala Bagian</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">record_voice_over</i></label>
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                            <input type="text" value="<?php echo $kepala_bagian ?>" placeholder="Masukkan data bagian..." name="kepala_bagian" class="form-control" required>
+                                            <select class="selectpicker" data-style="btn select-with-transition" name="kepala_bagian" title="Pilih Pegawai" data-size="7">
+                                                <?php foreach ($data_pegawai as $pegawai): ?>
+                                                    <option <?php if($pegawai->nip==$kepala_bagian){echo "SELECTED";} ?> value="<?php echo $pegawai->nip; ?>"><?php echo $pegawai->nama; ?></option>
+                                                <?php endforeach ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

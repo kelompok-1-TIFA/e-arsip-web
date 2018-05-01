@@ -15,38 +15,23 @@
                         <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/simpan') ?>" class="form-horizontal">
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">bagian</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">account_balance</i></label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="bagian" placeholder="Masukkan bagian..." class="form-control" required>
-                                      </div>
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Bagian</label>
+                                            <input type="text" name="bagian" class="form-control" required>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Kepala Bagian </label>
+                                    <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">record_voice_over</i></label>
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                             <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Pegawai" data-size="7">
-                                    <option disabled> Multiple Options</option>
-                                    <option value="2">Paris </option>
-                                    <option value="3">Bucharest</option>
-                                    <option value="4">Rome</option>
-                                    <option value="5">New York</option>
-                                    <option value="6">Miami </option>
-                                    <option value="7">Piatra Neamt</option>
-                                    <option value="8">Paris </option>
-                                    <option value="9">Bucharest</option>
-                                    <option value="10">Rome</option>
-                                    <option value="11">New York</option>
-                                    <option value="12">Miami </option>
-                                    <option value="13">Piatra Neamt</option>
-                                    <option value="14">Paris </option>
-                                    <option value="15">Bucharest</option>
-                                    <option value="16">Rome</option>
-                                    <option value="17">New York</option>
-                                    <option value="18">Miami </option>
-                                    <option value="19">Piatra Neamt</option>
-                                </select>
+                                            <select class="selectpicker" data-style="btn select-with-transition" name="kepala_bagian" title="Pilih Pegawai" data-size="7">
+                                                <?php foreach ($data_pegawai as $pegawai): ?>
+                                                    <option value="<?php echo $pegawai->nip; ?>"><?php echo $pegawai->nama; ?></option>
+                                                <?php endforeach ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

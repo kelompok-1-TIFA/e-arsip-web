@@ -15,12 +15,13 @@
                         <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/editaction') ?>" class="form-horizontal">
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Jabatan</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">supervisor_account</i></label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="jabatan" value="<?php echo $jabatan ?>" placeholder="Masukkan data jabatan..." class="form-control" required>
-                                          <input type="hidden" name="id" value="<?php echo $id_jabatan ?>" placeholder="Masukkan jabatan..." class="form-control" required>
-                                      </div>
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Jabatan</label>
+                                            <input type="text" name="jabatan" value="<?php echo $jabatan ?>" class="form-control" required>
+                                            <input type="hidden" name="id" value="<?php echo $id_jabatan ?>" class="form-control" required>
+                                        </div>
                                     </div>
                                 </div>
                                

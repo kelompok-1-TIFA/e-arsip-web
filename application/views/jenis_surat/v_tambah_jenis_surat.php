@@ -15,18 +15,20 @@
                         <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/simpan') ?>" class="form-horizontal">
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Kode</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">code</i></label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="kode" placeholder="Masukkan Kode Jenis Surat..." class="form-control" required>
+                                      <div class="form-group">
+                                            <label class="bmd-label-floating">Kode Jenis Surat</label>
+                                            <input type="text" name="kode" class="form-control" required>
                                       </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Jenis Surat</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">mail</i></label>
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                            <input type="text" placeholder="Masukkan Nama Jenis Surat..." name="jenis_surat" class="form-control" required>
+                                            <label class="bmd-label-floating">Jenis Surat</label>
+                                            <input type="text" name="jenis_surat" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>

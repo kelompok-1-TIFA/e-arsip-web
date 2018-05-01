@@ -29,8 +29,10 @@
                                             <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">account_balance</i></label>
                                             <div class="col-md-10">
                                               <div class="form-group mt-0">
-                                                <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Bagian" data-size="7" name="id_bagian">
-                                                  <option disabled> Multiple Options</option>
+                                                <select class="selectpicker" data-style="btn select-with-transition" title="Pilih Bagian" data-size="7" name="id_bagian">
+                                                    <?php foreach ($data_bagian as $bagian): ?>
+                                                        <option value="<?php echo $bagian->id_bagian ?>"> <?php echo $bagian->bagian; ?></option>
+                                                    <?php endforeach ?>
                                                 </select>
                                               </div>
                                             </div>
@@ -39,8 +41,10 @@
                                             <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">class</i></label>
                                             <div class="col-md-10">
                                               <div class="form-group mt-0">
-                                                <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Jabatan" data-size="7" name="id_jabatan">
-                                                  <option disabled> Multiple Options</option>
+                                                <select class="selectpicker" data-style="btn select-with-transition"  title="Pilih Jabatan" data-size="7" name="id_jabatan">
+                                                    <?php foreach ($data_jabatan as $jabatan): ?>
+                                                        <option value="<?php echo $jabatan->id_jabatan ?>"> <?php echo $jabatan->jabatan; ?></option>
+                                                    <?php endforeach ?>
                                                 </select>
                                               </div>
                                             </div>
@@ -67,9 +71,9 @@
                                             <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">usb</i></label>
                                             <div class="col-md-10">
                                                 <div class="form-group mt-0">
-                                                    <select class="selectpicker" data-style="btn select-with-transition" multiple title="Pilih Jenis Kelamin" data-size="7" name="jenis_kelamin">
-                                                        <option disabled> Multiple Options</option>
-                                                        <option value="2">Paris </option>
+                                                    <select class="selectpicker" data-style="btn select-with-transition"  title="Pilih Jenis Kelamin" data-size="7" name="jenis_kelamin">
+                                                        <option value="Laki - Laki"> Laki - Laki </option>
+                                                        <option value="Perempuan"> Perempuan </option>
                                                     </select>
                                                 </div>
                                             </div>

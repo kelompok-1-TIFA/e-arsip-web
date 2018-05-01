@@ -17,7 +17,7 @@ class Bagian extends CI_Controller {
     }
 
     public function index(){
-        $bagian = $this->M_bagian->get_all();
+        $bagian = $this->M_bagian->get_where("LEFT JOIN tb_pegawai ON tb_pegawai.nip=tb_bagian.kepala_bagian ORDER BY tb_bagian.id_bagian DESC");
 
         $data = array(
             'data_bagian'  => $bagian,
@@ -41,6 +41,7 @@ class Bagian extends CI_Controller {
                 'id_bagian'=> $row->id_bagian,
                 'bagian'          => $row->bagian,
                 'kepala_bagian'   => $row->kepala_bagian,
+                'data_pegawai'  => $this->M_pegawai->get_all(),
                 'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('bagian/v_edit_bagian', $data);

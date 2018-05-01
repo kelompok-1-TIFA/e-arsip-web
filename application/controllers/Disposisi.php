@@ -5,7 +5,7 @@ class Disposisi extends CI_Controller {
 
     function __construct()    {
         parent::__construct();
-        $this -> load -> model('M_disposisi');
+        $this ->load-> model('M_disposisi');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
         }
