@@ -1,10 +1,12 @@
-<!--   Core JS Files   -->
+    <!--   Core JS Files   -->
 <script src="<?php echo base_url() ?>assets/js/core/jquery.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/core/popper.min.js"></script>
-<script src="<?php echo base_url() ?>assets/js/bootstrap-material-design.min.js"></script>
+<script src="<?php echo base_url() ?>assets/js/bootstrap-material-design.js"></script>
 <script src="<?php echo base_url() ?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
 <!--  Google Maps Plugin  -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Yno10-YTnLjjn_Vtk0V8cdcY5lC4plU"></script>
+
 <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
 <script src="<?php echo base_url() ?>assets/js/plugins/moment.min.js"></script>
 <!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
@@ -17,6 +19,8 @@
 <script src="<?php echo base_url() ?>assets/js/plugins/bootstrap-tagsinput.js"></script>
 <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
 <script src="<?php echo base_url() ?>assets/js/plugins/jasny-bootstrap.min.js"></script>
+<!-- Plugins for presentation and navigation  -->
+<script src="<?php echo base_url() ?>assets/assets-for-demo/js/modernizr.js"></script>
 <!-- Material Kit Core initialisations of plugins and Bootstrap Material Design Library -->
 <script src="<?php echo base_url() ?>assets/js/material-dashboard790f.js?v=2.0.1"></script>
 <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
@@ -37,6 +41,8 @@
 <script src="<?php echo base_url() ?>assets/js/plugins/nouislider.min.js"></script>
 <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
 <script src="<?php echo base_url() ?>assets/js/plugins/jquery.select-bootstrap.js"></script>
+<!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
+<script src="<?php echo base_url() ?>assets/js/plugins/jquery.datatables.js"></script>
 <!-- Sweet Alert 2 plugin, full documentation here: https://limonte.github.io/sweetalert2/ -->
 <script src="<?php echo base_url() ?>assets/js/plugins/sweetalert2.js"></script>
 <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
@@ -45,3 +51,22 @@
 <script src="<?php echo base_url() ?>assets/js/plugins/fullcalendar.min.js"></script>
 <!-- demo init -->
 <script src="<?php echo base_url() ?>assets/js/plugins/demo.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		//init DateTimePickers
+  		md.initFormExtendedDatetimepickers();
+  		// Sliders Init
+  		md.initSliders();
+	});
+</script>
+<script type="text/javascript">
+    $().ready(function(){
+        demo.checkFullPageBackgroundImage();
+        setTimeout(function(){
+            // after 1000 ms we add the class animated to the login/register card
+            $('.card').removeClass('card-hidden');
+        }, 700)
+    });
+</script>
+<!-- Sharrre libray -->
+<script src="<?php echo base_url() ?>assets/assets-for-demo/js/jquery.sharrre.js"></script>

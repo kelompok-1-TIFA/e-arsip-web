@@ -37,5 +37,18 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
-
     <link rel="stylesheet" href="<?php echo base_url('assets/css/material-dashboard.min790f.css?v=2.0.1') ;?>">
+
+    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css'); ?>">
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="<?php echo base_url()?>assets/assets-for-demo/demo.css" rel="stylesheet"/>
+    <script type="text/javascript">
+        if (document.readyState === 'complete') {
+            if (window.location != window.parent.location) {
+              const elements = document.getElementsByClassName("iframe-extern");
+              while (elemnts.lenght > 0) elements[0].remove();
+                // $(".iframe-extern").remove();
+            }
+        };
+    </script>
