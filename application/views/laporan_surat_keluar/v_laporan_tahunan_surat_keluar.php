@@ -4,7 +4,39 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">mail</i>
+                            </div>
+                            <h4 class="card-title">Data <?php echo $page_title; ?></h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="toolbar">
+                               <select class="selectpicker" name="id_jenis_surat" data-style="btn select-with-transition" title="Pilih Tahun" data-size="7">
+                                
+                                    <option value="">
+                                          </select>
+                            </div>
+                            <div class="material-datatables">
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>No Surat</th>
+                                            <th>Tujuan</th>
+                                            <th>Perihal</th>
+                                            <th>Tanggal Arsip</th>
+                                            <th>File</th>
+                                            <th class="disabled-sorting text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div><!-- end content-->
+                    </div><!--  end card  -->
+                </div> <!-- end col-md-12 -->
             </div>
         </div>
     </div>
