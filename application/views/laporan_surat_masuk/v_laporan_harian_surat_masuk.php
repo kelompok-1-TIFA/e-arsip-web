@@ -32,8 +32,6 @@
                                             <th>Asal Surat</th>
                                             <th>Perihal</th>
                                             <th>Tanggal Arsip</th>
-                                            <th>File</th>
-                                            <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -44,11 +42,6 @@
                                             <td><?php echo $surat_masuk->asal_surat ?></td>
                                             <td><?php echo $surat_masuk->perihal ?></td>
                                             <td><?php echo $surat_masuk->tgl_arsip ?></td>
-                                            <td><?php echo $surat_masuk->file ?></td>
-                                            <td class="text-right td-actions">
-                                                <a href="<?php echo base_url('bagian/edit/'.$bagian->id_surat_masuk) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
-                                                <a onclick="deletedata()" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
-                                            </td>
                                         </tr>
                                         <?php endforeach ?>
                                     </tbody>
