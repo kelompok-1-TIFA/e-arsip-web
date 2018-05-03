@@ -25,7 +25,6 @@
                                             <th>Tujuan</th>
                                             <th>Perihal</th>
                                             <th>Tanggal Arsip</th>
-                                            <th>File</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                     </thead>
@@ -37,7 +36,6 @@
                                             <td><?php echo $surat_keluar->tujuan ?></td>
                                             <td><?php echo $surat_keluar->perihal ?></td>
                                             <td><?php echo $surat_keluar->tgl_arsip ?></td>
-                                            <td><?php echo $surat_keluar->file ?></td>
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url('surat_keluar/edit/'.$surat_keluar->id_surat_keluar) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a onclick="deletedata(<?php echo $surat_keluar->id_surat_keluar.",'".$surat_keluar->no_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
