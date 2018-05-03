@@ -39,6 +39,15 @@ class Surat_keluar extends CI_Controller {
             $data = array(
                 'id_surat_keluar'   => $row->id_surat_keluar,
                 'no_surat'          => $row->no_surat,
+                'id_bagian'         => $row->id_bagian,
+                'tujuan'            => $row->tujuan,
+                'isi_singkat'       => $row->isi_singkat,
+                'id_jenis_surat'    => $row->id_jenis_surat,
+                'perihal'           => $row->perihal,
+                'tgl_surat'         => $row->tgl_surat,
+                'keterangan'        => $row->keterangan,
+                'file'              => $row->file,
+
                 'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
                 'data_bagian'  => $this->M_bagian->get_all(),
                 'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
@@ -59,17 +68,25 @@ class Surat_keluar extends CI_Controller {
 
     public function simpan(){
 
-        $no_surat= $_POST['no_surat'];
-        $tujuan =$_POST[tujuan];
-        $perihal =$_POST[perihal];
-        
-
+        $no_surat= $this->input->post('no_surat');
+        $id_bagian= $this->input->post('id_bagian');
+        $tujuan=$this->input->post('tujuan');
+        $isi_singkat=$this->input->post('isi_singkat');
+        $id_jenis_surat=$this->input->post('id_jenis_surat');
+        $perihal=$this->input->post('perihal');
+        $tgl_surat=$this->input->post('tgl_surat');
+        $keterangan=$this->input->post('keterangan');
         $data = array(  
             'id_surat_keluar'   => "",
             'no_surat'          => $no_surat, 
+            'id_bagian'         => $id_bagian,
             'tujuan'            => $tujuan,
+            'isi_singkat'       => $isi_singkat,
+            'id_jenis_surat'    => $id_jenis_surat,
             'perihal'           => $perihal,
+            'tgl_surat'         => $tgl_surat,
             'tgl_arsip'         => date("Y-m-d"),
+            'keterangan'        => $keterangan
 
             
         );
@@ -97,9 +114,27 @@ class Surat_keluar extends CI_Controller {
     }
 
     public function editaction(){
-        $data = array(
+        $no_surat= $this->input->post('no_surat');
+        $id_bagian= $this->input->post('id_bagian');
+        $tujuan=$this->input->post('tujuan');
+        $isi_singkat=$this->input->post('isi_singkat');
+        $id_jenis_surat=$this->input->post('id_jenis_surat');
+        $perihal=$this->input->post('perihal');
+        $tgl_surat=$this->input->post('tgl_surat');
+        $keterangan=$this->input->post('keterangan');
+        $data = array(  
+        
             'id_surat_keluar'=> $this->input->post('id'),
-            'no_surat'       => $this->input->post('no_surat'),
+            'no_surat'          => $no_surat, 
+            'id_bagian'         => $id_bagian,
+            'tujuan'            => $tujuan,
+            'isi_singkat'       => $isi_singkat,
+            'id_jenis_surat'    => $id_jenis_surat,
+            'perihal'           => $perihal,
+            'tgl_surat'         => $tgl_surat,
+            'keterangan'        => $keterangan
+
+            
             
         );
         $res = $this->M_surat_keluar->update($data['id_surat_keluar'],$data);
@@ -136,8 +171,16 @@ class Surat_keluar extends CI_Controller {
             $data = array(
                 'id_surat_keluar'   => $row->id_surat_keluar,
                 'no_surat'          => $row->no_surat,
+                'id_bagian'         => $row->id_bagian,
+                'tujuan'            => $row->tujuan,
+                'isi_singkat'       => $row->isi_singkat,
+                'id_jenis_surat'    => $row->id_jenis_surat,
+                'perihal'           => $row->perihal,
+                'tgl_surat'         => $row->tgl_surat,
+                'keterangan'        => $row->keterangan,
+                'file'              => $row->file,
                 'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
-                'data_bagian'  => $this->M_bagian->get_all(),
+                'data_bagian'       => $this->M_bagian->get_all(),
                 'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('surat_keluar/v_detail_surat_keluar', $data);
