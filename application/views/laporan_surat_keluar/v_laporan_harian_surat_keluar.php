@@ -13,9 +13,15 @@
                             <h4 class="card-title">Data</h4>
                         </div>
                         <div class="card-body">
-                            <div class="toolbar">
-                                <a title="Tambah Data" href="<?php echo base_url('surat_keluar/tambah') ?>" class="btn btn-primary btn-round"><i class="material-icons">add</i> Tambah Data</a>
-                            </div>
+                            <div class="col-md-3">
+                                        <div class="form-group">
+                                            <select class="selectpicker" name="id_jenis_surat" data-style="btn select-with-transition" title="Pilih Hari" data-size="7">
+                                                <?php foreach ($data_jenis_surat as $jenis_surat): ?>
+                                                    <option value="<?php echo $jenis_surat->id_jenis_surat ?>"> <?php echo $jenis_surat->jenis_surat; ?></option>
+                                                <?php endforeach ?>
+                                          </select>
+                                        </div>
+                                    </div>
                             <div class="material-datatables">
                                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                     <thead>
@@ -25,8 +31,6 @@
                                             <th>Tujuan</th>
                                             <th>Perihal</th>
                                             <th>Tanggal Arsip</th>
-                                            <th>File</th>
-                                            <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -37,11 +41,6 @@
                                             <td><?php echo $surat_keluar->tujuan ?></td>
                                             <td><?php echo $surat_keluar->perihal ?></td>
                                             <td><?php echo $surat_keluar->tgl_arsip ?></td>
-                                            <td><?php echo $surat_keluar->file ?></td>
-                                            <td class="text-right td-actions">
-                                                <a href="<?php echo base_url('surat_keluar/edit/'.$surat_keluar->id_surat_keluar) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
-                                                <a onclick="deletedata()" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
-                                            </td>
                                         </tr>
                                         <?php endforeach ?>
                                     </tbody>
