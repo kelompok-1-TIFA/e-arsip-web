@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2018 at 06:33 PM
+-- Generation Time: May 03, 2018 at 08:48 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -37,8 +37,8 @@ CREATE TABLE `tb_bagian` (
 --
 
 INSERT INTO `tb_bagian` (`id_bagian`, `bagian`, `kepala_bagian`) VALUES
-(1, 'Desa', 1),
-(2, 'Urusan Tata Usaha dan Umum', 3),
+(1, 'Desa', 3),
+(2, 'Urusan Tata Usaha dan Umum', 1),
 (3, 'Urusan Keuangan', NULL),
 (4, 'Urusan Perencanaan', NULL),
 (5, 'Seksi Pemerintahan', NULL),
@@ -108,7 +108,7 @@ CREATE TABLE `tb_jenis_surat` (
 --
 
 INSERT INTO `tb_jenis_surat` (`id_jenis_surat`, `kode`, `jenis_surat`) VALUES
-(1, '940', 'vdvdvdvdvd');
+(4, '045', 'Kependudukan');
 
 -- --------------------------------------------------------
 
@@ -118,8 +118,8 @@ INSERT INTO `tb_jenis_surat` (`id_jenis_surat`, `kode`, `jenis_surat`) VALUES
 
 CREATE TABLE `tb_pegawai` (
   `nip` int(20) NOT NULL,
-  `id_bagian` int(11) NOT NULL,
-  `id_jabatan` int(11) NOT NULL,
+  `id_bagian_pegawai` int(11) NOT NULL,
+  `id_jabatan_pegawai` int(11) NOT NULL,
   `niap` varchar(20) NOT NULL,
   `nama` varchar(40) NOT NULL,
   `jenis_kelamin` varchar(40) NOT NULL,
@@ -138,7 +138,7 @@ CREATE TABLE `tb_pegawai` (
 -- Dumping data for table `tb_pegawai`
 --
 
-INSERT INTO `tb_pegawai` (`nip`, `id_bagian`, `id_jabatan`, `niap`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`, `agama`, `pangkat`, `alamat`, `no_hp`, `pendidikan_terakhir`, `sk_pengangkatan`, `foto`) VALUES
+INSERT INTO `tb_pegawai` (`nip`, `id_bagian_pegawai`, `id_jabatan_pegawai`, `niap`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`, `agama`, `pangkat`, `alamat`, `no_hp`, `pendidikan_terakhir`, `sk_pengangkatan`, `foto`) VALUES
 (1, 1, 1, '', 'SAMSUL', 'Laki - Laki', 'Jember', '1967-08-03', 'Islam', '', '', '', 'SMA', '188.45/297/KTUN/021/2013\r\n20 Juni 2013', ''),
 (2, 1, 2, '', 'CANDRA NUR CAHYONO', 'Laki - Laki', 'Jember', '1987-03-25', 'Islam', '', '', '', 'D. III', '140/24/35.09.10.2006/SK/2017\r\n26 Mei 2017', ''),
 (3, 2, 3, '', 'SALLAHUDIN AL AYUBI ARIEF', 'Laki - Laki', 'Jember', '1993-08-10', 'Islam', '', '', '', 'SMA', '140/25/35.09.10.2006/SK/2017\r\n26 Mei 2017', '');
@@ -240,8 +240,8 @@ ALTER TABLE `tb_jenis_surat`
 --
 ALTER TABLE `tb_pegawai`
   ADD PRIMARY KEY (`nip`),
-  ADD KEY `id_bagian` (`id_bagian`),
-  ADD KEY `id_jabatan` (`id_jabatan`);
+  ADD KEY `id_bagian` (`id_bagian_pegawai`),
+  ADD KEY `id_jabatan` (`id_jabatan_pegawai`);
 
 --
 -- Indexes for table `tb_surat_keluar`
@@ -273,7 +273,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
-  MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tb_disposisi`
 --
@@ -288,7 +288,7 @@ ALTER TABLE `tb_jabatan`
 -- AUTO_INCREMENT for table `tb_jenis_surat`
 --
 ALTER TABLE `tb_jenis_surat`
-  MODIFY `id_jenis_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_jenis_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tb_surat_keluar`
 --
@@ -320,8 +320,8 @@ ALTER TABLE `tb_disposisi`
 -- Constraints for table `tb_pegawai`
 --
 ALTER TABLE `tb_pegawai`
-  ADD CONSTRAINT `tb_pegawai_ibfk_1` FOREIGN KEY (`id_jabatan`) REFERENCES `tb_jabatan` (`id_jabatan`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tb_pegawai_ibfk_2` FOREIGN KEY (`id_bagian`) REFERENCES `tb_bagian` (`id_bagian`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `tb_pegawai_ibfk_1` FOREIGN KEY (`id_jabatan_pegawai`) REFERENCES `tb_jabatan` (`id_jabatan`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_pegawai_ibfk_2` FOREIGN KEY (`id_bagian_pegawai`) REFERENCES `tb_bagian` (`id_bagian`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_surat_keluar`
