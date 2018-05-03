@@ -13,27 +13,52 @@ class Laporan_surat_masuk extends CI_Controller {
     }
 
     public function Laporan_harian(){
+        if (isset($_POST['proses'])) {
+            $dari=$this->input->post('dari');
+            $sampai=$this->input->post('sampai');
+        }else{
+            $dari=date("Y-m-d");
+            $sampai=date("Y-m-d");
+        }
+        
         $surat_masuk = $this->M_surat_masuk->get_all();
 
         $data = array(
+            'dari'              => $dari,
+            'sampai'            => $sampai,
             'data_surat_masuk' => $surat_masuk,
             'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Harian"),
         );
         $this->load->view('laporan_surat_masuk/v_laporan_harian_surat_masuk',$data);
     }
     public function Laporan_bulanan(){
+        if (isset($_POST['proses'])) {
+            $bulan=$this->input->post('bulan');
+            $tahun=$this->input->post('tahun');
+        }else{
+            $bulan=date("m");
+            $tahun=date("Y");
+        }
         $surat_masuk = $this->M_surat_masuk->get_all();
 
         $data = array(
+            'bulan'             => $bulan,
+            'tahun'             => $tahun,
             'data_surat_masuk' => $surat_masuk,
             'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Bulanan"),
         );
         $this->load->view('laporan_surat_masuk/v_laporan_bulanan_surat_masuk',$data);
     }
     public function Laporan_tahunan(){
+        if (isset($_POST['proses'])) {
+            $tahun=$this->input->post('tahun');
+        }else{
+            $tahun=date("Y");
+        }
         $surat_masuk = $this->M_surat_masuk->get_all();
 
         $data = array(
+            'tahun'             => $tahun,
             'data_surat_masuk' => $surat_masuk,
             'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Tahunan"),
         );

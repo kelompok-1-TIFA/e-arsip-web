@@ -13,18 +13,29 @@
                             <h4 class="card-title">Data</h4>
                         </div>
                         <div class="card-body">
-                             <div class="col-md-3">
+                            <form action="<?php echo base_url() ?>laporan_surat_masuk/laporan_harian" method="POST">
+                                <div class="row mt-4">
+                                    <div class="col-md-3">
                                         <div class="form-group">
-                                            <select class="selectpicker" name="id_jenis_surat" data-style="btn select-with-transition" title="Pilih Hari" data-size="7">
-                                                <?php foreach ($data_jenis_surat as $jenis_surat): ?>
-                                                    <option value="<?php echo $jenis_surat->id_jenis_surat ?>"> <?php echo $jenis_surat->jenis_surat; ?></option>
-                                                <?php endforeach ?>
-                                          </select>
+                                            <label class="bmd-label-floating">Dari</label>
+                                            <input type="date" value="<?php echo $dari ?>" name="dari" class="form-control">
                                         </div>
                                     </div>
-                            </div>
-                            <div class="material-datatables">
-                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">S/D</label>
+                                            <input type="date" value="<?php echo $sampai ?>" name="sampai" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <button type="submit" name="proses" class="btn btn-primary">Proses</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="table-responsive material-datatables">
+                                <table class="table table-striped" id="datatables" cellspacing="0" width="100%" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>No.</th>
@@ -36,7 +47,7 @@
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach ($data_surat_masuk as $surat_masuk): ?>
-                                        <tr id="datanya">
+                                        <tr>
                                             <td><?php echo ++$no; ?></td>
                                             <td><?php echo $surat_masuk->no_surat ?></td>   
                                             <td><?php echo $surat_masuk->asal_surat ?></td>
@@ -60,70 +71,12 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-    $('#datatables').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search records",
-        }
-
+    var table = $('#datatables').DataTable({
+        bFilter: false, 
+        bInfo: false, 
+        ordering :false,
+        bLengthChange: false,
     });
-
-
-    var table = $('#datatables').DataTable();
-        $('.card .material-datatables label').addClass('form-group');
-    });
-
-</script>
-<script type="text/javascript">
-    $( document ).ready(function() {
-        <?php echo $this->session->flashdata('sukses'); ?>
-        <?php echo $this->session->flashdata('alert'); ?>
-        <?php echo $this->session->flashdata('message'); ?>
-    });
-
-    function deletedata(id,datanya){
-        swal({
-            title: "Anda Yakin?",
-            text: "Data "+datanya+" Akan Dihapus Secara Permanen!",
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
-            confirmButtonText: 'Yes, delete it!',
-            buttonsStyling: false
-        }).then(function(){
-            $.ajax({
-                url: "<?php echo base_url('surat_keluar/hapus') ?>",
-                type: "post",
-                data: {id:id},
-                success:function(){
-                    swal({
-                        title: 'Berhasil!',
-                        text: 'Data Berhasil Di Hapus.',
-                        type: 'success',
-                        confirmButtonClass: "btn btn-success",
-                        buttonsStyling: false
-                    })
-                    $("#datanya").fadeTo("slow", 0.7, function(){
-                        $(this).remove();
-                    })
-                },error:function(){
-                    swal({
-                        title: 'Gagal!',
-                        text: 'Data Gagal Di Hapus.',
-                        type: 'error',
-                        confirmButtonClass: "btn btn-danger",
-                        buttonsStyling: false
-                    })
-                }
-            });
-        }).catch(swal.noop)
-    }
+});
 </script>
 </html>

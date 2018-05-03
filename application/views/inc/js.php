@@ -1,7 +1,7 @@
     <!--   Core JS Files   -->
 <script src="<?php echo base_url() ?>assets/js/core/jquery.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/core/popper.min.js"></script>
-<script src="<?php echo base_url() ?>assets/js/bootstrap-material-design.js"></script>
+<script src="<?php echo base_url() ?>assets/js/bootstrap-material-design.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
 <!--  Google Maps Plugin  -->
@@ -41,8 +41,6 @@
 <script src="<?php echo base_url() ?>assets/js/plugins/nouislider.min.js"></script>
 <!--  Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
 <script src="<?php echo base_url() ?>assets/js/plugins/jquery.select-bootstrap.js"></script>
-<!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
-<script src="<?php echo base_url() ?>assets/js/plugins/jquery.datatables.js"></script>
 <!-- Sweet Alert 2 plugin, full documentation here: https://limonte.github.io/sweetalert2/ -->
 <script src="<?php echo base_url() ?>assets/js/plugins/sweetalert2.js"></script>
 <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
