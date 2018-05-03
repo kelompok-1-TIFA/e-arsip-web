@@ -12,22 +12,83 @@
                           </div>
                           <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
-                        <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/editaction') ?>" class="form-horizontal">
+                        <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/editaction') ?>" class="form-horizontal" enctype="multipart/form-data">
                             <div class="card-body">
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">surat_masuk</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold">No Surat</label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="surat_masuk" value="<?php echo $surat_masuk ?>" placeholder="Masukkan data surat_masuk..." class="form-control" required>
-                                          <input type="hidden" name="id" value="<?php echo $id_surat_masuk ?>" placeholder="Masukkan surat_masuk..." class="form-control" required>
+                                        <div class="form-group">
+                                            <input type="hidden" value="<?php echo $id_surat_masuk ?>" name="id" class="form-control" required>
+                                            <input type="text" name="no_surat" placeholder="Masukkan no surat..." class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-2 col-form-label font-weight-bold">Asal Surat</label>
+                                    <div class="col-md-10">
+                                      <div class="form-group">
+                                          <input type="text" value="<?php echo $id_surat_masuk ?>" name="asal_surat" placeholder="Masukkan asal surat..." class="form-control" required>
                                       </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">surat_masuk</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold">Isi Singkat</label>
+                                    <div class="col-md-10">
+                                      <div class="form-group">
+                                          <textarea name="isi_singkat" placeholder="Masukkan isi singkat..." class="form-control" required><?php echo $id_surat_masuk ?></textarea>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-2 col-form-label font-weight-bold">Jenis Surat </label>
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                            <input type="text" value="<?php echo $kepala_surat_masuk ?>" placeholder="Masukkan data surat_masuk..." name="kepala_surat_masuk" class="form-control" required>
+                                            <select class="selectpicker" name="id_jenis_surat" data-style="btn select-with-transition" title="Pilih Surat" data-size="7">
+                                                <?php foreach ($data_jenis_surat as $jenis_surat): ?>
+                                                    <option <?php if($jenis_surat->id_jenis_surat==$id_jenis_surat){echo "SELECTED";} ?> value="<?php echo $jenis_surat->id_jenis_surat ?>"> <?php echo $jenis_surat->jenis_surat; ?></option>
+                                                <?php endforeach ?>
+                                          </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <label class="col-md-2 col-form-label font-weight-bold">Perihal</label>
+                                    <div class="col-md-10">
+                                      <div class="form-group">
+                                          <textarea name="perihal" placeholder="Masukkan perihal..." class="form-control" required><?php echo $id_surat_masuk ?></textarea>
+                                      </div>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    <label class="col-md-2 col-form-label font-weight-bold">Tanggal Surat</label>
+                                    <div class="col-md-10">
+                                      <div class="form-group">
+                                          <input value="<?php echo $id_surat_masuk ?>" type="date" name="tgl_surat" placeholder="Masukkan asal surat..." class="form-control" required>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-2 col-form-label font-weight-bold">Keterangan</label>
+                                    <div class="col-md-10">
+                                      <div class="form-group">
+                                          <textarea name="keterangan" placeholder="Masukkan Keterangan..." class="form-control" required><?php echo $id_surat_masuk ?></textarea>
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-2 col-form-label font-weight-bold">File / Scan Surat</label>
+                                    <div class="col-md-10">
+                                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                            <div class="fileinput-new thumbnail">
+                                                <img src="<?php echo $id_surat_masuk ?>" alt="...">
+                                            </div>
+                                            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                            <div>
+                                                <span class="btn btn-rose btn-round btn-file">
+                                                    <span class="fileinput-new">Ganti File</span>
+                                                    <input type="file" name="file_surat"/>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -6,6 +6,7 @@ class Surat_masuk extends CI_Controller {
     function __construct()    {
         parent::__construct();
         $this->load->model('M_surat_masuk');
+        $this->load->model('M_jenis_surat');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
         }
@@ -24,7 +25,8 @@ class Surat_masuk extends CI_Controller {
 
     public function tambah(){
         $data = array(
-            'page_title' => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+            'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
+            'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
         );
         $this->load->view('surat_masuk/v_tambah_surat_masuk',$data);
     }
@@ -33,9 +35,10 @@ class Surat_masuk extends CI_Controller {
         $row = $this->M_surat_masuk->get_by_id($id);
         if ($row) {
             $data = array(
-                'id_surat_masuk'=> $row->id_surat_masuk,
-                'no_surat'      => $row->no_surat,
-                'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+                'id_surat_masuk'    => $row->id_surat_masuk,
+                'no_surat'          => $row->no_surat,
+                'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
+                'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('surat_masuk/v_edit_surat_masuk', $data);
         } else {

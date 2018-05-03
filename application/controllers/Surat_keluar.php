@@ -5,7 +5,9 @@ class Surat_keluar extends CI_Controller {
 
     function __construct()    {
         parent::__construct();
-        $this -> load -> model('M_surat_keluar');
+        $this ->load->model('M_surat_keluar');
+        $this->load->model('M_bagian');
+        $this->load->model('M_jenis_surat');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
         }
@@ -24,6 +26,8 @@ class Surat_keluar extends CI_Controller {
 
     public function tambah(){
         $data = array(
+            'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
+            'data_bagian'  => $this->M_bagian->get_all(),
             'page_title' => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
         );
         $this->load->view('surat_keluar/v_tambah_surat_keluar',$data);
@@ -35,6 +39,8 @@ class Surat_keluar extends CI_Controller {
             $data = array(
                 'id_surat_keluar'   => $row->id_surat_keluar,
                 'no_surat'          => $row->no_surat,
+                'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
+                'data_bagian'  => $this->M_bagian->get_all(),
                 'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('surat_keluar/v_edit_surat_keluar', $data);

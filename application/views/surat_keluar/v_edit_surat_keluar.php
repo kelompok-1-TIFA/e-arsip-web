@@ -17,104 +17,65 @@
                                 <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">No Surat</label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="no_surat" placeholder="Masukan No surat..." class="form-control" required>
-                                      </div>
+                                        <div class="form-group">
+                                            <input type="hidden" name="id" class="form-control" required>
+                                            <input type="text" name="no_surat" placeholder="Masukan No surat..." value="<?php echo $id_surat_keluar ?>" class="form-control" required>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">Bagian</label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <select class="selectpicker" name="id_bagian" data-style="btn select-with-transition" multiple title="Pilih Bagian" data-size="7">
-                                    <option disabled> Multiple Options</option>
-                                    <option value="2">Paris </option>
-                                    <option value="3">Bucharest</option>
-                                    <option value="4">Rome</option>
-                                    <option value="5">New York</option>
-                                    <option value="6">Miami </option>
-                                    <option value="7">Piatra Neamt</option>
-                                    <option value="8">Paris </option>
-                                    <option value="9">Bucharest</option>
-                                    <option value="10">Rome</option>
-                                    <option value="11">New York</option>
-                                    <option value="12">Miami </option>
-                                    <option value="13">Piatra Neamt</option>
-                                    <option value="14">Paris </option>
-                                    <option value="15">Bucharest</option>
-                                    <option value="16">Rome</option>
-                                    <option value="17">New York</option>
-                                    <option value="18">Miami </option>
-                                    <option value="19">Piatra Neamt</option>
-                                </select>
-                                      </div>
+                                        <div class="form-group">
+                                          <select class="selectpicker" name="id_bagian" data-style="btn select-with-transition" title="Pilih Bagian" data-size="7">
+                                                <?php foreach ($data_bagian as $bagian): ?>
+                                                    <option <?php if($bagian->id_bagian==$id_bagian){echo "SELECTED";} ?> value="<?php echo $bagian->id_bagian ?>"> <?php echo $bagian->bagian; ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">Tujuan</label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="tujuan" placeholder="Masukkan tujuan..." class="form-control" required>
+                                      <div class="form-group">
+                                          <input type="text" name="tujuan" placeholder="Masukkan tujuan..." value="<?php echo $id_surat_keluar ?>" class="form-control" required>
                                       </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">Isi Singkat</label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="isi_singkat" placeholder="Masukkan Isi Singkat..." class="form-control" required>
+                                      <div class="form-group">
+                                          <textarea name="isi_singkat" placeholder="Masukkan isi singkat..." class="form-control" required></textarea>
                                       </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">Jenis Surat</label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                         <select class="selectpicker" name="id_jenis_surat" data-style="btn select-with-transition" multiple title="Pilih Jenis Surat" data-size="7">
-                                    <option disabled> Multiple Options</option>
-                                    <option value="2">Paris </option>
-                                    <option value="3">Bucharest</option>
-                                    <option value="4">Rome</option>
-                                    <option value="5">New York</option>
-                                    <option value="6">Miami </option>
-                                    <option value="7">Piatra Neamt</option>
-                                    <option value="8">Paris </option>
-                                    <option value="9">Bucharest</option>
-                                    <option value="10">Rome</option>
-                                    <option value="11">New York</option>
-                                    <option value="12">Miami </option>
-                                    <option value="13">Piatra Neamt</option>
-                                    <option value="14">Paris </option>
-                                    <option value="15">Bucharest</option>
-                                    <option value="16">Rome</option>
-                                    <option value="17">New York</option>
-                                    <option value="18">Miami </option>
-                                    <option value="19">Piatra Neamt</option>
-                                </select>
-                                      </div>
+                                        <div class="form-group">
+                                            <select class="selectpicker" name="id_jenis_surat" data-style="btn select-with-transition" title="Pilih Jenis Surat" data-size="7">
+                                                <?php foreach ($data_jenis_surat as $jenis_surat): ?>
+                                                    <option <?php if($jenis_surat->id_jenis_surat==$id_jenis_surat){echo "SELECTED";} ?> value="<?php echo $jenis_surat->id_jenis_surat ?>"> <?php echo $jenis_surat->jenis_surat; ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">Perihal</label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="text" name="perihal" placeholder="Masukkan Perihal..." class="form-control" required>
+                                      <div class="form-group">
+                                          <textarea name="perihal" placeholder="Masukkan perihal..." class="form-control" required></textarea>
                                       </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">Tanggal Surat</label>
                                     <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="date" name="tgl_surat" placeholder="Masukkan Tanggal Surat..." class="form-control" required>
-                                      </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Tanggal Arsip</label>
-                                    <div class="col-md-10">
-                                      <div class="form-group has-default">
-                                          <input type="date" name="tgl_arsip" placeholder="Masukkan Tanggal Arsip..." class="form-control" required>
+                                      <div class="form-group">
+                                          <input type="date" name="tgl_surat" placeholder="Masukkan Tanggal Surat..." class="form-control" required value="<?php echo $id_surat_keluar ?>">
                                       </div>
                                     </div>
                                 </div>
@@ -122,7 +83,26 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Keterangan </label>
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                             <input type="text" name="keterangan" placeholder="Masukkan Keterangan..." class="form-control" required>
+                                             <textarea name="keterangan" placeholder="Masukkan keterangan..." class="form-control" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label class="col-md-2 col-form-label font-weight-bold">File / Scan Surat</label>
+                                    <div class="col-md-10">
+                                        <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                            <div class="fileinput-new thumbnail">
+                                                <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
+                                            </div>
+                                            <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                            <div>
+                                                <span class="btn btn-rose btn-round btn-file">
+                                                    <span class="fileinput-new">Pilih File</span>
+                                                    <span class="fileinput-exists">Ganti File</span>
+                                                    <input type="file" name="file_surat" required />
+                                                </span>
+                                                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

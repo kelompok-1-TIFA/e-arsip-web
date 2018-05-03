@@ -92,7 +92,7 @@
                                             <div class="col-md-10">
                                                 <div class="form-group mt-2">
                                                     <label for="exampleEmail" class="bmd-label-floating">Tanggal Lahir</label>
-                                                    <input type="text" name="tgl_lahir" class="form-control datepicker" required value="<?php echo date("m/d/Y"); ?>">
+                                                    <input type="date" name="tgl_lahir" class="form-control" required value="<?php echo date("Y-m-d"); ?>">
                                                 </div>
                                             </div>
                                         </div>
