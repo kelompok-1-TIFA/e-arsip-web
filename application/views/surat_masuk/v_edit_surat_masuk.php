@@ -19,7 +19,7 @@
                                     <div class="col-md-10">
                                         <div class="form-group">
                                             <input type="hidden" value="<?php echo $id_surat_masuk ?>" name="id" class="form-control" required>
-                                            <input type="text" name="no_surat" placeholder="Masukkan no surat..." class="form-control" required>
+                                            <input type="text" name="no_surat" placeholder="Masukkan no surat..." value="<?php echo $no_surat ?>" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -27,7 +27,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Asal Surat</label>
                                     <div class="col-md-10">
                                       <div class="form-group">
-                                          <input type="text" value="<?php echo $id_surat_masuk ?>" name="asal_surat" placeholder="Masukkan asal surat..." class="form-control" required>
+                                          <input type="text" value="<?php echo $asal_surat ?>" name="asal_surat" placeholder="Masukkan asal surat..." class="form-control" required>
                                       </div>
                                     </div>
                                 </div>
@@ -35,7 +35,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Isi Singkat</label>
                                     <div class="col-md-10">
                                       <div class="form-group">
-                                          <textarea name="isi_singkat" placeholder="Masukkan isi singkat..." class="form-control" required><?php echo $id_surat_masuk ?></textarea>
+                                          <textarea name="isi_singkat" placeholder="Masukkan isi singkat..." class="form-control" required><?php echo $isi_singkat ?></textarea>
                                       </div>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Perihal</label>
                                     <div class="col-md-10">
                                       <div class="form-group">
-                                          <textarea name="perihal" placeholder="Masukkan perihal..." class="form-control" required><?php echo $id_surat_masuk ?></textarea>
+                                          <textarea name="perihal" placeholder="Masukkan perihal..." class="form-control" required><?php echo $perihal ?></textarea>
                                       </div>
                                     </div>
                                 </div>
@@ -63,7 +63,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Tanggal Surat</label>
                                     <div class="col-md-10">
                                       <div class="form-group">
-                                          <input value="<?php echo $id_surat_masuk ?>" type="date" name="tgl_surat" placeholder="Masukkan asal surat..." class="form-control" required>
+                                          <input value="<?php echo $tgl_surat ?>" type="date" name="tgl_surat" placeholder="Masukkan asal surat..." class="form-control" required>
                                       </div>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Keterangan</label>
                                     <div class="col-md-10">
                                       <div class="form-group">
-                                          <textarea name="keterangan" placeholder="Masukkan Keterangan..." class="form-control" required><?php echo $id_surat_masuk ?></textarea>
+                                          <textarea name="keterangan" placeholder="Masukkan Keterangan..." class="form-control" required><?php echo $keterangan ?></textarea>
                                       </div>
                                     </div>
                                 </div>
@@ -80,7 +80,7 @@
                                     <div class="col-md-10">
                                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail">
-                                                <img src="<?php echo $id_surat_masuk ?>" alt="...">
+                                                <img src="<?php echo $file ?>" alt="...">
                                             </div>
                                             <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                             <div>

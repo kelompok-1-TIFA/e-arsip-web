@@ -21,4 +21,8 @@ class Disposisi extends CI_Controller {
         );
         $this->load->view('disposisi/v_disposisi',$data);
     }
+
+    public function mendisposisikan($id){
+        # code...
+    }
 }

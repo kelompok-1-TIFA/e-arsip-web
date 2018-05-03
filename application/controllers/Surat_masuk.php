@@ -37,6 +37,13 @@ class Surat_masuk extends CI_Controller {
             $data = array(
                 'id_surat_masuk'    => $row->id_surat_masuk,
                 'no_surat'          => $row->no_surat,
+                'asal_surat'        => $row->asal_surat,
+                'isi_singkat'       => $row->isi_singkat,
+                'id_jenis_surat'    => $row->id_jenis_surat,
+                'perihal'           => $row->perihal,
+                'tgl_surat'         => $row->tgl_surat,
+                'keterangan'        => $row->keterangan,
+                'file'              => $row->file,
                 'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
                 'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
@@ -55,17 +62,13 @@ class Surat_masuk extends CI_Controller {
     }
 
     function simpan(){
-
-        $no_surat= $_POST['no_surat'];
-        $asal_surat= $_POST['asal_surat'];
-        $isi_singkat=$_POST['isi_singkat'];
-        $id_jenis_surat=$_POST['id_jenis_surat'];
-        $perihal=$_POST['perihal'];
-        $tgl_surat=$_POST['tgl_surat'];
-        $keterangan=$_POST['keterangan'];
-
-
-
+        $no_surat= $this->input->post('no_surat');
+        $asal_surat= $this->input->post('asal_surat');
+        $isi_singkat=$this->input->post('isi_singkat');
+        $id_jenis_surat=$this->input->post('id_jenis_surat');
+        $perihal=$this->input->post('perihal');
+        $tgl_surat=$this->input->post('tgl_surat');
+        $keterangan=$this->input->post('keterangan');
 
         $data = array(  
             'id_surat_masuk' => "",
@@ -103,9 +106,23 @@ class Surat_masuk extends CI_Controller {
     }
 
     function editaction(){
-        $data = array(
-            'id_surat_masuk'=> $this->input->post('id'),
-            'no_surat'          => $this->input->post('no_surat'),
+        $no_surat= $this->input->post('no_surat');
+        $asal_surat= $this->input->post('asal_surat');
+        $isi_singkat=$this->input->post('isi_singkat');
+        $id_jenis_surat=$this->input->post('id_jenis_surat');
+        $perihal=$this->input->post('perihal');
+        $tgl_surat=$this->input->post('tgl_surat');
+        $keterangan=$this->input->post('keterangan');
+
+        $data = array(  
+            'id_surat_masuk'    => $this->input->post('id'),
+            'no_surat'          => $no_surat, 
+            'asal_surat'        => $asal_surat,
+            'isi_singkat'       => $isi_singkat,
+            'id_jenis_surat'    => $id_jenis_surat,
+            'perihal'           => $perihal,
+            'tgl_surat'         => $tgl_surat,
+            'keterangan'        => $keterangan,
             
         );
         $res = $this->M_surat_masuk->update($data['id_surat_masuk'],$data);

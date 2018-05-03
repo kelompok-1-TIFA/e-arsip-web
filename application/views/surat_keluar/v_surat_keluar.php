@@ -41,6 +41,7 @@
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url('surat_keluar/edit/'.$surat_keluar->id_surat_keluar) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a onclick="deletedata(<?php echo $surat_keluar->id_surat_keluar.",'".$surat_keluar->no_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
+                                                <a href="<?php echo base_url('surat_keluar/detail/'.$surat_keluar->id_surat_keluar) ?>" title="Detail" class="btn btn-link btn-info"><i class="material-icons">remove_red_eye</i>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>
