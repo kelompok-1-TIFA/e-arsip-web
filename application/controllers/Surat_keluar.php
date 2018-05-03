@@ -60,9 +60,18 @@ class Surat_keluar extends CI_Controller {
     function simpan(){
 
         $no_surat= $_POST['no_surat'];
+        $tujuan =$_POST[tujuan];
+        $perihal =$_POST[perihal];
+        $tgl_arsip =$_POST[tgl_arsip];
+        
         $data = array(  
             'id_surat_keluar'   => "",
             'no_surat'          => $no_surat, 
+            'tujuan'            => $tujuan,
+            'perihal'           => $perihal,
+            'tgl_arsip'         => $tgl_arsip,
+            'file'              => $file
+            
         );
 
         $result = $this->M_surat_keluar->insert($data);
