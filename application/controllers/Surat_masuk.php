@@ -71,15 +71,15 @@ class Surat_masuk extends CI_Controller {
         $keterangan=$this->input->post('keterangan');
 
         $data = array(  
-            'id_surat_masuk' => "",
-            'no_surat'    => $no_surat, 
-            'asal_surat' => $asal_surat,
-            'isi_singkat' => $isi_singkat,
-            'id_jenis_surat'=>$id_jenis_surat,
-            'perihal' => $perihal,
-            'tgl_surat' =>$tgl_surat,
-            'tgl_arsip'  => date("Y-m-d"),
-            'keterangan' =>$keterangan,
+            'id_surat_masuk'    => "",
+            'no_surat'          => $no_surat, 
+            'asal_surat'        => $asal_surat,
+            'isi_singkat'       => $isi_singkat,
+            'id_jenis_surat'    => $id_jenis_surat,
+            'perihal'           => $perihal,
+            'tgl_surat'         => $tgl_surat,
+            'tgl_arsip'         => date("Y-m-d"),
+            'keterangan'        =>$keterangan,
             
         );
 

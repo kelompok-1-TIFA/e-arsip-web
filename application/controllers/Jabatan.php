@@ -36,9 +36,8 @@ class Jabatan extends CI_Controller {
         $row = $this->M_jabatan->get_by_id($id);
         if ($row) {
             $data = array(
-                'id_jabatan'=> $row->id_jabatan,
-                'jabatan'          => $row->jabatan,
-                
+                'id_jabatan'    => $row->id_jabatan,
+                'jabatan'       => $row->jabatan,
                 'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('jabatan/v_edit_jabatan', $data);
@@ -87,8 +86,8 @@ class Jabatan extends CI_Controller {
 
     function editaction(){
         $data = array(
-            'id_jabatan'=> $this->input->post('id'),
-            'jabatan'          => $this->input->post('jabatan'),
+            'id_jabatan'    => $this->input->post('id'),
+            'jabatan'       => $this->input->post('jabatan'),
             
         );
         $res = $this->M_jabatan->update($data['id_jabatan'],$data);

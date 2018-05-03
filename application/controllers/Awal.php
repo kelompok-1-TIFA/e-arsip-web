@@ -33,10 +33,10 @@ class Awal extends CI_Controller {
             $password_encrypt =  $this->encrypt->decode($cek_fase_2->password, $key);
             if ($password==$password_encrypt) {
                 $data_session = array(
-                    'id_user' => $cek_fase_2->id_user,
-                    'nama' => $cek_fase_2->nama,
-                    'level_user' => $cek_fase_2->level_user,
-                    'status_login' => "login"
+                    'id_user'       => $cek_fase_2->id_user,
+                    'nama'          => $cek_fase_2->nama,
+                    'level_user'    => $cek_fase_2->level_user,
+                    'status_login'  => "login"
                 );
          
                 $this->session->set_userdata($data_session);

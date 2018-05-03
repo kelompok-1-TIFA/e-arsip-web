@@ -27,8 +27,8 @@ class Surat_keluar extends CI_Controller {
     public function tambah(){
         $data = array(
             'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
-            'data_bagian'  => $this->M_bagian->get_all(),
-            'page_title' => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+            'data_bagian'       => $this->M_bagian->get_all(),
+            'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
         );
         $this->load->view('surat_keluar/v_tambah_surat_keluar',$data);
     }
@@ -47,9 +47,8 @@ class Surat_keluar extends CI_Controller {
                 'tgl_surat'         => $row->tgl_surat,
                 'keterangan'        => $row->keterangan,
                 'file'              => $row->file,
-
                 'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
-                'data_bagian'  => $this->M_bagian->get_all(),
+                'data_bagian'       => $this->M_bagian->get_all(),
                 'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('surat_keluar/v_edit_surat_keluar', $data);
@@ -87,8 +86,6 @@ class Surat_keluar extends CI_Controller {
             'tgl_surat'         => $tgl_surat,
             'tgl_arsip'         => date("Y-m-d"),
             'keterangan'        => $keterangan
-
-            
         );
 
         $result = $this->M_surat_keluar->insert($data);
@@ -124,7 +121,7 @@ class Surat_keluar extends CI_Controller {
         $keterangan=$this->input->post('keterangan');
         $data = array(  
         
-            'id_surat_keluar'=> $this->input->post('id'),
+            'id_surat_keluar'   => $this->input->post('id'),
             'no_surat'          => $no_surat, 
             'id_bagian'         => $id_bagian,
             'tujuan'            => $tujuan,

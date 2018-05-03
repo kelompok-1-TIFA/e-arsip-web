@@ -26,9 +26,9 @@ class Pegawai extends CI_Controller {
 
     public function tambah(){
         $data = array(
-            'data_bagian' => $this->M_bagian->get_all(),
-            'data_jabatan' => $this->M_jabatan->get_all(),
-            'page_title' => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+            'data_bagian'   => $this->M_bagian->get_all(),
+            'data_jabatan'  => $this->M_jabatan->get_all(),
+            'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
         );
         $this->load->view('pegawai/v_tambah_pegawai',$data);
     }
@@ -60,8 +60,8 @@ class Pegawai extends CI_Controller {
     function simpan(){
 
         $data = array(  
-            'nip'=> $this->input->post('nip'),
-            'nama_pegawai'   => $this->input->post('nama_pegawai'), 
+            'nip'           => $this->input->post('nip'),
+            'nama_pegawai'  => $this->input->post('nama_pegawai'), 
         );
 
         $result = $this->M_pegawai->insert($data);
@@ -88,8 +88,8 @@ class Pegawai extends CI_Controller {
 
     function editaction(){
         $data = array(
-            'nip'=> $this->input->post('nip'),
-            'nama_pegawai'   => $this->input->post('nama_pegawai'),
+            'nip'           => $this->input->post('nip'),
+            'nama_pegawai'  => $this->input->post('nama_pegawai'),
             
         );
         $res = $this->M_pegawai->update($data['nip'],$data);

@@ -36,10 +36,10 @@ class Jenis_surat extends CI_Controller {
         $row = $this->M_jenis_surat->get_by_id($id);
         if ($row) {
             $data = array(
-                'id_jenis_surat'=> $row->id_jenis_surat,
-                'kode'          => $row->kode,
-                'jenis_surat'   => $row->jenis_surat,
-                'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+                'id_jenis_surat'    => $row->id_jenis_surat,
+                'kode'              => $row->kode,
+                'jenis_surat'       => $row->jenis_surat,
+                'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('jenis_surat/v_edit_jenis_surat', $data);
         } else {
@@ -99,9 +99,9 @@ class Jenis_surat extends CI_Controller {
 
     function editaction(){
         $data = array(
-            'id_jenis_surat'=> $this->input->post('id'),
-            'kode'          => $this->input->post('kode'),
-            'jenis_surat'   => $this->input->post('jenis_surat'),
+            'id_jenis_surat'    => $this->input->post('id'),
+            'kode'              => $this->input->post('kode'),
+            'jenis_surat'       => $this->input->post('jenis_surat'),
         );
         $res = $this->M_jenis_surat->update($data['id_jenis_surat'],$data);
         if($res>=0){

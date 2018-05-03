@@ -38,9 +38,9 @@ class Bagian extends CI_Controller {
         $row = $this->M_bagian->get_by_id($id);
         if ($row) {
             $data = array(
-                'id_bagian'=> $row->id_bagian,
-                'bagian'          => $row->bagian,
-                'kepala_bagian'   => $row->kepala_bagian,
+                'id_bagian'     => $row->id_bagian,
+                'bagian'        => $row->bagian,
+                'kepala_bagian' => $row->kepala_bagian,
                 'data_pegawai'  => $this->M_pegawai->get_all(),
                 'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
@@ -63,8 +63,8 @@ class Bagian extends CI_Controller {
         $kepala_bagian = $_POST['kepala_bagian'];
         $bagian= $_POST['bagian'];
         $data = array(  
-            'bagian'          => $bagian,
-            'kepala_bagian'   => $kepala_bagian,
+            'bagian'        => $bagian,
+            'kepala_bagian' => $kepala_bagian,
         );
 
         $result = $this->M_bagian->insert($data);
@@ -91,9 +91,9 @@ class Bagian extends CI_Controller {
 
     function editaction(){
         $data = array(
-            'id_bagian'=> $this->input->post('id'),
-            'bagian'          => $this->input->post('bagian'),
-            'kepala_bagian'   => $this->input->post('kepala_bagian'),
+            'id_bagian'     => $this->input->post('id'),
+            'bagian'        => $this->input->post('bagian'),
+            'kepala_bagian' => $this->input->post('kepala_bagian'),
         );
         $res = $this->M_bagian->update($data['id_bagian'],$data);
         if($res>=0){

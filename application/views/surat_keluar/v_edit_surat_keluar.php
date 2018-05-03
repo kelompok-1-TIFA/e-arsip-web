@@ -18,7 +18,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">No Surat</label>
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                            <input type="hidden" name="id" class="form-control" required>
+                                            <input type="hidden" name="id" value="<?php echo $id_surat_keluar ?>" class="form-control" required>
                                             <input type="text" name="no_surat" placeholder="Masukan No surat..." value="<?php echo $id_surat_keluar ?>" class="form-control" required>
                                         </div>
                                     </div>
@@ -47,7 +47,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Isi Singkat</label>
                                     <div class="col-md-10">
                                       <div class="form-group">
-                                          <textarea name="isi_singkat" placeholder="Masukkan isi singkat..." class="form-control" required></textarea>
+                                          <textarea name="isi_singkat" placeholder="Masukkan isi singkat..." class="form-control" required><?php echo $id_surat_keluar ?></textarea>
                                       </div>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Perihal</label>
                                     <div class="col-md-10">
                                       <div class="form-group">
-                                          <textarea name="perihal" placeholder="Masukkan perihal..." class="form-control" required></textarea>
+                                          <textarea name="perihal" placeholder="Masukkan perihal..." class="form-control" required><?php echo $id_surat_keluar ?></textarea>
                                       </div>
                                     </div>
                                 </div>
