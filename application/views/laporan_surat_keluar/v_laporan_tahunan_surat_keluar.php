@@ -29,7 +29,14 @@
                                             <th>Perihal</th>
                                             <th>Tanggal Arsip</th>
                                             <th>File</th>
-                                            <th class="disabled-sorting text-right">Actions</th>
+                                        </tr>
+                                        <tr>
+                                            <td>No.</td>
+                                            <td>No Surat</td>
+                                            <td>Tujuan</td>
+                                            <td>Perihal</td>
+                                            <td>Tanggal Arsip</td>
+                                            <td>File</td>
                                         </tr>
                                     </thead>
                                 </table>
