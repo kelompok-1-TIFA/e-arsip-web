@@ -59,12 +59,17 @@
                     <div class="card card-stats">
                         <div class="card-header card-header-info card-header-icon">
                             <div class="card-icon">
-                                <i class="fa fa-twitter"></i>
+                                <i class="material-icons">alarm</i>
                             </div>
-                            <p class="card-category">Followers</p>
-                            <h3 class="card-title">+245</h3>
+                            <p class="card-category">Jam & Tanggal</p>
+                            <h4 class="card-title">
+                                <?php echo date("d F Y"); ?></br>
+                                <p id="detik" class="float-right"></p>
+                                <p id="menit" class="float-right"></p>
+                                <p id="jam" class="float-right"></p>
+                            </h4>
                         </div>
-                        <div class="card-footer">
+                        <div class="card-footer" style="margin-top: -10px">
                             <div class="stats">
                                 <i class="material-icons">update</i> Just Updated
                             </div>
@@ -75,7 +80,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="card card-chart">
-                        <div class="card-header card-header-success">
+                        <div class="card-header card-header-warning">
                             <div class="ct-chart" id="dailySalesChart"></div>
                         </div>
                         <div class="card-body">
@@ -90,7 +95,7 @@
                                     <i class="material-icons">edit</i>
                                 </button>
                             </div>
-                            <h4 class="card-title">Daily Sales</h4>
+                            <h4 class="card-title">Grafik Surat Masuk</h4>
                             <p class="card-category">
                             <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
                         </div>
@@ -103,7 +108,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card card-chart">
-                        <div class="card-header card-header-info">
+                        <div class="card-header card-header-rose">
                             <div class="ct-chart" id="completedTasksChart"></div>
                         </div>
                         <div class="card-body">
@@ -118,7 +123,7 @@
                                     <i class="material-icons">edit</i>
                                 </button>
                             </div>
-                            <h4 class="card-title">Completed Tasks</h4>
+                            <h4 class="card-title">Grafik Surat Keluar</h4>
                             <p class="card-category">Last Campaign Performance</p>
                         </div>
                         <div class="card-footer">
@@ -139,10 +144,11 @@
                         <div class="card-body table-responsive">
                             <table class="table table-hover">
                                 <thead class="text-warning">
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Salary</th>
-                                    <th>Country</th>
+                                    <th>No.</th>
+                                    <th>No. Surat</th>
+                                    <th>Perihal</th>
+                                    <th>Sifat</th>
+                                    <th>Aksi</th>
                                 </thead>
                                 <tbody>
                                     <tr>
@@ -176,7 +182,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="card-header card-header-text card-header-warning">
+                        <div class="card-header card-header-text card-header-rose">
                     <div class="card-text">
                         <h4 class="card-title">Surat Keluar</h4>
                         <p class="card-category">List Surat Keluar Baru</p>
@@ -225,5 +231,15 @@ $(document).ready(function(){
   demo.initCharts();
 
 });
+</script>
+<script type="text/javascript">
+    window.setTimeout("waktu()",1000);
+    function waktu() {
+        var tanggal = new Date();
+        setTimeout("waktu()",1000);
+        document.getElementById("jam").innerHTML = tanggal.getHours()+":";
+        document.getElementById("menit").innerHTML = tanggal.getMinutes()+":";
+        document.getElementById("detik").innerHTML = tanggal.getSeconds();
+    }
 </script>
 </html>
