@@ -62,15 +62,15 @@ class Surat_keluar extends CI_Controller {
         $no_surat= $_POST['no_surat'];
         $tujuan =$_POST[tujuan];
         $perihal =$_POST[perihal];
-        $tgl_arsip =$_POST[tgl_arsip];
         
+
         $data = array(  
             'id_surat_keluar'   => "",
             'no_surat'          => $no_surat, 
             'tujuan'            => $tujuan,
             'perihal'           => $perihal,
-            'tgl_arsip'         => $tgl_arsip,
-            'file'              => $file
+            'tgl_arsip'         => date("Y-m-d"),
+
             
         );
 
