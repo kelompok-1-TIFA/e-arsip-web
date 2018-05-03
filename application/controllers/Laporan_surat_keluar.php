@@ -18,7 +18,7 @@ class Laporan_surat_keluar extends CI_Controller {
 
         $data = array(
             'data_surat_keluar' => $surat_keluar,
-            'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))),
+            'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Harian"),
         );
         $this->load->view('laporan_surat_keluar/v_laporan_harian_surat_keluar',$data);
     }
@@ -27,7 +27,7 @@ class Laporan_surat_keluar extends CI_Controller {
 
         $data = array(
             'data_surat_keluar' => $surat_keluar,
-            'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))),
+            'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Bulanan"),
         );
         $this->load->view('laporan_surat_keluar/v_laporan_bulanan_surat_keluar',$data);
     }
@@ -36,7 +36,7 @@ class Laporan_surat_keluar extends CI_Controller {
 
         $data = array(
             'data_surat_keluar' => $surat_keluar,
-            'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))),
+            'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Tahunan"),
         );
         $this->load->view('laporan_surat_keluar/v_laporan_tahunan_surat_keluar',$data);
     }

@@ -101,19 +101,19 @@
                         </a>
                         <div class="collapse <?php if($this->uri->segment(1)=="laporan_surat_masuk"){echo "show";}?> ml-4" id="laporansuratmasuk">
                             <ul class="nav">
-                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_harian"){echo "active";}?>">
+                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_harian" and $this->uri->segment(1)=="laporan_surat_masuk"){echo "active";}?>">
                                     <a class="nav-link" href="<?php echo base_url('laporan_surat_masuk/laporan_harian'); ?>">
                                         <span class="sidebar-mini"> LH </span>
                                         <span class="sidebar-normal"> Laporan Harian </span>
                                     </a>
                                 </li>
-                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_bulanan"){echo "active";}?>">
+                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_bulanan" and $this->uri->segment(1)=="laporan_surat_masuk"){echo "active";}?>">
                                     <a class="nav-link" href="<?php echo base_url('laporan_surat_masuk/laporan_bulanan'); ?>">
                                         <span class="sidebar-mini"> LB </span>
                                         <span class="sidebar-normal"> Laporan Bulanan </span>
                                     </a>
                                 </li>
-                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_tahunan"){echo "active";}?>">
+                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_tahunan" and $this->uri->segment(1)=="laporan_surat_masuk"){echo "active";}?>">
                                     <a class="nav-link" href="<?php echo base_url('laporan_surat_masuk/laporan_tahunan'); ?>">
                                         <span class="sidebar-mini"> LT </span>
                                         <span class="sidebar-normal"> Laporan Tahunan </span>
@@ -131,19 +131,19 @@
                         </a>
                         <div class="collapse <?php if($this->uri->segment(1)=="laporan_surat_keluar"){echo "show";}?> ml-4" id="laporansuratkeluar">
                             <ul class="nav">
-                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_harian"){echo "active";}?>">
+                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_harian" and $this->uri->segment(1)=="laporan_surat_keluar"){echo "active";}?>">
                                     <a class="nav-link" href="<?php echo base_url('laporan_surat_keluar/laporan_harian'); ?>">
                                         <span class="sidebar-mini"> LH </span>
                                         <span class="sidebar-normal"> Laporan Harian </span>
                                     </a>
                                 </li>
-                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_bulanan"){echo "active";}?>">
+                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_bulanan" and $this->uri->segment(1)=="laporan_surat_keluar"){echo "active";}?>">
                                     <a class="nav-link" href="<?php echo base_url('laporan_surat_keluar/laporan_bulanan'); ?>">
                                         <span class="sidebar-mini"> LB </span>
                                         <span class="sidebar-normal"> Laporan Bulanan </span>
                                     </a>
                                 </li>
-                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_tahunan"){echo "active";}?>">
+                                <li class="nav-item <?php if($this->uri->segment(2)=="laporan_tahunan" and $this->uri->segment(1)=="laporan_surat_keluar"){echo "active";}?>">
                                     <a class="nav-link" href="<?php echo base_url('laporan_surat_keluar/laporan_tahunan'); ?>">
                                         <span class="sidebar-mini"> LT </span>
                                         <span class="sidebar-normal"> Laporan Tahunan </span>
