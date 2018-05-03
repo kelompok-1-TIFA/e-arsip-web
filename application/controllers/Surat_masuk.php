@@ -61,7 +61,7 @@ class Surat_masuk extends CI_Controller {
         }
     }
 
-    function simpan(){
+    public function simpan(){
         $no_surat= $this->input->post('no_surat');
         $asal_surat= $this->input->post('asal_surat');
         $isi_singkat=$this->input->post('isi_singkat');
@@ -105,7 +105,7 @@ class Surat_masuk extends CI_Controller {
         }
     }
 
-    function editaction(){
+    public function editaction(){
         $no_surat= $this->input->post('no_surat');
         $asal_surat= $this->input->post('asal_surat');
         $isi_singkat=$this->input->post('isi_singkat');
@@ -147,9 +147,38 @@ class Surat_masuk extends CI_Controller {
         }       
     }
 
-    function hapus(){
+    public function hapus(){
         $id = $this->input->post("id");
         $result = $this->M_surat_masuk->delete($id);
         header('location:'.base_url().'surat_masuk');    
+    }
+
+    public function detail($id){
+        $row = $this->M_surat_masuk->get_by_id($id);
+        if ($row) {
+            $data = array(
+                'id_surat_masuk'    => $row->id_surat_masuk,
+                'no_surat'          => $row->no_surat,
+                'asal_surat'        => $row->asal_surat,
+                'isi_singkat'       => $row->isi_singkat,
+                'id_jenis_surat'    => $row->id_jenis_surat,
+                'perihal'           => $row->perihal,
+                'tgl_surat'         => $row->tgl_surat,
+                'keterangan'        => $row->keterangan,
+                'file'              => $row->file,
+                'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
+                'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+            );
+            $this->load->view('surat_masuk/v_detail_surat_masuk', $data);
+        } else {
+             $this->session->set_flashdata('message', 'swal({
+                title: "Alert",
+                text: "Data Tidak Ditemukan !",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-danger",
+                type: "warning"
+            }).catch(swal.noop)');
+            redirect(site_url('surat_masuk'));
+        }
     }
 }

@@ -23,6 +23,33 @@ class Disposisi extends CI_Controller {
     }
 
     public function mendisposisikan($id){
+        $data = array(
+            'page_title'   => ucwords(str_replace("_", " ", $this->uri->segment(1))),
+        );
+        $this->load->view('disposisi/v_disposisi',$data);
+    }
+
+    public function edit($id){
+        # code...
+    }
+
+    public function simpan(){
+        # code...
+    }
+
+    public function editaction(){
+        # code...
+    }
+
+    public function lembar_disposisi($id){
+        # code...
+    }
+
+    public function lembar_disposisi_print($id){
+        # code...
+    }
+
+    public function hapus(){
         # code...
     }
 }

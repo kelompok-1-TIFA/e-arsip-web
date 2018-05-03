@@ -57,7 +57,7 @@ class Surat_keluar extends CI_Controller {
         }
     }
 
-    function simpan(){
+    public function simpan(){
 
         $no_surat= $_POST['no_surat'];
         $tujuan =$_POST[tujuan];
@@ -96,7 +96,7 @@ class Surat_keluar extends CI_Controller {
         }
     }
 
-    function editaction(){
+    public function editaction(){
         $data = array(
             'id_surat_keluar'=> $this->input->post('id'),
             'no_surat'       => $this->input->post('no_surat'),
@@ -124,9 +124,33 @@ class Surat_keluar extends CI_Controller {
         }      
     }
 
-    function hapus(){
+    public function hapus(){
         $id = $this->input->post("id");
         $result = $this->M_surat_keluar->delete($id);
         header('location:'.base_url().'surat_keluar');       
+    }
+
+    public function detail($id){
+        $row = $this->M_surat_keluar->get_by_id($id);
+        if ($row) {
+            $data = array(
+                'id_surat_keluar'   => $row->id_surat_keluar,
+                'no_surat'          => $row->no_surat,
+                'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
+                'data_bagian'  => $this->M_bagian->get_all(),
+                'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+            );
+            $this->load->view('surat_keluar/v_detail_surat_keluar', $data);
+        } else {
+            $this->session->set_flashdata('message', 'swal({
+                title: "Alert",
+                text: "Data Tidak Ditemukan !",
+                buttonsStyling: false,
+                confirmButtonClass: "btn btn-danger",
+                type: "warning"
+            }).catch(swal.noop)');
+            redirect(site_url('surat_keluar'));
+
+        }
     }
 }
