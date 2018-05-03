@@ -4,7 +4,59 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">mail</i>
+                            </div>
+                            <h4 class="card-title">Data <?php echo $page_title; ?></h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <select class="selectpicker" name="id_jenis_surat" data-style="btn select-with-transition" title="Pilih Bulan" data-size="7">
+                                                <?php foreach ($data_jenis_surat as $jenis_surat): ?>
+                                                    <option value="<?php echo $jenis_surat->id_jenis_surat ?>"> <?php echo $jenis_surat->jenis_surat; ?></option>
+                                                <?php endforeach ?>
+                                          </select>
+                                        </div>
+                                    </div>
+                            <div class="material-datatables">
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>No Surat</th>
+                                            <th>Tujuan</th>
+                                            <th>Perihal</th>
+                                            <th>Tanggal Arsip</th>
+                                            <th>File</th>
+                                            <th class="disabled-sorting text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=0; foreach ($data_surat_keluar as $surat_keluar): ?>
+                                        <tr id="datanya">
+                                            <td><?php echo ++$no; ?></td>
+                                            <td><?php echo $surat_keluar->no_surat ?></td>   
+                                            <td><?php echo $surat_keluar->tujuan ?></td>
+                                            <td><?php echo $surat_keluar->perihal ?></td>
+                                            <td><?php echo $surat_keluar->tgl_arsip ?></td>
+                                            <td><?php echo $surat_keluar->file ?></td>
+                                            <td class="text-right td-actions">
+                                                <a href="<?php echo base_url('surat_keluar/edit/'.$surat_keluar->id_surat_keluar) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
+                                                <a onclick="deletedata(<?php echo $surat_keluar->id_surat_keluar.",'".$surat_keluar->no_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><!-- end content-->
+                    </div><!--  end card  -->
+                </div> <!-- end col-md-12 -->
             </div>
         </div>
     </div>
