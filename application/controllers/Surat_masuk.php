@@ -58,16 +58,26 @@ class Surat_masuk extends CI_Controller {
 
         $no_surat= $_POST['no_surat'];
         $asal_surat= $_POST['asal_surat'];
+        $isi_singkat=$_POST['isi_singkat'];
+        $id_jenis_surat=$_POST['id_jenis_surat'];
         $perihal=$_POST['perihal'];
-        $tgl_arsip=$_POST['tgl_arsip'];
-        
+        $tgl_surat=$_POST['tgl_surat'];
+        $keterangan=$_POST['keterangan'];
+
+
+
+
         $data = array(  
             'id_surat_masuk' => "",
             'no_surat'    => $no_surat, 
             'asal_surat' => $asal_surat,
+            'isi_singkat' => $isi_singkat,
+            'id_jenis_surat'=>$id_jenis_surat,
             'perihal' => $perihal,
-            'tgl_arsip' => $tgl_arsip,
-            'file' => $file
+            'tgl_surat' =>$tgl_surat,
+            'tgl_arsip'  => date("Y-m-d"),
+            'keterangan' =>$keterangan,
+            
         );
 
         $result = $this->M_surat_masuk->insert($data);
@@ -122,7 +132,7 @@ class Surat_masuk extends CI_Controller {
 
     function hapus(){
         $id = $this->input->post("id");
-        $result = $this->M_jenis_surat->delete($id);
+        $result = $this->M_surat_masuk->delete($id);
         header('location:'.base_url().'surat_masuk');    
     }
 }

@@ -4,7 +4,52 @@
     <div class="content">
         <div class="container-fluid">
             <div class="row">
-
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-info card-header-icon">
+                            <div class="card-icon">
+                                <i class="material-icons">mail</i>
+                            </div>
+                            <h4 class="card-title">Data</h4>
+                        </div>
+                        <div class="card-body">
+                             <div class="col-md-3">
+                                        <div class="form-group">
+                                            <select class="selectpicker" name="id_jenis_surat" data-style="btn select-with-transition" title="Pilih Hari" data-size="7">
+                                                <?php foreach ($data_jenis_surat as $jenis_surat): ?>
+                                                    <option value="<?php echo $jenis_surat->id_jenis_surat ?>"> <?php echo $jenis_surat->jenis_surat; ?></option>
+                                                <?php endforeach ?>
+                                          </select>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="material-datatables">
+                                <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>No Surat</th>
+                                            <th>Asal Surat</th>
+                                            <th>Perihal</th>
+                                            <th>Tanggal Arsip</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no=0; foreach ($data_surat_masuk as $surat_masuk): ?>
+                                        <tr id="datanya">
+                                            <td><?php echo ++$no; ?></td>
+                                            <td><?php echo $surat_masuk->no_surat ?></td>   
+                                            <td><?php echo $surat_masuk->asal_surat ?></td>
+                                            <td><?php echo $surat_masuk->perihal ?></td>
+                                            <td><?php echo $surat_masuk->tgl_arsip ?></td>
+                                        </tr>
+                                        <?php endforeach ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div><!-- end content-->
+                    </div><!--  end card  -->
+                </div> <!-- end col-md-12 -->
             </div>
         </div>
     </div>

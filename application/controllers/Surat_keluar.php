@@ -62,15 +62,15 @@ class Surat_keluar extends CI_Controller {
         $no_surat= $_POST['no_surat'];
         $tujuan =$_POST[tujuan];
         $perihal =$_POST[perihal];
-        $tgl_arsip =$_POST[tgl_arsip];
         
+
         $data = array(  
             'id_surat_keluar'   => "",
             'no_surat'          => $no_surat, 
             'tujuan'            => $tujuan,
             'perihal'           => $perihal,
-            'tgl_arsip'         => $tgl_arsip,
-            'file'              => $file
+            'tgl_arsip'         => date("Y-m-d"),
+
             
         );
 
@@ -126,7 +126,7 @@ class Surat_keluar extends CI_Controller {
 
     function hapus(){
         $id = $this->input->post("id");
-        $result = $this->M_jenis_surat->delete($id);
+        $result = $this->M_surat_keluar->delete($id);
         header('location:'.base_url().'surat_keluar');       
     }
 }
