@@ -132,7 +132,7 @@ class Surat_masuk extends CI_Controller {
 
     function hapus(){
         $id = $this->input->post("id");
-        $result = $this->M_jenis_surat->delete($id);
+        $result = $this->M_surat_masuk->delete($id);
         header('location:'.base_url().'surat_masuk');    
     }
 }
