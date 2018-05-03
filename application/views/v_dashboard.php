@@ -10,15 +10,15 @@
                     <div class="card card-stats">
                         <div class="card-header card-header-warning card-header-icon">
                             <div class="card-icon">
-                                <i class="material-icons">weekend</i>
+                                <i class="material-icons">archive</i>
                             </div>
-                            <p class="card-category">Bookings</p>
-                            <h3 class="card-title">184</h3>
+                            <p class="card-category">Surat Masuk</p>
+                            <h3 class="card-title">0</h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons text-danger">warning</i>
-                                <a href="#pablo">Get More Space...</a>
+                               <i class="material-icons">remove_red_eye</i> Lihat
+                               
                             </div>
                         </div>
                     </div>
@@ -27,14 +27,14 @@
                     <div class="card card-stats">
                         <div class="card-header card-header-rose card-header-icon">
                             <div class="card-icon">
-                                <i class="material-icons">equalizer</i>
+                                <i class="material-icons">unarchive</i>
                             </div>
-                            <p class="card-category">Website Visits</p>
-                            <h3 class="card-title">75.521</h3>
+                            <p class="card-category">Surat Keluar</p>
+                            <h3 class="card-title">0</h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons">local_offer</i> Tracked from Google Analytics
+                               <i class="material-icons">remove_red_eye</i> Lihat
                             </div>
                         </div>
                     </div>
@@ -43,14 +43,14 @@
                     <div class="card card-stats">
                         <div class="card-header card-header-success card-header-icon">
                             <div class="card-icon">
-                                <i class="material-icons">store</i>
+                                <i class="material-icons">send</i>
                             </div>
-                            <p class="card-category">Revenue</p>
-                            <h3 class="card-title">$34,245</h3>
+                            <p class="card-category">Disposisi</p>
+                            <h3 class="card-title">0</h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons">date_range</i> Last 24 Hours
+                                <i class="material-icons">remove_red_eye</i> Lihat
                             </div>
                         </div>
                     </div>
