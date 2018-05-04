@@ -12,14 +12,14 @@
                           </div>
                           <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
-                        <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/editaction') ?>" class="form-horizontal">
+                        <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/editaction') ?>" class="form-horizontal" enctype="multipart/form-data">
                               <div class="card-body">
                                 <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">No Surat</label>
                                     <div class="col-md-10">
                                         <div class="form-group">
                                             <input type="hidden" name="id" value="<?php echo $id_surat_keluar ?>" class="form-control" required>
-                                            <input type="text" name="no_surat" placeholder="Masukan No surat..." value="<?php echo $id_surat_keluar ?>" class="form-control" required>
+                                            <input type="text" name="no_surat" placeholder="Masukan No surat..." value="<?php echo $no_surat ?>" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Tujuan</label>
                                     <div class="col-md-10">
                                       <div class="form-group">
-                                          <input type="text" name="tujuan" placeholder="Masukkan tujuan..." value="<?php echo $id_surat_keluar ?>" class="form-control" required>
+                                          <input type="text" name="tujuan" placeholder="Masukkan tujuan..." value="<?php echo $tujuan ?>" class="form-control" required>
                                       </div>
                                     </div>
                                 </div>
@@ -47,7 +47,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Isi Singkat</label>
                                     <div class="col-md-10">
                                       <div class="form-group">
-                                          <textarea name="isi_singkat" placeholder="Masukkan isi singkat..." class="form-control" required><?php echo $id_surat_keluar ?></textarea>
+                                          <textarea name="isi_singkat" placeholder="Masukkan isi singkat..." class="form-control" required><?php echo $isi_singkat ?></textarea>
                                       </div>
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Perihal</label>
                                     <div class="col-md-10">
                                       <div class="form-group">
-                                          <textarea name="perihal" placeholder="Masukkan perihal..." class="form-control" required><?php echo $id_surat_keluar ?></textarea>
+                                          <textarea name="perihal" placeholder="Masukkan perihal..." class="form-control" required><?php echo $perihal ?></textarea>
                                       </div>
                                     </div>
                                 </div>
@@ -75,7 +75,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Tanggal Surat</label>
                                     <div class="col-md-10">
                                       <div class="form-group">
-                                          <input type="date" name="tgl_surat" placeholder="Masukkan Tanggal Surat..." class="form-control" required value="<?php echo $id_surat_keluar ?>">
+                                          <input type="date" name="tgl_surat" placeholder="Masukkan Tanggal Surat..." class="form-control" required value="<?php echo $tgl_surat ?>">
                                       </div>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Keterangan </label>
                                     <div class="col-md-10">
                                         <div class="form-group">
-                                             <textarea name="keterangan" placeholder="Masukkan keterangan..." class="form-control" required></textarea>
+                                             <textarea name="keterangan" placeholder="Masukkan keterangan..." class="form-control" required><?php echo $keterangan ?></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -92,23 +92,21 @@
                                     <div class="col-md-10">
                                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail">
-                                                <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
+                                                <img src="<?php echo $file ?>" alt="...">
                                             </div>
                                             <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                             <div>
                                                 <span class="btn btn-rose btn-round btn-file">
-                                                    <span class="fileinput-new">Pilih File</span>
-                                                    <span class="fileinput-exists">Ganti File</span>
-                                                    <input type="file" name="file_surat" required />
+                                                    <span class="fileinput-new">Ganti File</span>
+                                                    <input type="file" name="file_surat"/>
                                                 </span>
-                                                <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row pull-right my-3">
                                     <div class="col-12 ">
-                                        <button type="submit" class="btn btn-primary"><i class="material-icons">save</i> Simpan</button>
+                                        <button type="submit" class="btn btn-primary"><i class="material-icons">mode_edit</i> Update</button>
                                         <button type="Reset" class="btn btn-danger"><i class="material-icons">cached</i> Reset</button>
                                     </div>
                                 </div>
