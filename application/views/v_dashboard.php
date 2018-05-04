@@ -220,16 +220,8 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-
-  //init wizard
-
-  demo.initMaterialWizard();
-
   // Javascript method's body can be found in assets/js/demos.js
   demo.initDashboardPageCharts();
-
-  demo.initCharts();
-
 });
 </script>
 <script type="text/javascript">
