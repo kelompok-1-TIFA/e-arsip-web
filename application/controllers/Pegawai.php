@@ -6,6 +6,7 @@ class Pegawai extends CI_Controller {
     function __construct()    {
         parent::__construct();
         $this->load->model('M_pegawai');
+        $this->load->model('M_user');
         $this->load->model('M_bagian');
         $this->load->model('M_jabatan');
         if ($this->session->userdata('status_login')!="login") {
@@ -35,27 +36,31 @@ class Pegawai extends CI_Controller {
 
     public function edit($id){
         $row = $this->M_pegawai->get_by_id($id);
+        $this->load->library('encrypt'); 
+        $key = 'vyanarypratamabanyuwangi12345678';
+        $password_decrypt =  $this->encrypt->decode($row->password, $key);
         if ($row) {
             $data = array(
-                'nip'   		          => $row->nip,
-                'id_bagian_pegawai'       => $row->id_bagian_pegawai,
-                'id_jabatan_pegawai'      => $row->id_jabatan_pegawai,
-                'niap'                    => $row->niap,
-                'nama'                    => $row->nama,
-                'jenis_kelamin'           => $row->jenis_kelamin,
-                'tempat_lahir'            => $row->tempat_lahir,
-                'tgl_lahir'               => $row->tgl_lahir,
-                'agama'                   => $row->agama,
-                'pangkat'                 => $row->pangkat,
-                'alamat'                  => $row->alamat,
-                'no_hp'                   => $row->no_hp,
-                'pendidikan_terakhir'     => $row->pendidikan_terakhir,
-                'sk_pengangkatan'         => $row->sk_pengangkatan,
-               
-
-                'data_bagian'   => $this->M_bagian->get_all(),
-                'data_jabatan'  => $this->M_jabatan->get_all(),
-                'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+                'nip'                   => $row->nip,
+                'id_bagian_pegawai'     => $row->id_bagian_pegawai,
+                'id_jabatan_pegawai'    => $row->id_jabatan_pegawai,
+                'niap'                  => $row->niap,
+                'nama'                  => $row->nama,
+                'jenis_kelamin'         => $row->jenis_kelamin,
+                'tempat_lahir'          => $row->tempat_lahir,
+                'tgl_lahir'             => $row->tgl_lahir,
+                'agama'                 => $row->agama,
+                'pangkat'               => $row->pangkat,
+                'alamat'                => $row->alamat,
+                'no_hp'                 => $row->no_hp,
+                'pendidikan_terakhir'   => $row->pendidikan_terakhir,
+                'sk_pengangkatan'       => $row->sk_pengangkatan,
+                'username'              => $row->username,
+                'password'              => $password_decrypt,
+                'level_user'            => $row->level_user,
+                'data_bagian'           => $this->M_bagian->get_all(),
+                'data_jabatan'          => $this->M_jabatan->get_all(),
+                'page_title'            => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('pegawai/v_edit_pegawai', $data);
         } else {
@@ -72,6 +77,9 @@ class Pegawai extends CI_Controller {
     }
 
     function simpan(){
+        $this->load->library('encrypt'); 
+        $key = 'vyanarypratamabanyuwangi12345678';
+
         $nip= $this->input->post('nip');
         $id_bagian_pegawai= $this->input->post('id_bagian');
         $id_jabatan_pegawai= $this->input->post('id_jabatan');
@@ -86,6 +94,10 @@ class Pegawai extends CI_Controller {
         $no_hp= $this->input->post('no_hp');
         $pendidikan_terakhir= $this->input->post('pendidikan_terakhir');
         $sk_pengangkatan= $this->input->post('sk_pengangkatan');
+        $username= $this->input->post('username');
+        $level_user= $this->input->post('level_user');
+
+        $password_encrypt =  $this->encrypt->encode($this->input->post('password'), $key);
 
         $data = array( 
              'nip'                  => $nip,
@@ -102,12 +114,19 @@ class Pegawai extends CI_Controller {
              'no_hp'                => $no_hp, 
              'pendidikan_terakhir'  => $pendidikan_terakhir, 
              'sk_pengangkatan'      => $sk_pengangkatan, 
-             
+        );
 
+        $data_login = array(
+            'id_user'       => "",
+            'nip_user'      => $nip,
+            'username'      => $username,
+            'password'      => $password_encrypt,
+            'level_user'    => $level_user,
         );
 
         $result = $this->M_pegawai->insert($data);
         if($result>=0){
+            $this->M_user->insert($data_login);
             $this->session->set_flashdata("sukses", 'swal({
                 title: "Berhasi!",
                 text: "Data Berhasil diSimpan!",
@@ -129,6 +148,9 @@ class Pegawai extends CI_Controller {
     }
 
     function editaction(){
+        $this->load->library('encrypt'); 
+        $key = 'vyanarypratamabanyuwangi12345678';
+
         $nip= $this->input->post('nip');
         $id_bagian_pegawai= $this->input->post('id_bagian');
         $id_jabatan_pegawai= $this->input->post('id_jabatan');
@@ -144,6 +166,11 @@ class Pegawai extends CI_Controller {
         $pendidikan_terakhir= $this->input->post('pendidikan_terakhir');
         $sk_pengangkatan= $this->input->post('sk_pengangkatan');
 
+        $username= $this->input->post('username');
+        $level_user= $this->input->post('level_user');
+
+        $password_encrypt =  $this->encrypt->encode($this->input->post('password'), $key);
+
         $data = array(
             'nip'                   => $nip,
             'niap'                  => $niap, 
@@ -157,11 +184,18 @@ class Pegawai extends CI_Controller {
             'no_hp'                 => $no_hp, 
             'pendidikan_terakhir'   => $pendidikan_terakhir, 
             'sk_pengangkatan'       => $sk_pengangkatan, 
-             
-            
         );
-        $res = $this->M_pegawai->update($data['nip'],$data);
+
+        $data_login = array(
+            'nip_user'      => $nip,
+            'username'      => $username,
+            'password'      => $password_encrypt,
+            'level_user'    => $level_user,
+        );
+
+        $res = $this->M_pegawai->update($this->input->post('id'),$data);
         if($res>=0){
+            $this->M_user->update($this->input->post('id'),$data_login);
             $this->session->set_flashdata("sukses", 'swal({
                 title: "Berhasi!",
                 text: "Data Berhasil diUpdate!",

@@ -32,7 +32,7 @@
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach ($data_pegawai as $pegawai): ?>
-                                        <tr id="datanya">
+                                        <tr id="datanya<?php echo $pegawai->nip ?>">
                                             <td><?php echo ++$no; ?></td>
                                             <td><?php echo $pegawai->nip ?></td>
                                             <td><?php echo $pegawai->nama ?></td>   
@@ -109,7 +109,7 @@
                         confirmButtonClass: "btn btn-success",
                         buttonsStyling: false
                     })
-                    $("#datanya").fadeTo("slow", 0.7, function(){
+                    $("#datanya"+id).fadeTo("slow", 0.7, function(){
                         $(this).remove();
                     })
                 },error:function(){

@@ -44,19 +44,12 @@ class M_user extends CI_Model
     // update data
     function update($id, $data)
     {
-        $this->db->where($this->id, $id);
+        $this->db->where('nip_user', $id);
         $this->db->update($this->table, $data);
     }
 
-    // delete data
-    function delete($id)
-    {
-        $this->db->where($this->id, $id);
-        $this->db->delete($this->table);
-    }
-
     function cek_login($where){
-        $this->db->join('tb_pegawai', 'tb_pegawai.nip = tb_user.nip', 'left');   
+        $this->db->join('tb_pegawai', 'tb_pegawai.nip = tb_user.nip_user', 'left');   
         return $this->db->get_where($this->table,$where);
     }
 

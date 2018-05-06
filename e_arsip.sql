@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2018 at 08:48 AM
+-- Generation Time: May 06, 2018 at 11:36 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -131,17 +131,17 @@ CREATE TABLE `tb_pegawai` (
   `no_hp` varchar(15) NOT NULL,
   `pendidikan_terakhir` varchar(10) NOT NULL,
   `sk_pengangkatan` text NOT NULL,
-  `foto` text NOT NULL
+  `foto` text NOT NULL,
+  `create_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_pegawai`
 --
 
-INSERT INTO `tb_pegawai` (`nip`, `id_bagian_pegawai`, `id_jabatan_pegawai`, `niap`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`, `agama`, `pangkat`, `alamat`, `no_hp`, `pendidikan_terakhir`, `sk_pengangkatan`, `foto`) VALUES
-(1, 1, 1, '', 'SAMSUL', 'Laki - Laki', 'Jember', '1967-08-03', 'Islam', '', '', '', 'SMA', '188.45/297/KTUN/021/2013\r\n20 Juni 2013', ''),
-(2, 1, 2, '', 'CANDRA NUR CAHYONO', 'Laki - Laki', 'Jember', '1987-03-25', 'Islam', '', '', '', 'D. III', '140/24/35.09.10.2006/SK/2017\r\n26 Mei 2017', ''),
-(3, 2, 3, '', 'SALLAHUDIN AL AYUBI ARIEF', 'Laki - Laki', 'Jember', '1993-08-10', 'Islam', '', '', '', 'SMA', '140/25/35.09.10.2006/SK/2017\r\n26 Mei 2017', '');
+INSERT INTO `tb_pegawai` (`nip`, `id_bagian_pegawai`, `id_jabatan_pegawai`, `niap`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`, `agama`, `pangkat`, `alamat`, `no_hp`, `pendidikan_terakhir`, `sk_pengangkatan`, `foto`, `create_on`) VALUES
+(1, 1, 1, '', 'SAMSUL', 'Laki - Laki', 'Jember', '1967-08-03', 'Islam', '', '', '', 'SMA', '188.45/297/KTUN/021/2013\r\n20 Juni 2013', '', '2018-05-06 16:17:18'),
+(2, 1, 2, '43543', 'CANDRA NUR CAHYONO', 'Laki - Laki', 'Jember', '1987-03-25', 'Islam', 'vdvdv', 'dvvdv', '5523533', 'D. III', '140/24/35.09.10.2006/SK/201726 Mei 2017', '', '2018-05-06 16:29:18');
 
 -- --------------------------------------------------------
 
@@ -163,6 +163,13 @@ CREATE TABLE `tb_surat_keluar` (
   `file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tb_surat_keluar`
+--
+
+INSERT INTO `tb_surat_keluar` (`id_surat_keluar`, `no_surat`, `id_bagian`, `tujuan`, `isi_singkat`, `id_jenis_surat`, `perihal`, `tgl_surat`, `tgl_arsip`, `keterangan`, `file`) VALUES
+(1, 'dvvdvdv1', 4, 'vdvdv1', 'dvdvdv1', 4, 'fbfbfb', '2018-05-25', '2018-05-04', 'dbdbdbdbdb1', '');
+
 -- --------------------------------------------------------
 
 --
@@ -182,6 +189,13 @@ CREATE TABLE `tb_surat_masuk` (
   `file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tb_surat_masuk`
+--
+
+INSERT INTO `tb_surat_masuk` (`id_surat_masuk`, `no_surat`, `asal_surat`, `isi_singkat`, `id_jenis_surat`, `perihal`, `tgl_surat`, `tgl_arsip`, `keterangan`, `file`) VALUES
+(2, 'vfvfvfv', 'fvfvfv', 'fvfvf', 4, 'vfvfv', '2018-05-31', '2018-05-03', 'vfvfv', '');
+
 -- --------------------------------------------------------
 
 --
@@ -190,7 +204,7 @@ CREATE TABLE `tb_surat_masuk` (
 
 CREATE TABLE `tb_user` (
   `id_user` int(11) NOT NULL,
-  `nip` int(20) NOT NULL,
+  `nip_user` int(20) NOT NULL,
   `username` varchar(32) NOT NULL,
   `password` varchar(150) NOT NULL,
   `level_user` varchar(40) NOT NULL
@@ -200,8 +214,8 @@ CREATE TABLE `tb_user` (
 -- Dumping data for table `tb_user`
 --
 
-INSERT INTO `tb_user` (`id_user`, `nip`, `username`, `password`, `level_user`) VALUES
-(1, 2, 'admin', 'awGxgALpdOP4ZAOdqLE5PQ9N1JgAfn/XZhPeCQcgWsykNxPUs9gqqi8vtEyvD8UwnXsMUvTD6yEzRt2MsHbMHw==', 'Sekertaris Desa');
+INSERT INTO `tb_user` (`id_user`, `nip_user`, `username`, `password`, `level_user`) VALUES
+(1, 2, 'admin', 'k46AqS2+pAI07edULw4jg7lRUKv6WN0e0Ppl7KLjBxKza4EFqyCejdKAaqbe9UJztIwEcvCEdnhseeae+oMkew==', '');
 
 --
 -- Indexes for dumped tables
@@ -263,7 +277,7 @@ ALTER TABLE `tb_surat_masuk`
 --
 ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id_user`),
-  ADD KEY `nip` (`nip`);
+  ADD KEY `nip` (`nip_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -273,7 +287,7 @@ ALTER TABLE `tb_user`
 -- AUTO_INCREMENT for table `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
-  MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `tb_disposisi`
 --
@@ -293,17 +307,17 @@ ALTER TABLE `tb_jenis_surat`
 -- AUTO_INCREMENT for table `tb_surat_keluar`
 --
 ALTER TABLE `tb_surat_keluar`
-  MODIFY `id_surat_keluar` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_surat_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `tb_surat_masuk`
 --
 ALTER TABLE `tb_surat_masuk`
-  MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
@@ -340,7 +354,7 @@ ALTER TABLE `tb_surat_masuk`
 -- Constraints for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  ADD CONSTRAINT `tb_user_ibfk_1` FOREIGN KEY (`nip`) REFERENCES `tb_pegawai` (`nip`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tb_user_ibfk_1` FOREIGN KEY (`nip_user`) REFERENCES `tb_pegawai` (`nip`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
