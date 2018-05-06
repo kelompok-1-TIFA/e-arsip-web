@@ -54,7 +54,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group">
                                                 <label class="bmd-label-floating">NIAP</label>
-                                                <input value="<?php echo $nip ?>" type="text"  name="niap" class="form-control" required>
+                                                <input value="<?php echo $niap ?>" type="text"  name="niap" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>
@@ -83,7 +83,7 @@
                                             <div class="col-md-10">
                                                 <div class="form-group ">
                                                     <label class="bmd-label-floating">Tempat Lahir</label>
-                                                    <input value="<?php echo $nip ?>" type="text"  name="tempat_lahir" class="form-control" required>
+                                                    <input value="<?php echo $tempat_lahir ?>" type="text"  name="tempat_lahir" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -103,7 +103,7 @@
                                             <div class="col-md-10">
                                                 <div class="form-group ">
                                                     <label class="bmd-label-floating">Agama</label>
-                                                    <input value="<?php echo $nip ?>" type="text" name="agama" class="form-control" required>
+                                                    <input value="<?php echo $agama ?>" type="text" name="agama" class="form-control" required>
                                                 </div>
                                             </div>
                                         </div>
@@ -112,7 +112,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                 <label class="bmd-label-floating">Pangkat</label>
-                                                  <input type="text" value="<?php echo $nip ?>" name="pangkat" class="form-control" required>
+                                                  <input type="text" value="<?php echo $pangkat ?>" name="pangkat" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                 <label class="bmd-label-floating">Alamat</label>
-                                                <textarea name="alamat" value="<?php echo $nip ?>" required class="form-control"></textarea>
+                                                <textarea name="alamat" value="<?php echo $alamat ?>" required class="form-control"></textarea>
                                               </div>
                                             </div>
                                         </div>
@@ -130,7 +130,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                     <label class="bmd-label-floating">No. Handphone</label>
-                                                    <input type="text" value="<?php echo $nip ?>" name="no_hp" class="form-control" required>
+                                                    <input type="text" value="<?php echo $no_hp ?>" name="no_hp" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>
@@ -139,7 +139,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                     <label class="bmd-label-floating">Pendidikan Terakhir</label>
-                                                  <input type="text"  name="pendidikan_terakhir" value="<?php echo $nip ?>" class="form-control" required>
+                                                  <input type="text"  name="pendidikan_terakhir" value="<?php echo $pendidikan_terakhir ?>" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>
@@ -148,7 +148,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                 <label class="bmd-label-floating">SK Pengangkatan</label>
-                                                  <input type="text" value="<?php echo $nip ?>" value=""  name="sk_pengangkatan" class="form-control" required>
+                                                  <input type="text" value="<?php echo $sk_pengangkatan ?>" value=""  name="sk_pengangkatan" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>          

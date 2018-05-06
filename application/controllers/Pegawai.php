@@ -37,8 +37,22 @@ class Pegawai extends CI_Controller {
         $row = $this->M_pegawai->get_by_id($id);
         if ($row) {
             $data = array(
-                'nip'   		=> $row->nip,
-                'nama'          => $row->nama,
+                'nip'   		          => $row->nip,
+                'id_bagian_pegawai'       => $row->id_bagian_pegawai,
+                'id_jabatan_pegawai'      => $row->id_jabatan_pegawai,
+                'niap'                    => $row->niap,
+                'nama'                    => $row->nama,
+                'jenis_kelamin'           => $row->jenis_kelamin,
+                'tempat_lahir'            => $row->tempat_lahir,
+                'tgl_lahir'               => $row->tgl_lahir,
+                'agama'                   => $row->agama,
+                'pangkat'                 => $row->pangkat,
+                'alamat'                  => $row->alamat,
+                'no_hp'                   => $row->no_hp,
+                'pendidikan_terakhir'     => $row->pendidikan_terakhir,
+                'sk_pengangkatan'         => $row->sk_pengangkatan,
+               
+
                 'data_bagian'   => $this->M_bagian->get_all(),
                 'data_jabatan'  => $this->M_jabatan->get_all(),
                 'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
@@ -58,10 +72,38 @@ class Pegawai extends CI_Controller {
     }
 
     function simpan(){
+        $nip= $this->input->post('nip');
+        $id_bagian_pegawai= $this->input->post('id_bagian');
+        $id_jabatan_pegawai= $this->input->post('id_jabatan');
+        $niap= $this->input->post('niap');
+        $nama= $this->input->post('nama');
+        $jenis_kelamin= $this->input->post('jenis_kelamin');
+        $tempat_lahir= $this->input->post('tempat_lahir');
+        $tgl_lahir= $this->input->post('tgl_lahir');
+        $agama= $this->input->post('agama');
+        $pangkat= $this->input->post('pangkat');
+        $alamat= $this->input->post('alamat');
+        $no_hp= $this->input->post('no_hp');
+        $pendidikan_terakhir= $this->input->post('pendidikan_terakhir');
+        $sk_pengangkatan= $this->input->post('sk_pengangkatan');
 
-        $data = array(  
-            'nip'           => $this->input->post('nip'),
-            'nama_pegawai'  => $this->input->post('nama_pegawai'), 
+        $data = array( 
+             'nip'                  => "",
+             'id_bagian_pegawai'    => $id_bagian_pegawai, 
+             'id_jabatan_pegawai'   => $id_jabatan_pegawai, 
+             'niap'                 => $niap, 
+             'nama'                 => $nama, 
+             'jenis_kelamin'        => $jenis_kelamin, 
+             'tempat_lahir'         => $tempat_lahir, 
+             'tgl_lahir'            => $tgl_lahir, 
+             'agama'                => $agama, 
+             'pangkat'              => $pangkat, 
+             'alamat'               => $alamat, 
+             'no_hp'                => $no_hp, 
+             'pendidikan_terakhir'  => $pendidikan_terakhir, 
+             'sk_pengangkatan'      => $sk_pengangkatan, 
+             
+
         );
 
         $result = $this->M_pegawai->insert($data);
@@ -87,9 +129,39 @@ class Pegawai extends CI_Controller {
     }
 
     function editaction(){
+        $nip= $this->input->post('nip');
+        $id_bagian_pegawai= $this->input->post('id_bagian_pegawai');
+        $id_jabatan_pegawai= $this->input->post('id_jabatan_pegawai');
+        $niap= $this->input->post('niap');
+        $nama= $this->input->post('nama');
+        $jenis_kelamin= $this->input->post('jenis_kelamin');
+        $tempat_lahir= $this->input->post('tempat_lahir');
+        $tgl_lahir= $this->input->post('tgl_lahir');
+        $agama= $this->input->post('agama');
+        $pangkat= $this->input->post('pangkat');
+        $alamat= $this->input->post('alamat');
+        $no_hp= $this->input->post('no_hp');
+        $pendidikan_terakhir= $this->input->post('pendidikan_terakhir');
+        $sk_pengangkatan= $this->input->post('sk_pengangkatan');
+
         $data = array(
-            'nip'           => $this->input->post('nip'),
-            'nama_pegawai'  => $this->input->post('nama_pegawai'),
+            'nip'   => $this->input->post('nip'),
+            'id_bagian_pegawai'   => $this->input->post('id'),
+            'id_jabatan_pegawai'   => $this->input->post('id'),
+
+             
+             'niap'                       => $niap, 
+             'nama'                       => $nama, 
+             'jenis_kelamin'              => $jenis_kelamin, 
+             'tempat_lahir'               => $tempat_lahir, 
+             'tgl_lahir'                  => $tgl_lahir, 
+             'agama'                      => $agama, 
+             'pangkat'                    => $pangkat, 
+             'alamat'                     => $alamat, 
+             'no_hp'                      => $no_hp, 
+             'pendidikan_terakhir'        => $pendidikan_terakhir, 
+             'sk_pengangkatan'            => $sk_pengangkatan, 
+             
             
         );
         $res = $this->M_pegawai->update($data['nip'],$data);
