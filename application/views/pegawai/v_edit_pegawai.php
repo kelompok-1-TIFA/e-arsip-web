@@ -112,7 +112,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                 <label class="bmd-label-floating">Pangkat</label>
-                                                  <input type="text" value="<?php echo $pangkat ?>" name="pangkat" class="form-control" required>
+                                                  <input type="text" "<?php echo $pangkat ?>" name="pangkat" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                 <label class="bmd-label-floating">Alamat</label>
-                                                <textarea name="alamat" value="<?php echo $alamat ?>" required class="form-control"></textarea>
+                                                <textarea name="alamat"  required class="form-control"><?php echo $alamat ?></textarea>
                                               </div>
                                             </div>
                                         </div>
