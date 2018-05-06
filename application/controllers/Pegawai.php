@@ -125,16 +125,27 @@ class Pegawai extends CI_Controller {
         );
 
         $result = $this->M_pegawai->insert($data);
-        if($result>=0){
-            $this->M_user->insert($data_login);
-            $this->session->set_flashdata("sukses", 'swal({
-                title: "Berhasi!",
-                text: "Data Berhasil diSimpan!",
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-success",
-                type: "success"
-            }).catch(swal.noop)');
-            header('location:'.base_url().'pegawai');
+        if($result){
+            $res1 = $this->M_user->insert($data_login);
+            if ($res1) {
+                $this->session->set_flashdata("sukses", 'swal({
+                    title: "Berhasi!",
+                    text: "Data Berhasil diSimpan!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-success",
+                    type: "success"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'pegawai');
+            }else{
+                $this->session->set_flashdata("alert", 'swal({
+                    title: "Gagal!",
+                    text: "Data Gagal diSimpan!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-danger",
+                    type: "error"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'pegawai');
+            }
         }else{
             $this->session->set_flashdata("alert", 'swal({
                 title: "Gagal!",
@@ -194,16 +205,27 @@ class Pegawai extends CI_Controller {
         );
 
         $res = $this->M_pegawai->update($this->input->post('id'),$data);
-        if($res>=0){
-            $this->M_user->update($this->input->post('id'),$data_login);
-            $this->session->set_flashdata("sukses", 'swal({
-                title: "Berhasi!",
-                text: "Data Berhasil diUpdate!",
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-success",
-                type: "success"
-            }).catch(swal.noop)');
-            header('location:'.base_url().'pegawai');
+        if($res){
+            $res1 = $this->M_user->update($this->input->post('id'),$data_login)
+            if ($res1) {
+                $this->session->set_flashdata("sukses", 'swal({
+                    title: "Berhasi!",
+                    text: "Data Berhasil diUpdate!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-success",
+                    type: "success"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'pegawai');
+            }else{
+                $this->session->set_flashdata("alert", 'swal({
+                    title: "Gagal!",
+                    text: "Data Gagal diUpdate!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-danger",
+                    type: "error"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'pegawai');
+            }
         }else{
             $this->session->set_flashdata("alert", 'swal({
                 title: "Gagal!",
