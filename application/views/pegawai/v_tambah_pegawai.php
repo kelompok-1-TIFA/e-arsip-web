@@ -12,7 +12,7 @@
                             </div>
                             <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
-                        <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/simpan') ?>" class="form-horizontal">
+                        <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/simpan') ?>" class="form-horizontal" enctype="multipart/form-data">
                             <div class="card-body">
                                 <h4 class="text-center">DATA PEGAWAI</h4>
                                 <div class="row">
@@ -195,7 +195,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                 <label class="bmd-label-floating">Password</label>
-                                                <input type="password"  name="password" class="form-control" required>
+                                                <input type="text"  name="password" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>

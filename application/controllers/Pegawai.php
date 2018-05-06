@@ -79,63 +79,85 @@ class Pegawai extends CI_Controller {
     function simpan(){
         $this->load->library('encrypt'); 
         $key = 'vyanarypratamabanyuwangi12345678';
-
-        $nip= $this->input->post('nip');
-        $id_bagian_pegawai= $this->input->post('id_bagian');
-        $id_jabatan_pegawai= $this->input->post('id_jabatan');
-        $niap= $this->input->post('niap');
-        $nama= $this->input->post('nama');
-        $jenis_kelamin= $this->input->post('jenis_kelamin');
-        $tempat_lahir= $this->input->post('tempat_lahir');
-        $tgl_lahir= $this->input->post('tgl_lahir');
-        $agama= $this->input->post('agama');
-        $pangkat= $this->input->post('pangkat');
-        $alamat= $this->input->post('alamat');
-        $no_hp= $this->input->post('no_hp');
-        $pendidikan_terakhir= $this->input->post('pendidikan_terakhir');
-        $sk_pengangkatan= $this->input->post('sk_pengangkatan');
-        $username= $this->input->post('username');
-        $level_user= $this->input->post('level_user');
-
-        $password_encrypt =  $this->encrypt->encode($this->input->post('password'), $key);
-
-        $data = array( 
-             'nip'                  => $nip,
-             'id_bagian_pegawai'    => $id_bagian_pegawai, 
-             'id_jabatan_pegawai'   => $id_jabatan_pegawai, 
-             'niap'                 => $niap, 
-             'nama'                 => $nama, 
-             'jenis_kelamin'        => $jenis_kelamin, 
-             'tempat_lahir'         => $tempat_lahir, 
-             'tgl_lahir'            => $tgl_lahir, 
-             'agama'                => $agama, 
-             'pangkat'              => $pangkat, 
-             'alamat'               => $alamat, 
-             'no_hp'                => $no_hp, 
-             'pendidikan_terakhir'  => $pendidikan_terakhir, 
-             'sk_pengangkatan'      => $sk_pengangkatan, 
+        $config = array(
+            'upload_path' => './assets/uploads/foto_user/',
+            'allowed_types' => 'gif|jpg|JPG|png|jpeg',
+            'max_size' => '2048',
+            'remove_space' => TRUE,
         );
+        $this->load->library('upload', $config);
 
-        $data_login = array(
-            'id_user'       => "",
-            'nip_user'      => $nip,
-            'username'      => $username,
-            'password'      => $password_encrypt,
-            'level_user'    => $level_user,
-        );
+        if ($this->upload->do_upload('file_foto')) {
+            $upload_data = $this->upload->data();
 
-        $result = $this->M_pegawai->insert($data);
-        if($result){
-            $res1 = $this->M_user->insert($data_login);
-            if ($res1) {
-                $this->session->set_flashdata("sukses", 'swal({
-                    title: "Berhasi!",
-                    text: "Data Berhasil diSimpan!",
-                    buttonsStyling: false,
-                    confirmButtonClass: "btn btn-success",
-                    type: "success"
-                }).catch(swal.noop)');
-                header('location:'.base_url().'pegawai');
+            $nip= $this->input->post('nip');
+            $id_bagian_pegawai= $this->input->post('id_bagian');
+            $id_jabatan_pegawai= $this->input->post('id_jabatan');
+            $niap= $this->input->post('niap');
+            $nama= $this->input->post('nama');
+            $jenis_kelamin= $this->input->post('jenis_kelamin');
+            $tempat_lahir= $this->input->post('tempat_lahir');
+            $tgl_lahir= $this->input->post('tgl_lahir');
+            $agama= $this->input->post('agama');
+            $pangkat= $this->input->post('pangkat');
+            $alamat= $this->input->post('alamat');
+            $no_hp= $this->input->post('no_hp');
+            $pendidikan_terakhir= $this->input->post('pendidikan_terakhir');
+            $sk_pengangkatan= $this->input->post('sk_pengangkatan');
+            $username= $this->input->post('username');
+            $level_user= $this->input->post('level_user');
+            $foto="assets/uploads/foto_user/".$upload_data['file_name'];
+
+            $password_encrypt = $this->encrypt->encode($this->input->post('password'), $key);
+
+            $data = array( 
+                 'nip'                  => $nip,
+                 'id_bagian_pegawai'    => $id_bagian_pegawai, 
+                 'id_jabatan_pegawai'   => $id_jabatan_pegawai, 
+                 'niap'                 => $niap, 
+                 'nama'                 => $nama, 
+                 'jenis_kelamin'        => $jenis_kelamin, 
+                 'tempat_lahir'         => $tempat_lahir, 
+                 'tgl_lahir'            => $tgl_lahir, 
+                 'agama'                => $agama, 
+                 'pangkat'              => $pangkat, 
+                 'alamat'               => $alamat, 
+                 'no_hp'                => $no_hp, 
+                 'pendidikan_terakhir'  => $pendidikan_terakhir, 
+                 'sk_pengangkatan'      => $sk_pengangkatan,
+                 'foto'                 => $foto 
+            );
+
+            $data_login = array(
+                'id_user'       => "",
+                'nip_user'      => $nip,
+                'username'      => $username,
+                'password'      => $password_encrypt,
+                'level_user'    => $level_user,
+            );
+
+            $result = $this->M_pegawai->insert($data);
+            if($result>=0){
+                $res1 = $this->M_user->insert($data_login);
+                if ($res1>=0) {
+                    $this->session->set_flashdata("sukses", 'swal({
+                        title: "Berhasi!",
+                        text: "Data Berhasil diSimpan!",
+                        buttonsStyling: false,
+                        confirmButtonClass: "btn btn-success",
+                        type: "success"
+                    }).catch(swal.noop)');
+                    header('location:'.base_url().'pegawai');
+                }else{
+                    $this->session->set_flashdata("alert", 'swal({
+                        title: "Gagal!",
+                        text: "Data Gagal diSimpan!",
+                        buttonsStyling: false,
+                        confirmButtonClass: "btn btn-danger",
+                        type: "error"
+                    }).catch(swal.noop)');
+                    header('location:'.base_url().'pegawai?msg'.$data_login['nip_user']);
+                }
             }else{
                 $this->session->set_flashdata("alert", 'swal({
                     title: "Gagal!",
@@ -149,7 +171,7 @@ class Pegawai extends CI_Controller {
         }else{
             $this->session->set_flashdata("alert", 'swal({
                 title: "Gagal!",
-                text: "Data Gagal diSimpan!",
+                text: "Gagal Upload Foto!",
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-danger",
                 type: "error"
@@ -205,9 +227,9 @@ class Pegawai extends CI_Controller {
         );
 
         $res = $this->M_pegawai->update($this->input->post('id'),$data);
-        if($res){
-            $res1 = $this->M_user->update($this->input->post('id'),$data_login)
-            if ($res1) {
+        if($res>=0){
+            $res1 = $this->M_user->update($this->input->post('id'),$data_login);
+            if ($res1>=0) {
                 $this->session->set_flashdata("sukses", 'swal({
                     title: "Berhasi!",
                     text: "Data Berhasil diUpdate!",
