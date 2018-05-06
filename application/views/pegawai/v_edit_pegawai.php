@@ -92,7 +92,7 @@
                                             <div class="col-md-10">
                                                 <div class="form-group mt-2">
                                                     <label for="exampleEmail" class="bmd-label-floating">Tanggal Lahir</label>
-                                                    <input type="text" name="tgl_lahir" class="form-control datepicker" required value="<?php echo date("m/d/Y"); ?>">
+                                                    <input type="date" name="tgl_lahir" class="form-control" required value="<?php echo $tgl_lahir; ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                 <label class="bmd-label-floating">Alamat</label>
-                                                <textarea name="alamat" value="<?php echo $alamat ?>" required class="form-control"></textarea>
+                                                <textarea name="alamat" required class="form-control"><?php echo $alamat ?></textarea>
                                               </div>
                                             </div>
                                         </div>
