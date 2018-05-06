@@ -88,7 +88,7 @@ class Pegawai extends CI_Controller {
         $sk_pengangkatan= $this->input->post('sk_pengangkatan');
 
         $data = array( 
-             'nip'                  => "",
+             'nip'                  => $nip,
              'id_bagian_pegawai'    => $id_bagian_pegawai, 
              'id_jabatan_pegawai'   => $id_jabatan_pegawai, 
              'niap'                 => $niap, 
