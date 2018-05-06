@@ -91,7 +91,7 @@
                                             <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">date_range</i></label>
                                             <div class="col-md-10">
                                                 <div class="form-group mt-2">
-                                                    <label for="exampleEmail" class="bmd-label-floating">Tanggal Lahir</label>
+                                                    <label class="bmd-label-floating">Tanggal Lahir</label>
                                                     <input type="date" name="tgl_lahir" class="form-control" required value="<?php echo $tgl_lahir; ?>">
                                                 </div>
                                             </div>

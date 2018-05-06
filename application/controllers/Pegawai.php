@@ -130,8 +130,8 @@ class Pegawai extends CI_Controller {
 
     function editaction(){
         $nip= $this->input->post('nip');
-        $id_bagian_pegawai= $this->input->post('id_bagian_pegawai');
-        $id_jabatan_pegawai= $this->input->post('id_jabatan_pegawai');
+        $id_bagian_pegawai= $this->input->post('id_bagian');
+        $id_jabatan_pegawai= $this->input->post('id_jabatan');
         $niap= $this->input->post('niap');
         $nama= $this->input->post('nama');
         $jenis_kelamin= $this->input->post('jenis_kelamin');
@@ -145,22 +145,18 @@ class Pegawai extends CI_Controller {
         $sk_pengangkatan= $this->input->post('sk_pengangkatan');
 
         $data = array(
-            'nip'   => $this->input->post('nip'),
-            'id_bagian_pegawai'   => $this->input->post('id'),
-            'id_jabatan_pegawai'   => $this->input->post('id'),
-
-             
-             'niap'                       => $niap, 
-             'nama'                       => $nama, 
-             'jenis_kelamin'              => $jenis_kelamin, 
-             'tempat_lahir'               => $tempat_lahir, 
-             'tgl_lahir'                  => $tgl_lahir, 
-             'agama'                      => $agama, 
-             'pangkat'                    => $pangkat, 
-             'alamat'                     => $alamat, 
-             'no_hp'                      => $no_hp, 
-             'pendidikan_terakhir'        => $pendidikan_terakhir, 
-             'sk_pengangkatan'            => $sk_pengangkatan, 
+            'nip'                   => $nip,
+            'niap'                  => $niap, 
+            'nama'                  => $nama, 
+            'jenis_kelamin'         => $jenis_kelamin, 
+            'tempat_lahir'          => $tempat_lahir, 
+            'tgl_lahir'             => $tgl_lahir, 
+            'agama'                 => $agama, 
+            'pangkat'               => $pangkat, 
+            'alamat'                => $alamat, 
+            'no_hp'                 => $no_hp, 
+            'pendidikan_terakhir'   => $pendidikan_terakhir, 
+            'sk_pengangkatan'       => $sk_pengangkatan, 
              
             
         );
