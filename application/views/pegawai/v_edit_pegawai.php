@@ -166,7 +166,7 @@
                                                         <span class="btn btn-rose btn-round btn-file">
                                                             <span class="fileinput-new">Pilih Foto</span>
                                                             <span class="fileinput-exists">Ganti Foto</span>
-                                                            <input type="file" name="file_foto" required />
+                                                            <input type="file" name="file_foto" />
                                                         </span>
                                                         <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Hapus</a>
                                                     </div>
