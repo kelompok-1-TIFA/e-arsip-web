@@ -39,7 +39,9 @@
                                             <td><?php echo $pegawai->jabatan ?></td>
                                             <td><?php echo $pegawai->bagian ?></td>
                                             <td><?php echo $pegawai->jenis_kelamin ?></td>
-                                            <td><?php echo $pegawai->foto ?></td>
+                                            <td>
+                                                <img src="<?php echo base_url($pegawai->foto); ?>" class="img-fluid">
+                                            </td>
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url('pegawai/edit/'.$pegawai->nip) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a onclick="deletedata(<?php echo $pegawai->nip.",'".$pegawai->nama."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>

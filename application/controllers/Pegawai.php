@@ -55,6 +55,7 @@ class Pegawai extends CI_Controller {
                 'no_hp'                 => $row->no_hp,
                 'pendidikan_terakhir'   => $row->pendidikan_terakhir,
                 'sk_pengangkatan'       => $row->sk_pengangkatan,
+                'foto'                  => $row->foto,
                 'username'              => $row->username,
                 'password'              => $password_decrypt,
                 'level_user'            => $row->level_user,

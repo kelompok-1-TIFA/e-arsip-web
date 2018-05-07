@@ -159,7 +159,7 @@
                                             <div class="col-md-10">
                                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail">
-                                                        <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
+                                                        <img src="<?php echo base_url($foto) ?>" alt="...">
                                                     </div>
                                                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                                     <div>
