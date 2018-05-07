@@ -12,8 +12,9 @@
                             </div>
                             <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
-                        <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/simpan') ?>" class="form-horizontal">
+                        <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/simpan') ?>" class="form-horizontal" enctype="multipart/form-data">
                             <div class="card-body">
+                                <h4 class="text-center">DATA PEGAWAI</h4>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="row mb-2">
@@ -96,8 +97,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6">
                                         <div class="row mb-2">
                                             <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">location_city</i></label>
                                             <div class="col-md-10">
@@ -116,6 +115,8 @@
                                               </div>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-md-6">
                                         <div class="row mb-2">
                                             <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">location_on</i></label>
                                             <div class="col-md-10">
@@ -151,7 +152,73 @@
                                                   <input type="text"  name="sk_pengangkatan" class="form-control" required>
                                               </div>
                                             </div>
-                                        </div>          
+                                        </div>   
+                                        <div class="row">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">camera_alt</i></label>
+                                            <div class="col-md-10">
+                                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                                    <div class="fileinput-new thumbnail">
+                                                        <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
+                                                    </div>
+                                                    <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                                    <div>
+                                                        <span class="btn btn-rose btn-round btn-file">
+                                                            <span class="fileinput-new">Pilih Foto</span>
+                                                            <span class="fileinput-exists">Ganti Foto</span>
+                                                            <input type="file" name="file_foto" required />
+                                                        </span>
+                                                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Hapus</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>      
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="text-center">DATA LOGIN</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">assignment_ind</i></label>
+                                            <div class="col-md-10">
+                                              <div class="form-group ">
+                                                <label class="bmd-label-floating">Username</label>
+                                                <input type="text"  name="username" class="form-control" required>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row mb-2">
+                                            <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">lock_outline</i></label>
+                                            <div class="col-md-10">
+                                              <div class="form-group ">
+                                                <label class="bmd-label-floating">Password</label>
+                                                <input type="text"  name="password" class="form-control" required>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="row justify-content-center">
+                                            <div class="col-md-6">
+                                                <div class="row">
+                                                    <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">supervisor_account</i></label>
+                                                    <div class="col-md-10">
+                                                        <div class="form-group mt-0">
+                                                            <select class="selectpicker" data-style="btn select-with-transition" title="Pilih Level User" data-size="7" name="level_user">
+                                                                <option value="kepala desa">Kepala Desa</option>
+                                                                <option value="sekertaris">Sekertaris Desa</option>
+                                                                <option value="kepala bagian">Kepala Bagian</option>
+                                                                <option value="staf">Staf</option>
+                                                                <option value="admin">Admin</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>    
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             
@@ -170,15 +237,12 @@
     </div>
 <?php $this->load->view('inc/footer'); ?>      
 <?php $this->load->view('inc/js'); ?>
-<script type="text/javascript">
-    $(document).ready(function(){
-
-  //init DateTimePickers
-  md.initFormExtendedDatetimepickers();
-
-  // Sliders Init
-  md.initSliders();
-
-});
-</script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //init DateTimePickers
+            md.initFormExtendedDatetimepickers();
+            // Sliders Init
+            md.initSliders();
+        });
+    </script>
 </html>

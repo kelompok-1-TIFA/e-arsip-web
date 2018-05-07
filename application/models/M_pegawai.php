@@ -29,6 +29,7 @@ class M_pegawai extends CI_Model
     // get data by id
     function get_by_id($id)
     {
+        $this->db->join('tb_user', 'tb_pegawai.nip = tb_user.nip_user', 'left');  
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
