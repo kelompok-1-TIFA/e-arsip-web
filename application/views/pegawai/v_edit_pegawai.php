@@ -158,14 +158,14 @@
                                             <div class="col-md-10">
                                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail">
-                                                        <img src="<?php echo base_url() ?>assets/img/image_placeholder.jpg" alt="...">
+                                                        <img src="<?php echo base_url($foto) ?>" alt="...">
                                                     </div>
                                                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                                     <div>
                                                         <span class="btn btn-rose btn-round btn-file">
                                                             <span class="fileinput-new">Pilih Foto</span>
                                                             <span class="fileinput-exists">Ganti Foto</span>
-                                                            <input type="file" name="file_foto" required />
+                                                            <input type="file" name="file_foto" />
                                                         </span>
                                                         <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Hapus</a>
                                                     </div>
