@@ -84,24 +84,12 @@
                             <div class="ct-chart" id="dailySalesChart"></div>
                         </div>
                         <div class="card-body">
-                            <div class="card-actions">
-                                <button type="button" class="btn btn-danger btn-link fix-broken-card">
-                                    <i class="material-icons">build</i> Fix Header!
-                                </button>
-                                <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom" title="Refresh">
-                                    <i class="material-icons">refresh</i>
-                                </button>
-                                <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="Change Date">
-                                    <i class="material-icons">edit</i>
-                                </button>
-                            </div>
-                            <h4 class="card-title">Grafik Surat Masuk</h4>
-                            <p class="card-category">
-                            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                            <h4 class="card-title">Grafik Surat Masuk Setiap Bulan</h4>
+                            <p class="card-category">Tahun <?php echo date("Y"); ?></p>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons">access_time</i> updated 4 minutes ago
+                                <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 0 Surat Masuk
                             </div>
                         </div>
                     </div>
@@ -112,23 +100,12 @@
                             <div class="ct-chart" id="completedTasksChart"></div>
                         </div>
                         <div class="card-body">
-                            <div class="card-actions">
-                                <button type="button" class="btn btn-danger btn-link fix-broken-card">
-                                    <i class="material-icons">build</i> Fix Header!
-                                </button>
-                                <button type="button" class="btn btn-info btn-link" rel="tooltip" data-placement="bottom" title="Refresh">
-                                    <i class="material-icons">refresh</i>
-                                </button>
-                                <button type="button" class="btn btn-default btn-link" rel="tooltip" data-placement="bottom" title="Change Date">
-                                    <i class="material-icons">edit</i>
-                                </button>
-                            </div>
-                            <h4 class="card-title">Grafik Surat Keluar</h4>
-                            <p class="card-category">Last Campaign Performance</p>
+                            <h4 class="card-title">Grafik Surat Keluar Setiap Bulan</h4>
+                            <p class="card-category">Tahun <?php echo date("Y"); ?></p>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
-                                <i class="material-icons">access_time</i> campaign sent 2 days ago
+                                <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 0 Surat Keluar
                             </div>
                         </div>
                     </div>
@@ -146,9 +123,9 @@
                                 <thead class="text-warning">
                                     <th>No.</th>
                                     <th>No. Surat</th>
+                                    <th>Asal</th>
                                     <th>Perihal</th>
-                                    <th>Sifat</th>
-                                    <th>Aksi</th>
+                                    <th class="disabled-sorting text-center">Actions</th>
                                 </thead>
                                 <tbody>
                                     <tr>
@@ -156,24 +133,7 @@
                                         <td>Dakota Rice</td>
                                         <td>$36,738</td>
                                         <td>Niger</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Minerva Hooper</td>
-                                        <td>$23,789</td>
-                                        <td>Curaçao</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Sage Rodriguez</td>
-                                        <td>$56,142</td>
-                                        <td>Netherlands</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Philip Chaney</td>
-                                        <td>$38,735</td>
-                                        <td>Korea, South</td>
+                                        <td><a href="" class="btn btn-link btn-info text-center" title="Lihat"><i class="material-icons">remove_red_eye</i></a></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -193,9 +153,9 @@
                                 <thead class="text-warning">
                                     <th>No.</th>
                                     <th>No. Surat</th>
+                                    <th>Tujuan</th>
                                     <th>Perihal</th>
-                                    <th>Sifat</th>
-                                    <th>Aksi</th>
+                                    <th class="disabled-sorting text-center">Actions</th>
                                 </thead>
                                 <tbody>
                                     <tr>
@@ -203,7 +163,7 @@
                                         <td>Dakota Rice</td>
                                         <td>$36,738</td>
                                         <td>Niger</td>
-                                        <td><a href="" class="btn"></a></td>
+                                        <td><a href="" class="btn btn-link btn-info text-center"><i class="material-icons">remove_red_eye</i></a></td>
                                     </tr>
                                 </tbody>
                             </table>

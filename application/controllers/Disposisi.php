@@ -26,7 +26,7 @@ class Disposisi extends CI_Controller {
         $data = array(
             'page_title'   => ucwords(str_replace("_", " ", $this->uri->segment(1))),
         );
-        $this->load->view('disposisi/v_disposisi',$data);
+        $this->load->view('disposisi/v_mendisposisikan',$data);
     }
 
     public function edit($id){
