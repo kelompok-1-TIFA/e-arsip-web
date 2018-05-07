@@ -20,7 +20,7 @@
             <div class="sidebar-wrapper">
                 <div class="user">
                     <div class="photo">
-                        <img src="<?php echo base_url() ?>assets/img/faces/avatar.jpg" />
+                        <img src="<?php echo base_url($this->session->userdata('foto')) ?>" />
                     </div>
                     <div class="user-info">
                         <a class="username">
