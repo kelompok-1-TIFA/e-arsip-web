@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php $this->load->view('inc/head'); ?>
 <?php $this->load->view('inc/sidebar'); ?>
 <?php $this->load->view('inc/navbar'); ?>
@@ -15,7 +13,7 @@
                           <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
                         <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/simpan') ?>" class="form-horizontal" enctype="multipart/form-data">
-                              <div class="card-body">
+                            <div class="card-body">
                             </div>    
                         </form>
                     </div><!--  end card  -->
@@ -26,4 +24,3 @@
 <?php $this->load->view('inc/footer'); ?>      
 <?php $this->load->view('inc/js'); ?>
 </html>
->>>>>>> 5753904c2ab453450e047b320384b7b6fc403f9e
