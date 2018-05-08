@@ -34,6 +34,7 @@ class Awal extends CI_Controller {
             if ($password==$password_encrypt) {
                 $data_session = array(
                     'id_user'       => $cek_fase_2->id_user,
+                    'nip'           => $cek_fase_2->nip,
                     'nama'          => $cek_fase_2->nama,
                     'foto'          => $cek_fase_2->foto,
                     'id_bagian'     => $cek_fase_2->id_bagian_pegawai,
