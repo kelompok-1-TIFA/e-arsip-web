@@ -22,7 +22,7 @@ class Laporan_surat_keluar extends CI_Controller {
             $sampai=date("Y-m-d");
         }
         
-        $surat_keluar = $this->M_surat_keluar->get_all();
+        $surat_keluar = $this->M_surat_keluar->get_where("WHERE tgl_arsip BETWEEN '$dari' and '$sampai'");
 
         $data = array(
             'dari'              => $dari,
@@ -40,7 +40,7 @@ class Laporan_surat_keluar extends CI_Controller {
             $bulan=date("m");
             $tahun=date("Y");
         }
-        $surat_keluar = $this->M_surat_keluar->get_all();
+        $surat_keluar = $this->M_surat_keluar->get_where("WHERE MONTH(tgl_arsip) = '$bulan' and YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(
             'bulan'             => $bulan,
@@ -56,7 +56,7 @@ class Laporan_surat_keluar extends CI_Controller {
         }else{
             $tahun=date("Y");
         }
-        $surat_keluar = $this->M_surat_keluar->get_all();
+        $surat_keluar = $this->M_surat_keluar->get_where("WHERE YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(
             'tahun'             => $tahun,
@@ -75,7 +75,7 @@ class Laporan_surat_keluar extends CI_Controller {
             $sampai=date("Y-m-d");
         }
         
-        $surat_keluar = $this->M_surat_keluar->get_all();
+        $surat_keluar = $this->M_surat_keluar->get_where("WHERE tgl_arsip BETWEEN '$dari' and '$sampai'");
 
         $data = array(
             'dari'              => $dari,
@@ -93,7 +93,7 @@ class Laporan_surat_keluar extends CI_Controller {
             $bulan=date("m");
             $tahun=date("Y");
         }
-        $surat_keluar = $this->M_surat_keluar->get_all();
+        $surat_keluar = $this->M_surat_keluar->get_where("WHERE MONTH(tgl_arsip) = '$bulan' and YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(
             'bulan'             => $bulan,
@@ -109,7 +109,7 @@ class Laporan_surat_keluar extends CI_Controller {
         }else{
             $tahun=date("Y");
         }
-        $surat_keluar = $this->M_surat_keluar->get_all();
+        $surat_keluar = $this->M_surat_keluar->get_where("WHERE YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(
             'tahun'             => $tahun,

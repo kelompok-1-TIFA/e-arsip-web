@@ -28,6 +28,18 @@ class M_surat_masuk extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    function get_where($where)
+    {
+        return $this->db->query('select * from tb_surat_masuk '.$where)->result();
+    }
+
+    function get_by_bagian($id)
+    {
+        $this->db->where('id_bagian', $id);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows() {
