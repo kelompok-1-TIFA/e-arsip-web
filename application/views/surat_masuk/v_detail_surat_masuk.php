@@ -13,7 +13,24 @@
                             <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
                         <div class="card-body">
-                            
+                            <div class="col-md-3">
+                                        <div class="form-group">
+                                            <input type="hidden" value="" name="id" class="form-control" required>
+                                            <input type="text" name="no_surat" placeholder="Nomor Surat : " value="" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" value="" name="id" class="form-control" required>
+                                            <input type="text" name="tgl_surat" placeholder="Tanggal Surat : " value="" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" value="" name="id" class="form-control" required>
+                                            <input type="text" name="tgl_arsip" placeholder="Tanggal Arsip : " value="" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" value="" name="id" class="form-control" required>
+                                            <input type="text" name="asal_surat" placeholder="Asal Surat/Tujuan : " value="" class="form-control" required>
+                                        </div>
+                                    </div>
                         </div>
                     </div><!--  end card  -->
                 </div> <!-- end col-md-12 -->
