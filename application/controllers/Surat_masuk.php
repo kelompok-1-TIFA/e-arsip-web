@@ -7,6 +7,7 @@ class Surat_masuk extends CI_Controller {
         parent::__construct();
         $this->load->model('M_surat_masuk');
         $this->load->model('M_jenis_surat');
+        $this->load->model('M_disposisi');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
         }

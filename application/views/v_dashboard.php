@@ -13,7 +13,7 @@
                                 <i class="material-icons">archive</i>
                             </div>
                             <p class="card-category">Surat Masuk</p>
-                            <h3 class="card-title">0</h3>
+                            <h3 class="card-title"><?php echo $jml_surat_masuk; ?></h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
@@ -30,7 +30,7 @@
                                 <i class="material-icons">unarchive</i>
                             </div>
                             <p class="card-category">Surat Keluar</p>
-                            <h3 class="card-title">0</h3>
+                            <h3 class="card-title"><?php echo $jml_surat_keluar; ?></h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
@@ -46,7 +46,7 @@
                                 <i class="material-icons">send</i>
                             </div>
                             <p class="card-category">Disposisi</p>
-                            <h3 class="card-title">0</h3>
+                            <h3 class="card-title"><?php echo $jml_disposisi; ?></h3>
                         </div>
                         <div class="card-footer">
                             <div class="stats">
@@ -81,7 +81,7 @@
                 <div class="col-md-6">
                     <div class="card card-chart">
                         <div class="card-header card-header-warning">
-                            <div class="ct-chart" id="dailySalesChart"></div>
+                            <div class="ct-chart" id="suratMasukCart"></div>
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">Grafik Surat Masuk Setiap Bulan</h4>
@@ -97,7 +97,7 @@
                 <div class="col-md-6">
                     <div class="card card-chart">
                         <div class="card-header card-header-rose">
-                            <div class="ct-chart" id="completedTasksChart"></div>
+                            <div class="ct-chart" id="suratKeluarCart"></div>
                         </div>
                         <div class="card-body">
                             <h4 class="card-title">Grafik Surat Keluar Setiap Bulan</h4>
@@ -177,11 +177,12 @@
     <!-- Content -->
 <?php $this->load->view('inc/footer'); ?>      
 <?php $this->load->view('inc/js'); ?>
+<script src="<?php echo base_url('assets/js/plugins/dashboard.js') ?>"></script>
 <script type="text/javascript">
 
 $(document).ready(function(){
   // Javascript method's body can be found in assets/js/demos.js
-  demo.initDashboardPageCharts();
+  grafik.dashboard();
 });
 </script>
 <script type="text/javascript">

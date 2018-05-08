@@ -31,7 +31,7 @@ class M_disposisi extends CI_Model
     
     // get total rows
     function total_rows() {
-    	$this->db->from($this->table);
+        $this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
