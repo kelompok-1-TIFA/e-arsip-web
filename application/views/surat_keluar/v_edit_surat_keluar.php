@@ -92,11 +92,21 @@
                                     <div class="col-md-10">
                                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail">
-                                                <img src="<?php echo $file ?>" alt="...">
+                                                <?php
+                                                    $typefile=mime_content_type($file);
+                                                    if ($typefile=="application/pdf") {
+                                                      echo basename($file);
+                                                    }elseif ($typefile=="image/jpg" or $typefile=="image/png" or $typefile=="image/jpeg" or $typefile=="image/gif" or $typefile=="image/JPG") {
+                                                      echo "<img src=".base_url($file)." alt='...''>";
+                                                    }else{
+                                                      echo basename($file);
+                                                    }
+                                                  ?>
                                             </div>
                                             <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                             <div>
                                                 <span class="btn btn-rose btn-round btn-file">
+                                                    <span class="fileinput-exists">Ganti File</span>
                                                     <span class="fileinput-new">Ganti File</span>
                                                     <input type="file" name="file_surat"/>
                                                 </span>

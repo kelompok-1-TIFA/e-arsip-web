@@ -70,33 +70,55 @@ class Surat_masuk extends CI_Controller {
         $tgl_surat=$this->input->post('tgl_surat');
         $keterangan=$this->input->post('keterangan');
 
-        $data = array(  
-            'id_surat_masuk'    => "",
-            'no_surat'          => $no_surat, 
-            'asal_surat'        => $asal_surat,
-            'isi_singkat'       => $isi_singkat,
-            'id_jenis_surat'    => $id_jenis_surat,
-            'perihal'           => $perihal,
-            'tgl_surat'         => $tgl_surat,
-            'tgl_arsip'         => date("Y-m-d"),
-            'keterangan'        =>$keterangan,
-            
-        );
+        $jenis_surat=$this->M_jenis_surat->get_by_id($id_jenis_surat);
 
-        $result = $this->M_surat_masuk->insert($data);
-        if($result>=0){
-            $this->session->set_flashdata("sukses", 'swal({
-                title: "Berhasi!",
-                text: "Data Berhasil diSimpan!",
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-success",
-                type: "success"
-            }).catch(swal.noop)');
-            header('location:'.base_url().'surat_masuk');
+        $config = array(
+            'upload_path'   => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/',
+            'allowed_types' => 'gif|jpg|JPG|png|jpeg|pdf|doc|docx',
+            'max_size'      => '10240',
+        );
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('file_surat')) {
+            $upload_data = $this->upload->data();
+
+            $data = array(  
+                'id_surat_masuk'    => "",
+                'no_surat'          => $no_surat, 
+                'asal_surat'        => $asal_surat,
+                'isi_singkat'       => $isi_singkat,
+                'id_jenis_surat'    => $id_jenis_surat,
+                'perihal'           => $perihal,
+                'tgl_surat'         => $tgl_surat,
+                'tgl_arsip'         => date("Y-m-d"),
+                'keterangan'        => $keterangan,
+                'file'              => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/'.$upload_data['file_name']
+            );
+
+            $result = $this->M_surat_masuk->insert($data);
+            if($result>=0){
+                $this->session->set_flashdata("sukses", 'swal({
+                    title: "Berhasi!",
+                    text: "Data Berhasil diSimpan!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-success",
+                    type: "success"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'surat_masuk');
+            }else{
+                $this->session->set_flashdata("alert", 'swal({
+                    title: "Gagal!",
+                    text: "Data Gagal diSimpan!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-danger",
+                    type: "error"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'surat_masuk');
+            }
         }else{
             $this->session->set_flashdata("alert", 'swal({
                 title: "Gagal!",
-                text: "Data Gagal diSimpan!",
+                text: "Gagal Upload File!",
                 buttonsStyling: false,
                 confirmButtonClass: "btn btn-danger",
                 type: "error"
@@ -114,37 +136,94 @@ class Surat_masuk extends CI_Controller {
         $tgl_surat=$this->input->post('tgl_surat');
         $keterangan=$this->input->post('keterangan');
 
-        $data = array(  
-            'id_surat_masuk'    => $this->input->post('id'),
-            'no_surat'          => $no_surat, 
-            'asal_surat'        => $asal_surat,
-            'isi_singkat'       => $isi_singkat,
-            'id_jenis_surat'    => $id_jenis_surat,
-            'perihal'           => $perihal,
-            'tgl_surat'         => $tgl_surat,
-            'keterangan'        => $keterangan,
-            
+        $jenis_surat=$this->M_jenis_surat->get_by_id($id_jenis_surat);
+
+        $config = array(
+            'upload_path'   => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/',
+            'allowed_types' => 'gif|jpg|JPG|png|jpeg|pdf|doc|docx',
+            'max_size'      => '10240',
         );
-        $res = $this->M_surat_masuk->update($data['id_surat_masuk'],$data);
-        if($res>=0){
-            $this->session->set_flashdata("sukses", 'swal({
-                title: "Berhasi!",
-                text: "Data Berhasil diUpdate!",
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-success",
-                type: "success"
-            }).catch(swal.noop)');
-            header('location:'.base_url().'surat_masuk');
+        $this->load->library('upload', $config);
+
+        if ($_FILES['file_surat']['tmp_name']!=NULL) {
+            if ($this->upload->do_upload('file_surat')) {
+                $upload_data = $this->upload->data();
+
+                $data = array(  
+                    'id_surat_masuk'    => $this->input->post('id'),
+                    'no_surat'          => $no_surat, 
+                    'asal_surat'        => $asal_surat,
+                    'isi_singkat'       => $isi_singkat,
+                    'id_jenis_surat'    => $id_jenis_surat,
+                    'perihal'           => $perihal,
+                    'tgl_surat'         => $tgl_surat,
+                    'keterangan'        => $keterangan,
+                    'file'              => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/'.$upload_data['file_name']
+                    
+                );
+                $res = $this->M_surat_masuk->update($data['id_surat_masuk'],$data);
+                if($res>=0){
+                    $this->session->set_flashdata("sukses", 'swal({
+                        title: "Berhasi!",
+                        text: "Data Berhasil diUpdate!",
+                        buttonsStyling: false,
+                        confirmButtonClass: "btn btn-success",
+                        type: "success"
+                    }).catch(swal.noop)');
+                    header('location:'.base_url().'surat_masuk');
+                }else{
+                    $this->session->set_flashdata("alert", 'swal({
+                        title: "Gagal!",
+                        text: "Data Gagal diUpdate!",
+                        buttonsStyling: false,
+                        confirmButtonClass: "btn btn-danger",
+                        type: "error"
+                    }).catch(swal.noop)');
+                    header('location:'.base_url().'surat_masuk');
+                }  
+            }else{
+                $this->session->set_flashdata("alert", 'swal({
+                    title: "Gagal!",
+                    text: "Gagal Upload File!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-danger",
+                    type: "error"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'surat_masuk');
+            }
         }else{
-            $this->session->set_flashdata("alert", 'swal({
-                title: "Gagal!",
-                text: "Data Gagal diUpdate!",
-                buttonsStyling: false,
-                confirmButtonClass: "btn btn-danger",
-                type: "error"
-            }).catch(swal.noop)');
-            header('location:'.base_url().'surat_masuk');
-        }       
+            $data = array(  
+                'id_surat_masuk'    => $this->input->post('id'),
+                'no_surat'          => $no_surat, 
+                'asal_surat'        => $asal_surat,
+                'isi_singkat'       => $isi_singkat,
+                'id_jenis_surat'    => $id_jenis_surat,
+                'perihal'           => $perihal,
+                'tgl_surat'         => $tgl_surat,
+                'keterangan'        => $keterangan,
+                
+            );
+            $res = $this->M_surat_masuk->update($data['id_surat_masuk'],$data);
+            if($res>=0){
+                $this->session->set_flashdata("sukses", 'swal({
+                    title: "Berhasi!",
+                    text: "Data Berhasil diUpdate!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-success",
+                    type: "success"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'surat_masuk');
+            }else{
+                $this->session->set_flashdata("alert", 'swal({
+                    title: "Gagal!",
+                    text: "Data Gagal diUpdate!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-danger",
+                    type: "error"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'surat_masuk');
+            }
+        }     
     }
 
     public function hapus(){

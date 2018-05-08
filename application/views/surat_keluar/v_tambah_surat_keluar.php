@@ -98,7 +98,7 @@
                                                 <span class="btn btn-rose btn-round btn-file">
                                                     <span class="fileinput-new">Pilih File</span>
                                                     <span class="fileinput-exists">Ganti File</span>
-                                                    <input type="file" name="file_surat" required />
+                                                    <input type="file" name="file_surat" required accept="image/*,.pdf,.doc,.docx" />
                                                 </span>
                                                 <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                                             </div>
