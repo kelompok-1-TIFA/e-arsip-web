@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2018 at 11:36 PM
+-- Generation Time: May 09, 2018 at 04:53 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -28,23 +28,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `tb_bagian` (
   `id_bagian` int(11) NOT NULL,
-  `bagian` varchar(40) NOT NULL,
-  `kepala_bagian` int(20) DEFAULT NULL
+  `bagian` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_bagian`
 --
 
-INSERT INTO `tb_bagian` (`id_bagian`, `bagian`, `kepala_bagian`) VALUES
-(1, 'Desa', 3),
-(2, 'Urusan Tata Usaha dan Umum', 1),
-(3, 'Urusan Keuangan', NULL),
-(4, 'Urusan Perencanaan', NULL),
-(5, 'Seksi Pemerintahan', NULL),
-(6, 'Seksi Pelayanan', NULL),
-(7, 'Dusun Balung Kopi', NULL),
-(8, 'Dusun Sumber Kadut', NULL);
+INSERT INTO `tb_bagian` (`id_bagian`, `bagian`) VALUES
+(1, 'Desa'),
+(2, 'Urusan Tata Usaha dan Umum'),
+(3, 'Urusan Keuangan'),
+(4, 'Urusan Perencanaan'),
+(5, 'Seksi Pemerintahan'),
+(6, 'Seksi Pelayanan'),
+(7, 'Dusun Balung Kopi'),
+(8, 'Dusun Sumber Kadut');
 
 -- --------------------------------------------------------
 
@@ -55,12 +54,24 @@ INSERT INTO `tb_bagian` (`id_bagian`, `bagian`, `kepala_bagian`) VALUES
 CREATE TABLE `tb_disposisi` (
   `id_disposisi` int(10) NOT NULL,
   `id_bagian` int(11) NOT NULL,
-  `nip` int(11) NOT NULL,
   `isi_disposisi` mediumtext NOT NULL,
   `sifat` varchar(40) NOT NULL,
   `catatan` text NOT NULL,
   `id_surat_masuk` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Triggers `tb_disposisi`
+--
+DELIMITER $$
+CREATE TRIGGER `mendisposisikan` AFTER INSERT ON `tb_disposisi` FOR EACH ROW BEGIN
+ UPDATE tb_surat_masuk
+ SET status_disposisi = 'y'
+ WHERE
+ id_surat_masuk = NEW.id_surat_masuk;
+ END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -89,7 +100,8 @@ INSERT INTO `tb_jabatan` (`id_jabatan`, `jabatan`) VALUES
 (9, 'Kasun Balung Kopi'),
 (10, 'Kasun Sumber Kadut'),
 (11, 'Bendahara Desa'),
-(12, 'Operator Desa');
+(12, 'Operator Desa'),
+(13, 'Staf');
 
 -- --------------------------------------------------------
 
@@ -102,13 +114,6 @@ CREATE TABLE `tb_jenis_surat` (
   `kode` varchar(10) NOT NULL,
   `jenis_surat` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_jenis_surat`
---
-
-INSERT INTO `tb_jenis_surat` (`id_jenis_surat`, `kode`, `jenis_surat`) VALUES
-(4, '045', 'Kependudukan');
 
 -- --------------------------------------------------------
 
@@ -140,8 +145,11 @@ CREATE TABLE `tb_pegawai` (
 --
 
 INSERT INTO `tb_pegawai` (`nip`, `id_bagian_pegawai`, `id_jabatan_pegawai`, `niap`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`, `agama`, `pangkat`, `alamat`, `no_hp`, `pendidikan_terakhir`, `sk_pengangkatan`, `foto`, `create_on`) VALUES
-(1, 1, 1, '', 'SAMSUL', 'Laki - Laki', 'Jember', '1967-08-03', 'Islam', '', '', '', 'SMA', '188.45/297/KTUN/021/2013\r\n20 Juni 2013', '', '2018-05-06 16:17:18'),
-(2, 1, 2, '43543', 'CANDRA NUR CAHYONO', 'Laki - Laki', 'Jember', '1987-03-25', 'Islam', 'vdvdv', 'dvvdv', '5523533', 'D. III', '140/24/35.09.10.2006/SK/201726 Mei 2017', '', '2018-05-06 16:29:18');
+(535435, 1, 1, '5353535', 'Kepala Desa', 'Laki - Laki', 'dvdvdv', '2018-05-09', 'vdvd', 'vdvdv', 'dvdvdv', 'dvdvdv', 'vdvd', 'vdvdv', 'assets/uploads/foto_user/Picture3.png', '2018-05-09 09:10:54'),
+(2353257, 1, 12, '53572', 'admin', 'Laki - Laki', 'Bnayuwangi', '1997-12-25', 'Islam', 'fbfbfbfb', 'vdvdv', '081556780810', 'dvdvdv', 'dvdvd', 'assets/uploads/foto_user/Picture1.png', '2018-05-09 09:09:14'),
+(4545435, 1, 2, '235252', 'Sekertaris Des', 'Laki - Laki', 'dvdvdvd', '2018-05-09', 'dvdvd', 'dvdv', 'dvdvdv', 'dvdvdv', 'dvdvd', 'vdv', 'assets/uploads/foto_user/Picture31.png', '2018-05-09 09:13:05'),
+(324297939, 6, 13, '343420', 'Staf', 'Perempuan', 'dvvdvdv', '2018-05-09', 'vdvdv', 'dvdv', 'dvdvd', '52525', 'vdvdvd', 'vdvd', 'assets/uploads/foto_user/632075.jpg', '2018-05-09 09:22:46'),
+(2147483647, 5, 6, '5435435353', 'Kepala Bagian', 'Laki - Laki', 'fbfdsvvs', '2018-05-09', 'dvdsvsd', 'vdsvsdvs', 'vdvdv', 'dvdvdvd', 'vdvdv', 'dvdv', 'assets/uploads/foto_user/Picture2.png', '2018-05-09 09:11:56');
 
 -- --------------------------------------------------------
 
@@ -163,13 +171,6 @@ CREATE TABLE `tb_surat_keluar` (
   `file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tb_surat_keluar`
---
-
-INSERT INTO `tb_surat_keluar` (`id_surat_keluar`, `no_surat`, `id_bagian`, `tujuan`, `isi_singkat`, `id_jenis_surat`, `perihal`, `tgl_surat`, `tgl_arsip`, `keterangan`, `file`) VALUES
-(1, 'dvvdvdv1', 4, 'vdvdv1', 'dvdvdv1', 4, 'fbfbfb', '2018-05-25', '2018-05-04', 'dbdbdbdbdb1', '');
-
 -- --------------------------------------------------------
 
 --
@@ -186,15 +187,9 @@ CREATE TABLE `tb_surat_masuk` (
   `tgl_surat` date NOT NULL,
   `tgl_arsip` date NOT NULL,
   `keterangan` text NOT NULL,
+  `status_disposisi` set('y','t') NOT NULL DEFAULT 't',
   `file` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tb_surat_masuk`
---
-
-INSERT INTO `tb_surat_masuk` (`id_surat_masuk`, `no_surat`, `asal_surat`, `isi_singkat`, `id_jenis_surat`, `perihal`, `tgl_surat`, `tgl_arsip`, `keterangan`, `file`) VALUES
-(2, 'vfvfvfv', 'fvfvfv', 'fvfvf', 4, 'vfvfv', '2018-05-31', '2018-05-03', 'vfvfv', '');
 
 -- --------------------------------------------------------
 
@@ -215,7 +210,11 @@ CREATE TABLE `tb_user` (
 --
 
 INSERT INTO `tb_user` (`id_user`, `nip_user`, `username`, `password`, `level_user`) VALUES
-(1, 2, 'admin', 'k46AqS2+pAI07edULw4jg7lRUKv6WN0e0Ppl7KLjBxKza4EFqyCejdKAaqbe9UJztIwEcvCEdnhseeae+oMkew==', '');
+(2, 2353257, 'admin', '63weMGrln+7LbwO8Skhb200a3AWC5+YDaO73/mfoSA42xz173PRUD7rzqgK3zRUYBUREjg5fZK+ntVFN8t0YNQ==', 'admin'),
+(3, 535435, 'kepaladesa', 'pL4ND4+At8DXwWIBIY97nFXfN0lvlVVjhCa83VyRbpADScH7ivadNJGWw9fdyfbji0J+t8v64FJ7S6qdDS95Uw==', 'kepala desa'),
+(4, 2147483647, 'kepalabagian', '41VtU4w7Ac8wpcpak18MLGwdTgvaeLSxdl4M0kgupa4ObFJDc2RaRI8TKKwPFvE84McnaJlDLb2CEa0Meje7DA==', 'kepala bagian'),
+(5, 4545435, 'sekertaris', 'OXMRD2cPqaqlSpfqOEwYAxOY00AG2Hlf0s0mk49CjqupNEaN65XmlxkHc39p3suEzLGBF3GFLRqp00snrPap/g==', 'sekertaris'),
+(6, 324297939, 'staf', 'GyQ/Yy7dBvOQV1ItRfeC1T0WWF+bOqp2q3yELhjR2oGLu7qNCVXP6+doZuwH2VHqQbJs3c9bA7M5FfCC2QaYvQ==', 'staf');
 
 --
 -- Indexes for dumped tables
@@ -225,8 +224,7 @@ INSERT INTO `tb_user` (`id_user`, `nip_user`, `username`, `password`, `level_use
 -- Indexes for table `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
-  ADD PRIMARY KEY (`id_bagian`),
-  ADD KEY `kepala_bagian` (`kepala_bagian`);
+  ADD PRIMARY KEY (`id_bagian`);
 
 --
 -- Indexes for table `tb_disposisi`
@@ -234,7 +232,6 @@ ALTER TABLE `tb_bagian`
 ALTER TABLE `tb_disposisi`
   ADD PRIMARY KEY (`id_disposisi`),
   ADD KEY `id_bagian` (`id_bagian`),
-  ADD KEY `nip` (`nip`),
   ADD KEY `id_surat_masuk` (`id_surat_masuk`);
 
 --
@@ -297,27 +294,27 @@ ALTER TABLE `tb_disposisi`
 -- AUTO_INCREMENT for table `tb_jabatan`
 --
 ALTER TABLE `tb_jabatan`
-  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `tb_jenis_surat`
 --
 ALTER TABLE `tb_jenis_surat`
-  MODIFY `id_jenis_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_jenis_surat` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_surat_keluar`
 --
 ALTER TABLE `tb_surat_keluar`
-  MODIFY `id_surat_keluar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_surat_keluar` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_surat_masuk`
 --
 ALTER TABLE `tb_surat_masuk`
-  MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
@@ -326,29 +323,28 @@ ALTER TABLE `tb_user`
 -- Constraints for table `tb_disposisi`
 --
 ALTER TABLE `tb_disposisi`
-  ADD CONSTRAINT `tb_disposisi_ibfk_1` FOREIGN KEY (`id_bagian`) REFERENCES `tb_bagian` (`id_bagian`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tb_disposisi_ibfk_2` FOREIGN KEY (`nip`) REFERENCES `tb_pegawai` (`nip`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tb_disposisi_ibfk_3` FOREIGN KEY (`id_surat_masuk`) REFERENCES `tb_surat_masuk` (`id_surat_masuk`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `tb_disposisi_ibfk_1` FOREIGN KEY (`id_bagian`) REFERENCES `tb_bagian` (`id_bagian`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_disposisi_ibfk_2` FOREIGN KEY (`id_surat_masuk`) REFERENCES `tb_surat_masuk` (`id_surat_masuk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_pegawai`
 --
 ALTER TABLE `tb_pegawai`
-  ADD CONSTRAINT `tb_pegawai_ibfk_1` FOREIGN KEY (`id_jabatan_pegawai`) REFERENCES `tb_jabatan` (`id_jabatan`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tb_pegawai_ibfk_2` FOREIGN KEY (`id_bagian_pegawai`) REFERENCES `tb_bagian` (`id_bagian`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `tb_pegawai_ibfk_1` FOREIGN KEY (`id_jabatan_pegawai`) REFERENCES `tb_jabatan` (`id_jabatan`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_pegawai_ibfk_2` FOREIGN KEY (`id_bagian_pegawai`) REFERENCES `tb_bagian` (`id_bagian`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_surat_keluar`
 --
 ALTER TABLE `tb_surat_keluar`
-  ADD CONSTRAINT `tb_surat_keluar_ibfk_1` FOREIGN KEY (`id_bagian`) REFERENCES `tb_bagian` (`id_bagian`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `tb_surat_keluar_ibfk_2` FOREIGN KEY (`id_jenis_surat`) REFERENCES `tb_jenis_surat` (`id_jenis_surat`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `tb_surat_keluar_ibfk_1` FOREIGN KEY (`id_bagian`) REFERENCES `tb_bagian` (`id_bagian`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  ADD CONSTRAINT `tb_surat_keluar_ibfk_2` FOREIGN KEY (`id_jenis_surat`) REFERENCES `tb_jenis_surat` (`id_jenis_surat`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_surat_masuk`
 --
 ALTER TABLE `tb_surat_masuk`
-  ADD CONSTRAINT `tb_surat_masuk_ibfk_1` FOREIGN KEY (`id_jenis_surat`) REFERENCES `tb_jenis_surat` (`id_jenis_surat`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `tb_surat_masuk_ibfk_1` FOREIGN KEY (`id_jenis_surat`) REFERENCES `tb_jenis_surat` (`id_jenis_surat`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tb_user`
