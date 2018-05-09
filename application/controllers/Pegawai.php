@@ -13,6 +13,10 @@ class Pegawai extends CI_Controller {
             redirect(base_url(''));
         }
 
+        if ($this->session->userdata('level_user')!="admin") {
+            redirect(base_url());
+        }
+
     }
 
     public function index(){

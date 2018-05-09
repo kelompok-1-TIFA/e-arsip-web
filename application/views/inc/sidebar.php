@@ -38,6 +38,7 @@
                             <p> Dashboard </p>
                         </a>
                     </li>
+                    <?php if ($this->session->userdata('level_user')=="admin") { ?>
                     <li class="nav-item <?php if($this->uri->segment(1)=="jenis_surat" OR $this->uri->segment(1)=="pegawai" OR $this->uri->segment(1)=="bagian"){echo "active";}?>">
                         <a class="nav-link" data-toggle="collapse" href="#pagesExamples">
                             <i class="material-icons">storage</i>
@@ -74,6 +75,7 @@
                             </ul>
                         </div>
                     </li>
+                    <?php }elseif ($this->session->userdata('level_user')=="kepala desa" or $this->session->userdata('level_user')=="kepala bagian") { ?>
                     <li class="nav-item <?php if($this->uri->segment(1)=="surat_masuk"){echo "active";}?>">
                         <a class="nav-link" href="<?php echo base_url('surat_masuk'); ?>">
                             <i class="material-icons">archive</i>
@@ -92,6 +94,14 @@
                             <p> Disposisi </p>
                         </a>
                     </li>
+                    <?php }elseif ($this->session->userdata('level_user')=="staf") { ?>
+                    <li class="nav-item <?php if($this->uri->segment(1)=="disposisi"){echo "active";}?>">
+                        <a class="nav-link" href="<?php echo base_url('disposisi') ?>">
+                            <i class="material-icons">send</i>
+                            <p> Disposisi </p>
+                        </a>
+                    </li>
+                    <?php }elseif ($this->session->userdata('level_user')=="sekertaris") { ?>
                     <li class="nav-item <?php if($this->uri->segment(1)=="laporan_surat_masuk"){echo "active";}?>">
                         <a class="nav-link" data-toggle="collapse" href="#laporansuratmasuk">
                             <i class="material-icons">assignment</i>
@@ -152,7 +162,8 @@
                             </ul>
                         </div>
                     </li>
-                   <li class="nav-item <?php if($this->uri->segment(1)=="profile"){echo "active";}?>">
+                    <?php } ?>
+                    <li class="nav-item <?php if($this->uri->segment(1)=="profile"){echo "active";}?>">
                         <a class="nav-link" data-toggle="collapse" href="#setting">
                             <i class="material-icons">settings</i>
                             <p> Setting

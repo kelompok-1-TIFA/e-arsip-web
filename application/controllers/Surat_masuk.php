@@ -12,10 +12,18 @@ class Surat_masuk extends CI_Controller {
             redirect(base_url(''));
         }
 
+        if ($this->session->userdata('level_user')=="admin" or $this->session->userdata('level_user')=="sekertaris" or $this->session->userdata('level_user')=="staf") {
+            redirect(base_url());
+        }
+
     }
 
    public function index(){
-        $surat_masuk = $this->M_surat_masuk->get_all();
+        if ($this->session->userdata('level_user')=="kepala desa") {
+            $surat_masuk = $this->M_surat_masuk->get_all();
+        }else{
+            $surat_masuk = $this->M_surat_masuk->get_all();
+        }
 
         $data = array(
             'data_surat_masuk'  => $surat_masuk,

@@ -13,10 +13,8 @@
                           <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
                         <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/simpan') ?>" class="form-horizontal" enctype="multipart/form-data">
-<<<<<<< HEAD
-                              <div class="card-body">
-                            </div>
-                            <div class="row">
+                            <div class="card-body">
+                                <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">No Surat</label>
                                     <div class="col-md-8">
                                       <div class="form-group">
@@ -24,16 +22,19 @@
                                       </div>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
-                                  <div class="form-group mt-0">
-                                    <select class="selectpicker" data-style="btn select-with-transition" title="Pilih Bagian" data-size="7" name="id_bagian">
-                                        <?php foreach ($data_bagian as $bagian): ?>
-                                            <option value="<?php echo $bagian->id_bagian ?>"> <?php echo $bagian->bagian; ?></option>
-                                        <?php endforeach ?>
-                                    </select>
-                                  </div>
+                                <div class="row">
+                                    <label class="col-md-2 col-form-label font-weight-bold">No Surat</label>
+                                    <div class="col-md-8">
+                                        <div class="form-group mt-0">
+                                            <select class="selectpicker" data-style="btn select-with-transition" title="Pilih Bagian" data-size="7" name="id_bagian">
+                                                <?php foreach ($data_bagian as $bagian): ?>
+                                                    <option value="<?php echo $bagian->id_bagian ?>"> <?php echo $bagian->bagian; ?></option>
+                                                <?php endforeach ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                            <div class="row">
+                                <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">Isi Disposisi</label>
                                     <div class="col-md-8">
                                       <div class="form-group">
@@ -56,11 +57,14 @@
                                           <textarea name="isi_singkat" placeholder="" class="form-control" required></textarea>
                                       </div>
                                     </div>
+                                </div>
+                                <div class="row pull-right my-3">
+                                    <div class="col-12 ">
+                                        <button type="submit" class="btn btn-primary"><i class="material-icons">save</i> Kirim</button>
+                                        <a href="<?php echo base_url(); ?>surat_masuk" class="btn btn-danger"><i class="material-icons">close</i> Batal</a>
+                                    </div>
                                 </div>    
-=======
-                            <div class="card-body">
-                            </div>    
->>>>>>> 66cebf379178d44aeb825ad9a352755abdce39a2
+                            </div>
                         </form>
                     </div><!--  end card  -->
                 </div> <!-- end col-md-12 -->

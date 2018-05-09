@@ -24,18 +24,6 @@
                                       </div>
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">record_voice_over</i></label>
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                            <select class="selectpicker" data-style="btn select-with-transition" name="kepala_bagian" title="Pilih Pegawai" data-size="7">
-                                                <?php foreach ($data_pegawai as $pegawai): ?>
-                                                    <option <?php if($pegawai->nip==$kepala_bagian){echo "SELECTED";} ?> value="<?php echo $pegawai->nip; ?>"><?php echo $pegawai->nama; ?></option>
-                                                <?php endforeach ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
                                 <div class="row pull-right my-3">
                                     <div class="col-12 ">
                                         <button type="submit" class="btn btn-primary"><i class="material-icons">mode_edit</i> Update</button>

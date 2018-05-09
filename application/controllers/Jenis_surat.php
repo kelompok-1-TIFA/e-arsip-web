@@ -10,9 +10,9 @@ class Jenis_surat extends CI_Controller {
             redirect(base_url(''));
         }
 
-        /*if ($this->session->userdata('level_user')!="Operator Desa") {
+        if ($this->session->userdata('level_user')!="admin") {
             redirect(base_url());
-        }*/
+        }
     }
 
     public function index(){
@@ -128,6 +128,7 @@ class Jenis_surat extends CI_Controller {
     function hapus(){
         $id = $this->input->post("id");
         $row = $this->M_jenis_surat->get_by_id($id);
+        array_map('unlink', glob("assets/uploads/file/".$row->jenis_surat."/*.*"));
         rmdir("assets/uploads/file/".$row->jenis_surat);
         $result = $this->M_jenis_surat->delete($id);
         header('location:'.base_url().'jenis_surat'); 

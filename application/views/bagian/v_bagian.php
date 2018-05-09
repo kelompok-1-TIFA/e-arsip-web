@@ -22,7 +22,6 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Bagian</th>
-                                            <th>Kepala Bagian</th>
                                             <th class="disabled-sorting text-right">Actions</th>
                                         </tr>
                                     </thead>
@@ -31,7 +30,6 @@
                                         <tr id="datanya">
                                             <td><?php echo ++$no; ?></td>
                                             <td><?php echo $bagian->bagian ?></td>   
-                                            <td><?php echo $bagian->nama ?></td>
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url() ?>bagian/edit/<?php echo $bagian->id_bagian ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a onclick="deletedata(<?php echo $bagian->id_bagian.",'".$bagian->bagian."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>

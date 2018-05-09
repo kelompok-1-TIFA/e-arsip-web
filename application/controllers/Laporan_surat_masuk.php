@@ -10,6 +10,10 @@ class Laporan_surat_masuk extends CI_Controller {
             redirect(base_url(''));
         }
 
+        if ($this->session->userdata('level_user')!="sekertaris") {
+            redirect(base_url());
+        }
+
     }
 
     public function Laporan_harian(){

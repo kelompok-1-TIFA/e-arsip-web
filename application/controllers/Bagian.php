@@ -11,13 +11,13 @@ class Bagian extends CI_Controller {
             redirect(base_url(''));
         }
 
-        /*if ($this->session->userdata('level_user')!="Operator Desa") {
+        if ($this->session->userdata('level_user')!="admin") {
             redirect(base_url());
-        }*/
+        }
     }
 
     public function index(){
-        $bagian = $this->M_bagian->get_where("LEFT JOIN tb_pegawai ON tb_pegawai.nip=tb_bagian.kepala_bagian ORDER BY tb_bagian.id_bagian DESC");
+        $bagian = $this->M_bagian->get_all();
 
         $data = array(
             'data_bagian'  => $bagian,
@@ -40,7 +40,6 @@ class Bagian extends CI_Controller {
             $data = array(
                 'id_bagian'     => $row->id_bagian,
                 'bagian'        => $row->bagian,
-                'kepala_bagian' => $row->kepala_bagian,
                 'data_pegawai'  => $this->M_pegawai->get_all(),
                 'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
@@ -59,12 +58,9 @@ class Bagian extends CI_Controller {
     }
 
     function simpan(){
-
-        $kepala_bagian = $_POST['kepala_bagian'];
         $bagian= $_POST['bagian'];
         $data = array(  
             'bagian'        => $bagian,
-            'kepala_bagian' => $kepala_bagian,
         );
 
         $result = $this->M_bagian->insert($data);
@@ -93,7 +89,6 @@ class Bagian extends CI_Controller {
         $data = array(
             'id_bagian'     => $this->input->post('id'),
             'bagian'        => $this->input->post('bagian'),
-            'kepala_bagian' => $this->input->post('kepala_bagian'),
         );
         $res = $this->M_bagian->update($data['id_bagian'],$data);
         if($res>=0){
