@@ -3,11 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class M_disposisi extends CI_Model
+class M_profile extends CI_Model
 {
 
-    public $table = 'tb_disposisi';
-    public $id = 'id_disposisi';
+    public $table = 'tb_pegawai';
+    public $id = 'nip';
     public $order = 'DESC';
 
     function __construct()
@@ -21,25 +21,17 @@ class M_disposisi extends CI_Model
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
+    function get_where($where)
+    {
+        return $this->db->query('select * from tb_pegawai '.$where)->result();
+    }
 
     // get data by id
     function get_by_id($id)
     {
+        $this->db->join('tb_user', 'tb_pegawai.nip = tb_user.nip_user', 'left');  
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
-    }
-    
-    // get total rows
-    function total_rows() {
-        $this->db->from($this->table);
-        return $this->db->count_all_results();
-    }
-
-    // get data with limit and search
-    function get_limit_data($limit, $start = 0) {
-        $this->db->order_by($this->id, $this->order);
-	   $this->db->limit($limit, $start);
-        return $this->db->get($this->table)->result();
     }
 
     // insert data

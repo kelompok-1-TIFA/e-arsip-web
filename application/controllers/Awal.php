@@ -6,6 +6,9 @@ class Awal extends CI_Controller {
     function __construct()    {
         parent::__construct();
         $this->load->model('M_user');
+        $this->load->model('M_surat_masuk');
+        $this->load->model('M_surat_keluar');
+        $this->load->model('M_disposisi');
     }
 
     public function index()
@@ -14,7 +17,15 @@ class Awal extends CI_Controller {
             $data = array('page_title' => "Login",);
             $this->load->view('v_login',$data);
         }else{
-            $data = array('page_title' => "Dashboard",);
+            $jml_surat_masuk = $this->M_surat_masuk->total_rows();
+            $jml_surat_keluar = $this->M_surat_keluar->total_rows();
+            $jml_disposisi = $this->M_disposisi->total_rows();    
+            $data = array(
+                'jml_disposisi'     => $jml_disposisi,
+                'jml_surat_keluar'  => $jml_surat_keluar,
+                'jml_surat_masuk'   => $jml_surat_masuk,
+                'page_title'        => "Dashboard",
+            );
             $this->load->view('v_dashboard',$data);
         }
     }
@@ -34,6 +45,7 @@ class Awal extends CI_Controller {
             if ($password==$password_encrypt) {
                 $data_session = array(
                     'id_user'       => $cek_fase_2->id_user,
+                    'nip'           => $cek_fase_2->nip,
                     'nama'          => $cek_fase_2->nama,
                     'foto'          => $cek_fase_2->foto,
                     'id_bagian'     => $cek_fase_2->id_bagian_pegawai,

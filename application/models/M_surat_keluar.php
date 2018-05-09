@@ -22,6 +22,18 @@ class M_surat_keluar extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_where($where)
+    {
+        return $this->db->query('select * from tb_surat_keluar '.$where)->result();
+    }
+
+    function get_by_bagian($id)
+    {
+        $this->db->where('id_bagian', $id);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
+
     // get data by id
     function get_by_id($id)
     {

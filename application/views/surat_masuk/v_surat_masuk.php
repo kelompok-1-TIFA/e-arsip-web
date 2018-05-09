@@ -37,9 +37,20 @@
                                             <td><?php echo $surat_masuk->asal_surat ?></td>
                                             <td><?php echo $surat_masuk->perihal ?></td>
                                             <td><?php echo date("d F Y", strtotime($surat_masuk->tgl_arsip)) ?></td>
-                                            <td></td>
+                                            <td>
+
+                                                <?php 
+                                                    if ($surat_masuk->status_disposisi=="t") {
+                                                        echo "<span class='badge badge-warning'>belum didisposisikan</span>";
+                                                    }else{
+                                                        echo "<span class='badge badge-success'> didisposisikan</span>";
+                                                    }
+                                                ?>
+                                            </td>
                                             <td class="text-right td-actions">
+                                                <?php  if ($surat_masuk->status_disposisi=="t") { ?>
                                                 <a href="<?php echo base_url('disposisi/mendisposisikan/'.$surat_masuk->id_surat_masuk) ?>" title="Disposisikan" class="btn btn-link btn-success"><i class="material-icons">send</i></a>
+                                                <?php } ?>
                                                 <a href="<?php echo base_url('surat_masuk/edit/'.$surat_masuk->id_surat_masuk) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a onclick="deletedata(<?php echo $surat_masuk->id_surat_masuk.",'".$surat_masuk->no_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
                                                 <a href="<?php echo base_url('surat_masuk/detail/'.$surat_masuk->id_surat_masuk) ?>" title="Detail" class="btn btn-link btn-info"><i class="material-icons">remove_red_eye</i>
