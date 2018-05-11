@@ -28,10 +28,24 @@ class M_disposisi extends CI_Model
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
+
+    function get_by_bagian($id)
+    {
+        $this->db->where('id_bagian', $id);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->result();
+    }
     
     // get total rows
     function total_rows() {
         $this->db->from($this->table);
+        return $this->db->count_all_results();
+    }
+
+    // get total rows
+    function total_rows_perbagian($id) {
+        $this->db->from($this->table);
+        $this->db->where('id_bagian', $id);
         return $this->db->count_all_results();
     }
 

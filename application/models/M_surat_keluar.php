@@ -47,6 +47,13 @@ class M_surat_keluar extends CI_Model
         return $this->db->count_all_results();
     }
 
+    // get total rows
+    function total_rows_perbagian($id) {
+        $this->db->from($this->table);
+        $this->db->where('id_bagian', $id);
+        return $this->db->count_all_results();
+    }
+
     // get data with limit and search
     function get_limit_data($limit, $start = 0) {
         $this->db->order_by($this->id, $this->order);

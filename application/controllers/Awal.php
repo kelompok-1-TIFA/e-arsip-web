@@ -6,6 +6,10 @@ class Awal extends CI_Controller {
     function __construct()    {
         parent::__construct();
         $this->load->model('M_user');
+        $this->load->model('M_pegawai');
+        $this->load->model('M_jenis_surat');
+        $this->load->model('M_bagian');
+        $this->load->model('M_jabatan');
         $this->load->model('M_surat_masuk');
         $this->load->model('M_surat_keluar');
         $this->load->model('M_disposisi');
@@ -17,15 +21,34 @@ class Awal extends CI_Controller {
             $data = array('page_title' => "Login",);
             $this->load->view('v_login',$data);
         }else{
-            $jml_surat_masuk = $this->M_surat_masuk->total_rows();
-            $jml_surat_keluar = $this->M_surat_keluar->total_rows();
-            $jml_disposisi = $this->M_disposisi->total_rows();    
-            $data = array(
-                'jml_disposisi'     => $jml_disposisi,
-                'jml_surat_keluar'  => $jml_surat_keluar,
-                'jml_surat_masuk'   => $jml_surat_masuk,
-                'page_title'        => "Dashboard",
-            );
+            if ($this->session->userdata('level_user')=="admin") {
+                $jml_jenis_surat = $this->M_jenis_surat->total_rows();
+                $jml_bagian = $this->M_bagian->total_rows();
+                $jml_jabatan = $this->M_jabatan->total_rows();   
+                $jml_pegawai = $this->M_pegawai->total_rows();  
+                $data = array(
+                    'jml_jenis_surat'   => $jml_jenis_surat,
+                    'jml_bagian'        => $jml_bagian,
+                    'jml_jabatan'       => $jml_jabatan,
+                    'jml_pegawai'       => $jml_pegawai,
+                    'page_title'        => "Dashboard",
+                );
+            }else{
+                $jml_surat_masuk = $this->M_surat_masuk->total_rows();
+                if ($this->session->userdata('level_user')!="kepala desa") {
+                    $jml_surat_keluar = $this->M_surat_keluar->total_rows_perbagian($this->session->userdata('id_bagian'));
+                $jml_disposisi = $this->M_disposisi->total_rows_perbagian($this->session->userdata('id_bagian'));    
+                }else{
+                    $jml_surat_keluar = $this->M_surat_keluar->total_rows();
+                    $jml_disposisi = $this->M_disposisi->total_rows();    
+                }
+                $data = array(
+                    'jml_disposisi'     => $jml_disposisi,
+                    'jml_surat_keluar'  => $jml_surat_keluar,
+                    'jml_surat_masuk'   => $jml_surat_masuk,
+                    'page_title'        => "Dashboard",
+                );
+            }
             $this->load->view('v_dashboard',$data);
         }
     }
