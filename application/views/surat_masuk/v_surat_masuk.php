@@ -40,7 +40,7 @@
                                             <td>
 
                                                 <?php 
-                                                    if ($surat_masuk->status_disposisi=="t") {
+                                                    if ($surat_masuk->status_disposisi=="t" and $this->session->userdata('level_user')=="kepala desa") {
                                                         echo "<span class='badge badge-warning'>belum didisposisikan</span>";
                                                     }else{
                                                         echo "<span class='badge badge-success'> didisposisikan</span>";
@@ -48,7 +48,7 @@
                                                 ?>
                                             </td>
                                             <td class="text-right td-actions">
-                                                <?php  if ($surat_masuk->status_disposisi=="t") { ?>
+                                                <?php  if ($surat_masuk->status_disposisi=="t" and $this->session->userdata('level_user')=="kepala desa") { ?>
                                                 <a href="<?php echo base_url('disposisi/mendisposisikan/'.$surat_masuk->id_surat_masuk) ?>" title="Disposisikan" class="btn btn-link btn-success"><i class="material-icons">send</i></a>
                                                 <?php } ?>
                                                 <a href="<?php echo base_url('surat_masuk/edit/'.$surat_masuk->id_surat_masuk) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
@@ -72,26 +72,23 @@
 <script src="<?php echo base_url() ?>assets/js/plugins/jquery.datatables.js"></script>
 <script type="text/javascript">
 
-$(document).ready(function() {
-    $('#datatables').DataTable({
-        "pagingType": "full_numbers",
-        "lengthMenu": [
-            [10, 25, 50, -1],
-            [10, 25, 50, "All"]
-        ],
-        responsive: true,
-        language: {
-            search: "_INPUT_",
-            searchPlaceholder: "Search records",
-        }
+    $(document).ready(function() {
+        $('#datatables').DataTable({
+            "pagingType": "full_numbers",
+            "lengthMenu": [
+                [10, 25, 50, -1],
+                [10, 25, 50, "All"]
+            ],
+            responsive: true,
+            language: {
+                search: "_INPUT_",
+                searchPlaceholder: "Search records",
+            }
+        });
 
-    });
-
-
-    var table = $('#datatables').DataTable();
+        var table = $('#datatables').DataTable();
         $('.card .material-datatables label').addClass('form-group');
     });
-
 </script>
 <script type="text/javascript">
     $( document ).ready(function() {
