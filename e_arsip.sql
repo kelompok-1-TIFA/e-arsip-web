@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.0
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 09, 2018 at 04:53 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 5.6.23
+-- Waktu pembuatan: 12 Bulan Mei 2018 pada 02.41
+-- Versi server: 10.1.31-MariaDB
+-- Versi PHP: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -23,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_bagian`
+-- Struktur dari tabel `tb_bagian`
 --
 
 CREATE TABLE `tb_bagian` (
@@ -32,7 +34,7 @@ CREATE TABLE `tb_bagian` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_bagian`
+-- Dumping data untuk tabel `tb_bagian`
 --
 
 INSERT INTO `tb_bagian` (`id_bagian`, `bagian`) VALUES
@@ -48,7 +50,7 @@ INSERT INTO `tb_bagian` (`id_bagian`, `bagian`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_disposisi`
+-- Struktur dari tabel `tb_disposisi`
 --
 
 CREATE TABLE `tb_disposisi` (
@@ -61,7 +63,7 @@ CREATE TABLE `tb_disposisi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Triggers `tb_disposisi`
+-- Trigger `tb_disposisi`
 --
 DELIMITER $$
 CREATE TRIGGER `mendisposisikan` AFTER INSERT ON `tb_disposisi` FOR EACH ROW BEGIN
@@ -76,7 +78,7 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_jabatan`
+-- Struktur dari tabel `tb_jabatan`
 --
 
 CREATE TABLE `tb_jabatan` (
@@ -85,7 +87,7 @@ CREATE TABLE `tb_jabatan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_jabatan`
+-- Dumping data untuk tabel `tb_jabatan`
 --
 
 INSERT INTO `tb_jabatan` (`id_jabatan`, `jabatan`) VALUES
@@ -106,7 +108,7 @@ INSERT INTO `tb_jabatan` (`id_jabatan`, `jabatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_jenis_surat`
+-- Struktur dari tabel `tb_jenis_surat`
 --
 
 CREATE TABLE `tb_jenis_surat` (
@@ -115,10 +117,20 @@ CREATE TABLE `tb_jenis_surat` (
   `jenis_surat` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `tb_jenis_surat`
+--
+
+INSERT INTO `tb_jenis_surat` (`id_jenis_surat`, `kode`, `jenis_surat`) VALUES
+(1, '475', 'Surat Kematian'),
+(2, '475', 'Surat Kelahiran'),
+(3, '510', 'Surat Keterangan Usaha'),
+(4, '470', 'Surat Penduduk');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_pegawai`
+-- Struktur dari tabel `tb_pegawai`
 --
 
 CREATE TABLE `tb_pegawai` (
@@ -141,7 +153,7 @@ CREATE TABLE `tb_pegawai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_pegawai`
+-- Dumping data untuk tabel `tb_pegawai`
 --
 
 INSERT INTO `tb_pegawai` (`nip`, `id_bagian_pegawai`, `id_jabatan_pegawai`, `niap`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`, `agama`, `pangkat`, `alamat`, `no_hp`, `pendidikan_terakhir`, `sk_pengangkatan`, `foto`, `create_on`) VALUES
@@ -154,7 +166,7 @@ INSERT INTO `tb_pegawai` (`nip`, `id_bagian_pegawai`, `id_jabatan_pegawai`, `nia
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_surat_keluar`
+-- Struktur dari tabel `tb_surat_keluar`
 --
 
 CREATE TABLE `tb_surat_keluar` (
@@ -174,7 +186,7 @@ CREATE TABLE `tb_surat_keluar` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_surat_masuk`
+-- Struktur dari tabel `tb_surat_masuk`
 --
 
 CREATE TABLE `tb_surat_masuk` (
@@ -194,7 +206,7 @@ CREATE TABLE `tb_surat_masuk` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tb_user`
+-- Struktur dari tabel `tb_user`
 --
 
 CREATE TABLE `tb_user` (
@@ -206,7 +218,7 @@ CREATE TABLE `tb_user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_user`
+-- Dumping data untuk tabel `tb_user`
 --
 
 INSERT INTO `tb_user` (`id_user`, `nip_user`, `username`, `password`, `level_user`) VALUES
@@ -221,13 +233,13 @@ INSERT INTO `tb_user` (`id_user`, `nip_user`, `username`, `password`, `level_use
 --
 
 --
--- Indexes for table `tb_bagian`
+-- Indeks untuk tabel `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
   ADD PRIMARY KEY (`id_bagian`);
 
 --
--- Indexes for table `tb_disposisi`
+-- Indeks untuk tabel `tb_disposisi`
 --
 ALTER TABLE `tb_disposisi`
   ADD PRIMARY KEY (`id_disposisi`),
@@ -235,19 +247,19 @@ ALTER TABLE `tb_disposisi`
   ADD KEY `id_surat_masuk` (`id_surat_masuk`);
 
 --
--- Indexes for table `tb_jabatan`
+-- Indeks untuk tabel `tb_jabatan`
 --
 ALTER TABLE `tb_jabatan`
   ADD PRIMARY KEY (`id_jabatan`);
 
 --
--- Indexes for table `tb_jenis_surat`
+-- Indeks untuk tabel `tb_jenis_surat`
 --
 ALTER TABLE `tb_jenis_surat`
   ADD PRIMARY KEY (`id_jenis_surat`);
 
 --
--- Indexes for table `tb_pegawai`
+-- Indeks untuk tabel `tb_pegawai`
 --
 ALTER TABLE `tb_pegawai`
   ADD PRIMARY KEY (`nip`),
@@ -255,7 +267,7 @@ ALTER TABLE `tb_pegawai`
   ADD KEY `id_jabatan` (`id_jabatan_pegawai`);
 
 --
--- Indexes for table `tb_surat_keluar`
+-- Indeks untuk tabel `tb_surat_keluar`
 --
 ALTER TABLE `tb_surat_keluar`
   ADD PRIMARY KEY (`id_surat_keluar`),
@@ -263,94 +275,102 @@ ALTER TABLE `tb_surat_keluar`
   ADD KEY `id_bagian` (`id_bagian`);
 
 --
--- Indexes for table `tb_surat_masuk`
+-- Indeks untuk tabel `tb_surat_masuk`
 --
 ALTER TABLE `tb_surat_masuk`
   ADD PRIMARY KEY (`id_surat_masuk`),
   ADD KEY `id_jenis_surat` (`id_jenis_surat`);
 
 --
--- Indexes for table `tb_user`
+-- Indeks untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
   ADD PRIMARY KEY (`id_user`),
   ADD KEY `nip` (`nip_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `tb_bagian`
+-- AUTO_INCREMENT untuk tabel `tb_bagian`
 --
 ALTER TABLE `tb_bagian`
   MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
--- AUTO_INCREMENT for table `tb_disposisi`
+-- AUTO_INCREMENT untuk tabel `tb_disposisi`
 --
 ALTER TABLE `tb_disposisi`
   MODIFY `id_disposisi` int(10) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `tb_jabatan`
+-- AUTO_INCREMENT untuk tabel `tb_jabatan`
 --
 ALTER TABLE `tb_jabatan`
   MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
--- AUTO_INCREMENT for table `tb_jenis_surat`
+-- AUTO_INCREMENT untuk tabel `tb_jenis_surat`
 --
 ALTER TABLE `tb_jenis_surat`
-  MODIFY `id_jenis_surat` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jenis_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
--- AUTO_INCREMENT for table `tb_surat_keluar`
+-- AUTO_INCREMENT untuk tabel `tb_surat_keluar`
 --
 ALTER TABLE `tb_surat_keluar`
   MODIFY `id_surat_keluar` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `tb_surat_masuk`
+-- AUTO_INCREMENT untuk tabel `tb_surat_masuk`
 --
 ALTER TABLE `tb_surat_masuk`
   MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT;
+
 --
--- AUTO_INCREMENT for table `tb_user`
+-- AUTO_INCREMENT untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
   MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
--- Constraints for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- Constraints for table `tb_disposisi`
+-- Ketidakleluasaan untuk tabel `tb_disposisi`
 --
 ALTER TABLE `tb_disposisi`
   ADD CONSTRAINT `tb_disposisi_ibfk_1` FOREIGN KEY (`id_bagian`) REFERENCES `tb_bagian` (`id_bagian`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_disposisi_ibfk_2` FOREIGN KEY (`id_surat_masuk`) REFERENCES `tb_surat_masuk` (`id_surat_masuk`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tb_pegawai`
+-- Ketidakleluasaan untuk tabel `tb_pegawai`
 --
 ALTER TABLE `tb_pegawai`
   ADD CONSTRAINT `tb_pegawai_ibfk_1` FOREIGN KEY (`id_jabatan_pegawai`) REFERENCES `tb_jabatan` (`id_jabatan`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_pegawai_ibfk_2` FOREIGN KEY (`id_bagian_pegawai`) REFERENCES `tb_bagian` (`id_bagian`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `tb_surat_keluar`
+-- Ketidakleluasaan untuk tabel `tb_surat_keluar`
 --
 ALTER TABLE `tb_surat_keluar`
   ADD CONSTRAINT `tb_surat_keluar_ibfk_1` FOREIGN KEY (`id_bagian`) REFERENCES `tb_bagian` (`id_bagian`) ON DELETE NO ACTION ON UPDATE CASCADE,
   ADD CONSTRAINT `tb_surat_keluar_ibfk_2` FOREIGN KEY (`id_jenis_surat`) REFERENCES `tb_jenis_surat` (`id_jenis_surat`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `tb_surat_masuk`
+-- Ketidakleluasaan untuk tabel `tb_surat_masuk`
 --
 ALTER TABLE `tb_surat_masuk`
   ADD CONSTRAINT `tb_surat_masuk_ibfk_1` FOREIGN KEY (`id_jenis_surat`) REFERENCES `tb_jenis_surat` (`id_jenis_surat`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `tb_user`
+-- Ketidakleluasaan untuk tabel `tb_user`
 --
 ALTER TABLE `tb_user`
   ADD CONSTRAINT `tb_user_ibfk_1` FOREIGN KEY (`nip_user`) REFERENCES `tb_pegawai` (`nip`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
