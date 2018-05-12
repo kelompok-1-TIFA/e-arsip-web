@@ -44,7 +44,7 @@
                                         <div class="form-group">
                                             <select class="selectpicker" name="id_jenis_surat" data-style="btn select-with-transition" title="Pilih Surat" data-size="7">
                                                 <?php foreach ($data_jenis_surat as $jenis_surat): ?>
-                                                    <option value="<?php echo $jenis_surat->id_jenis_surat ?>"> <?php echo $jenis_surat->jenis_surat; ?></option>
+                                                    <option value="<?php echo $jenis_surat->id_jenis_surat ?>Surat"> <?php echo $jenis_surat->jenis_surat; ?></option>
                                                 <?php endforeach ?>
                                           </select>
                                         </div>
