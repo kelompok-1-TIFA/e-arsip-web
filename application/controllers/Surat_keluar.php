@@ -247,6 +247,8 @@ class Surat_keluar extends CI_Controller {
 
     public function hapus(){
         $id = $this->input->post("id");
+        $row = $this->M_surat_keluar->get_by_id($id);
+        unlink($row->file);
         $result = $this->M_surat_keluar->delete($id);
         header('location:'.base_url().'surat_keluar');       
     }
