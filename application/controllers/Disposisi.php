@@ -20,7 +20,7 @@ class Disposisi extends CI_Controller {
         if ($this->session->userdata('level_user')=="kepala desa") {
             $disposisi = $this->M_disposisi->get_all();
         }else{
-            $disposisi = $this->M_disposisi->get_all();
+            $disposisi = $this->M_disposisi->get_by_bagian($this->session->userdata('id_bagian'));
         }
 
         $data = array(

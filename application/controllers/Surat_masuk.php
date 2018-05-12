@@ -19,11 +19,7 @@ class Surat_masuk extends CI_Controller {
     }
 
    public function index(){
-        if ($this->session->userdata('level_user')=="kepala desa") {
-            $surat_masuk = $this->M_surat_masuk->get_all();
-        }else{
-            $surat_masuk = $this->M_surat_masuk->get_all();
-        }
+        $surat_masuk = $this->M_surat_masuk->get_all();
 
         $data = array(
             'data_surat_masuk'  => $surat_masuk,

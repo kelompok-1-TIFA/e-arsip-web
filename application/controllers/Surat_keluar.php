@@ -22,7 +22,7 @@ class Surat_keluar extends CI_Controller {
         if ($this->session->userdata('level_user')=="kepala desa") {
             $surat_keluar = $this->M_surat_keluar->get_all();
         }else{
-            $surat_keluar = $this->M_surat_keluar->get_all();
+            $surat_keluar = $this->M_surat_keluar->get_by_bagian($this->session->userdata('id_bagian'));
         }
         
         $data = array(

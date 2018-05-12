@@ -11,7 +11,7 @@ class Laporan_surat_keluar extends CI_Controller {
             redirect(base_url(''));
         }
 
-        if ($this->session->userdata('level_user')!="sekertaris") {
+        if ($this->session->userdata('level_user')=="admin" or $this->session->userdata('level_user')=="kepala bagian" or $this->session->userdata('level_user')=="staf") {
             redirect(base_url());
         }
 

@@ -34,6 +34,12 @@ class M_pegawai extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
+    // get total rows
+    function total_rows() {
+        $this->db->from($this->table);
+        return $this->db->count_all_results();
+    }
+
     // insert data
     function insert($data)
     {
