@@ -40,7 +40,7 @@
                                             <td>
 
                                                 <?php 
-                                                    if ($surat_masuk->status_disposisi=="t" and $this->session->userdata('level_user')=="kepala desa") {
+                                                    if ($surat_masuk->status_disposisi=="t") {
                                                         echo "<span class='badge badge-warning'>belum didisposisikan</span>";
                                                     }else{
                                                         echo "<span class='badge badge-success'> didisposisikan</span>";

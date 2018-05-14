@@ -166,6 +166,9 @@ class Surat_masuk extends CI_Controller {
                     'file'              => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/'.$upload_data['file_name']
                     
                 );
+
+                $row = $this->M_surat_masuk->get_by_id($id);
+                unlink($row->file);
                 $res = $this->M_surat_masuk->update($data['id_surat_masuk'],$data);
                 if($res>=0){
                     $this->session->set_flashdata("sukses", 'swal({
@@ -233,6 +236,8 @@ class Surat_masuk extends CI_Controller {
 
     public function hapus(){
         $id = $this->input->post("id");
+        $row = $this->M_surat_masuk->get_by_id($id);
+        unlink($row->file);
         $result = $this->M_surat_masuk->delete($id);
         header('location:'.base_url().'surat_masuk');    
     }

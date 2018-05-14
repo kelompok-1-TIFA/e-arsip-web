@@ -245,6 +245,8 @@ class Pegawai extends CI_Controller {
                     'level_user'    => $level_user,
                 );
 
+                $row = $this->M_pegawai->get_by_id($id);
+                unlink($row->foto);
                 $res = $this->M_pegawai->update($this->input->post('id'),$data);
                 if($res>=0){
                     $res1 = $this->M_user->update($this->input->post('id'),$data_login);
