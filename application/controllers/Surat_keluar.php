@@ -179,6 +179,8 @@ class Surat_keluar extends CI_Controller {
                     'file'              => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/'.$upload_data['file_name']
                 );
 
+                $row = $this->M_surat_keluar->get_by_id($id);
+                unlink($row->file);
                 $res = $this->M_surat_keluar->update($data['id_surat_keluar'],$data);
                 if($res>=0){
                     $this->session->set_flashdata("sukses", 'swal({
