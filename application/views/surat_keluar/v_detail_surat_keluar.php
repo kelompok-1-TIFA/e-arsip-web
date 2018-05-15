@@ -12,7 +12,7 @@
                             </div>
                             <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
-                        <div class="card-body">
+                            <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <table>
@@ -42,13 +42,20 @@
                                     </tr>
                                     </table>
                                     </div>
-                            <div class="card-body">
-                                <div class="toolbar">
-                                    <a title="Download File" href="" class="btn btn-primary btn-round"><i class="material-icons"></i> Download File</a>
                                 </div>
-                            </div>
-
                         </div>
+
+                        <div class="col-md-12">
+
+                            <br><table><b>SEMBARANG</b></table></br>
+                                        
+                                    </div>
+
+                        
+                        <div class="card-body">
+                            <div class="toolbar">
+                                <a title="Download File" href="" class="btn btn-primary btn-round"><i class="material-icons"></i> Download File</a>
+                            </div>
                     </div><!--  end card  -->
                 </div> <!-- end col-md-12 -->
             </div>
