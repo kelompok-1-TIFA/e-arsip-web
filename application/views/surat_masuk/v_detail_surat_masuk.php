@@ -12,20 +12,39 @@
                             </div>
                             <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
-                        <div class="col-md-3">
                             <div class="card-body">
-                                <label class="bmd-label-floating"><u>Nomor Surat : </u></label>
-                            </div>
-                            <div class="card-body">
-                                <label class="bmd-label-floating"><u>Tanggal Surat : </u></label>
-                            </div>
-                            <div class="card-body">
-                                <label class="bmd-label-floating"><u>Tanggal Arsip : </u></label>
-                            </div>
-                            <div class="card-body">
-                                <label class="bmd-label-floating"><u>Asal Surat/Tujuan : </u></label>
-                            </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table>
+                                    <tr>
+                                        <td>Nomor Surat</td>
+                                        <td>:</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal Surat</td>
+                                        <td>:</td>
+                                        <td></td>
+                                    </tr>
+                                    </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table>
+                                        <tr>
+                                        <td>Tanggal Arsip</td>
+                                        <td>:</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Asal Surat/Tujuan</td>
+                                        <td>:</td>
+                                        <td></td>
+                                    </tr>
+                                    </table>
+                                    </div>
+                                </div>
                         </div>
+
                         
                         <div class="card-body">
                             <div class="toolbar">

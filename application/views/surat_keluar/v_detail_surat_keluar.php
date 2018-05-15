@@ -13,6 +13,40 @@
                             <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
                         <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <table>
+                                    <tr>
+                                        <td>Nomor Surat</td>
+                                        <td>:</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tanggal Surat</td>
+                                        <td>:</td>
+                                        <td></td>
+                                    </tr>
+                                    </table>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <table>
+                                        <tr>
+                                        <td>Tanggal Arsip</td>
+                                        <td>:</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Asal Surat/Tujuan</td>
+                                        <td>:</td>
+                                        <td></td>
+                                    </tr>
+                                    </table>
+                                    </div>
+                            <div class="card-body">
+                                <div class="toolbar">
+                                    <a title="Download File" href="" class="btn btn-primary btn-round"><i class="material-icons"></i> Download File</a>
+                                </div>
+                            </div>
 
                         </div>
                     </div><!--  end card  -->
