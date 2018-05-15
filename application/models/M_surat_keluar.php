@@ -57,7 +57,14 @@ class M_surat_keluar extends CI_Model
     // get data with limit and search
     function get_limit_data($limit, $start = 0) {
         $this->db->order_by($this->id, $this->order);
-	   $this->db->limit($limit, $start);
+	    $this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_limit_data_perbagian($id,$limit, $start = 0) {
+        $this->db->where('id_bagian', $id);
+        $this->db->order_by($this->id, $this->order);
+        $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 
