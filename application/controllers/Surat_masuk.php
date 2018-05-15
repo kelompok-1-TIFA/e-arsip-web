@@ -77,10 +77,13 @@ class Surat_masuk extends CI_Controller {
 
         $jenis_surat=$this->M_jenis_surat->get_by_id($id_jenis_surat);
 
+        $jenis_surat_fix=str_replace(" ", "%20", $jenis_surat->jenis_surat);
+
         $config = array(
-            'upload_path'   => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/',
+            'upload_path'   => './assets/uploads/file/'.$jenis_surat_fix.'/',
             'allowed_types' => 'gif|jpg|JPG|png|jpeg|pdf|doc|docx',
             'max_size'      => '10240',
+            'remove_space'  => TRUE,
         );
         $this->load->library('upload', $config);
 
@@ -97,7 +100,7 @@ class Surat_masuk extends CI_Controller {
                 'tgl_surat'         => $tgl_surat,
                 'tgl_arsip'         => date("Y-m-d"),
                 'keterangan'        => $keterangan,
-                'file'              => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/'.$upload_data['file_name']
+                'file'              => './assets/uploads/file/'.$jenis_surat_fix.'/'.$upload_data['file_name']
             );
 
             $result = $this->M_surat_masuk->insert($data);
@@ -143,10 +146,13 @@ class Surat_masuk extends CI_Controller {
 
         $jenis_surat=$this->M_jenis_surat->get_by_id($id_jenis_surat);
 
+        $jenis_surat_fix=str_replace(" ", "%20", $jenis_surat->jenis_surat);
+
         $config = array(
-            'upload_path'   => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/',
+            'upload_path'   => './assets/uploads/file/'.$jenis_surat_fix.'/',
             'allowed_types' => 'gif|jpg|JPG|png|jpeg|pdf|doc|docx',
             'max_size'      => '10240',
+            'remove_space'  => TRUE,
         );
         $this->load->library('upload', $config);
 
@@ -163,7 +169,7 @@ class Surat_masuk extends CI_Controller {
                     'perihal'           => $perihal,
                     'tgl_surat'         => $tgl_surat,
                     'keterangan'        => $keterangan,
-                    'file'              => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/'.$upload_data['file_name']
+                    'file'              => './assets/uploads/file/'.$jenis_surat_fix.'/'.$upload_data['file_name']
                     
                 );
 
