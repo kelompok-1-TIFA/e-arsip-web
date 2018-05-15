@@ -200,13 +200,15 @@
                                         <th class="disabled-sorting text-center">Actions</th>
                                     </thead>
                                     <tbody>
+                                    <?php $no=0; foreach ($data_surat_masuk as $surat_masuk): ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Dakota Rice</td>
-                                            <td>$36,738</td>
-                                            <td>Niger</td>
+                                            <td><?php echo ++$no; ?></td>
+                                            <td><?php echo $surat_masuk->no_surat ?>;</td>
+                                            <td><?php echo $surat_masuk->asal_surat ?>;</td>
+                                            <td><?php echo $surat_masuk->perihal ?>;</td>
                                             <td><a href="" class="btn btn-link btn-info text-center" title="Jumlah Data "><i class="material-icons">data_usage</i></a></td>
                                         </tr>
+                                         <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>

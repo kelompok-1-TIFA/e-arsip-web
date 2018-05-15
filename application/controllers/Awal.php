@@ -43,6 +43,8 @@ class Awal extends CI_Controller {
                     $jml_disposisi = $this->M_disposisi->total_rows();    
                 }
                 $data = array(
+                    'data_surat_masuk'  => $this->M_surat_masuk->get_limit_data(3),
+                    'data_surat_keluar' => $this->M_surat_keluar->get_limit_data(3),
                     'jml_disposisi'     => $jml_disposisi,
                     'jml_surat_keluar'  => $jml_surat_keluar,
                     'jml_surat_masuk'   => $jml_surat_masuk,
