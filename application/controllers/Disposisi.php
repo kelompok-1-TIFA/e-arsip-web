@@ -6,6 +6,7 @@ class Disposisi extends CI_Controller {
     function __construct()    {
         parent::__construct();
         $this ->load-> model('M_disposisi');
+        $this ->load-> model('M_bagian');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
         }
@@ -35,7 +36,8 @@ class Disposisi extends CI_Controller {
             redirect(base_url());
         }
         $data = array(
-            'page_title'   => ucwords(str_replace("_", " ", $this->uri->segment(2))),
+            'data_bagian'       => $this->M_bagian->get_all(),
+            'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(2))),
         );
         $this->load->view('disposisi/v_mendisposisikan',$data);
     }
