@@ -35,7 +35,8 @@ class Disposisi extends CI_Controller {
             redirect(base_url());
         }
         $data = array(
-            'page_title'   => ucwords(str_replace("_", " ", $this->uri->segment(2))),
+            'data_bagian'       => $this->M_bagian->get_all(),
+            'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(2))),
         );
         $this->load->view('disposisi/v_mendisposisikan',$data);
     }
