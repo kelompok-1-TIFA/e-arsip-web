@@ -45,6 +45,12 @@
                                 </div>
                         </div>
 
+                        <div class="col-md-12">
+
+                            <br><table><b>SEMBARANG</b></table></br>
+                                        
+                                    </div>
+
                         
                         <div class="card-body">
                             <div class="toolbar">
