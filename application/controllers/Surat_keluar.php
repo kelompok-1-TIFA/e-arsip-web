@@ -110,7 +110,7 @@ class Surat_keluar extends CI_Controller {
                 'tgl_surat'         => $tgl_surat,
                 'tgl_arsip'         => date("Y-m-d"),
                 'keterangan'        => $keterangan,
-                'file'              => './assets/uploads/file/'.$jenis_surat_fix.'/'.$upload_data['file_name']
+                'file'              => 'assets/uploads/file/'.$jenis_surat_fix.'/'.$upload_data['file_name']
             );
 
             $result = $this->M_surat_keluar->insert($data);
@@ -182,7 +182,7 @@ class Surat_keluar extends CI_Controller {
                     'perihal'           => $perihal,
                     'tgl_surat'         => $tgl_surat,
                     'keterangan'        => $keterangan,
-                    'file'              => './assets/uploads/file/'.$jenis_surat_fix.'/'.$upload_data['file_name']
+                    'file'              => 'assets/uploads/file/'.$jenis_surat_fix.'/'.$upload_data['file_name']
                 );
 
                 $row = $this->M_surat_keluar->get_by_id($id);

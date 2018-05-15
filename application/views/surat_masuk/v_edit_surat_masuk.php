@@ -81,9 +81,9 @@
                                         <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                             <div class="fileinput-new thumbnail">
                                                 <?php
-                                                    $typefile=mime_content_type($file);
+                                                    $typefile=mime_content_type(str_replace("%20", " ", $file));
                                                     if ($typefile=="application/pdf") {
-                                                        echo basename($file);
+                                                        echo basename($file));
                                                     }elseif ($typefile=="image/jpg" or $typefile=="image/png" or $typefile=="image/jpeg" or $typefile=="image/gif" or $typefile=="image/JPG") {
                                                         echo "<img src=".base_url($file)." alt='...''>";
                                                     }else{
