@@ -232,13 +232,15 @@
                                         <th class="disabled-sorting text-center">Actions</th>
                                     </thead>
                                     <tbody>
+                                    <?php $no=0; foreach ($data_surat_keluar as $surat_keluar): ?>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Dakota Rice</td>
-                                            <td>$36,738</td>
-                                            <td>Niger</td>
+                                            <td><?php echo ++$no; ?></td>
+                                            <td><?php echo $surat_keluar->no_surat ?>;</td>
+                                            <td><?php echo $surat_keluar->tujuan ?>;</td>
+                                            <td><?php echo $surat_keluar->perihal ?>;</td>
                                             <td><a href="" class="btn btn-link btn-info text-center"><i class="material-icons">data_usage</i></a></td>
                                         </tr>
+                                        <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>
