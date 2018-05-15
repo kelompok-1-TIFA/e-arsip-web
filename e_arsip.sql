@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Bulan Mei 2018 pada 02.41
+-- Waktu pembuatan: 15 Bulan Mei 2018 pada 03.37
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 5.6.35
 
@@ -28,10 +28,12 @@ SET time_zone = "+00:00";
 -- Struktur dari tabel `tb_bagian`
 --
 
-CREATE TABLE `tb_bagian` (
-  `id_bagian` int(11) NOT NULL,
-  `bagian` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tb_bagian`;
+CREATE TABLE IF NOT EXISTS `tb_bagian` (
+  `id_bagian` int(11) NOT NULL AUTO_INCREMENT,
+  `bagian` varchar(40) NOT NULL,
+  PRIMARY KEY (`id_bagian`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_bagian`
@@ -53,18 +55,23 @@ INSERT INTO `tb_bagian` (`id_bagian`, `bagian`) VALUES
 -- Struktur dari tabel `tb_disposisi`
 --
 
-CREATE TABLE `tb_disposisi` (
-  `id_disposisi` int(10) NOT NULL,
+DROP TABLE IF EXISTS `tb_disposisi`;
+CREATE TABLE IF NOT EXISTS `tb_disposisi` (
+  `id_disposisi` int(10) NOT NULL AUTO_INCREMENT,
   `id_bagian` int(11) NOT NULL,
   `isi_disposisi` mediumtext NOT NULL,
   `sifat` varchar(40) NOT NULL,
   `catatan` text NOT NULL,
-  `id_surat_masuk` int(11) NOT NULL
+  `id_surat_masuk` int(11) NOT NULL,
+  PRIMARY KEY (`id_disposisi`),
+  KEY `id_bagian` (`id_bagian`),
+  KEY `id_surat_masuk` (`id_surat_masuk`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Trigger `tb_disposisi`
 --
+DROP TRIGGER IF EXISTS `mendisposisikan`;
 DELIMITER $$
 CREATE TRIGGER `mendisposisikan` AFTER INSERT ON `tb_disposisi` FOR EACH ROW BEGIN
  UPDATE tb_surat_masuk
@@ -81,10 +88,12 @@ DELIMITER ;
 -- Struktur dari tabel `tb_jabatan`
 --
 
-CREATE TABLE `tb_jabatan` (
-  `id_jabatan` int(11) NOT NULL,
-  `jabatan` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tb_jabatan`;
+CREATE TABLE IF NOT EXISTS `tb_jabatan` (
+  `id_jabatan` int(11) NOT NULL AUTO_INCREMENT,
+  `jabatan` varchar(40) NOT NULL,
+  PRIMARY KEY (`id_jabatan`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_jabatan`
@@ -111,11 +120,13 @@ INSERT INTO `tb_jabatan` (`id_jabatan`, `jabatan`) VALUES
 -- Struktur dari tabel `tb_jenis_surat`
 --
 
-CREATE TABLE `tb_jenis_surat` (
-  `id_jenis_surat` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tb_jenis_surat`;
+CREATE TABLE IF NOT EXISTS `tb_jenis_surat` (
+  `id_jenis_surat` int(11) NOT NULL AUTO_INCREMENT,
   `kode` varchar(10) NOT NULL,
-  `jenis_surat` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `jenis_surat` varchar(40) NOT NULL,
+  PRIMARY KEY (`id_jenis_surat`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_jenis_surat`
@@ -133,7 +144,8 @@ INSERT INTO `tb_jenis_surat` (`id_jenis_surat`, `kode`, `jenis_surat`) VALUES
 -- Struktur dari tabel `tb_pegawai`
 --
 
-CREATE TABLE `tb_pegawai` (
+DROP TABLE IF EXISTS `tb_pegawai`;
+CREATE TABLE IF NOT EXISTS `tb_pegawai` (
   `nip` int(20) NOT NULL,
   `id_bagian_pegawai` int(11) NOT NULL,
   `id_jabatan_pegawai` int(11) NOT NULL,
@@ -149,7 +161,10 @@ CREATE TABLE `tb_pegawai` (
   `pendidikan_terakhir` varchar(10) NOT NULL,
   `sk_pengangkatan` text NOT NULL,
   `foto` text NOT NULL,
-  `create_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `create_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`nip`),
+  KEY `id_bagian` (`id_bagian_pegawai`),
+  KEY `id_jabatan` (`id_jabatan_pegawai`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -169,8 +184,9 @@ INSERT INTO `tb_pegawai` (`nip`, `id_bagian_pegawai`, `id_jabatan_pegawai`, `nia
 -- Struktur dari tabel `tb_surat_keluar`
 --
 
-CREATE TABLE `tb_surat_keluar` (
-  `id_surat_keluar` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tb_surat_keluar`;
+CREATE TABLE IF NOT EXISTS `tb_surat_keluar` (
+  `id_surat_keluar` int(11) NOT NULL AUTO_INCREMENT,
   `no_surat` varchar(20) NOT NULL,
   `id_bagian` int(11) NOT NULL,
   `tujuan` varchar(40) NOT NULL,
@@ -180,8 +196,27 @@ CREATE TABLE `tb_surat_keluar` (
   `tgl_surat` date NOT NULL,
   `tgl_arsip` date NOT NULL,
   `keterangan` text NOT NULL,
-  `file` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `file` text NOT NULL,
+  PRIMARY KEY (`id_surat_keluar`),
+  KEY `id_jenis_surat` (`id_jenis_surat`),
+  KEY `id_bagian` (`id_bagian`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_surat_keluar`
+--
+
+INSERT INTO `tb_surat_keluar` (`id_surat_keluar`, `no_surat`, `id_bagian`, `tujuan`, `isi_singkat`, `id_jenis_surat`, `perihal`, `tgl_surat`, `tgl_arsip`, `keterangan`, `file`) VALUES
+(1, '0876/0654', 5, 'Dinas Perpajakan', '-', 4, '-', '2018-05-01', '2018-05-14', '-', './assets/uploads/file/Surat Penduduk/bkp.jpg'),
+(2, '0987/6543', 2, 'Dinas Koperasi dan Usaha', '-', 3, '-', '2018-04-30', '2018-05-14', '-', './assets/uploads/file/Surat Keterangan Usaha/putu.jpg'),
+(3, '876/897', 6, 'Semua Warga', '-', 4, '-', '2018-05-03', '2018-05-14', '-', './assets/uploads/file/Surat Penduduk/don.jpg'),
+(4, '9087/564', 4, 'Ketua RT/RW', '-', 4, '-', '2018-04-29', '2018-05-14', '-', './assets/uploads/file/Surat Penduduk/bolcok.jpg'),
+(5, '0875/9087', 8, 'Pengembangan SDM', '-', 4, '-', '2018-05-02', '2018-05-14', '-', './assets/uploads/file/Surat Penduduk/piscok.jpg'),
+(6, '0097/0065', 3, 'Kantor Pajak', '-', 3, '-', '2018-04-29', '2018-05-14', '-', './assets/uploads/file/Surat Keterangan Usaha/piscok.jpg'),
+(7, '0098/007', 5, 'Kantor Kecamatan Balung', 'Undangan Rapat ', 4, '-', '2018-05-04', '2018-05-14', '-', './assets/uploads/file/Surat Penduduk/putu2.jpg'),
+(8, '0098/0076', 2, 'Dinas Koperasi', '-', 3, '-', '2018-05-01', '2018-05-14', '-', './assets/uploads/file/Surat Keterangan Usaha/piscok1.jpg'),
+(9, '0087/0065', 6, 'Ketua RT', '-', 4, '-', '2018-05-03', '2018-05-14', '-', './assets/uploads/file/Surat Penduduk/putu3.jpg'),
+(10, '0098/0876', 4, 'Ketua RT/RW', '-', 4, '-', '2018-05-04', '2018-05-14', '-', './assets/uploads/file/Surat Penduduk/bolkel.jpg');
 
 -- --------------------------------------------------------
 
@@ -189,8 +224,9 @@ CREATE TABLE `tb_surat_keluar` (
 -- Struktur dari tabel `tb_surat_masuk`
 --
 
-CREATE TABLE `tb_surat_masuk` (
-  `id_surat_masuk` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tb_surat_masuk`;
+CREATE TABLE IF NOT EXISTS `tb_surat_masuk` (
+  `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT,
   `no_surat` varchar(20) NOT NULL,
   `asal_surat` varchar(40) NOT NULL,
   `isi_singkat` mediumtext NOT NULL,
@@ -200,8 +236,26 @@ CREATE TABLE `tb_surat_masuk` (
   `tgl_arsip` date NOT NULL,
   `keterangan` text NOT NULL,
   `status_disposisi` set('y','t') NOT NULL DEFAULT 't',
-  `file` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `file` text NOT NULL,
+  PRIMARY KEY (`id_surat_masuk`),
+  KEY `id_jenis_surat` (`id_jenis_surat`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tb_surat_masuk`
+--
+
+INSERT INTO `tb_surat_masuk` (`id_surat_masuk`, `no_surat`, `asal_surat`, `isi_singkat`, `id_jenis_surat`, `perihal`, `tgl_surat`, `tgl_arsip`, `keterangan`, `status_disposisi`, `file`) VALUES
+(1, '019/9900', 'Dinas Koperasi', 'pembangunan usaha dalam desa', 3, '-', '2018-05-09', '2018-05-12', '-', 't', './assets/uploads/file/Surat Keterangan Usaha/acar.jpg'),
+(2, '0991/098', 'Dinas Kependudukan', 'Peraturan baru pembangunan SDM di desa se Jember', 4, '-', '2018-05-18', '2018-05-14', '-', 't', './assets/uploads/file/Surat Penduduk/lv.jpg'),
+(3, '0987/1290', 'Dinas Koperasi dan Usaha', 'Pelatihan pengelolah KUD', 3, '-', '2018-03-08', '2018-05-14', '-', 't', './assets/uploads/file/Surat Keterangan Usaha/kahrtunnn.jpg'),
+(4, '098/09876', 'Dinas Sosial', 'undangan rapat rutin', 4, '-', '2018-05-01', '2018-05-14', '-', 't', './assets/uploads/file/Surat Penduduk/cmd_java.PNG'),
+(5, '0987/6754', 'Dinas Pendidikan', 'Pengembangan SDM', 4, '-', '2018-05-02', '2018-05-14', '-', 't', './assets/uploads/file/Surat Penduduk/bolcok1.jpg'),
+(6, '00988/0087', 'Dinas Kependudukan', 'rapat rutin', 4, '-', '2018-05-02', '2018-05-14', '-', 't', './assets/uploads/file/Surat Penduduk/bkp1.jpg'),
+(7, '0089/0067', 'Dinas Sosial', 'Rapat Triwuan ', 4, '-', '2018-05-05', '2018-05-14', '-', 't', './assets/uploads/file/Surat Penduduk/putu.jpg'),
+(8, '0098/00876', 'Kantor Desa Taman Sari', 'Silaturahmi ', 4, '-', '2018-05-04', '2018-05-14', '-', 't', './assets/uploads/file/Surat Penduduk/piscok1.jpg'),
+(9, '0087/0087', 'Kantor Kecamatan Balung', 'Permintaan data penduduk', 4, '-', '2018-05-02', '2018-05-14', '-', 't', './assets/uploads/file/Surat Penduduk/putu1.jpg'),
+(10, '00998/0098', 'Kantor Kecamatan Balung', 'Pendataan keterangan usaha', 3, '-', '2018-05-01', '2018-05-14', '-', 't', './assets/uploads/file/Surat Keterangan Usaha/bkp.jpg');
 
 -- --------------------------------------------------------
 
@@ -209,13 +263,16 @@ CREATE TABLE `tb_surat_masuk` (
 -- Struktur dari tabel `tb_user`
 --
 
-CREATE TABLE `tb_user` (
-  `id_user` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tb_user`;
+CREATE TABLE IF NOT EXISTS `tb_user` (
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `nip_user` int(20) NOT NULL,
   `username` varchar(32) NOT NULL,
   `password` varchar(150) NOT NULL,
-  `level_user` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `level_user` varchar(40) NOT NULL,
+  PRIMARY KEY (`id_user`),
+  KEY `nip` (`nip_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `tb_user`
@@ -227,112 +284,6 @@ INSERT INTO `tb_user` (`id_user`, `nip_user`, `username`, `password`, `level_use
 (4, 2147483647, 'kepalabagian', '41VtU4w7Ac8wpcpak18MLGwdTgvaeLSxdl4M0kgupa4ObFJDc2RaRI8TKKwPFvE84McnaJlDLb2CEa0Meje7DA==', 'kepala bagian'),
 (5, 4545435, 'sekertaris', 'OXMRD2cPqaqlSpfqOEwYAxOY00AG2Hlf0s0mk49CjqupNEaN65XmlxkHc39p3suEzLGBF3GFLRqp00snrPap/g==', 'sekertaris'),
 (6, 324297939, 'staf', 'GyQ/Yy7dBvOQV1ItRfeC1T0WWF+bOqp2q3yELhjR2oGLu7qNCVXP6+doZuwH2VHqQbJs3c9bA7M5FfCC2QaYvQ==', 'staf');
-
---
--- Indexes for dumped tables
---
-
---
--- Indeks untuk tabel `tb_bagian`
---
-ALTER TABLE `tb_bagian`
-  ADD PRIMARY KEY (`id_bagian`);
-
---
--- Indeks untuk tabel `tb_disposisi`
---
-ALTER TABLE `tb_disposisi`
-  ADD PRIMARY KEY (`id_disposisi`),
-  ADD KEY `id_bagian` (`id_bagian`),
-  ADD KEY `id_surat_masuk` (`id_surat_masuk`);
-
---
--- Indeks untuk tabel `tb_jabatan`
---
-ALTER TABLE `tb_jabatan`
-  ADD PRIMARY KEY (`id_jabatan`);
-
---
--- Indeks untuk tabel `tb_jenis_surat`
---
-ALTER TABLE `tb_jenis_surat`
-  ADD PRIMARY KEY (`id_jenis_surat`);
-
---
--- Indeks untuk tabel `tb_pegawai`
---
-ALTER TABLE `tb_pegawai`
-  ADD PRIMARY KEY (`nip`),
-  ADD KEY `id_bagian` (`id_bagian_pegawai`),
-  ADD KEY `id_jabatan` (`id_jabatan_pegawai`);
-
---
--- Indeks untuk tabel `tb_surat_keluar`
---
-ALTER TABLE `tb_surat_keluar`
-  ADD PRIMARY KEY (`id_surat_keluar`),
-  ADD KEY `id_jenis_surat` (`id_jenis_surat`),
-  ADD KEY `id_bagian` (`id_bagian`);
-
---
--- Indeks untuk tabel `tb_surat_masuk`
---
-ALTER TABLE `tb_surat_masuk`
-  ADD PRIMARY KEY (`id_surat_masuk`),
-  ADD KEY `id_jenis_surat` (`id_jenis_surat`);
-
---
--- Indeks untuk tabel `tb_user`
---
-ALTER TABLE `tb_user`
-  ADD PRIMARY KEY (`id_user`),
-  ADD KEY `nip` (`nip_user`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `tb_bagian`
---
-ALTER TABLE `tb_bagian`
-  MODIFY `id_bagian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT untuk tabel `tb_disposisi`
---
-ALTER TABLE `tb_disposisi`
-  MODIFY `id_disposisi` int(10) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `tb_jabatan`
---
-ALTER TABLE `tb_jabatan`
-  MODIFY `id_jabatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT untuk tabel `tb_jenis_surat`
---
-ALTER TABLE `tb_jenis_surat`
-  MODIFY `id_jenis_surat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `tb_surat_keluar`
---
-ALTER TABLE `tb_surat_keluar`
-  MODIFY `id_surat_keluar` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `tb_surat_masuk`
---
-ALTER TABLE `tb_surat_masuk`
-  MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `tb_user`
---
-ALTER TABLE `tb_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
