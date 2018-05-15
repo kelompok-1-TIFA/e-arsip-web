@@ -43,13 +43,11 @@
                                     </table>
                                     </div>
                                 </div>
-                        </div>
+                            </div>
 
-                        <div class="col-md-12">
-
-                            <br><table><b>SEMBARANG</b></table></br>
-                                        
-                                    </div>
+                            <div class="col-md-12">
+                                <br><b>VIEW FILE</b></br>          
+                            </div>
 
                         
                         <div class="card-body">

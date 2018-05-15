@@ -46,10 +46,8 @@
                         </div>
 
                         <div class="col-md-12">
-
-                            <br><table><b>SEMBARANGAN</b></table></br>
-                                        
-                                    </div>
+                            <br><b>VIEW FILE</b></br>          
+                        </div>
 
                         
                         <div class="card-body">
