@@ -47,7 +47,7 @@
 
                         <div class="col-md-12">
 
-                            <br><table><b>SEMBARANG</b></table></br>
+                            <br><table><b>SEMBARANGAN</b></table></br>
                                         
                                     </div>
 
