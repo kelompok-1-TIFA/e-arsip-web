@@ -45,10 +45,22 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
-                                <br><b>VIEW FILE</b></br>          
-                            </div>
-
+                            <div>
+                                <style> 
+                                    #example1 {
+                                        box-sizing: content-box;    
+                                        width: 980px;
+                                        height : 230px;
+                                        padding: 30px;    
+                                        border: 2px solid black;
+                                    }
+                                </style>
+                                    <body>
+                                        <div id="example1"><p style="text-align:center">
+                                            <b>VIEW FILE</b></p>
+                                        </div>
+                                    </body>
+                        </div>
                         
                         <div class="card-body">
                             <div class="toolbar">
