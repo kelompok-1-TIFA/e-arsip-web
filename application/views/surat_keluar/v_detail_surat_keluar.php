@@ -44,15 +44,39 @@
                                     </div>
                                 </div>
                         </div>
+                        <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-primary">
+                                        <div class="panel-heading">
+                                            <div class="pull-left">View File
+                                            </div>
+                                            <br>
+                                        </div>
+                                            <div class="panel-body">
+                                                <div>
+                                                    <embed src="<?php echo base_url();?>assets/ponororgo.pdf" type="application/pdf" width="100%" height="700px"/>
+                                                </div>
+                                            </div>
+                                    </div>
+                                </div>
+
+                            <div>
 
                         <div>
-                            <body>
-                               
-                                    
-                                        
-                                            <center><iframe src="e-Arsip/assets/uploads/file/Surat%20Keterangan%20Usaha/CCCApply.pdf" type="application/pdf" width="550" height="600"></iframe></center>
-                                        
-                            </body>
+                                <style> 
+                                    #example1 {
+                                        box-sizing: content-box;    
+                                        width: 980px;
+                                        height : 230px;
+                                        padding: 30px;    
+                                        border: 2px solid black;
+                                    }
+                                </style>
+                                    <body>
+                                        <div id="example1"><p style="text-align:center">
+                                            <b>VIEW FILE</b></p>
+                                        </div>
+                                    </body>
                         </div>
 
                         
