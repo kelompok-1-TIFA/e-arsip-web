@@ -9,6 +9,7 @@ class M_surat_masuk extends CI_Model
     public $table = 'tb_surat_masuk';
     public $id = 'id_surat_masuk';
     public $order = 'DESC';
+    public $tahun = 2018;
 
     function __construct()
     {
@@ -32,6 +33,15 @@ class M_surat_masuk extends CI_Model
     function get_where($where)
     {
         return $this->db->query('select * from tb_surat_masuk '.$where)->result();
+    }
+
+    function get_grafik($tahun){
+        return $this->db->query("SELECT MONTH(tgl_arsip) AS bulan, COUNT(*) AS jumlah FROM tb_surat_masuk WHERE YEAR(tgl_arsip)='$tahun' GROUP BY MONTH(tgl_arsip)")->result();
+    }
+
+    function get_jumlah_grafik($tahun)
+    {
+       return $this->db->query("SELECT YEAR(tgl_arsip) AS tahun, COUNT(*) AS jumlah FROM tb_surat_masuk WHERE YEAR(tgl_arsip)='$tahun' GROUP BY YEAR(tgl_arsip)")->row();
     }
     
     // get total rows

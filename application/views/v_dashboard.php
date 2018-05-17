@@ -161,7 +161,14 @@
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 0 Surat Masuk
+                                    <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 
+                                        <?php 
+                                        foreach ($data_grafik_surat_masuk as $grafik_surat_masuk){ 
+                                            if (date("m")==$grafik_surat_masuk->bulan) {
+                                                echo $grafik_surat_masuk->jumlah;
+                                            }
+                                        }
+                                        ?> Surat Masuk
                                 </div>
                             </div>
                         </div>
@@ -177,7 +184,14 @@
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 0 Surat Keluar
+                                    <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 
+                                        <?php 
+                                        foreach ($data_grafik_surat_keluar as $grafik_surat_keluar){
+                                            if (date("m")==$grafik_surat_keluar->bulan) {
+                                                echo $grafik_surat_keluar->jumlah;
+                                            }
+                                        }
+                                        ?> Surat Keluar
                                 </div>
                             </div>
                         </div>
@@ -254,12 +268,72 @@
     <!-- Content -->
 <?php $this->load->view('inc/footer'); ?>      
 <?php $this->load->view('inc/js'); ?>
-<script src="<?php echo base_url('assets/js/plugins/dashboard.js') ?>"></script>
+<!-- <script src="<?php echo base_url('assets/js/plugins/dashboard.js') ?>"></script> -->
 <script type="text/javascript">
 
 $(document).ready(function(){
   // Javascript method's body can be found in assets/js/demos.js
-  grafik.dashboard();
+  if ($('#suratMasukCart').length != 0 || $('#suratKeluarCart').length != 0) {
+            datasuratMasukCart = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                series: [
+                    [<?php foreach ($data_grafik_surat_masuk as $grafik_surat_masuk) {
+                        for ($i=1; $i < 13; $i++) { 
+                            if ($grafik_surat_masuk->bulan==$i) {
+                                echo $grafik_surat_masuk->jumlah.",";
+                            }else{
+                                echo "0".",";
+                            }
+                        }
+                    } ?>]
+                ]
+            };
+            optionssuratMasukCart = {
+                lineSmooth: Chartist.Interpolation.cardinal({
+                    tension: 0
+                }),
+                low: 0,
+                high: <?php echo $jml_grafik_surat_masuk->jumlah*2; ?>,
+                chartPadding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                },
+            }
+            var suratMasukCart = new Chartist.Line('#suratMasukCart', datasuratMasukCart, optionssuratMasukCart);
+            md.startAnimationForLineChart(suratMasukCart);
+
+            datasuratKeluarCart = {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                series: [
+                    [<?php foreach ($data_grafik_surat_keluar as $grafik_surat_keluar) {
+                        for ($i=1; $i < 13; $i++) { 
+                            if ($grafik_surat_keluar->bulan==$i) {
+                                echo $grafik_surat_keluar->jumlah.",";
+                            }else{
+                                echo "0".",";
+                            }
+                        }
+                    } ?>]
+                ]
+            };
+            optionssuratKeluarCart = {
+                lineSmooth: Chartist.Interpolation.cardinal({
+                    tension: 0
+                }),
+                low: 0,
+                high: <?php echo $jml_grafik_surat_keluar->jumlah*2; ?>, 
+                chartPadding: {
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0
+                }
+            }
+            var suratKeluarCart = new Chartist.Line('#suratKeluarCart', datasuratKeluarCart, optionssuratKeluarCart);
+            md.startAnimationForLineChart(suratKeluarCart);
+        }
 });
 </script>
 <script type="text/javascript">

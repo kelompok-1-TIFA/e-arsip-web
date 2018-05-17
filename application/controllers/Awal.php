@@ -34,23 +34,32 @@ class Awal extends CI_Controller {
                     'page_title'        => "Dashboard",
                 );
             }else{
+                $tahun=date("Y");
                 $jml_surat_masuk = $this->M_surat_masuk->total_rows();
                 if ($this->session->userdata('level_user')!="kepala desa") {
                     $jml_surat_keluar = $this->M_surat_keluar->total_rows_perbagian($this->session->userdata('id_bagian'));
                     $jml_disposisi = $this->M_disposisi->total_rows_perbagian($this->session->userdata('id_bagian'));   
                     $dt_surat_keluar = $this->M_surat_keluar->get_limit_data_perbagian($this->session->userdata('id_bagian'),3);
+                    $dt_grafik_surat_keluar=$this->M_surat_keluar->get_grafik_perbagian($tahun,$this->session->userdata('id_bagian'));
+                    $jml_grafik_surat_keluar=$this->M_surat_keluar->get_jumlah_grafik_perbagian($tahun,$this->session->userdata('id_bagian'));
                 }else{
                     $jml_surat_keluar = $this->M_surat_keluar->total_rows();
                     $jml_disposisi = $this->M_disposisi->total_rows();
-                    $dt_surat_keluar = $this->M_surat_keluar->get_limit_data(3);    
+                    $dt_surat_keluar = $this->M_surat_keluar->get_limit_data(3);
+                    $dt_grafik_surat_keluar=$this->M_surat_keluar->get_grafik($tahun);
+                    $jml_grafik_surat_keluar=$this->M_surat_keluar->get_jumlah_grafik($tahun);    
                 }
                 $data = array(
-                    'data_surat_masuk'  => $this->M_surat_masuk->get_limit_data(3),
-                    'data_surat_keluar' => $dt_surat_keluar,
-                    'jml_disposisi'     => $jml_disposisi,
-                    'jml_surat_keluar'  => $jml_surat_keluar,
-                    'jml_surat_masuk'   => $jml_surat_masuk,
-                    'page_title'        => "Dashboard",
+                    'data_surat_masuk'          => $this->M_surat_masuk->get_limit_data(3),
+                    'data_grafik_surat_masuk'   => $this->M_surat_masuk->get_grafik($tahun),
+                    'jml_grafik_surat_masuk'    => $this->M_surat_masuk->get_jumlah_grafik($tahun),
+                    'data_surat_keluar'         => $dt_surat_keluar,
+                    'data_grafik_surat_keluar'  => $dt_grafik_surat_keluar,
+                    'jml_grafik_surat_keluar'   => $jml_grafik_surat_keluar,
+                    'jml_disposisi'             => $jml_disposisi,
+                    'jml_surat_keluar'          => $jml_surat_keluar,
+                    'jml_surat_masuk'           => $jml_surat_masuk,
+                    'page_title'                => "Dashboard",
                 );
             }
             $this->load->view('v_dashboard',$data);
