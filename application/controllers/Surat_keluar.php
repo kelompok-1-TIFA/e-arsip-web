@@ -89,7 +89,7 @@ class Surat_keluar extends CI_Controller {
         $jenis_surat_fix=str_replace(" ", "%20", $jenis_surat->jenis_surat);
 
         $config = array(
-            'upload_path'   => './assets/uploads/file/'.$jenis_surat_fix.'/',
+            'upload_path'   => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/',
             'allowed_types' => 'gif|jpg|JPG|png|jpeg|pdf|doc|docx',
             'max_size'      => '10240',
             'remove_space'  => TRUE,
@@ -160,7 +160,7 @@ class Surat_keluar extends CI_Controller {
         $jenis_surat_fix=str_replace(" ", "%20", $jenis_surat->jenis_surat);
 
         $config = array(
-            'upload_path'   => './assets/uploads/file/'.$jenis_surat_fix.'/',
+            'upload_path'   => './assets/uploads/file/'.$jenis_surat->jenis_surat.'/',
             'allowed_types' => 'gif|jpg|JPG|png|jpeg|pdf|doc|docx',
             'max_size'      => '10240',
             'remove_space'  => TRUE,
