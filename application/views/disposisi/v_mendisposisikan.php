@@ -18,12 +18,12 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">No Surat</label>
                                     <div class="col-md-8">
                                       <div class="form-group">
-                                          <input type="text" name="no_surat" placeholder="" class="form-control" required>
+                                          <input type="text" name="no_surat" placeholder="" value="<?php echo $no_surat; ?>" class="form-control" required>
                                       </div>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">No Surat</label>
+                                    <label class="col-md-2 col-form-label font-weight-bold">Bagian</label>
                                     <div class="col-md-8">
                                         <div class="form-group mt-0">
                                             <select class="selectpicker" data-style="btn select-with-transition" title="Pilih Bagian" data-size="7" name="id_bagian">
