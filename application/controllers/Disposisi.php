@@ -7,6 +7,7 @@ class Disposisi extends CI_Controller {
         parent::__construct();
         $this ->load-> model('M_disposisi');
         $this ->load-> model('M_bagian');
+        $this ->load-> model('M_surat_masuk');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
         }
@@ -35,9 +36,11 @@ class Disposisi extends CI_Controller {
         if ($this->session->userdata('level_user')!="kepala desa") {
             redirect(base_url());
         }
+        $row = $this->M_surat_masuk->get_by_id($id);
         $data = array(
-            'data_bagian'       => $this->M_bagian->get_all(),
-            'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(2))),
+            'data_bagian'   => $this->M_bagian->get_all(),
+            'no_surat'      => $row->no_surat,
+            'page_title'    => ucwords(str_replace("_", " ", $this->uri->segment(2))),
         );
         $this->load->view('disposisi/v_mendisposisikan',$data);
     }
