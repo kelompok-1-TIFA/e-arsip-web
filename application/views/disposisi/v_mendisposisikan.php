@@ -19,6 +19,7 @@
                                     <div class="col-md-8">
                                       <div class="form-group">
                                           <input type="text" name="no_surat" placeholder="" value="<?php echo $no_surat; ?>" class="form-control" required>
+                                          <input type="hidden" name="id" placeholder="" value="<?php echo $id_surat_masuk; ?>" class="form-control" required>
                                       </div>
                                     </div>
                                 </div>
@@ -26,7 +27,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Bagian</label>
                                     <div class="col-md-8">
                                         <div class="form-group mt-0">
-                                            <select class="selectpicker" data-style="btn select-with-transition" title="Pilih Bagian" data-size="7" name="id_bagian">
+                                            <select class="selectpicker" data-style="btn select-with-transition" title="Pilih Bagian" data-size="7" name="id_bagian" required>
                                                 <?php foreach ($data_bagian as $bagian): ?>
                                                     <option value="<?php echo $bagian->id_bagian ?>"> <?php echo $bagian->bagian; ?></option>
                                                 <?php endforeach ?>
@@ -38,7 +39,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Isi Disposisi</label>
                                     <div class="col-md-8">
                                       <div class="form-group">
-                                          <textarea name="isi_singkat" placeholder="" class="form-control" required></textarea>
+                                          <textarea name="isi_disposisi" placeholder="" class="form-control" required></textarea>
                                       </div>
                                     </div>
                                 </div>
@@ -46,7 +47,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Sifat</label>
                                     <div class="col-md-8">
                                       <div class="form-group">
-                                          <textarea name="isi_singkat" placeholder="" class="form-control" required></textarea>
+                                          <textarea name="sifat" placeholder="" class="form-control" required></textarea>
                                       </div>
                                     </div>
                                 </div>
@@ -54,7 +55,7 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Catatan</label>
                                     <div class="col-md-8">
                                       <div class="form-group">
-                                          <textarea name="isi_singkat" placeholder="" class="form-control" required></textarea>
+                                          <textarea name="catatan" placeholder="" class="form-control" required></textarea>
                                       </div>
                                     </div>
                                 </div>

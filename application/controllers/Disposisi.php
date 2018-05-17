@@ -40,6 +40,7 @@ class Disposisi extends CI_Controller {
         $data = array(
             'data_bagian'   => $this->M_bagian->get_all(),
             'no_surat'      => $row->no_surat,
+            'id_surat_masuk'      => $row->id_surat_masuk,
             'page_title'    => ucwords(str_replace("_", " ", $this->uri->segment(2))),
         );
         $this->load->view('disposisi/v_mendisposisikan',$data);
@@ -84,7 +85,7 @@ class Disposisi extends CI_Controller {
         $isi_disposisi= $this->input->post('isi_disposisi');
         $sifat= $this->input->post('sifat');
         $catatan= $this->input->post('catatan');
-        $id_surat_masuk= $this->input->post('id_surat_masuk');
+        $id_surat_masuk= $this->input->post('id');
         $data = array(
             'id_disposisi'   => "",
             'id_bagian'      => $id_bagian, 
