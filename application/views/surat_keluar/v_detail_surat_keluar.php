@@ -46,20 +46,13 @@
                         </div>
 
                         <div>
-                                <style> 
-                                    #example1 {
-                                        box-sizing: content-box;    
-                                        width: 980px;
-                                        height : 230px;
-                                        padding: 30px;    
-                                        border: 2px solid black;
-                                    }
-                                </style>
-                                    <body>
-                                        <div id="example1"><p style="text-align:center">
-                                            <b>VIEW FILE</b></p>
-                                        </div>
-                                    </body>
+                               
+                                    
+                                        
+                                            <center><b><iframe src="<?php
+                                            echo base_url() ?>assets/uploads/Surat%20Keterangan%20Usaha/CCCApply.pdf" width="550" height="600"></iframe></b></center>
+                                        
+                                    
                         </div>
 
                         
