@@ -26,7 +26,7 @@
                         <a class="username">
                             <span>
                                 <?php echo ucwords($this->session->userdata('nama')); ?><br>
-                                <font class="text-muted">Level</font>
+                                <font class="text-muted"><?php echo ucwords($this->session->userdata('jabatan')." ".$this->session->userdata('bagian')); ?></font>
                             </span>
                         </a>
                     </div>

@@ -49,7 +49,9 @@ class M_user extends CI_Model
     }
 
     function cek_login($where){
-        $this->db->join('tb_pegawai', 'tb_pegawai.nip = tb_user.nip_user', 'left');   
+        $this->db->join('tb_pegawai', 'tb_pegawai.nip = tb_user.nip_user', 'left');
+        $this->db->join('tb_bagian', 'tb_pegawai.id_bagian_pegawai = tb_bagian.id_bagian', 'left');
+        $this->db->join('tb_jabatan', 'tb_pegawai.id_jabatan_pegawai = tb_jabatan.id_jabatan', 'left');   
         return $this->db->get_where($this->table,$where);
     }
 

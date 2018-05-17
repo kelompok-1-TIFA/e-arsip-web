@@ -20,23 +20,28 @@ class User extends REST_Controller {
             $cek_fase_1 = $this->M_user->cek_login($where)->num_rows();
             $cek_fase_2 = $this->M_user->cek_login($where)->row();
             if($cek_fase_1 > 0){
-                $this->load->library('encrypt'); 
-                $key = 'vyanarypratamabanyuwangi12345678';
-                $password_encrypt =  $this->encrypt->decode($cek_fase_2->password, $key);
-                if ($password==$password_encrypt) {
-                    $data_session = array(
-                        'id_user'       => $cek_fase_2->id_user,
-                        'nip'           => $cek_fase_2->nip,
-                        'nama'          => $cek_fase_2->nama,
-                        'foto'          => $cek_fase_2->foto,
-                        'id_bagian'     => $cek_fase_2->id_bagian_pegawai,
-                        'level_user'    => $cek_fase_2->level_user,
-                    );
-                    $message = array("success"=>1,"data_user"=>$cek_fase_2);
-                    $this->response($message, REST_Controller::HTTP_OK);
+                if ($cek_fase_2->level_user=="admin" OR $cek_fase_2->level_user=="sekertaris") {
+                    $message = array("success"=>3);
+                    $this->response($message, REST_Controller::HTTP_OK);   
                 }else{
-                    $message = array("success"=>2);
-                    $this->response($message, REST_Controller::HTTP_OK);
+                    $this->load->library('encrypt'); 
+                    $key = 'vyanarypratamabanyuwangi12345678';
+                    $password_encrypt =  $this->encrypt->decode($cek_fase_2->password, $key);
+                    if ($password==$password_encrypt) {
+                        $data_session = array(
+                            'id_user'       => $cek_fase_2->id_user,
+                            'nip'           => $cek_fase_2->nip,
+                            'nama'          => $cek_fase_2->nama,
+                            'foto'          => $cek_fase_2->foto,
+                            'id_bagian'     => $cek_fase_2->id_bagian_pegawai,
+                            'level_user'    => $cek_fase_2->level_user,
+                        );
+                        $message = array("success"=>1,"data_user"=>$cek_fase_2);
+                        $this->response($message, REST_Controller::HTTP_OK);
+                    }else{
+                        $message = array("success"=>2);
+                        $this->response($message, REST_Controller::HTTP_OK);
+                    }
                 }
             }else{
                 $message = array("success"=>3);

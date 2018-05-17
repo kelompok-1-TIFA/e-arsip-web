@@ -211,7 +211,7 @@
                                                             <select class="selectpicker" data-style="btn select-with-transition" title="Pilih Level User" data-size="7" name="level_user">
                                                                 <option <?php if($level_user=="kepala desa"){echo "SELECTED";} ?> value="kepala desa">Kepala Desa</option>
                                                                 <option <?php if($level_user=="sekertaris"){echo "SELECTED";} ?> value="sekertaris">Sekertaris Desa</option>
-                                                                <option <?php if($level_user=="kepala desa"){echo "SELECTED";} ?> value="kepala bagian">Kepala Bagian</option>
+                                                                <option <?php if($level_user=="kepala bagian"){echo "SELECTED";} ?> value="kepala bagian">Kepala Bagian</option>
                                                                 <option <?php if($level_user=="staf"){echo "SELECTED";} ?> value="staf">Staf</option>
                                                                 <option <?php if($level_user=="admin"){echo "SELECTED";} ?> value="admin">Admin</option>
                                                             </select>

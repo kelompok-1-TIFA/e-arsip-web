@@ -226,6 +226,8 @@ class Pegawai extends CI_Controller {
                     'nip'                   => $nip,
                     'niap'                  => $niap, 
                     'nama'                  => $nama, 
+                    'id_jabatan_pegawai'    => $id_jabatan_pegawai,
+                    'id_bagian_pegawai'     => $id_bagian_pegawai,
                     'jenis_kelamin'         => $jenis_kelamin, 
                     'tempat_lahir'          => $tempat_lahir, 
                     'tgl_lahir'             => $tgl_lahir, 
@@ -294,6 +296,8 @@ class Pegawai extends CI_Controller {
                 'nip'                   => $nip,
                 'niap'                  => $niap, 
                 'nama'                  => $nama, 
+                'id_jabatan_pegawai'    => $id_jabatan_pegawai,
+                'id_bagian_pegawai'     => $id_bagian_pegawai,
                 'jenis_kelamin'         => $jenis_kelamin, 
                 'tempat_lahir'          => $tempat_lahir, 
                 'tgl_lahir'             => $tgl_lahir, 
@@ -306,34 +310,24 @@ class Pegawai extends CI_Controller {
             );
 
             $data_login = array(
-                    'nip_user'      => $nip,
-                    'username'      => $username,
-                    'password'      => $password_encrypt,
-                    'level_user'    => $level_user,
-                );
+                'nip_user'      => $nip,
+                'username'      => $username,
+                'password'      => $password_encrypt,
+                'level_user'    => $level_user,
+            );
 
-                $res = $this->M_pegawai->update($this->input->post('id'),$data);
-                if($res>=0){
-                    $res1 = $this->M_user->update($this->input->post('id'),$data_login);
-                    if ($res1>=0) {
-                        $this->session->set_flashdata("sukses", 'swal({
-                            title: "Berhasi!",
-                            text: "Data Berhasil diUpdate!",
-                            buttonsStyling: false,
-                            confirmButtonClass: "btn btn-success",
-                            type: "success"
-                        }).catch(swal.noop)');
-                        header('location:'.base_url().'pegawai');
-                    }else{
-                        $this->session->set_flashdata("alert", 'swal({
-                            title: "Gagal!",
-                            text: "Data Gagal diUpdate!",
-                            buttonsStyling: false,
-                            confirmButtonClass: "btn btn-danger",
-                            type: "error"
-                        }).catch(swal.noop)');
-                        header('location:'.base_url().'pegawai');
-                    }
+            $res = $this->M_pegawai->update($this->input->post('id'),$data);
+            if($res>=0){
+                $res1 = $this->M_user->update($this->input->post('id'),$data_login);
+                if ($res1>=0) {
+                    $this->session->set_flashdata("sukses", 'swal({
+                        title: "Berhasi!",
+                        text: "Data Berhasil diUpdate!",
+                        buttonsStyling: false,
+                        confirmButtonClass: "btn btn-success",
+                        type: "success"
+                    }).catch(swal.noop)');
+                    header('location:'.base_url().'pegawai');
                 }else{
                     $this->session->set_flashdata("alert", 'swal({
                         title: "Gagal!",
@@ -344,6 +338,16 @@ class Pegawai extends CI_Controller {
                     }).catch(swal.noop)');
                     header('location:'.base_url().'pegawai');
                 }
+            }else{
+                $this->session->set_flashdata("alert", 'swal({
+                    title: "Gagal!",
+                    text: "Data Gagal diUpdate!",
+                    buttonsStyling: false,
+                    confirmButtonClass: "btn btn-danger",
+                    type: "error"
+                }).catch(swal.noop)');
+                header('location:'.base_url().'pegawai');
+            }
         }
     }
 

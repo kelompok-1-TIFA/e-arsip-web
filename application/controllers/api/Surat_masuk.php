@@ -16,6 +16,9 @@ class Surat_masuk extends REST_Controller {
         if ($this->get('api')=="suratmasukall") {
             $surat_masuk = $this->M_surat_masuk->get_all();
             $this->response($surat_masuk, REST_Controller::HTTP_OK);
+        }else if ($this->get('api')=="suratmasukdetail") {
+            $surat_masuk = $this->M_surat_masuk->get_by_id($this->get('id'));
+            $this->response($surat_masuk, REST_Controller::HTTP_OK);
         }
     }
 
