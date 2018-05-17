@@ -46,13 +46,13 @@
                         </div>
 
                         <div>
+                            <body>
                                
                                     
                                         
-                                            <center><b><iframe src="<?php
-                                            echo base_url() ?>assets/uploads/Surat%20Keterangan%20Usaha/CCCApply.pdf" width="550" height="600"></iframe></b></center>
+                                            <center><iframe src="e-Arsip/assets/uploads/file/Surat%20Keterangan%20Usaha/CCCApply.pdf" type="application/pdf" width="550" height="600"></iframe></center>
                                         
-                                    
+                            </body>
                         </div>
 
                         
