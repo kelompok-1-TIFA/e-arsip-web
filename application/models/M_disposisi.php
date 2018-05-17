@@ -18,6 +18,7 @@ class M_disposisi extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->join("tb_surat_masuk","tb_surat_masuk.id_surat_masuk=tb_disposisi.id_surat_masuk");
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }

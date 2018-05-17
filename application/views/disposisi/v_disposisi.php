@@ -33,13 +33,14 @@
                                         <tr>
                                             <td><?php echo ++$no; ?></td>
 
-                                             <td><?php echo $disposisi->id_surat_masuk ?></td>   
+                                            <td><?php echo $disposisi->no_surat ?></td>   
                                             <td><?php echo $disposisi->isi_disposisi ?></td>
                                             <td><?php echo $disposisi->sifat ?></td>
                                             <td><?php echo $disposisi->catatan ?></td>
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url('disposisi/edit/'.$disposisi->id_disposisi) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a href="#" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
+                                                <a href="<?php echo base_url('disposisi/lembar_disposisi/'.$disposisi->id_disposisi) ?>" title="Lembar Disposisi" class="btn btn-link btn-info"><i class="material-icons">insert_drive_file</i></a>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>
