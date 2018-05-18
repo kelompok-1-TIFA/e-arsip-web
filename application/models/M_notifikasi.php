@@ -3,13 +3,12 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class M_surat_masuk extends CI_Model
+class M_notifikasi extends CI_Model
 {
 
-    public $table = 'tb_surat_masuk';
-    public $id = 'id_surat_masuk';
+    public $table = 'tb_notifikasi';
+    public $id = 'id_notifikasi';
     public $order = 'DESC';
-    public $tahun = 2018;
 
     function __construct()
     {
@@ -23,11 +22,9 @@ class M_surat_masuk extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
-    function get_satu_baru()
+    function get_where($where)
     {
-        $this->db->limit(1);
-        $this->db->order_by($this->id, $this->order);
-        return $this->db->get($this->table)->row();
+        return $this->db->query('select * from tb_notifikasi '.$where)->result();
     }
 
     // get data by id
@@ -35,20 +32,6 @@ class M_surat_masuk extends CI_Model
     {
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
-    }
-
-    function get_where($where)
-    {
-        return $this->db->query('select * from tb_surat_masuk '.$where)->result();
-    }
-
-    function get_grafik($tahun){
-        return $this->db->query("SELECT MONTH(tgl_arsip) AS bulan, COUNT(*) AS jumlah FROM tb_surat_masuk WHERE YEAR(tgl_arsip)='$tahun' GROUP BY MONTH(tgl_arsip)")->result();
-    }
-
-    function get_jumlah_grafik($tahun)
-    {
-       return $this->db->query("SELECT YEAR(tgl_arsip) AS tahun, COUNT(*) AS jumlah FROM tb_surat_masuk WHERE YEAR(tgl_arsip)='$tahun' GROUP BY YEAR(tgl_arsip)")->row();
     }
     
     // get total rows
