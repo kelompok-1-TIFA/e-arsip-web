@@ -164,7 +164,7 @@ class Disposisi extends CI_Controller {
                 'catatan'                       => $row->catatan,
                 'id_surat_masuk'                => $row->id_surat_masuk,
                 'data_bagian'                   => $this->M_bagian->get_all(),
-                'page_title'                    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+                'page_title'                    => ucwords(str_replace("_", " ", $this->uri->segment(2))),
             );
             $this->load->view('disposisi/v_lembar_disposisi', $data);
         } else {
