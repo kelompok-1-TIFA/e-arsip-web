@@ -20,6 +20,8 @@
                                             <td>No Surat</td>
                                             <td>:</td>
                                             <td></td>
+                                            
+
                                         </tr>
                                         <tr>
                                             <td>Asal Surat</td>
