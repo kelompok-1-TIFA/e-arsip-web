@@ -27,11 +27,12 @@
                                             <td>Asal Surat</td>
                                             <td>:</td>
                                             <td></td>
+
                                         </tr>
                                         <tr>
                                             <td>Sifat</td>
                                             <td>:</td>
-                                            <td></td>
+                                            <td><?php echo $sifat; ?></td>
                                         </tr>
                                     </table>
                                 </div>
@@ -47,12 +48,14 @@
                                             <td>:</td>
                                             <td></td>
                                         </tr>
+
                                     </table>
                                 </div>
                             </div>
                             <div class="row my-4">
                                 <div class="col-6 border">
                                     <p>Isi Disposisi : </p>
+                                    <p><?php echo $isi_disposisi; ?></p>
                                 </div>
                                 <div class="col-6 border">
                                     <p>Kepada : </p>
