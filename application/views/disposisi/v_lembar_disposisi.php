@@ -52,7 +52,7 @@
                                 <div class="col-6 border">
                                     <p>Isi Disposisi : </p>
                                 </div>
-                                <div class="col-6 border">
+                                <div class="col-6 border border-left-0">
                                     <p>Kepada : </p>
                                     <div class="row">
                                         <?php foreach ($data_bagian as $bagian) { ?>
@@ -70,7 +70,7 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-12 border">
+                                <div class="col-md-12 border border-top-0">
                                     <p>Catatan :</p>
                                     <p><?php echo $catatan; ?></p>
                                 </div>
