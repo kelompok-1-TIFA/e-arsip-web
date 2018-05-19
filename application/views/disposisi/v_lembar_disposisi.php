@@ -74,7 +74,7 @@
                                 </div>
                                 <div class="col-md-12 border">
                                     <p>Catatan :</p>
-                                    <p>snvsvbsdvndd vdvdivndvd vd vd b d bidb dbdb</p>
+                                    <p><?php echo $catatan; ?></p>
                                 </div>
                                 
                             </div>

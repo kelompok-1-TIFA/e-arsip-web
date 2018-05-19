@@ -265,10 +265,10 @@
         <?php } ?>
         <!-- Container -->
     </div>
+
     <!-- Content -->
 <?php $this->load->view('inc/footer'); ?>      
 <?php $this->load->view('inc/js'); ?>
-<!-- <script src="<?php echo base_url('assets/js/plugins/dashboard.js') ?>"></script> -->
 <script type="text/javascript">
 
 $(document).ready(function(){
