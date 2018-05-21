@@ -77,6 +77,8 @@
                             data:{popup:view},
                             dataType:"json",
                         });  
+                    }else{
+                        $('.data_notifikasi').html(data.no_notif);
                     }
                     if (data.jmlpopup > 0) {
                         enableAutoplay();

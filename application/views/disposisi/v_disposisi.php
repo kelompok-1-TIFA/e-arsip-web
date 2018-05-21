@@ -30,7 +30,7 @@
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach ($data_disposisi as $disposisi): ?>
-                                        <tr>
+                                        <tr id="datanya">
                                             <td><?php echo ++$no; ?></td>
 
                                             <td><?php echo $disposisi->no_surat ?></td>   
@@ -39,7 +39,7 @@
                                             <td><?php echo $disposisi->catatan ?></td>
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url('disposisi/edit/'.$disposisi->id_disposisi) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
-                                                <a href="#" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
+                                                <a onclick="deletedata(<?php echo $disposisi->id_disposisi.",'".$disposisi->no_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
                                                 <a href="<?php echo base_url('disposisi/lembar_disposisi/'.$disposisi->id_disposisi) ?>" title="Lembar Disposisi" class="btn btn-link btn-info"><i class="material-icons">insert_drive_file</i></a>
                                             </td>
                                         </tr>
@@ -84,5 +84,46 @@ $(document).ready(function() {
     <?php echo $this->session->flashdata('sukses'); ?>
     <?php echo $this->session->flashdata('alert'); ?>
     <?php echo $this->session->flashdata('message'); ?>
+
+    function deletedata(id,datanya){
+        swal({
+            title: "Anda Yakin?",
+            text: "Data "+datanya+" Akan Dihapus Secara Permanen!",
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            confirmButtonText: 'Yes, delete it!',
+            buttonsStyling: false
+        }).then(function(){
+            $.ajax({
+                url: "<?php echo base_url('disposisi/hapus') ?>",
+                type: "post",
+                data: {id:id},
+                success:function(){
+                    swal({
+                        title: 'Berhasil!',
+                        text: 'Data Berhasil Di Hapus.',
+                        type: 'success',
+                        confirmButtonClass: "btn btn-success",
+                        buttonsStyling: false
+                    })
+                    $("#datanya").fadeTo("slow", 0.7, function(){
+                        $(this).remove();
+                    })
+                },error:function(){
+                    swal({
+                        title: 'Gagal!',
+                        text: 'Data Gagal Di Hapus.',
+                        type: 'error',
+                        confirmButtonClass: "btn btn-danger",
+                        buttonsStyling: false
+                    })
+                }
+            });
+        }).catch(swal.noop)
+    }
 </script>
+
+
 </html>

@@ -138,11 +138,7 @@ class Awal extends CI_Controller {
 
     public function notification(){
         if (isset($_GET['id_notif'])) {
-            $data = array(
-                'id_notif' => $_GET['id_notif'],
-                'status_baca' => 'y' 
-            );
-            $this->M_notifikasi->update($data['id_notif'],$data);
+            $this->M_notifikasi->delete($_GET['id_notif']);
             if ($_GET['jenis']=="surat masuk") {
                 redirect(base_url('surat_masuk/detail/'.$_GET['id']));
             }elseif ($_GET['jenis']=="surat keluar") {
@@ -158,14 +154,14 @@ class Awal extends CI_Controller {
                 $this->M_notifikasi->updatebyuser($this->session->userdata('id_user'),$data_notifupdate);
             }else{
                 $id_user_login=$this->session->userdata('id_user');
-                $jmlnotif=$this->M_notifikasi->get_where("WHERE status_baca='t' AND id_user='$id_user_login'")->num_rows();
+                $jmlnotif=$this->M_notifikasi->get_where("WHERE id_user='$id_user_login'")->num_rows();
                 $jmlpopup=$this->M_notifikasi->get_where("WHERE status_notif='t' AND id_user='$id_user_login'")->num_rows();
                 $output="";
                 $output1="";
                 $url="";
                 $type="";
                 $url1="";
-                $data_notif=$this->M_notifikasi->get_where("WHERE status_baca='t' AND id_user='$id_user_login' ORDER BY id_notif DESC")->result();
+                $data_notif=$this->M_notifikasi->get_where("WHERE id_user='$id_user_login' ORDER BY id_notif DESC")->result();
                 $no=0;
                 foreach ($data_notif as $notif) { 
                     ++$no;
@@ -217,6 +213,7 @@ class Awal extends CI_Controller {
                     'notificationpopup'     => $output1,
                     'unseen_notification'   => $jmlnotif,
                     'jmlpopup'              => $jmlpopup, 
+                    'no_notif'              => "<p class='dropdown-item'>No Notification</p>"
                 );
                 $data1 = json_encode($data);
                 echo $data1;

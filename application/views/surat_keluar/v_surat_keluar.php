@@ -35,7 +35,7 @@
                                             <td><?php echo $surat_keluar->no_surat ?></td>   
                                             <td><?php echo $surat_keluar->tujuan ?></td>
                                             <td><?php echo $surat_keluar->perihal ?></td>
-                                            <td><?php echo $surat_keluar->tgl_arsip ?></td>
+                                            <td><?php echo date("d F Y", strtotime($surat_keluar->tgl_arsip)) ?></td>
                                             <td class="text-right td-actions">
                                                 <a href="<?php echo base_url('surat_keluar/edit/'.$surat_keluar->id_surat_keluar) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a onclick="deletedata(<?php echo $surat_keluar->id_surat_keluar.",'".$surat_keluar->no_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
