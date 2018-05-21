@@ -169,9 +169,13 @@ class Awal extends CI_Controller {
                 $no=0;
                 foreach ($data_notif as $notif) { 
                     ++$no;
-                    if ($no%2==0) { $hr="<hr>"; }else{ $hr= ""; }
+                    if ($no%2==0) { $hr="<hr>"; $no=1;}else{ $hr= ""; }
                     $url = base_url('awal/notification/?id_notif='.$notif->id_notif.'&id='.$notif->id.'&jenis='.$notif->jenis_notif);
-                    $output.="<a style='width: 300px;' class='dropdown-item' href='".$url."'><b>".$notif->judul_notif." "."</b> - ".$notif->isi_notif."</a>".$hr;
+                    $output.=$hr."<a class='dropdown-item' href='".$url."'>
+                    <div class='row'>
+                    <b>".$notif->judul_notif." "."</b>".$notif->isi_notif.
+                    "</div>
+                    </a>";
                 } 
 
                 $data_notifpopup=$this->M_notifikasi->get_where("WHERE status_notif='t' AND id_user='$id_user_login'")->result();
@@ -179,7 +183,7 @@ class Awal extends CI_Controller {
                 foreach ($data_notifpopup as $notifpopup) {
                     $url1 = "url: '".base_url('awal/notification/?id_notif='.$notifpopup->id_notif.'&id='.$notifpopup->id.'&jenis='.$notifpopup->jenis_notif)."',";
                     if ($notifpopup->jenis_notif=="surat masuk") {
-                        $type = "type : 'warning',";
+                        $type = "type : 'rose',";
                     }elseif ($notifpopup->jenis_notif=="surat keluar") {
                         $type = "type : 'info',";
                     }else{

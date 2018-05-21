@@ -7,6 +7,8 @@ class Disposisi extends CI_Controller {
         parent::__construct();
         $this ->load-> model('M_disposisi');
         $this ->load-> model('M_bagian');
+        $this ->load-> model('M_user');
+        $this ->load-> model('M_notifikasi');
         $this ->load-> model('M_surat_masuk');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
@@ -98,15 +100,16 @@ class Disposisi extends CI_Controller {
         if($result>=0){
             $datauser = $this->M_user->get_all();
             $dataterakhir = $this->M_disposisi->get_satu_baru();
+            $datasurat = $this->M_surat_masuk->get_by_id($id_surat_masuk);
             foreach ($datauser as $user) {
-                if ($user->level_user=="kepala desa" or $user->level_user=="kepala bagian") {
+                if ($user->level_user=="kepala desa" or $user->level_user=="kepala bagian" or $user->level_user=="staf") {
                     $data_notif = array(
                         'id_notif'      => "",
                         'id_user'       => $user->id_user,
                         'id'            => $dataterakhir->id_surat_masuk,
                         'jenis_notif'   => "disposisi",
-                        'judul_notif'   => "Disposisi Baru",
-                        'isi_notif'     => "No. Surat ".$no_surat." Perihal ".$perihal,
+                        'judul_notif'   => "Disposisi Baru ",
+                        'isi_notif'     => "No. Surat ".$datasurat->no_surat." Perihal ".$datasurat->perihal,
                     );
                     $this->M_notifikasi->insert($data_notif);    
                 }

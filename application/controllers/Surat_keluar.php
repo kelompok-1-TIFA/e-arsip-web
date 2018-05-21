@@ -118,15 +118,15 @@ class Surat_keluar extends CI_Controller {
             $result = $this->M_surat_keluar->insert($data);
             if($result>=0){
                 $datauser = $this->M_user->get_all();
-                $dataterakhir = $this->M_surat_masuk->get_satu_baru();
+                $dataterakhir = $this->M_surat_keluar->get_satu_baru();
                 foreach ($datauser as $user) {
                     if ($user->level_user=="kepala desa" or $user->level_user=="kepala bagian") {
                         $data_notif = array(
                             'id_notif'      => "",
                             'id_user'       => $user->id_user,
-                            'id'            => $dataterakhir->id_surat_masuk,
-                            'jenis_notif'   => "surat masuk",
-                            'judul_notif'   => "Surat Masuk Baru",
+                            'id'            => $dataterakhir->id_surat_keluar,
+                            'jenis_notif'   => "surat keluar",
+                            'judul_notif'   => "Surat Keluar Baru ",
                             'isi_notif'     => "No. Surat ".$no_surat." Perihal ".$perihal,
                         );
                         $this->M_notifikasi->insert($data_notif);    

@@ -23,15 +23,24 @@ class M_disposisi extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_satu_baru()
+    {
+        $this->db->limit(1);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->row();
+    }
+
     // get data by id
     function get_by_id($id)
     {
+        $this->db->join("tb_surat_masuk","tb_surat_masuk.id_surat_masuk=tb_disposisi.id_surat_masuk");
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
 
     function get_by_bagian($id)
     {
+        $this->db->join("tb_surat_masuk","tb_surat_masuk.id_surat_masuk=tb_disposisi.id_surat_masuk");
         $this->db->where('id_bagian', $id);
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();

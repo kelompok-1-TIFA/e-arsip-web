@@ -13,6 +13,7 @@ class User extends REST_Controller {
     }
 
     function index_post(){
+        $this->post('api')="login";
         if ($this->post('api')=="login") {
             $username = $this->post('user');
             $password = $this->post('pass');
