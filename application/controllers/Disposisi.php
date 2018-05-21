@@ -96,6 +96,21 @@ class Disposisi extends CI_Controller {
             );
         $result = $this->M_disposisi->insert($data);
         if($result>=0){
+            $datauser = $this->M_user->get_all();
+            $dataterakhir = $this->M_disposisi->get_satu_baru();
+            foreach ($datauser as $user) {
+                if ($user->level_user=="kepala desa" or $user->level_user=="kepala bagian") {
+                    $data_notif = array(
+                        'id_notif'      => "",
+                        'id_user'       => $user->id_user,
+                        'id'            => $dataterakhir->id_surat_masuk,
+                        'jenis_notif'   => "disposisi",
+                        'judul_notif'   => "Disposisi Baru",
+                        'isi_notif'     => "No. Surat ".$no_surat." Perihal ".$perihal,
+                    );
+                    $this->M_notifikasi->insert($data_notif);    
+                }
+            }
             $this->session->set_flashdata("sukses", 'swal({
                 title: "Berhasi!",
                 text: "Data Berhasil diSimpan!",

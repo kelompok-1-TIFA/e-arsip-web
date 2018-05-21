@@ -22,6 +22,13 @@ class M_surat_keluar extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function get_satu_baru()
+    {
+        $this->db->limit(1);
+        $this->db->order_by($this->id, $this->order);
+        return $this->db->get($this->table)->row();
+    }
+
     function get_where($where)
     {
         return $this->db->query('select * from tb_surat_keluar '.$where)->result();

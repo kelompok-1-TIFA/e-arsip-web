@@ -38,11 +38,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
     <link rel="stylesheet" href="<?php echo base_url('assets/css/material-dashboard.min790f.css?v=2.0.1') ;?>">
-
-    <link rel="stylesheet" href="<?php echo base_url('assets/plugins/bootstrap-datepicker/css/bootstrap-datetimepicker.min.css'); ?>">
-
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="<?php echo base_url()?>assets/assets-for-demo/demo.css" rel="stylesheet"/>
+    <script src="<?php echo base_url() ?>assets/js/core/jquery.min.js"></script>
     <script type="text/javascript">
         if (document.readyState === 'complete') {
             if (window.location != window.parent.location) {
@@ -52,3 +50,46 @@
             }
         };
     </script>
+    <?php if ($this->session->userdata('status_login')=="login") { ?>
+    <script>
+    $("document").ready(function(){
+        var base_url="<?php echo base_url(); ?>";
+        var x = document.getElementById("myAudio");
+
+        function enableAutoplay() { 
+            x.autoplay = true;
+            x.load();
+        }
+        function load_unseen_notification(view = ''){
+            $.ajax({
+                url:base_url+"awal/notification",
+                method:"POST",
+                data:{baca:view},
+                dataType:"json",
+                success:function(data){
+                    $('.data_notifikasi').html(data.notification);
+                    if(data.unseen_notification > 0){
+                        $('#jml_notifikasi').html(data.unseen_notification);
+                        $('.popupnotifikasi').html(data.notificationpopup);
+                        $.ajax({
+                            url:base_url+"awal/notification",
+                            method:"POST",
+                            data:{popup:view},
+                            dataType:"json",
+                        });  
+                    }
+                    if (data.jmlpopup > 0) {
+                        enableAutoplay();
+                    }
+                }
+            });
+        }
+     
+        load_unseen_notification("");
+         
+        setInterval(function(){ 
+            load_unseen_notification(""); 
+        }, 7000);
+    });
+    </script>
+    <?php } ?>

@@ -13,6 +13,7 @@ class Awal extends CI_Controller {
         $this->load->model('M_surat_masuk');
         $this->load->model('M_surat_keluar');
         $this->load->model('M_disposisi');
+        $this->load->model('M_notifikasi');
     }
 
     public function index()
@@ -133,5 +134,89 @@ class Awal extends CI_Controller {
     public function logout(){
         $this->session->sess_destroy();
         redirect(base_url());
+    }
+
+    public function notification(){
+        if (isset($_GET['id_notif'])) {
+            $data = array(
+                'id_notif' => $_GET['id_notif'],
+                'status_baca' => 'y' 
+            );
+            $this->M_notifikasi->update($data['id_notif'],$data);
+            if ($_GET['jenis']=="surat masuk") {
+                redirect(base_url('surat_masuk/detail/'.$_GET['id']));
+            }elseif ($_GET['jenis']=="surat keluar") {
+                redirect(base_url('surat_keluar/detail/'.$_GET['id']));
+            }else{
+                redirect(base_url('disposisi/lembar_disposisi/'.$_GET['id']));
+            }
+        }else{
+            if (isset($_POST['popup'])) {
+                $data_notifupdate = array(
+                    'status_notif' => 'y' 
+                );
+                $this->M_notifikasi->updatebyuser($this->session->userdata('id_user'),$data_notifupdate);
+            }else{
+                $id_user_login=$this->session->userdata('id_user');
+                $jmlnotif=$this->M_notifikasi->get_where("WHERE status_baca='t' AND id_user='$id_user_login'")->num_rows();
+                $jmlpopup=$this->M_notifikasi->get_where("WHERE status_notif='t' AND id_user='$id_user_login'")->num_rows();
+                $output="";
+                $output1="";
+                $url="";
+                $type="";
+                $url1="";
+                $data_notif=$this->M_notifikasi->get_where("WHERE status_baca='t' AND id_user='$id_user_login' ORDER BY id_notif DESC")->result();
+                $no=0;
+                foreach ($data_notif as $notif) { 
+                    ++$no;
+                    if ($no%2==0) { $hr="<hr>"; }else{ $hr= ""; }
+                    $url = base_url('awal/notification/?id_notif='.$notif->id_notif.'&id='.$notif->id.'&jenis='.$notif->jenis_notif);
+                    $output.="<a style='width: 300px;' class='dropdown-item' href='".$url."'><b>".$notif->judul_notif." "."</b> - ".$notif->isi_notif."</a>".$hr;
+                } 
+
+                $data_notifpopup=$this->M_notifikasi->get_where("WHERE status_notif='t' AND id_user='$id_user_login'")->result();
+
+                foreach ($data_notifpopup as $notifpopup) {
+                    $url1 = "url: '".base_url('awal/notification/?id_notif='.$notifpopup->id_notif.'&id='.$notifpopup->id.'&jenis='.$notifpopup->jenis_notif)."',";
+                    if ($notifpopup->jenis_notif=="surat masuk") {
+                        $type = "type : 'warning',";
+                    }elseif ($notifpopup->jenis_notif=="surat keluar") {
+                        $type = "type : 'info',";
+                    }else{
+                        $type = "type : 'success',";
+                    } 
+
+                    $output1.="
+                    <script>
+                        $.notify({
+                            icon: 'report',
+                            title: '<strong>".$notifpopup->judul_notif."</strong><br>',
+                            message: '".$notifpopup->isi_notif."',
+                            ".$url1."
+                        },{
+                            ".$type."
+                            animate: {
+                                enter: 'animated fadeInUp',
+                                exit: 'animated fadeOutRight'
+                            },
+                            placement: {
+                                from: 'bottom',
+                                align: 'right'
+                            },
+                            z_index: 1031,
+                        });
+                    </script>";
+                }
+
+                $data = array(
+                    'notification'          => $output,
+                    'notificationpopup'     => $output1,
+                    'unseen_notification'   => $jmlnotif,
+                    'jmlpopup'              => $jmlpopup, 
+                );
+                $data1 = json_encode($data);
+                echo $data1;
+            }
+        }
     }
 }

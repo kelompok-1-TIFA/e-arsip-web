@@ -7,7 +7,7 @@ class M_notifikasi extends CI_Model
 {
 
     public $table = 'tb_notifikasi';
-    public $id = 'id_notifikasi';
+    public $id = 'id_notif';
     public $order = 'DESC';
 
     function __construct()
@@ -24,7 +24,7 @@ class M_notifikasi extends CI_Model
 
     function get_where($where)
     {
-        return $this->db->query('select * from tb_notifikasi '.$where)->result();
+        return $this->db->query('select * from tb_notifikasi '.$where);
     }
 
     // get data by id
@@ -57,6 +57,12 @@ class M_notifikasi extends CI_Model
     function update($id, $data)
     {
         $this->db->where($this->id, $id);
+        $this->db->update($this->table, $data);
+    }
+
+    function updatebyuser($id_user, $data)
+    {
+        $this->db->where('id_user', $id_user);
         $this->db->update($this->table, $data);
     }
 

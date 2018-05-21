@@ -20,14 +20,11 @@
                                             <td>No Surat</td>
                                             <td>:</td>
                                             <td></td>
-                                            
-
                                         </tr>
                                         <tr>
                                             <td>Asal Surat</td>
                                             <td>:</td>
                                             <td></td>
-
                                         </tr>
                                         <tr>
                                             <td>Sifat</td>
@@ -64,7 +61,7 @@
                                             <div class="col-6">
                                                 <div class="form-check">
                                                   <label class="form-check-label">
-                                                      <input class="form-check-input" type="checkbox" value="">
+                                                      <input class="form-check-input" type="checkbox" <?php if($id_bagian==$bagian->id_bagian){echo "checked";} ?> disabled>
                                                       <?php echo $bagian->bagian; ?>
                                                       <span class="form-check-sign">
                                                           <span class="check"></span>
@@ -79,7 +76,6 @@
                                     <p>Catatan :</p>
                                     <p><?php echo $catatan; ?></p>
                                 </div>
-                                
                             </div>
                             <div class="row my-4 justify-content-end">
                                 <div class="col-3 text-center">
@@ -95,6 +91,9 @@
                                         Nip:34382952358
                                     </p>
                                 </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <a href="" class="btn btn-primary">Print</a>
                             </div>
                         </div>
                     </div>
