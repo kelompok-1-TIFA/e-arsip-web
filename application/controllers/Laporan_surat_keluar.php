@@ -71,13 +71,8 @@ class Laporan_surat_keluar extends CI_Controller {
     }
 
     public function Laporan_harian_print(){
-        if (isset($_POST['proses'])) {
-            $dari=$this->input->post('dari');
-            $sampai=$this->input->post('sampai');
-        }else{
-            $dari=date("Y-m-d");
-            $sampai=date("Y-m-d");
-        }
+        $dari=$this->input->post('dari');
+        $sampai=$this->input->post('sampai');
         
         $surat_keluar = $this->M_surat_keluar->get_where("WHERE tgl_arsip BETWEEN '$dari' and '$sampai'");
 
@@ -90,13 +85,8 @@ class Laporan_surat_keluar extends CI_Controller {
         $this->load->view('laporan_surat_keluar/v_laporan_harian_surat_keluar_print',$data);
     }
     public function Laporan_bulanan_print(){
-        if (isset($_POST['proses'])) {
-            $bulan=$this->input->post('bulan');
-            $tahun=$this->input->post('tahun');
-        }else{
-            $bulan=date("m");
-            $tahun=date("Y");
-        }
+        $bulan=$this->input->post('bulan');
+        $tahun=$this->input->post('tahun');
         $surat_keluar = $this->M_surat_keluar->get_where("WHERE MONTH(tgl_arsip) = '$bulan' and YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(
@@ -108,11 +98,7 @@ class Laporan_surat_keluar extends CI_Controller {
         $this->load->view('laporan_surat_keluar/v_laporan_bulanan_surat_keluar_print',$data);
     }
     public function Laporan_tahunan_print(){
-        if (isset($_POST['proses'])) {
-            $tahun=$this->input->post('tahun');
-        }else{
-            $tahun=date("Y");
-        }
+        $tahun=$this->input->post('tahun');
         $surat_keluar = $this->M_surat_keluar->get_where("WHERE YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(
