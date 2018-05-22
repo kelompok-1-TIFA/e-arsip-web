@@ -121,7 +121,7 @@ class Disposisi extends CI_Controller {
                 confirmButtonClass: "btn btn-success",
                 type: "success"
             }).catch(swal.noop)');
-            header('location:'.base_url().'lembar_disposisi/'.$dataterakhir->id_disposisi);
+            header('location:'.base_url().'disposisi/lembar_disposisi/'.$dataterakhir->id_disposisi);
         }else{
             $this->session->set_flashdata("alert", 'swal({
                 title: "Gagal!",
