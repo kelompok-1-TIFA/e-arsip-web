@@ -109,7 +109,7 @@ class Disposisi extends CI_Controller {
                         'id'            => $dataterakhir->id_surat_masuk,
                         'jenis_notif'   => "disposisi",
                         'judul_notif'   => "Disposisi Baru ",
-                        'isi_notif'     => "No. Surat ".$datasurat->no_surat." Perihal ".$datasurat->perihal,
+                        'isi_notif'     => "No. Surat ".$datasurat->no_surat." Isi Disposisi ".$dataterakhir->isi_disposisi,
                     );
                     $this->M_notifikasi->insert($data_notif);    
                 }
