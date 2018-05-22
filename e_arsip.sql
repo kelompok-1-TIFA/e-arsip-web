@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2018 at 04:12 AM
+-- Generation Time: May 22, 2018 at 09:38 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -63,15 +63,18 @@ CREATE TABLE `tb_disposisi` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tb_disposisi`
---
-
-INSERT INTO `tb_disposisi` (`id_disposisi`, `id_bagian`, `isi_disposisi`, `sifat`, `catatan`, `id_surat_masuk`) VALUES
-(10, 6, 'dsbbd1', 'bfbfb1', 'fbfb1', 10);
-
---
 -- Triggers `tb_disposisi`
 --
+DROP TRIGGER IF EXISTS `hapus disposisi`;
+DELIMITER $$
+CREATE TRIGGER `hapus disposisi` AFTER DELETE ON `tb_disposisi` FOR EACH ROW BEGIN
+ UPDATE tb_surat_masuk
+ SET status_disposisi = 't'
+ WHERE
+ id_surat_masuk = OLD.id_surat_masuk;
+ END
+$$
+DELIMITER ;
 DROP TRIGGER IF EXISTS `mendisposisikan`;
 DELIMITER $$
 CREATE TRIGGER `mendisposisikan` AFTER INSERT ON `tb_disposisi` FOR EACH ROW BEGIN
@@ -154,7 +157,17 @@ CREATE TABLE `tb_notifikasi` (
 --
 
 INSERT INTO `tb_notifikasi` (`id_notif`, `id_user`, `id`, `jenis_notif`, `judul_notif`, `isi_notif`, `status_notif`) VALUES
-(10, 4, 14, 'surat keluar', 'Surat Keluar Baru ', 'No. Surat 5435436/747 Perihal bfdbfdb', 't');
+(10, 4, 14, 'surat keluar', 'Surat Keluar Baru ', 'No. Surat 5435436/747 Perihal bfdbfdb', 't'),
+(12, 6, 10, 'disposisi', 'Disposisi Baru ', 'No. Surat 0087/0087 Perihal -', 't'),
+(13, 4, 10, 'disposisi', 'Disposisi Baru ', 'No. Surat 0087/0087 Perihal -', 't'),
+(15, 6, 10, 'disposisi', 'Disposisi Baru ', 'No. Surat 0098/00876 Perihal -', 't'),
+(16, 4, 10, 'disposisi', 'Disposisi Baru ', 'No. Surat 0098/00876 Perihal -', 't'),
+(18, 4, 13, 'surat masuk', 'Surat Masuk Baru ', 'No. Surat bfbfb Perihal fbfb', 't'),
+(20, 6, 10, 'disposisi', 'Disposisi Baru ', 'No. Surat bfbfb Perihal fbfb', 't'),
+(21, 4, 10, 'disposisi', 'Disposisi Baru ', 'No. Surat bfbfb Perihal fbfb', 't'),
+(23, 4, 14, 'surat masuk', 'Surat Masuk Baru ', 'No. Surat vvv676/79 Perihal jhvhvjv', 't'),
+(25, 6, 14, 'disposisi', 'Disposisi Baru ', 'No. Surat vvv676/79 Perihal jhvhvjv', 't'),
+(26, 4, 14, 'disposisi', 'Disposisi Baru ', 'No. Surat vvv676/79 Perihal jhvhvjv', 't');
 
 -- --------------------------------------------------------
 
@@ -265,7 +278,8 @@ INSERT INTO `tb_surat_masuk` (`id_surat_masuk`, `no_surat`, `asal_surat`, `isi_s
 (7, '0089/0067', 'Dinas Sosial', 'Rapat Triwuan ', 4, '-', '2018-05-05', '2018-05-14', '-', 't', './assets/uploads/file/Surat%20Penduduk/putu.jpg'),
 (8, '0098/00876', 'Kantor Desa Taman Sari', 'Silaturahmi ', 4, '-', '2018-05-04', '2018-05-14', '-', 't', './assets/uploads/file/Surat%20Penduduk/piscok1.jpg'),
 (9, '0087/0087', 'Kantor Kecamatan Balung', 'Permintaan data penduduk', 4, '-', '2018-05-02', '2018-05-14', '-', 't', './assets/uploads/file/Surat%20Penduduk/putu1.jpg'),
-(10, '00998/0098', 'Kantor Kecamatan Balung', 'Pendataan keterangan usaha', 3, '-', '2018-05-01', '2018-05-14', '-', 'y', './assets/uploads/file/Surat%20Keterangan%20Usaha/bkp.jpg');
+(10, '00998/0098', 'Kantor Kecamatan Balung', 'Pendataan keterangan usaha', 3, '-', '2018-05-01', '2018-05-14', '-', 't', './assets/uploads/file/Surat%20Keterangan%20Usaha/bkp.jpg'),
+(13, 'bfbfb', 'fbfbfbf', 'fbfbf', 2, 'fbfb', '2018-05-16', '2018-05-22', 'fbfbfb', 't', 'assets/uploads/file/Surat%20Kelahiran/E41160474_-_Vyan_Ary_Pratama_(3).doc');
 
 -- --------------------------------------------------------
 
@@ -372,7 +386,7 @@ ALTER TABLE `tb_bagian`
 -- AUTO_INCREMENT for table `tb_disposisi`
 --
 ALTER TABLE `tb_disposisi`
-  MODIFY `id_disposisi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_disposisi` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `tb_jabatan`
 --
@@ -387,7 +401,7 @@ ALTER TABLE `tb_jenis_surat`
 -- AUTO_INCREMENT for table `tb_notifikasi`
 --
 ALTER TABLE `tb_notifikasi`
-  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_notif` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 --
 -- AUTO_INCREMENT for table `tb_surat_keluar`
 --
@@ -397,7 +411,7 @@ ALTER TABLE `tb_surat_keluar`
 -- AUTO_INCREMENT for table `tb_surat_masuk`
 --
 ALTER TABLE `tb_surat_masuk`
-  MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_surat_masuk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `tb_user`
 --
