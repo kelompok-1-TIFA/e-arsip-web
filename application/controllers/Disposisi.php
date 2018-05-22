@@ -121,7 +121,7 @@ class Disposisi extends CI_Controller {
                 confirmButtonClass: "btn btn-success",
                 type: "success"
             }).catch(swal.noop)');
-            header('location:'.base_url().'disposisi');
+            header('location:'.base_url().'lembar_disposisi/'.$dataterakhir->id_disposisi);
         }else{
             $this->session->set_flashdata("alert", 'swal({
                 title: "Gagal!",
@@ -174,6 +174,7 @@ class Disposisi extends CI_Controller {
     public function lembar_disposisi($id){
         $row = $this->M_disposisi->get_by_id($id);
         if ($row) {
+
             $data = array(
                 'id_disposisi'                  => $row->id_disposisi,
                 'id_bagian'                     => $row->id_bagian,
@@ -181,6 +182,10 @@ class Disposisi extends CI_Controller {
                 'sifat'                         => $row->sifat,
                 'catatan'                       => $row->catatan,
                 'id_surat_masuk'                => $row->id_surat_masuk,
+                'no_surat'                      => $row->no_surat,
+                'asal_surat'                    => $row->asal_surat,
+                'tgl_arsip'                     => $row->tgl_arsip,
+                'tgl_surat'                     => $row->tgl_surat,
                 'data_bagian'                   => $this->M_bagian->get_all(),
                 'page_title'                    => ucwords(str_replace("_", " ", $this->uri->segment(2))),
             );
