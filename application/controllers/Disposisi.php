@@ -98,7 +98,7 @@ class Disposisi extends CI_Controller {
             );
         $result = $this->M_disposisi->insert($data);
         if($result>=0){
-            $datauser = $this->M_user->get_all();
+            $datauser = $this->M_user->get_where_default("LEFT JOIN tb_pegawai ON tb_pegawai.nip=tb_user.nip_user WHERE id_bagian_pegawai='$data[id_bagian]' or level_user = 'kepala desa'")->result();
             $dataterakhir = $this->M_disposisi->get_satu_baru();
             $datasurat = $this->M_surat_masuk->get_by_id($id_surat_masuk);
             foreach ($datauser as $user) {
@@ -106,7 +106,7 @@ class Disposisi extends CI_Controller {
                     $data_notif = array(
                         'id_notif'      => "",
                         'id_user'       => $user->id_user,
-                        'id'            => $dataterakhir->id_surat_masuk,
+                        'id'            => $dataterakhir->id_disposisi,
                         'jenis_notif'   => "disposisi",
                         'judul_notif'   => "Disposisi Baru ",
                         'isi_notif'     => "No. Surat ".$datasurat->no_surat." Isi Disposisi ".$dataterakhir->isi_disposisi,
@@ -173,6 +173,7 @@ class Disposisi extends CI_Controller {
 
     public function lembar_disposisi($id){
         $row = $this->M_disposisi->get_by_id($id);
+        $kepaladesa= $this->M_user->getwhere(array('level_user' => "kepala desa", ))->row();
         if ($row) {
 
             $data = array(
@@ -186,6 +187,8 @@ class Disposisi extends CI_Controller {
                 'asal_surat'                    => $row->asal_surat,
                 'tgl_arsip'                     => $row->tgl_arsip,
                 'tgl_surat'                     => $row->tgl_surat,
+                'nama_kepala_desa'              => $kepaladesa->nama,
+                'nip_kepala_desa'               => $kepaladesa->nip,
                 'data_bagian'                   => $this->M_bagian->get_all(),
                 'page_title'                    => ucwords(str_replace("_", " ", $this->uri->segment(2))),
             );
@@ -206,6 +209,7 @@ class Disposisi extends CI_Controller {
     public function lembar_disposisi_print($id){
        $row = $this->M_disposisi->get_by_id($id);
         if ($row) {
+
             $data = array(
                 'id_disposisi'                  => $row->id_disposisi,
                 'id_bagian'                     => $row->id_bagian,
@@ -213,8 +217,12 @@ class Disposisi extends CI_Controller {
                 'sifat'                         => $row->sifat,
                 'catatan'                       => $row->catatan,
                 'id_surat_masuk'                => $row->id_surat_masuk,
+                'no_surat'                      => $row->no_surat,
+                'asal_surat'                    => $row->asal_surat,
+                'tgl_arsip'                     => $row->tgl_arsip,
+                'tgl_surat'                     => $row->tgl_surat,
                 'data_bagian'                   => $this->M_bagian->get_all(),
-                'page_title'                    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+                'page_title'                    => ucwords(str_replace("_", " ", $this->uri->segment(2))),
             );
             $this->load->view('disposisi/v_disposisi', $data);
         } else {
