@@ -84,8 +84,8 @@ class Laporan_surat_masuk extends CI_Controller {
         $this->load->view('laporan_surat_masuk/v_laporan_harian_surat_masuk_print',$data);
     }
     public function Laporan_bulanan_print(){
-        $bulan=$this->input->post('bulan');
-        $tahun=$this->input->post('tahun');
+        $bulan=$this->input->get('bulan');
+        $tahun=$this->input->get('tahun');
         $surat_masuk = $this->M_surat_masuk->get_where("WHERE MONTH(tgl_arsip) = '$bulan' and YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(
@@ -97,7 +97,7 @@ class Laporan_surat_masuk extends CI_Controller {
         $this->load->view('laporan_surat_masuk/v_laporan_bulanan_surat_masuk_print',$data);
     }
     public function Laporan_tahunan_print(){
-        $tahun=$this->input->post('tahun');
+        $tahun=$this->input->get('tahun');
         $surat_masuk = $this->M_surat_masuk->get_where("WHERE YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(

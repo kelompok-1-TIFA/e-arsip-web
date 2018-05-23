@@ -71,8 +71,8 @@ class Laporan_surat_keluar extends CI_Controller {
     }
 
     public function Laporan_harian_print(){
-        $dari=$this->input->post('dari');
-        $sampai=$this->input->post('sampai');
+        $dari=$this->input->get('dari');
+        $sampai=$this->input->get('sampai');
         
         $surat_keluar = $this->M_surat_keluar->get_where("WHERE tgl_arsip BETWEEN '$dari' and '$sampai'");
 
@@ -85,8 +85,8 @@ class Laporan_surat_keluar extends CI_Controller {
         $this->load->view('laporan_surat_keluar/v_laporan_harian_surat_keluar_print',$data);
     }
     public function Laporan_bulanan_print(){
-        $bulan=$this->input->post('bulan');
-        $tahun=$this->input->post('tahun');
+        $bulan=$this->input->get('bulan');
+        $tahun=$this->input->get('tahun');
         $surat_keluar = $this->M_surat_keluar->get_where("WHERE MONTH(tgl_arsip) = '$bulan' and YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(
@@ -98,7 +98,7 @@ class Laporan_surat_keluar extends CI_Controller {
         $this->load->view('laporan_surat_keluar/v_laporan_bulanan_surat_keluar_print',$data);
     }
     public function Laporan_tahunan_print(){
-        $tahun=$this->input->post('tahun');
+        $tahun=$this->input->get('tahun');
         $surat_keluar = $this->M_surat_keluar->get_where("WHERE YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(
