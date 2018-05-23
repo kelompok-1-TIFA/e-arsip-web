@@ -217,9 +217,9 @@
                                     <?php $no=0; foreach ($data_surat_masuk as $surat_masuk): ?>
                                         <tr>
                                             <td><?php echo ++$no; ?></td>
-                                            <td><?php echo $surat_masuk->no_surat ?>;</td>
-                                            <td><?php echo $surat_masuk->asal_surat ?>;</td>
-                                            <td><?php echo $surat_masuk->perihal ?>;</td>
+                                            <td><?php echo $surat_masuk->no_surat ?></td>
+                                            <td><?php echo $surat_masuk->asal_surat ?></td>
+                                            <td><?php echo $surat_masuk->perihal ?></td>
                                             <td><a href="<?php echo base_url('surat_masuk/detail/'.$surat_masuk->id_surat_masuk) ?>" class="btn btn-link btn-info text-center" title="Jumlah Data "><i class="material-icons">remove_red_eye</i></a></td>
                                         </tr>
                                          <?php endforeach ?>
@@ -249,9 +249,9 @@
                                     <?php $no=0; foreach ($data_surat_keluar as $surat_keluar): ?>
                                         <tr>
                                             <td><?php echo ++$no; ?></td>
-                                            <td><?php echo $surat_keluar->no_surat ?>;</td>
-                                            <td><?php echo $surat_keluar->tujuan ?>;</td>
-                                            <td><?php echo $surat_keluar->perihal ?>;</td>
+                                            <td><?php echo $surat_keluar->no_surat ?></td>
+                                            <td><?php echo $surat_keluar->tujuan ?></td>
+                                            <td><?php echo $surat_keluar->perihal ?></td>
                                             <td><a href="<?php echo base_url('surat_keluar/detail/'.$surat_keluar->id_surat_keluar) ?>" class="btn btn-link btn-info text-center" title="Jumlah Data "><i class="material-icons">remove_red_eye</i></a></td>
                                         </tr>
                                         <?php endforeach ?>
