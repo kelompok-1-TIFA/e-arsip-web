@@ -9,10 +9,10 @@
         Jl.Pemuda no 23 Desa Balung Kidul kode Pos 68161
         <br>
         <hr>
-        <br>
         Laporan Harian Surat Keluar<br>
         dari : <?php echo $_GET['dari'];?> - sampai : <?php echo $_GET['sampai'];?>
     </div>
+    <br>
     <table cellpadding="10" border="1" style="border-collapse: collapse;">
         <thead>
             <tr>

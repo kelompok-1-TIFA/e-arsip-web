@@ -9,8 +9,11 @@
         Jl.Pemuda no 23 Desa Balung Kidul kode Pos 68161
         <br>
         <hr>
+        Laporan Tahunan Surat Keluar <br>
+        Tahun : <?php echo $_GET['tahun'];?>
         <br>
     </div>
+    <br>
     <table cellpadding="10" border="1" style="border-collapse: collapse;">
         <thead>
             <tr>
