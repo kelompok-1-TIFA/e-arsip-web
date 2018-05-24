@@ -10,6 +10,8 @@
         <br>
         <hr>
         <br>
+        Laporan Harian Surat Keluar<br>
+        dari : <?php echo $_GET['dari'];?> - sampai : <?php echo $_GET['sampai'];?>
     </div>
     <table cellpadding="10" border="1" style="border-collapse: collapse;">
         <thead>
