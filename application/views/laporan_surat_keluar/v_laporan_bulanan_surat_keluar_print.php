@@ -10,6 +10,9 @@
         <br>
         <hr>
         <br>
+         Laporan Bulanan Surat Keluar<br>
+        Bulan : <?php echo $_GET['bulan'];?> - Tahun : <?php echo $_GET['tahun'];?>
+        <br>
     </div>
     <table cellpadding="10" border="1" style="border-collapse: collapse;">
         <thead>
