@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <body onload=" window.print();" onafterprint="window.close();">
-     <div>
-        <center>PEMERINTAH KABUPATEN JEMBER</center>
-        <center>KECAMATAN BALUNG</center>
-        <center>KANTOR DESA BALUNG KIDUL</center>
-        <center>Jl.Pemuda no 23 Desa Balung Kidul kode Pos 68161</center>
-        <center></center>
+      <center> 
+    <div>
+        PEMERINTAH KABUPATEN JEMBER<br>
+        KECAMATAN BALUNG<br>
+        KANTOR DESA BALUNG KIDUL<br>
+        Jl.Pemuda no 23 Desa Balung Kidul kode Pos 68161
         <br>
         <hr>
         <br>
@@ -33,5 +33,6 @@
             <?php endforeach ?>
         </tbody>
     </table>
+    </center>
 </body>
 </html>
