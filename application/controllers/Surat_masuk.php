@@ -122,6 +122,34 @@ class Surat_masuk extends CI_Controller {
                         $this->M_notifikasi->insert($data_notif);    
                     }
                 }
+                /*send notif to android*/
+                /*$fcmUrl = 'https://fcm.googleapis.com/fcm/send';
+                $msg = array(
+                    'body'  => 'Body  Of Notification',
+                    'title' => 'Title Of Notification',
+                    'icon'  => 'myicon',
+                    'sound' => 'mySound'
+                  );
+                $notification = [
+                    "to" => '/topics/surat_masuk',
+                    'notification'  => $msg
+                ];
+
+                $headers = [
+                    'Authorization: key=AIzaSyAsOIHPNlalVqF-Eh3eSV8nl5XF_t6A3lU',
+                    'Content-Type: application/json'
+                ];
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL,$fcmUrl);
+                curl_setopt($ch, CURLOPT_POST, true);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($notification));
+                $result = curl_exec($ch);
+                curl_close($ch);*/
+                /*send notif to android*/
                 $this->session->set_flashdata("sukses", 'swal({
                     title: "Berhasi!",
                     text: "Data Berhasil diSimpan!",

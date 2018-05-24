@@ -57,6 +57,7 @@
             $('.card').removeClass('card-hidden');
         }, 700)
     });
+
 </script>
 <!-- Sharrre libray -->
 <script src="<?php echo base_url() ?>assets/assets-for-demo/js/jquery.sharrre.js"></script>

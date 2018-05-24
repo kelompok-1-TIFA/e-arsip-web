@@ -25,9 +25,10 @@
                                           </select>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-2">
                                         <div class="form-group">
-                                            <button type="submit" name="proses" class="btn btn-primary">Proses</button>
+                                            <button type="submit" name="proses" class="btn btn-primary btn-sm"><i class="material-icons">find_replace</i> Proses</button>
+                                            <a href="<?php echo base_url() ?>laporan_surat_masuk/laporan_tahunan_print?tahun=<?php echo $tahun ?>" target="_blank" class="btn btn-info btn-sm"><i class="material-icons">print</i> Print</a>
                                         </div>
                                     </div>
                                 </div>
@@ -50,7 +51,7 @@
                                             <td><?php echo $surat_masuk->no_surat ?></td>   
                                             <td><?php echo $surat_masuk->asal_surat ?></td>
                                             <td><?php echo $surat_masuk->perihal ?></td>
-                                            <td><?php echo $surat_masuk->tgl_arsip ?></td>
+                                            <td><?php echo date("d F Y", strtotime($surat_masuk->tgl_arsip)) ?></td>
                                         </tr>
                                         <?php endforeach ?>
                                     </tbody>

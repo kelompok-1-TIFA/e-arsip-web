@@ -17,14 +17,14 @@
                                 <div class="col-md-6">
                                     <table>
                                         <tr>
-                                            <td>No Surat</td>
-                                            <td>:</td>
-                                            <td></td>
+                                            <td width="80">No Surat</td>
+                                            <td width="20">:</td>
+                                            <td><?php echo $no_surat; ?></td>
                                         </tr>
                                         <tr>
                                             <td>Asal Surat</td>
                                             <td>:</td>
-                                            <td></td>
+                                            <td><?php echo $asal_surat; ?></td>
                                         </tr>
                                         <tr>
                                             <td>Sifat</td>
@@ -36,14 +36,14 @@
                                 <div class="col-md-6">
                                     <table>
                                         <tr>
-                                            <td>Tanggal Surat</td>
-                                            <td>:</td>
-                                            <td></td>
+                                            <td width="100">Tanggal Surat</td>
+                                            <td width="20">:</td>
+                                            <td><?php echo date("d F Y", strtotime($tgl_surat)); ?></td>
                                         </tr>
                                         <tr>
                                             <td>Tanggal Arsip</td>
                                             <td>:</td>
-                                            <td></td>
+                                            <td><?php echo date("d F Y", strtotime($tgl_arsip)); ?></td>
                                         </tr>
 
                                     </table>
@@ -54,7 +54,7 @@
                                     <p>Isi Disposisi : </p>
                                     <p><?php echo $isi_disposisi; ?></p>
                                 </div>
-                                <div class="col-6 border border-left-0">
+                                <div class="col-6 border">
                                     <p>Kepada : </p>
                                     <div class="row">
                                         <?php foreach ($data_bagian as $bagian) { ?>
@@ -72,28 +72,26 @@
                                         <?php } ?>
                                     </div>
                                 </div>
-                                <div class="col-md-12 border border-top-0">
+                                <div class="col-md-12 border">
                                     <p>Catatan :</p>
                                     <p><?php echo $catatan; ?></p>
                                 </div>
+                                
                             </div>
                             <div class="row my-4 justify-content-end">
                                 <div class="col-3 text-center">
                                     <p>
-                                        Jember, Tanggal<br>
+                                        Jember, <?php echo date("d F Y"); ?><br>
                                         Kepala Desa
                                     </p>
                                     <br>
                                     <br>
                                     <br>
                                     <p>
-                                        <u>Nama</u><br>
-                                        Nip:34382952358
+                                        <u><?php echo $nama_kepala_desa; ?></u><br>
+                                        Nip : <?php echo $nip_kepala_desa; ?>
                                     </p>
                                 </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                <a href="" class="btn btn-primary">Print</a>
                             </div>
                         </div>
                     </div>

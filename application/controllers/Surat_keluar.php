@@ -117,7 +117,7 @@ class Surat_keluar extends CI_Controller {
 
             $result = $this->M_surat_keluar->insert($data);
             if($result>=0){
-                $datauser = $this->M_user->get_all();
+                $datauser = $this->M_user->get_where_default("LEFT JOIN tb_pegawai ON tb_pegawai.nip=tb_user.nip_user WHERE id_bagian_pegawai='$data[id_bagian]' or level_user = 'kepala desa'")->result();
                 $dataterakhir = $this->M_surat_keluar->get_satu_baru();
                 foreach ($datauser as $user) {
                     if ($user->level_user=="kepala desa" or $user->level_user=="kepala bagian") {

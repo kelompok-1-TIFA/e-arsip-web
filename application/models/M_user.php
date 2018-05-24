@@ -28,6 +28,18 @@ class M_user extends CI_Model
         return $this->db->get($this->table)->result();
     }
 
+    function getwhere($where)
+    {
+        $this->db->join('tb_pegawai', 'tb_pegawai.nip = tb_user.nip_user', 'left');
+        $this->db->where($where);
+        return $this->db->get($this->table);
+    }
+
+    function get_where_default($where)
+    {
+        return $this->db->query('select * from tb_user '.$where);
+    }
+
     // get data by id
     function get_by_id($id)
     {

@@ -88,7 +88,7 @@ $(document).ready(function() {
     function deletedata(id,datanya){
         swal({
             title: "Anda Yakin?",
-            text: "Data "+datanya+" Akan Dihapus Secara Permanen!",
+            text: "Data Disposisi Dengan No Surat : "+datanya+" Akan Dihapus Secara Permanen!",
             type: 'warning',
             showCancelButton: true,
             confirmButtonClass: 'btn btn-success',
