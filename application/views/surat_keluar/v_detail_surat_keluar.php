@@ -18,12 +18,12 @@
                                     <table>
                                 <tr>
                                     <td>Nomor Surat</td>
-                                    <td>:</td>
+                                    <td>: <?php echo $no_surat ?></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>Tanggal Surat</td>
-                                    <td>:</td>
+                                    <td>: <?php echo date("d F Y", strtotime($tgl_surat)) ?></td>
                                     <td></td>
                                 </tr>
                                 </table>
@@ -32,12 +32,12 @@
                                     <table>
                                     <tr>
                                     <td>Tanggal Arsip</td>
-                                    <td>:</td>
+                                    <td>: <?php echo date("d F Y", strtotime($tgl_surat)) ?></td>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td>Tujuan</td>
-                                    <td>:</td>
+                                    <td>: <?php echo $tujuan ?></td>
                                     <td></td>
                                 </tr>
                                 </table>
