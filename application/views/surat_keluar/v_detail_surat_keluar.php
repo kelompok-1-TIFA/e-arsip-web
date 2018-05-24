@@ -32,7 +32,7 @@
                                     <table>
                                     <tr>
                                     <td>Tanggal Arsip</td>
-                                    <td>: <?php echo date("d F Y", strtotime($tgl_surat)) ?></td>
+                                    <td>: <?php echo date("d F Y", strtotime($tgl_arsip)) ?></td>
                                     <td></td>
                                 </tr>
                                 <tr>

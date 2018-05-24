@@ -290,6 +290,7 @@ class Surat_keluar extends CI_Controller {
                 'id_jenis_surat'    => $row->id_jenis_surat,
                 'perihal'           => $row->perihal,
                 'tgl_surat'         => $row->tgl_surat,
+                'tgl_arsip'         => $row->tgl_arsip,
                 'keterangan'        => $row->keterangan,
                 'file'              => $row->file,
                 'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
