@@ -35,7 +35,15 @@
             </tr>
             <?php endforeach ?>
         </tbody>
-    </table>
+    </table><br><br>
+    <div style="float: left;margin-left: 50px"><td>Mengetahui :</td></div>
+     <div style="float: right;margin-right: 50px"><td>Jember,<?php $tgl=date('d-m-Y'); echo $tgl; ?></td></div><br>
+     <div style="float: left;margin-left: 50px"><td>Kepala Desa</td></div>
+     <div style="float: right;margin-right: 50px"><td>Sekretaris Desa</td></div><br><br><br><br>
+     <div style="float: left;margin-left: 50px;"><td><u>Syamsul Arifin</u></td></div>
+     <div style="float: right;margin-right: 50px"><td><u>Candra Mak</u></td></div><br>
+     <div style="float: left;margin-left: 50px"><td>NIP.874509985</td></div>
+     <div style="float: right;margin-right:50px"><td>NIP.874558545</td></div>
     </center>
 </body>
 </html>
