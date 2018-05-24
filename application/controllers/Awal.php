@@ -13,6 +13,7 @@ class Awal extends CI_Controller {
         $this->load->model('M_surat_masuk');
         $this->load->model('M_surat_keluar');
         $this->load->model('M_disposisi');
+        $this->load->model('M_notifikasi');
     }
 
     public function index()
@@ -34,23 +35,32 @@ class Awal extends CI_Controller {
                     'page_title'        => "Dashboard",
                 );
             }else{
+                $tahun=date("Y");
                 $jml_surat_masuk = $this->M_surat_masuk->total_rows();
                 if ($this->session->userdata('level_user')!="kepala desa") {
                     $jml_surat_keluar = $this->M_surat_keluar->total_rows_perbagian($this->session->userdata('id_bagian'));
                     $jml_disposisi = $this->M_disposisi->total_rows_perbagian($this->session->userdata('id_bagian'));   
                     $dt_surat_keluar = $this->M_surat_keluar->get_limit_data_perbagian($this->session->userdata('id_bagian'),3);
+                    $dt_grafik_surat_keluar=$this->M_surat_keluar->get_grafik_perbagian($tahun,$this->session->userdata('id_bagian'));
+                    $jml_grafik_surat_keluar=$this->M_surat_keluar->get_jumlah_grafik_perbagian($tahun,$this->session->userdata('id_bagian'));
                 }else{
                     $jml_surat_keluar = $this->M_surat_keluar->total_rows();
                     $jml_disposisi = $this->M_disposisi->total_rows();
-                    $dt_surat_keluar = $this->M_surat_keluar->get_limit_data(3);    
+                    $dt_surat_keluar = $this->M_surat_keluar->get_limit_data(3);
+                    $dt_grafik_surat_keluar=$this->M_surat_keluar->get_grafik($tahun);
+                    $jml_grafik_surat_keluar=$this->M_surat_keluar->get_jumlah_grafik($tahun);    
                 }
                 $data = array(
-                    'data_surat_masuk'  => $this->M_surat_masuk->get_limit_data(3),
-                    'data_surat_keluar' => $dt_surat_keluar,
-                    'jml_disposisi'     => $jml_disposisi,
-                    'jml_surat_keluar'  => $jml_surat_keluar,
-                    'jml_surat_masuk'   => $jml_surat_masuk,
-                    'page_title'        => "Dashboard",
+                    'data_surat_masuk'          => $this->M_surat_masuk->get_limit_data(3),
+                    'data_grafik_surat_masuk'   => $this->M_surat_masuk->get_grafik($tahun),
+                    'jml_grafik_surat_masuk'    => $this->M_surat_masuk->get_jumlah_grafik($tahun),
+                    'data_surat_keluar'         => $dt_surat_keluar,
+                    'data_grafik_surat_keluar'  => $dt_grafik_surat_keluar,
+                    'jml_grafik_surat_keluar'   => $jml_grafik_surat_keluar,
+                    'jml_disposisi'             => $jml_disposisi,
+                    'jml_surat_keluar'          => $jml_surat_keluar,
+                    'jml_surat_masuk'           => $jml_surat_masuk,
+                    'page_title'                => "Dashboard",
                 );
             }
             $this->load->view('v_dashboard',$data);
@@ -124,5 +134,90 @@ class Awal extends CI_Controller {
     public function logout(){
         $this->session->sess_destroy();
         redirect(base_url());
+    }
+
+    public function notification(){
+        if (isset($_GET['id_notif'])) {
+            $this->M_notifikasi->delete($_GET['id_notif']);
+            if ($_GET['jenis']=="surat masuk") {
+                redirect(base_url('surat_masuk/detail/'.$_GET['id']));
+            }elseif ($_GET['jenis']=="surat keluar") {
+                redirect(base_url('surat_keluar/detail/'.$_GET['id']));
+            }else{
+                redirect(base_url('disposisi/lembar_disposisi/'.$_GET['id']));
+            }
+        }else{
+            if (isset($_POST['popup'])) {
+                $data_notifupdate = array(
+                    'status_notif' => 'y' 
+                );
+                $this->M_notifikasi->updatebyuser($this->session->userdata('id_user'),$data_notifupdate);
+            }else{
+                $id_user_login=$this->session->userdata('id_user');
+                $jmlnotif=$this->M_notifikasi->get_where("WHERE id_user='$id_user_login'")->num_rows();
+                $jmlpopup=$this->M_notifikasi->get_where("WHERE status_notif='t' AND id_user='$id_user_login'")->num_rows();
+                $output="";
+                $output1="";
+                $url="";
+                $type="";
+                $url1="";
+                $data_notif=$this->M_notifikasi->get_where("WHERE id_user='$id_user_login' ORDER BY id_notif DESC")->result();
+                $no=0;
+                foreach ($data_notif as $notif) { 
+                    ++$no;
+                    if ($no%2==0) { $hr="<hr>"; $no=1;}else{ $hr= ""; }
+                    $url = base_url('awal/notification/?id_notif='.$notif->id_notif.'&id='.$notif->id.'&jenis='.$notif->jenis_notif);
+                    $output.=$hr."<a class='dropdown-item' href='".$url."'>
+                    <div class='row'>
+                    <b>".$notif->judul_notif." "."</b>".$notif->isi_notif.
+                    "</div>
+                    </a>";
+                } 
+
+                $data_notifpopup=$this->M_notifikasi->get_where("WHERE status_notif='t' AND id_user='$id_user_login'")->result();
+
+                foreach ($data_notifpopup as $notifpopup) {
+                    $url1 = "url: '".base_url('awal/notification/?id_notif='.$notifpopup->id_notif.'&id='.$notifpopup->id.'&jenis='.$notifpopup->jenis_notif)."',";
+                    if ($notifpopup->jenis_notif=="surat masuk") {
+                        $type = "type : 'rose',";
+                    }elseif ($notifpopup->jenis_notif=="surat keluar") {
+                        $type = "type : 'info',";
+                    }else{
+                        $type = "type : 'success',";
+                    } 
+
+                    $output1.="
+                    <script>
+                        $.notify({
+                            icon: 'report',
+                            title: '<strong>".$notifpopup->judul_notif."</strong><br>',
+                            message: '".$notifpopup->isi_notif."',
+                            ".$url1."
+                        },{
+                            ".$type."
+                            animate: {
+                                enter: 'animated fadeInUp',
+                                exit: 'animated fadeOutRight'
+                            },
+                            placement: {
+                                from: 'bottom',
+                                align: 'right'
+                            },
+                            z_index: 1031,
+                        });
+                    </script>";
+                }
+
+                $data = array(
+                    'notification'          => $output,
+                    'notificationpopup'     => $output1,
+                    'unseen_notification'   => $jmlnotif,
+                    'jmlpopup'              => $jmlpopup, 
+                    'no_notif'              => "<p class='dropdown-item'>No Notification</p>"
+                );
+                $data1 = json_encode($data);
+                echo $data1;
+            }
+        }
     }
 }

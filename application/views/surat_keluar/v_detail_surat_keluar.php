@@ -12,37 +12,37 @@
                             </div>
                             <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <table>
-                                    <tr>
-                                        <td>Nomor Surat</td>
-                                        <td>:</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Tanggal Surat</td>
-                                        <td>:</td>
-                                        <td></td>
-                                    </tr>
-                                    </table>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <table>
-                                        <tr>
-                                        <td>Tanggal Arsip</td>
-                                        <td>:</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Asal Surat/Tujuan</td>
-                                        <td>:</td>
-                                        <td></td>
-                                    </tr>
-                                    </table>
-                                    </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <table>
+                                <tr>
+                                    <td>Nomor Surat</td>
+                                    <td>:</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Tanggal Surat</td>
+                                    <td>:</td>
+                                    <td></td>
+                                </tr>
+                                </table>
                                 </div>
+                                <div class="col-md-6">
+                                    <table>
+                                    <tr>
+                                    <td>Tanggal Arsip</td>
+                                    <td>:</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Tujuan</td>
+                                    <td>:</td>
+                                    <td></td>
+                                </tr>
+                                </table>
+                                </div>
+<<<<<<< HEAD
                         </div>
                         <div class="row">
                                 <div class="col-md-12">
@@ -83,8 +83,19 @@
                         <div class="card-body">
                             <div class="toolbar">
                                 <a title="Download File" href="" class="btn btn-primary btn-round"><i class="material-icons"></i> Download File</a>
+=======
+>>>>>>> 03b04b15036b72b84fec85c49fd30d1cdfcfa244
                             </div>
-                    </div><!--  end card  -->
+                            <div class="row justify-content-center mt-3">
+                                <iframe class="col-md-10" src="http://docs.google.com/viewer?url=http://e-arsip.pratamatechnocraft.com/assets/uploads/file/TUGASBUBETTY.docx&embedded=true" style="border: none;min-height: 320px"></iframe>
+                            </div>
+                            <div class="row justify-content-center mt-3">
+                                <div class="col-md-2">
+                                    <a title="Download File" href="" class="btn btn-primary btn-round"><i class="material-icons"></i> Download File</a>
+                                </div>
+                            </div><!--  end card  -->
+                        </div>
+                    </div>
                 </div> <!-- end col-md-12 -->
             </div>
         </div>

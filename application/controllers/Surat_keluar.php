@@ -7,6 +7,8 @@ class Surat_keluar extends CI_Controller {
         parent::__construct();
         $this ->load->model('M_surat_keluar');
         $this->load->model('M_bagian');
+        $this->load->model('M_user');
+        $this->load->model('M_notifikasi');
         $this->load->model('M_jenis_surat');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
@@ -115,6 +117,21 @@ class Surat_keluar extends CI_Controller {
 
             $result = $this->M_surat_keluar->insert($data);
             if($result>=0){
+                $datauser = $this->M_user->get_all();
+                $dataterakhir = $this->M_surat_keluar->get_satu_baru();
+                foreach ($datauser as $user) {
+                    if ($user->level_user=="kepala desa" or $user->level_user=="kepala bagian") {
+                        $data_notif = array(
+                            'id_notif'      => "",
+                            'id_user'       => $user->id_user,
+                            'id'            => $dataterakhir->id_surat_keluar,
+                            'jenis_notif'   => "surat keluar",
+                            'judul_notif'   => "Surat Keluar Baru ",
+                            'isi_notif'     => "No. Surat ".$no_surat." Perihal ".$perihal,
+                        );
+                        $this->M_notifikasi->insert($data_notif);    
+                    }
+                }
                 $this->session->set_flashdata("sukses", 'swal({
                     title: "Berhasi!",
                     text: "Data Berhasil diSimpan!",
@@ -186,7 +203,7 @@ class Surat_keluar extends CI_Controller {
                 );
 
                 $row = $this->M_surat_keluar->get_by_id($id);
-                unlink($row->file);
+                unlink(str_replace("%20", " ", $row->file));
                 $res = $this->M_surat_keluar->update($data['id_surat_keluar'],$data);
                 if($res>=0){
                     $this->session->set_flashdata("sukses", 'swal({
@@ -256,7 +273,7 @@ class Surat_keluar extends CI_Controller {
     public function hapus(){
         $id = $this->input->post("id");
         $row = $this->M_surat_keluar->get_by_id($id);
-        unlink($row->file);
+        unlink(str_replace("%20", " ", $row->file));
         $result = $this->M_surat_keluar->delete($id);
         header('location:'.base_url().'surat_keluar');       
     }

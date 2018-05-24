@@ -7,6 +7,8 @@ class Disposisi extends CI_Controller {
         parent::__construct();
         $this ->load-> model('M_disposisi');
         $this ->load-> model('M_bagian');
+        $this ->load-> model('M_user');
+        $this ->load-> model('M_notifikasi');
         $this ->load-> model('M_surat_masuk');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
@@ -40,7 +42,7 @@ class Disposisi extends CI_Controller {
         $data = array(
             'data_bagian'   => $this->M_bagian->get_all(),
             'no_surat'      => $row->no_surat,
-            'id_surat_masuk'      => $row->id_surat_masuk,
+            'id_surat_masuk'=> $row->id_surat_masuk,
             'page_title'    => ucwords(str_replace("_", " ", $this->uri->segment(2))),
         );
         $this->load->view('disposisi/v_mendisposisikan',$data);
@@ -63,7 +65,7 @@ class Disposisi extends CI_Controller {
                 'data_bagian'                   => $this->M_bagian->get_all(),
                 'page_title'                    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
-            $this->load->view('disposisi/v_disposisi', $data);
+            $this->load->view('disposisi/v_edit_disposisi', $data);
         } else {
              $this->session->set_flashdata('message', 'swal({
                 title: "Alert",
@@ -96,6 +98,22 @@ class Disposisi extends CI_Controller {
             );
         $result = $this->M_disposisi->insert($data);
         if($result>=0){
+            $datauser = $this->M_user->get_all();
+            $dataterakhir = $this->M_disposisi->get_satu_baru();
+            $datasurat = $this->M_surat_masuk->get_by_id($id_surat_masuk);
+            foreach ($datauser as $user) {
+                if ($user->level_user=="kepala desa" or $user->level_user=="kepala bagian" or $user->level_user=="staf") {
+                    $data_notif = array(
+                        'id_notif'      => "",
+                        'id_user'       => $user->id_user,
+                        'id'            => $dataterakhir->id_surat_masuk,
+                        'jenis_notif'   => "disposisi",
+                        'judul_notif'   => "Disposisi Baru ",
+                        'isi_notif'     => "No. Surat ".$datasurat->no_surat." Perihal ".$datasurat->perihal,
+                    );
+                    $this->M_notifikasi->insert($data_notif);    
+                }
+            }
             $this->session->set_flashdata("sukses", 'swal({
                 title: "Berhasi!",
                 text: "Data Berhasil diSimpan!",
@@ -127,11 +145,9 @@ class Disposisi extends CI_Controller {
         $id_surat_masuk= $this->input->post('id_surat_masuk');
         $data = array(
             'id_disposisi'   => $this->input->post('id'),
-            'id_bagian'      => $id_bagian, 
             'isi_disposisi'  => $isi_disposisi, 
             'sifat'          => $sifat, 
             'catatan'        => $catatan, 
-            'id_surat_masuk' => $id_surat_masuk, 
             );
         $res = $this->M_disposisi->update($data['id_disposisi'],$data);
         if($res>=0){
@@ -166,9 +182,9 @@ class Disposisi extends CI_Controller {
                 'catatan'                       => $row->catatan,
                 'id_surat_masuk'                => $row->id_surat_masuk,
                 'data_bagian'                   => $this->M_bagian->get_all(),
-                'page_title'                    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
+                'page_title'                    => ucwords(str_replace("_", " ", $this->uri->segment(2))),
             );
-            $this->load->view('disposisi/v_disposisi', $data);
+            $this->load->view('disposisi/v_lembar_disposisi', $data);
         } else {
              $this->session->set_flashdata('message', 'swal({
                 title: "Alert",

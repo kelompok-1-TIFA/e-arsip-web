@@ -1,5 +1,7 @@
+<audio src="<?php echo base_url(); ?>assets/notification.wav" id="myAudio">
+    <p>If you are reading this, it is because your browser does not support the audio element.</p>
+</audio>
     <!--   Core JS Files   -->
-<script src="<?php echo base_url() ?>assets/js/core/jquery.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/core/popper.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/bootstrap-material-design.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
@@ -9,8 +11,6 @@
 
 <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
 <script src="<?php echo base_url() ?>assets/js/plugins/moment.min.js"></script>
-<!--	Plugin for the Datepicker, full documentation here: https://github.com/Eonasdan/bootstrap-datetimepicker -->
-<script src="<?php echo base_url() ?>assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
 <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 <script src="<?php echo base_url() ?>assets/js/plugins/nouislider.min.js"></script>
 <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
@@ -49,14 +49,6 @@
 <script src="<?php echo base_url() ?>assets/js/plugins/fullcalendar.min.js"></script>
 <!-- demo init -->
 <script src="<?php echo base_url() ?>assets/js/plugins/demo.js"></script>
-<script type="text/javascript">
-	$(document).ready(function(){
-		//init DateTimePickers
-  		md.initFormExtendedDatetimepickers();
-  		// Sliders Init
-  		md.initSliders();
-	});
-</script>
 <script type="text/javascript">
     $().ready(function(){
         demo.checkFullPageBackgroundImage();

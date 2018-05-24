@@ -3,11 +3,11 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class M_disposisi extends CI_Model
+class M_notifikasi extends CI_Model
 {
 
-    public $table = 'tb_disposisi';
-    public $id = 'id_disposisi';
+    public $table = 'tb_notifikasi';
+    public $id = 'id_notif';
     public $order = 'DESC';
 
     function __construct()
@@ -18,44 +18,25 @@ class M_disposisi extends CI_Model
     // get all
     function get_all()
     {
-        $this->db->join("tb_surat_masuk","tb_surat_masuk.id_surat_masuk=tb_disposisi.id_surat_masuk");
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
 
-    function get_satu_baru()
+    function get_where($where)
     {
-        $this->db->limit(1);
-        $this->db->order_by($this->id, $this->order);
-        return $this->db->get($this->table)->row();
+        return $this->db->query('select * from tb_notifikasi '.$where);
     }
 
     // get data by id
     function get_by_id($id)
     {
-        $this->db->join("tb_surat_masuk","tb_surat_masuk.id_surat_masuk=tb_disposisi.id_surat_masuk");
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
-    }
-
-    function get_by_bagian($id)
-    {
-        $this->db->join("tb_surat_masuk","tb_surat_masuk.id_surat_masuk=tb_disposisi.id_surat_masuk");
-        $this->db->where('id_bagian', $id);
-        $this->db->order_by($this->id, $this->order);
-        return $this->db->get($this->table)->result();
     }
     
     // get total rows
     function total_rows() {
-        $this->db->from($this->table);
-        return $this->db->count_all_results();
-    }
-
-    // get total rows
-    function total_rows_perbagian($id) {
-        $this->db->from($this->table);
-        $this->db->where('id_bagian', $id);
+    	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
@@ -76,6 +57,12 @@ class M_disposisi extends CI_Model
     function update($id, $data)
     {
         $this->db->where($this->id, $id);
+        $this->db->update($this->table, $data);
+    }
+
+    function updatebyuser($id_user, $data)
+    {
+        $this->db->where('id_user', $id_user);
         $this->db->update($this->table, $data);
     }
 
