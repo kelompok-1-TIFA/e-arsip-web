@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="row justify-content-center mt-3">
-                                <iframe class="col-md-10" src="http://docs.google.com/viewer?url=http://e-arsip.pratamatechnocraft.com/assets/uploads/file/TUGASBUBETTY.docx&embedded=true" style="border: none;min-height: 320px"></iframe>
+                                <iframe class="col-md-10" src="http://docs.google.com/viewer?url=http://e-arsip.pratamatechnocraft.com/assets/uploads/file/TUGASBUBETTY.docx&embedded=true" style="border: none;min-height: 720px"></iframe>
                             </div>
                             <div class="row justify-content-center mt-3">
                                 <div class="col-md-2">
