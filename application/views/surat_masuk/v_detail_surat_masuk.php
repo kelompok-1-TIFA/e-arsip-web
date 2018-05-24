@@ -19,12 +19,13 @@
                                 <tr>
                                     <td>Nomor Surat</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td><?php echo $no_surat; ?></td>
                                 </tr>
+
                                 <tr>
                                     <td>Tanggal Surat</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td><?php echo $tgl_surat; ?></td>
                                 </tr>
                                 </table>
                                 </div>
@@ -33,12 +34,12 @@
                                     <tr>
                                     <td>Tanggal Arsip</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td><?php echo $tgl_arsip; ?></td>
                                 </tr>
                                 <tr>
                                     <td>Asal</td>
                                     <td>:</td>
-                                    <td></td>
+                                    <td><?php echo $asal_surat; ?></td>
                                 </tr>
                                 </table>
                                 </div>

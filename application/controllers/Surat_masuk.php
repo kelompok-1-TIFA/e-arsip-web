@@ -306,6 +306,7 @@ class Surat_masuk extends CI_Controller {
                 'tgl_surat'         => $row->tgl_surat,
                 'keterangan'        => $row->keterangan,
                 'file'              => $row->file,
+                'tgl_arsip'         => $row->tgl_arsip,
                 'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
                 'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
