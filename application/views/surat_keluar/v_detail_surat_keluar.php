@@ -48,7 +48,7 @@
                             </div>
                             <div class="row justify-content-center mt-3">
                                 <div class="col-md-2">
-                                    <a title="Download File" href="" class="btn btn-primary btn-round"><i class="material-icons"></i> Download File</a>
+                                    <a title="Download File" href="http://docs.google.com/viewer?url=http://e-arsip.pratamatechnocraft.com/assets/uploads/file/TUGASBUBETTY.docx&embedded=true" class="btn btn-primary btn-round"><i class="material-icons"></i> Download File</a>
                                 </div>
                             </div><!--  end card  -->
                         </div>
