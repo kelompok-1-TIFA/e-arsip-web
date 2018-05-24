@@ -42,48 +42,9 @@
                                 </tr>
                                 </table>
                                 </div>
-<<<<<<< HEAD
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="panel panel-primary">
-                                        <div class="panel-heading">
-                                            <div class="pull-left">View File
-                                            </div>
-                                            <br>
-                                        </div>
-                                            <div class="panel-body">
-                                                <div>
-                                                    <embed src="<?php echo base_url();?>assets/ponororgo.pdf" type="application/pdf" width="100%" height="700px"/>
-                                                </div>
-                                            </div>
-                                    </div>
-                                </div>
-
-                            <div>
-                                <style> 
-                                    #example1 {
-                                        box-sizing: content-box;    
-                                        width: 980px;
-                                        height : 230px;
-                                        padding: 30px;    
-                                        border: 2px solid black;
-                                    }
-                                </style>
-                                    <body>
-                                        <div id="example1"><p style="text-align:center">
-                                            <b>VIEW FILE</b></p>
-                                        </div>
-                                    </body>
-                        </div>
-                        
-                        <div class="card-body">
-                            <div class="toolbar">
-                                <a title="Download File" href="" class="btn btn-primary btn-round"><i class="material-icons"></i> Download File</a>
-=======
                             </div>
                             <div class="row justify-content-center mt-3">
                                 <iframe class="col-md-10" src="http://docs.google.com/viewer?url=http://e-arsip.pratamatechnocraft.com/assets/uploads/file/TUGASBUBETTY.docx&embedded=true" style="border: none;min-height: 320px"></iframe>
->>>>>>> 03b04b15036b72b84fec85c49fd30d1cdfcfa244
                             </div>
                             <div class="row justify-content-center mt-3">
                                 <div class="col-md-2">
