@@ -91,6 +91,16 @@
                                         <u><?php echo $nama_kepala_desa; ?></u><br>
                                         Nip : <?php echo $nip_kepala_desa; ?>
                                     </p>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            
+                                            <a href="<?php echo base_url() ?>/disposisi/lembar_disposisi_print/<?php echo $id_disposisi; ?>" target="_blank" class="btn btn-info btn-sm"><i class="material-icons">print</i> Print</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="table-responsive material-datatables">
+                                <table class="table table-striped" id="datatables" cellspacing="0" width="100%" style="width:100%">
                                 </div>
                             </div>
                         </div>

@@ -192,7 +192,7 @@ class Disposisi extends CI_Controller {
                 'data_bagian'                   => $this->M_bagian->get_all(),
                 'page_title'                    => ucwords(str_replace("_", " ", $this->uri->segment(2))),
             );
-            $this->load->view('disposisi/v_lembar_disposisi', $data);
+            $this->load->view('disposisi/v_lembar_disposisi_print', $data);
         } else {
              $this->session->set_flashdata('message', 'swal({
                 title: "Alert",
