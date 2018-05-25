@@ -77,20 +77,21 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>No Surat</th>
-                                            <th>Tujuan</th>
+                                            <th>Asal Surat</th>
                                             <th>Perihal</th>
                                             <th>Tanggal Arsip</th>
+                                            <th>Keterangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach ($data_surat_keluar as $surat_keluar): ?>
-                                        <tr id="datanya">
+                                        <tr>
                                             <td><?php echo ++$no; ?></td>
                                             <td><?php echo $surat_keluar->no_surat ?></td>   
                                             <td><?php echo $surat_keluar->tujuan ?></td>
                                             <td><?php echo $surat_keluar->perihal ?></td>
                                             <td><?php echo date("d F Y", strtotime($surat_keluar->tgl_arsip)) ?></td>
-                                            
+                                            <td><?php echo $surat_keluar->keterangan; ?></td>
                                         </tr>
                                         <?php endforeach ?>
                                     </tbody>

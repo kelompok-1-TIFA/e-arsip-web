@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
-<body onload=" window.print();" onafterprint="window.close();">
-    <center> 
-    <div>
+<body onload=" window.print();" onafterprint="window.close();" style="font-family: sans-serif;">
+    <center>
+    <div style="font-weight: bold;" align="center">
+        <img style="float: left;margin-right: -60px" width="75px" src="<?php echo base_url() ?>assets/img/logo.png" >
         PEMERINTAH KABUPATEN JEMBER<br>
         KECAMATAN BALUNG<br>
         KANTOR DESA BALUNG KIDUL<br>
         Jl.Pemuda no 23 Desa Balung Kidul kode Pos 68161
         <br>
-        <hr>
-        Laporan Tahunan Surat Masuk <br>
-        Tahun : <?php echo $_GET['tahun'];?>
+        <hr style="border: 2px solid #000">
         <br>
     </div>
-    <br>
+    <div style="font-size: 20px">
+        Laporan Tahunan Surat Masuk<br>
+        Tahun : <?php echo $_GET['tahun'];?><br><br>
+    </div>
     <table cellpadding="10" border="1" style="border-collapse: collapse;">
         <thead>
             <tr>
@@ -22,6 +24,7 @@
                 <th>Asal Surat</th>
                 <th>Perihal</th>
                 <th>Tanggal Arsip</th>
+                <th>Keterangan</th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +35,7 @@
                 <td><?php echo $surat_masuk->asal_surat ?></td>
                 <td><?php echo $surat_masuk->perihal ?></td>
                 <td><?php echo date("d F Y", strtotime($surat_masuk->tgl_arsip)) ?></td>
+                <td><?php echo $surat_masuk->keterangan ?></td>
             </tr>
             <?php endforeach ?>
         </tbody>

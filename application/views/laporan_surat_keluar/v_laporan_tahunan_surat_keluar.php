@@ -39,9 +39,10 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>No Surat</th>
-                                            <th>Tujuan</th>
+                                            <th>Asal Surat</th>
                                             <th>Perihal</th>
                                             <th>Tanggal Arsip</th>
+                                            <th>Keterangan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -52,6 +53,7 @@
                                             <td><?php echo $surat_keluar->tujuan ?></td>
                                             <td><?php echo $surat_keluar->perihal ?></td>
                                             <td><?php echo date("d F Y", strtotime($surat_keluar->tgl_arsip)) ?></td>
+                                            <td><?php echo $surat_keluar->keterangan; ?></td>
                                         </tr>
                                         <?php endforeach ?>
                                     </tbody>
