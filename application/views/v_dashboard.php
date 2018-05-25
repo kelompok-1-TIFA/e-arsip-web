@@ -76,6 +76,56 @@
             </div>
         <?php }elseif ($this->session->userdata('level_user')=="staf") { ?>
         <?php }elseif ($this->session->userdata('level_user')=="sekertaris") { ?>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card card-chart">
+                            <div class="card-header card-header-warning">
+                                <div class="ct-chart" id="suratMasukCart"></div>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Grafik Surat Masuk Setiap Bulan</h4>
+                                <p class="card-category">Tahun <?php echo date("Y"); ?></p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 
+                                        <?php 
+                                        foreach ($data_grafik_surat_masuk as $grafik_surat_masuk){ 
+                                            if (date("m")==$grafik_surat_masuk->bulan) {
+                                                echo $grafik_surat_masuk->jumlah;
+                                            }
+                                        }
+                                        ?> Surat Masuk
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card card-chart">
+                            <div class="card-header card-header-rose">
+                                <div class="ct-chart" id="suratKeluarCart"></div>
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title">Grafik Surat Keluar Setiap Bulan</h4>
+                                <p class="card-category">Tahun <?php echo date("Y"); ?></p>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 
+                                        <?php 
+                                        foreach ($data_grafik_surat_keluar as $grafik_surat_keluar){
+                                            if (date("m")==$grafik_surat_keluar->bulan) {
+                                                echo $grafik_surat_keluar->jumlah;
+                                            }
+                                        }
+                                        ?> Surat Keluar
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         <?php }else{ ?>
             <div class="container-fluid">
                 <div class="row">

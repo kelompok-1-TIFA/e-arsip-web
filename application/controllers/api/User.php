@@ -13,7 +13,6 @@ class User extends REST_Controller {
     }
 
     function index_post(){
-        $this->post('api')="login";
         if ($this->post('api')=="login") {
             $username = $this->post('user');
             $password = $this->post('pass');
@@ -37,7 +36,7 @@ class User extends REST_Controller {
                             'id_bagian'     => $cek_fase_2->id_bagian_pegawai,
                             'level_user'    => $cek_fase_2->level_user,
                         );
-                        $message = array("success"=>1,"data_user"=>$cek_fase_2);
+                        $message = array("success"=>1,"data_user"=>$data_session);
                         $this->response($message, REST_Controller::HTTP_OK);
                     }else{
                         $message = array("success"=>2);
