@@ -16,39 +16,72 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <table>
-                                <tr>
-                                    <td>Nomor Surat</td>
-                                    <td>: <?php echo $no_surat ?></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Tanggal Surat</td>
-                                    <td>: <?php echo date("d F Y", strtotime($tgl_surat)) ?></td>
-                                    <td></td>
-                                </tr>
-                                </table>
+                                        <tr>
+                                            <td width="100px">Nomor Surat</td>
+                                            <td width="10px">:</td>
+                                            <td><?php echo $no_surat; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bagian</td>
+                                            <td>:</td>
+                                            <td><?php echo $bagian; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tujuan</td>
+                                            <td>:</td>
+                                            <td><?php echo $tujuan; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Perihal</td>
+                                            <td>:</td>
+                                            <td><?php echo $perihal; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Isi Singkat</td>
+                                            <td>:</td>
+                                            <td><?php echo $isi_singkat; ?></td>
+                                        </tr>
+                                    </table>
                                 </div>
                                 <div class="col-md-6">
                                     <table>
-                                    <tr>
-                                    <td>Tanggal Arsip</td>
-                                    <td>: <?php echo date("d F Y", strtotime($tgl_arsip)) ?></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>Tujuan</td>
-                                    <td>: <?php echo $tujuan ?></td>
-                                    <td></td>
-                                </tr>
-                                </table>
+                                        <tr>
+                                            <td>Jenis Surat</td>
+                                            <td>:</td>
+                                            <td><?php echo $jenis_surat; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td width="100px">Tanggal Arsip</td>
+                                            <td width="10px">:</td>
+                                            <td><?php echo date("d F Y", strtotime($tgl_arsip)); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Tanggal Surat</td>
+                                            <td>:</td>
+                                            <td><?php echo date("d F Y", strtotime($tgl_surat)); ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Keterangan</td>
+                                            <td>:</td>
+                                            <td><?php echo $keterangan; ?></td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                             <div class="row justify-content-center mt-3">
-                                <iframe class="col-md-10" src="http://docs.google.com/viewer?url=http://e-arsip.pratamatechnocraft.com/assets/uploads/file/TUGASBUBETTY.docx&embedded=true" style="border: none;min-height: 720px"></iframe>
+                                <?php $typefile=mime_content_type(str_replace("%20", " ", $file));
+                                if ($typefile=="image/jpg" or $typefile=="image/png" or $typefile=="image/jpeg" or $typefile=="image/gif" or $typefile=="image/JPG") { ?>
+                                    <div class="col-md-10">
+                                        <img src="<?php echo base_url($file) ?>" width="100%" >
+                                    </div>
+                                <?php }else{ ?>
+                                    <iframe class="col-md-10" src="http://docs.google.com/viewer?url=<?php echo base_url($file) ?>&embedded=true" style="border: none;min-height: 720px"></iframe> 
+                                <?php } ?>
+                                
                             </div>
                             <div class="row justify-content-center mt-3">
                                 <div class="col-md-2">
-                                    <a title="Download File" href="http://docs.google.com/viewer?url=http://e-arsip.pratamatechnocraft.com/assets/uploads/file/TUGASBUBETTY.docx&embedded=true" class="btn btn-primary btn-round"><i class="material-icons"></i> Download File</a>
+                                    <a title="Download File" href="<?php echo base_url($file) ?>" class="btn btn-primary btn-round"><i class="material-icons"></i> Download File</a>
                                 </div>
                             </div><!--  end card  -->
                         </div>

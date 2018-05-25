@@ -218,7 +218,7 @@ class Surat_masuk extends CI_Controller {
                     
                 );
 
-                $row = $this->M_surat_masuk->get_by_id($id);
+                $row = $this->M_surat_masuk->get_by_id($this->input->post('id'));
                 unlink(str_replace("%20", " ", $row->file));
                 $res = $this->M_surat_masuk->update($data['id_surat_masuk'],$data);
                 if($res>=0){
@@ -301,7 +301,7 @@ class Surat_masuk extends CI_Controller {
                 'no_surat'          => $row->no_surat,
                 'asal_surat'        => $row->asal_surat,
                 'isi_singkat'       => $row->isi_singkat,
-                'id_jenis_surat'    => $row->id_jenis_surat,
+                'jenis_surat'       => $row->jenis_surat,
                 'perihal'           => $row->perihal,
                 'tgl_surat'         => $row->tgl_surat,
                 'keterangan'        => $row->keterangan,

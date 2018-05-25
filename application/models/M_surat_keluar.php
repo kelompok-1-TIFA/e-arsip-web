@@ -60,6 +60,8 @@ class M_surat_keluar extends CI_Model
     // get data by id
     function get_by_id($id)
     {
+        $this->db->join('tb_bagian', 'tb_bagian.id_bagian = tb_surat_keluar.id_bagian', 'left'); 
+        $this->db->join('tb_jenis_surat', 'tb_jenis_surat.id_jenis_surat = tb_surat_keluar.id_jenis_surat', 'left'); 
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }

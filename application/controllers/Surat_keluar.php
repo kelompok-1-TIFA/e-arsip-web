@@ -202,7 +202,7 @@ class Surat_keluar extends CI_Controller {
                     'file'              => 'assets/uploads/file/'.$jenis_surat_fix.'/'.$upload_data['file_name']
                 );
 
-                $row = $this->M_surat_keluar->get_by_id($id);
+                $row = $this->M_surat_keluar->get_by_id($this->input->post('id'));
                 unlink(str_replace("%20", " ", $row->file));
                 $res = $this->M_surat_keluar->update($data['id_surat_keluar'],$data);
                 if($res>=0){
@@ -284,10 +284,10 @@ class Surat_keluar extends CI_Controller {
             $data = array(
                 'id_surat_keluar'   => $row->id_surat_keluar,
                 'no_surat'          => $row->no_surat,
-                'id_bagian'         => $row->id_bagian,
+                'bagian'            => $row->bagian,
                 'tujuan'            => $row->tujuan,
                 'isi_singkat'       => $row->isi_singkat,
-                'id_jenis_surat'    => $row->id_jenis_surat,
+                'jenis_surat'       => $row->jenis_surat,
                 'perihal'           => $row->perihal,
                 'tgl_surat'         => $row->tgl_surat,
                 'tgl_arsip'         => $row->tgl_arsip,
