@@ -7,6 +7,7 @@ class Laporan_surat_keluar extends CI_Controller {
         parent::__construct();
         $this ->load->model('M_surat_keluar');
         $this->load->model('M_bagian');
+        $this ->load->model('M_user');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
         }
@@ -73,13 +74,18 @@ class Laporan_surat_keluar extends CI_Controller {
     public function Laporan_harian_print(){
         $dari=$this->input->get('dari');
         $sampai=$this->input->get('sampai');
-        
+        $kepaladesa= $this->M_user->getwhere(array('level_user' => "kepala desa", ))->row();
+        $sekertaris= $this->M_user->getwhere(array('level_user' => "sekertaris", ))->row();
         $surat_keluar = $this->M_surat_keluar->get_where("WHERE tgl_arsip BETWEEN '$dari' and '$sampai'");
 
         $data = array(
             'dari'              => $dari,
             'sampai'            => $sampai,
             'data_surat_keluar' => $surat_keluar,
+            'nama_kepala_desa'  => $kepaladesa->nama,
+            'nip_kepala_desa'   => $kepaladesa->nip,
+            'nama_sekertaris'   => $sekertaris->nama,
+            'nip_sekertaris'    => $sekertaris->nip,
             'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Harian"),
         );
         $this->load->view('laporan_surat_keluar/v_laporan_harian_surat_keluar_print',$data);
@@ -87,23 +93,35 @@ class Laporan_surat_keluar extends CI_Controller {
     public function Laporan_bulanan_print(){
         $bulan=$this->input->get('bulan');
         $tahun=$this->input->get('tahun');
+        $kepaladesa= $this->M_user->getwhere(array('level_user' => "kepala desa", ))->row();
+        $sekertaris= $this->M_user->getwhere(array('level_user' => "sekertaris", ))->row();
         $surat_keluar = $this->M_surat_keluar->get_where("WHERE MONTH(tgl_arsip) = '$bulan' and YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(
             'bulan'             => $bulan,
             'tahun'             => $tahun,
             'data_surat_keluar' => $surat_keluar,
+            'nama_kepala_desa'  => $kepaladesa->nama,
+            'nip_kepala_desa'   => $kepaladesa->nip,
+            'nama_sekertaris'   => $sekertaris->nama,
+            'nip_sekertaris'    => $sekertaris->nip,
             'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Bulanan"),
         );
         $this->load->view('laporan_surat_keluar/v_laporan_bulanan_surat_keluar_print',$data);
     }
     public function Laporan_tahunan_print(){
         $tahun=$this->input->get('tahun');
+        $kepaladesa= $this->M_user->getwhere(array('level_user' => "kepala desa", ))->row();
+        $sekertaris= $this->M_user->getwhere(array('level_user' => "sekertaris", ))->row();
         $surat_keluar = $this->M_surat_keluar->get_where("WHERE YEAR(tgl_arsip) = '$tahun'");
 
         $data = array(
             'tahun'             => $tahun,
             'data_surat_keluar' => $surat_keluar,
+            'nama_kepala_desa'  => $kepaladesa->nama,
+            'nip_kepala_desa'   => $kepaladesa->nip,
+            'nama_sekertaris'   => $sekertaris->nama,
+            'nip_sekertaris'    => $sekertaris->nip,
             'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Tahunan"),
         );
         $this->load->view('laporan_surat_keluar/v_laporan_tahunan_surat_keluar_print',$data);

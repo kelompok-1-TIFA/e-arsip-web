@@ -6,6 +6,7 @@ class Laporan_surat_masuk extends CI_Controller {
     function __construct()    {
         parent::__construct();
         $this ->load->model('M_surat_masuk');
+        $this ->load->model('M_user');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
         }
@@ -13,7 +14,6 @@ class Laporan_surat_masuk extends CI_Controller {
         if ($this->session->userdata('level_user')=="admin" or $this->session->userdata('level_user')=="kepala bagian" or $this->session->userdata('level_user')=="staf") {
             redirect(base_url());
         }
-
     }
 
     public function Laporan_harian(){
@@ -72,13 +72,20 @@ class Laporan_surat_masuk extends CI_Controller {
     public function Laporan_harian_print(){
         $dari=$this->input->get('dari');
         $sampai=$this->input->get('sampai');
+        $kepaladesa= $this->M_user->getwhere(array('level_user' => "kepala desa", ))->row();
+        $sekertaris= $this->M_user->getwhere(array('level_user' => "sekertaris", ))->row();
+
         
         $surat_masuk = $this->M_surat_masuk->get_where("WHERE tgl_arsip BETWEEN '$dari' and '$sampai'");
 
         $data = array(
             'dari'              => $dari,
             'sampai'            => $sampai,
-            'data_surat_masuk' => $surat_masuk,
+            'data_surat_masuk'  => $surat_masuk,
+            'nama_kepala_desa'  => $kepaladesa->nama,
+            'nip_kepala_desa'   => $kepaladesa->nip,
+            'nama_sekertaris'   => $sekertaris->nama,
+            'nip_sekertaris'    => $sekertaris->nip,
             'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Harian"),
         );
         $this->load->view('laporan_surat_masuk/v_laporan_harian_surat_masuk_print',$data);
@@ -87,11 +94,18 @@ class Laporan_surat_masuk extends CI_Controller {
         $bulan=$this->input->get('bulan');
         $tahun=$this->input->get('tahun');
         $surat_masuk = $this->M_surat_masuk->get_where("WHERE MONTH(tgl_arsip) = '$bulan' and YEAR(tgl_arsip) = '$tahun'");
+        $kepaladesa= $this->M_user->getwhere(array('level_user' => "kepala desa", ))->row();
+        $sekertaris= $this->M_user->getwhere(array('level_user' => "sekertaris", ))->row();
+
 
         $data = array(
             'bulan'             => $bulan,
             'tahun'             => $tahun,
-            'data_surat_masuk' => $surat_masuk,
+            'data_surat_masuk'  => $surat_masuk,
+            'nama_kepala_desa'  => $kepaladesa->nama,
+            'nip_kepala_desa'   => $kepaladesa->nip,
+            'nama_sekertaris'   => $sekertaris->nama,
+            'nip_sekertaris'    => $sekertaris->nip,
             'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Bulanan"),
         );
         $this->load->view('laporan_surat_masuk/v_laporan_bulanan_surat_masuk_print',$data);
@@ -99,10 +113,16 @@ class Laporan_surat_masuk extends CI_Controller {
     public function Laporan_tahunan_print(){
         $tahun=$this->input->get('tahun');
         $surat_masuk = $this->M_surat_masuk->get_where("WHERE YEAR(tgl_arsip) = '$tahun'");
+        $kepaladesa= $this->M_user->getwhere(array('level_user' => "kepala desa", ))->row();
+        $sekertaris= $this->M_user->getwhere(array('level_user' => "sekertaris", ))->row();
 
         $data = array(
             'tahun'             => $tahun,
-            'data_surat_masuk' => $surat_masuk,
+            'data_surat_masuk'  => $surat_masuk,
+            'nama_kepala_desa'  => $kepaladesa->nama,
+            'nip_kepala_desa'   => $kepaladesa->nip,
+            'nama_sekertaris'   => $sekertaris->nama,
+            'nip_sekertaris'    => $sekertaris->nip,
             'page_title'        => ucwords(str_replace("_", " ", $this->uri->segment(1))." Tahunan"),
         );
         $this->load->view('laporan_surat_masuk/v_laporan_tahunan_surat_masuk_print',$data);
