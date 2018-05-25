@@ -2,7 +2,7 @@
 <html>
 <body onload=" window.print();" onafterprint="window.close();">
      <center> 
-    <div>
+    <div style="font-weight: bold;">
         PEMERINTAH KABUPATEN JEMBER<br>
         KECAMATAN BALUNG<br>
         KANTOR DESA BALUNG KIDUL<br>
@@ -10,7 +10,7 @@
         <br>
         <hr>
         <br>
-         Laporan Bulanan Surat Keluar<br>
+        Laporan Bulanan Surat Keluar<br>
         Bulan : <?php echo $_GET['bulan'];?> - Tahun : <?php echo $_GET['tahun'];?>
         <br>
     </div>

@@ -14,7 +14,7 @@
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <table>
                                         <tr>
                                             <td width="80">No Surat</td>
@@ -33,7 +33,7 @@
                                         </tr>
                                     </table>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <table>
                                         <tr>
                                             <td width="100">Tanggal Surat</td>
@@ -62,7 +62,7 @@
                                                 <div class="form-check">
                                                   <label class="form-check-label">
                                                       <input class="form-check-input" type="checkbox" <?php if($id_bagian==$bagian->id_bagian){echo "checked";} ?> disabled>
-                                                      <?php echo $bagian->bagian; ?>
+                                                      Kepala <?php echo $bagian->bagian; ?>
                                                       <span class="form-check-sign">
                                                           <span class="check"></span>
                                                       </span>
@@ -91,17 +91,10 @@
                                         <u><?php echo $nama_kepala_desa; ?></u><br>
                                         Nip : <?php echo $nip_kepala_desa; ?>
                                     </p>
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            
-                                            <a href="<?php echo base_url() ?>/disposisi/lembar_disposisi_print/<?php echo $id_disposisi; ?>" target="_blank" class="btn btn-info btn-sm"><i class="material-icons">print</i> Print</a>
-                                        </div>
-                                    </div>
                                 </div>
-                            </form>
-                            <div class="table-responsive material-datatables">
-                                <table class="table table-striped" id="datatables" cellspacing="0" width="100%" style="width:100%">
-                                </div>
+                            </div>
+                            <div class="row justify-content-center">
+                                <a href="<?php echo base_url() ?>/disposisi/lembar_disposisi_print/<?php echo $id_disposisi; ?>" target="_blank" class="btn btn-primary"><i class="material-icons">print</i> Print</a>
                             </div>
                         </div>
                     </div>

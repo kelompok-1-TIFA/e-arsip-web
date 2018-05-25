@@ -75,6 +75,7 @@
                 </div>
             </div>
         <?php }elseif ($this->session->userdata('level_user')=="staf") { ?>
+        <?php }elseif ($this->session->userdata('level_user')=="sekertaris") { ?>
         <?php }else{ ?>
             <div class="container-fluid">
                 <div class="row">

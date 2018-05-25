@@ -8,9 +8,9 @@
         KANTOR DESA BALUNG KIDUL<br>
         Jl.Pemuda no 23 Desa Balung Kidul kode Pos 68161
         <br>
-        <hr>
+        <hr style="color: #000">
         Laporan Harian Surat Masuk <br>
-        dari : <?php echo $_GET['dari'];?> - sampai : <?php echo $_GET['sampai'];?>
+        <?php echo date("d F Y", strtotime($_GET['dari']));?> S/d <?php echo date("d F Y", strtotime($_GET['sampai']));?>
         <br>
     </div>
     <br>

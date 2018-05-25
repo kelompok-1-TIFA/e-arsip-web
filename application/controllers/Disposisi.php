@@ -192,7 +192,7 @@ class Disposisi extends CI_Controller {
                 'data_bagian'                   => $this->M_bagian->get_all(),
                 'page_title'                    => ucwords(str_replace("_", " ", $this->uri->segment(2))),
             );
-            $this->load->view('disposisi/v_lembar_disposisi_print', $data);
+            $this->load->view('disposisi/v_lembar_disposisi', $data);
         } else {
              $this->session->set_flashdata('message', 'swal({
                 title: "Alert",
@@ -208,6 +208,7 @@ class Disposisi extends CI_Controller {
 
     public function lembar_disposisi_print($id){
        $row = $this->M_disposisi->get_by_id($id);
+       $kepaladesa= $this->M_user->getwhere(array('level_user' => "kepala desa", ))->row();
         if ($row) {
 
             $data = array(
@@ -222,9 +223,12 @@ class Disposisi extends CI_Controller {
                 'tgl_arsip'                     => $row->tgl_arsip,
                 'tgl_surat'                     => $row->tgl_surat,
                 'data_bagian'                   => $this->M_bagian->get_all(),
+                'nama_kepala_desa'              => $kepaladesa->nama,
+                'nip_kepala_desa'               => $kepaladesa->nip,
+                'data_bagian'                   => $this->M_bagian->get_all(),
                 'page_title'                    => ucwords(str_replace("_", " ", $this->uri->segment(2))),
             );
-            $this->load->view('disposisi/v_disposisi', $data);
+            $this->load->view('disposisi/v_lembar_disposisi_print', $data);
         } else {
              $this->session->set_flashdata('message', 'swal({
                 title: "Alert",
