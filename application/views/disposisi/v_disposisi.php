@@ -38,8 +38,10 @@
                                             <td><?php echo $disposisi->sifat ?></td>
                                             <td><?php echo $disposisi->catatan ?></td>
                                             <td class="text-right td-actions">
+                                                <?php if($this->session->userdata("level_user")=="kepala desa"){ ?>
                                                 <a href="<?php echo base_url('disposisi/edit/'.$disposisi->id_disposisi) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a onclick="deletedata(<?php echo $disposisi->id_disposisi.",'".$disposisi->no_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
+                                                <?php } ?>
                                                 <a href="<?php echo base_url('disposisi/lembar_disposisi/'.$disposisi->id_disposisi) ?>" title="Lembar Disposisi" class="btn btn-link btn-info"><i class="material-icons">insert_drive_file</i></a>
                                             </td>
                                         </tr>

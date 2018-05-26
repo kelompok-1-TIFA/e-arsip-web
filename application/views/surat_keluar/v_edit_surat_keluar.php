@@ -23,6 +23,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <?php if($this->session->userdata("level_user")=="kepala desa"){ ?>
                                 <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">Bagian</label>
                                     <div class="col-md-10">
@@ -35,6 +36,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <?php } ?>
                                 <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">Tujuan</label>
                                     <div class="col-md-10">

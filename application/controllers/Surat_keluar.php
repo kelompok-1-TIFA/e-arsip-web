@@ -78,7 +78,11 @@ class Surat_keluar extends CI_Controller {
     public function simpan(){
 
         $no_surat= $this->input->post('no_surat');
-        $id_bagian= $this->input->post('id_bagian');
+        if ($this->session->userdata("level_user")=="kepala bagian") {
+            $id_bagian= $this->session->userdata('id_bagian');
+        }else{
+            $id_bagian= $this->input->post('id_bagian');
+        }
         $tujuan=$this->input->post('tujuan');
         $isi_singkat=$this->input->post('isi_singkat');
         $id_jenis_surat=$this->input->post('id_jenis_surat');
@@ -164,7 +168,11 @@ class Surat_keluar extends CI_Controller {
 
     public function editaction(){
         $no_surat= $this->input->post('no_surat');
-        $id_bagian= $this->input->post('id_bagian');
+        if ($this->session->userdata("level_user")=="kepala bagian") {
+            $id_bagian= $this->session->userdata('id_bagian');
+        }else{
+            $id_bagian= $this->input->post('id_bagian');
+        }
         $tujuan=$this->input->post('tujuan');
         $isi_singkat=$this->input->post('isi_singkat');
         $id_jenis_surat=$this->input->post('id_jenis_surat');

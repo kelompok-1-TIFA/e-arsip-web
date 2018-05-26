@@ -78,7 +78,7 @@
         <?php }elseif ($this->session->userdata('level_user')=="sekertaris") { ?>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="card card-chart">
                             <div class="card-header card-header-warning">
                                 <div class="ct-chart" id="suratMasukCart"></div>
@@ -101,7 +101,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="card card-chart">
                             <div class="card-header card-header-rose">
                                 <div class="ct-chart" id="suratKeluarCart"></div>
