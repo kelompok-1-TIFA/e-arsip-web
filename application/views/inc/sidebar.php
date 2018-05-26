@@ -10,10 +10,10 @@
 
             <div class="logo">
                 <a href="#" class="simple-text logo-mini">
-                    ES
+                    <img src="<?php echo base_url("assets/img/logo.png") ?>" width="30px">
                 </a>
                 <a href="#" class="simple-text logo-normal">
-                    E-Surat
+                    E-ARSIP
                 </a>
             </div>
 

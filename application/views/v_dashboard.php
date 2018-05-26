@@ -326,7 +326,7 @@ $(document).ready(function(){
   // Javascript method's body can be found in assets/js/demos.js
   if ($('#suratMasukCart').length != 0 || $('#suratKeluarCart').length != 0) {
             datasuratMasukCart = {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'],
                 series: [
                     [<?php foreach ($data_grafik_surat_masuk as $grafik_surat_masuk) {
                         for ($i=1; $i < 13; $i++) { 
@@ -356,7 +356,7 @@ $(document).ready(function(){
             md.startAnimationForLineChart(suratMasukCart);
 
             datasuratKeluarCart = {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'],
                 series: [
                     [<?php foreach ($data_grafik_surat_keluar as $grafik_surat_keluar) {
                         for ($i=1; $i < 13; $i++) { 

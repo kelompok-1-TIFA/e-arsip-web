@@ -3,7 +3,7 @@
 <body onload=" window.print();" onafterprint="window.close();" style="font-family: sans-serif;">
     <center>
     <div style="font-weight: bold;" align="center">
-        <img style="float: left;margin-right: -60px" width="75px" src="<?php echo base_url() ?>assets/img/logo.png" >
+        <img style="float: left;margin-right: -60px" width="60px" src="<?php echo base_url() ?>assets/img/logo.png" >
         PEMERINTAH KABUPATEN JEMBER<br>
         KECAMATAN BALUNG<br>
         KANTOR DESA BALUNG KIDUL<br>
@@ -14,7 +14,34 @@
     </div>
     <div style="font-size: 20px">
         Laporan Bulanan Surat Masuk<br>
-        Bulan : <?php echo date("F", strtotime($_GET['bulan']));?> <?php echo $_GET['tahun'];?><br><br>
+        <?php
+            if ($_GET['bulan']=="01") {
+                $bulan="Januari";
+            }elseif ($_GET['bulan']=="02") {
+                $bulan="Februari";
+            }elseif ($_GET['bulan']=="03") {
+                $bulan="Maret";
+            }elseif ($_GET['bulan']=="04") {
+                $bulan="April";
+            }elseif ($_GET['bulan']=="05") {
+                $bulan="Mei";
+            }elseif ($_GET['bulan']=="06") {
+                $bulan="Juni";
+            }elseif ($_GET['bulan']=="07") {
+                $bulan="Juli";
+            }elseif ($_GET['bulan']=="08") {
+                $bulan="Agustus";
+            }elseif ($_GET['bulan']=="09") {
+                $bulan="September";
+            }elseif ($_GET['bulan']=="10") {
+                $bulan="Oktober";
+            }elseif ($_GET['bulan']=="11") {
+                $bulan="November";
+            }else{
+                $bulan="Desember";
+            }          
+        ?>
+        Bulan : <?php echo $bulan;?> <?php echo $_GET['tahun'];?><br><br>
     </div>
     <table cellpadding="10" border="1" style="border-collapse: collapse;">
         <thead>

@@ -3,7 +3,7 @@
 <body onload=" window.print();" onafterprint="window.close();" style="font-family: sans-serif;">
     <center>
     <div style="font-weight: bold;" align="center">
-        <img style="float: left;margin-right: -60px" width="75px" src="<?php echo base_url() ?>assets/img/logo.png" >
+        <img style="float: left;margin-right: -60px" width="60px" src="<?php echo base_url() ?>assets/img/logo.png" >
         PEMERINTAH KABUPATEN JEMBER<br>
         KECAMATAN BALUNG<br>
         KANTOR DESA BALUNG KIDUL<br>
