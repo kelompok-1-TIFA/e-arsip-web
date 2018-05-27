@@ -317,6 +317,7 @@ class Pegawai extends CI_Controller {
             );
 
             $res = $this->M_pegawai->update($this->input->post('id'),$data);
+            if($res>=0){
             
                 $res1 = $this->M_user->update($this->input->post('id'),$data_login);
                 if ($res1>=0) {
