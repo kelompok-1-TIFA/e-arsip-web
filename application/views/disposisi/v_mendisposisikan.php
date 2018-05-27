@@ -47,7 +47,12 @@
                                     <label class="col-md-2 col-form-label font-weight-bold">Sifat</label>
                                     <div class="col-md-8">
                                       <div class="form-group">
-                                          <textarea name="sifat" placeholder="" class="form-control" required></textarea>
+                                         <select class="selectpicker" data-style="btn select-with-transition" title="Pilih Sifat " data-size="7" name="sifat" required>
+                                         <option value="Rahasia">Rahasia</option>
+                                         <option value="Penting">Penting</option> 
+                                         <option value="Segera">Segera</option>
+                                         <option value="Biasa">Biasa</option>
+                                         </select>
                                       </div>
                                     </div>
                                 </div>
