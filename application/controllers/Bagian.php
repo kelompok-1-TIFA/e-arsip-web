@@ -6,7 +6,6 @@ class Bagian extends CI_Controller {
     function __construct()    {
         parent::__construct();
         $this->load->model('M_bagian');
-        $this->load->model('M_pegawai');
         if ($this->session->userdata('status_login')!="login") {
             redirect(base_url(''));
         }
@@ -28,7 +27,6 @@ class Bagian extends CI_Controller {
 
     public function tambah(){
         $data = array(
-            'data_pegawai'  => $this->M_pegawai->get_all(),
             'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
         );
         $this->load->view('bagian/v_tambah_bagian',$data);
@@ -40,7 +38,6 @@ class Bagian extends CI_Controller {
             $data = array(
                 'id_bagian'     => $row->id_bagian,
                 'bagian'        => $row->bagian,
-                'data_pegawai'  => $this->M_pegawai->get_all(),
                 'page_title'    => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('bagian/v_edit_bagian', $data);
