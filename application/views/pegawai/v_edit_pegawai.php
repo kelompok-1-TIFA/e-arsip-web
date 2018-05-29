@@ -74,7 +74,7 @@
                                                 <div class="form-group mt-0">
                                                     <select class="selectpicker" data-style="btn select-with-transition"  title="Pilih Jenis Kelamin" data-size="7" name="jenis_kelamin">
                                                         <option <?php if($jenis_kelamin=="Laki - Laki"){echo "SELECTED";} ?> value="Laki - Laki"> Laki - Laki </option>
-                                                        <option <?phpif($jenis_kelamin=="Perempuan"){echo "SELECTED";} ?> value="Perempuan"> Perempuan </option>
+                                                        <option <?php if($jenis_kelamin=="Perempuan"){echo "SELECTED";} ?> value="Perempuan"> Perempuan </option>
                                                     </select>
                                                 </div>
                                             </div>

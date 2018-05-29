@@ -16,6 +16,8 @@ class Disposisi extends REST_Controller {
         if ($this->get('api')=="disposisiall") {
             $disposisi = $this->M_disposisi->get_all();
             $this->response($disposisi, REST_Controller::HTTP_OK);
+        }elseif ($this->get('api')=="lembardisposisi") {
+            # code...
         }
     }
 

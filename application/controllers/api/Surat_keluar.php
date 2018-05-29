@@ -16,6 +16,12 @@ class Surat_keluar extends REST_Controller {
         if ($this->get('api')=="suratkeluarall") {
             $surat_keluar = $this->M_surat_keluar->get_all();
             $this->response($surat_keluar, REST_Controller::HTTP_OK);
+        }elseif ($this->get('api')=="suratkeluarperbagian") {
+            $surat_keluar = $this->M_surat_keluar->get_by_bagian($this->get('id_bagian'));
+            $this->response($surat_keluar, REST_Controller::HTTP_OK);
+        }else if ($this->get('api')=="suratkeluardetail") {
+            $surat_keluar = $this->M_surat_keluar->get_by_id($this->get('id'));
+            $this->response($surat_keluar, REST_Controller::HTTP_OK);
         }
     }
 
