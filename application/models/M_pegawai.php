@@ -23,7 +23,7 @@ class M_pegawai extends CI_Model
     }
     function get_where($where)
     {
-        return $this->db->query('select * from tb_pegawai '.$where)->result();
+        return $this->db->query('select * from tb_pegawai '.$where." ORDER BY create_on DESC")->result();
     }
 
     // get data by id

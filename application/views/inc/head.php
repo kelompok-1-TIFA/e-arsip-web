@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url() ?>assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/img/favicon.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title><?php if($page_title!=" "){echo $page_title." | ";} ?>Admin Nama Aplikasi </title>
+    <title><?php if($page_title!=" "){echo $page_title." | ";} ?> E-ARSIP </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
     <!-- Canonical SEO -->
@@ -50,7 +50,7 @@
             }
         };
     </script>
-    <?php if ($this->session->userdata('status_login')=="login") { ?>
+    <?php if ($this->session->userdata('status_login')=="login" and $this->session->userdata('level_user')!="admin" and $this->session->userdata('level_user')!="sekertaris") { ?>
     <script>
     $("document").ready(function(){
         var base_url="<?php echo base_url(); ?>";
@@ -66,6 +66,8 @@
                 method:"POST",
                 data:{baca:view},
                 dataType:"json",
+                xhrFields: { withCredentials: true }, 
+                crossDomain: true, 
                 success:function(data){
                     $('.data_notifikasi').html(data.notification);
                     if(data.unseen_notification > 0){
