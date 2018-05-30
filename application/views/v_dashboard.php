@@ -90,10 +90,14 @@
                             <div class="card-footer">
                                 <div class="stats">
                                     <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 
-                                        <?php 
-                                        foreach ($data_grafik_surat_masuk as $grafik_surat_masuk){ 
-                                            if (date("m")==$grafik_surat_masuk->bulan) {
-                                                echo $grafik_surat_masuk->jumlah;
+                                        <?php
+                                        if($jml_grafik_surat_masuk1==0){
+                                            echo 0;
+                                        }else{ 
+                                            foreach ($data_grafik_surat_masuk as $grafik_surat_masuk){ 
+                                                if (date("m")==$grafik_surat_masuk->bulan) {
+                                                    echo $grafik_surat_masuk->jumlah;
+                                                }
                                             }
                                         }
                                         ?> Surat Masuk
@@ -114,9 +118,13 @@
                                 <div class="stats">
                                     <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 
                                         <?php 
-                                        foreach ($data_grafik_surat_keluar as $grafik_surat_keluar){
-                                            if (date("m")==$grafik_surat_keluar->bulan) {
-                                                echo $grafik_surat_keluar->jumlah;
+                                        if($jml_grafik_surat_keluar1==0){
+                                            echo 0;
+                                        }else{
+                                            foreach ($data_grafik_surat_keluar as $grafik_surat_keluar){
+                                                if (date("m")==$grafik_surat_keluar->bulan) {
+                                                    echo $grafik_surat_keluar->jumlah;
+                                                }
                                             }
                                         }
                                         ?> Surat Keluar
@@ -213,10 +221,14 @@
                             <div class="card-footer">
                                 <div class="stats">
                                     <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 
-                                        <?php 
-                                        foreach ($data_grafik_surat_masuk as $grafik_surat_masuk){ 
-                                            if (date("m")==$grafik_surat_masuk->bulan) {
-                                                echo $grafik_surat_masuk->jumlah;
+                                        <?php
+                                         if($jml_grafik_surat_masuk1==0){
+                                            echo 0;
+                                        }else{  
+                                            foreach ($data_grafik_surat_masuk as $grafik_surat_masuk){ 
+                                                if (date("m")==$grafik_surat_masuk->bulan) {
+                                                    echo $grafik_surat_masuk->jumlah;
+                                                }
                                             }
                                         }
                                         ?> Surat Masuk
@@ -237,9 +249,13 @@
                                 <div class="stats">
                                     <i class="material-icons">access_time</i> Bulan <?php echo date("F"); ?> 
                                         <?php 
-                                        foreach ($data_grafik_surat_keluar as $grafik_surat_keluar){
-                                            if (date("m")==$grafik_surat_keluar->bulan) {
-                                                echo $grafik_surat_keluar->jumlah;
+                                        if($jml_grafik_surat_keluar1==0){
+                                            echo 0;
+                                        }else{ 
+                                            foreach ($data_grafik_surat_keluar as $grafik_surat_keluar){
+                                                if (date("m")==$grafik_surat_keluar->bulan) {
+                                                    echo $grafik_surat_keluar->jumlah;
+                                                }
                                             }
                                         }
                                         ?> Surat Keluar
@@ -265,7 +281,12 @@
                                         <th class="disabled-sorting text-center">Actions</th>
                                     </thead>
                                     <tbody>
-                                    <?php $no=0; foreach ($data_surat_masuk as $surat_masuk): ?>
+                                    <?php if($jml_grafik_surat_masuk1==0){ ?>
+                                        <tr class="text-center">
+                                            <td colspan="5">No data available in table</td>
+                                        </tr>
+                                    <?php }else{ ?>
+                                        <?php $no=0; foreach ($data_surat_masuk as $surat_masuk): ?>
                                         <tr>
                                             <td><?php echo ++$no; ?></td>
                                             <td><?php echo $surat_masuk->no_surat ?></td>
@@ -273,7 +294,8 @@
                                             <td><?php echo $surat_masuk->perihal ?></td>
                                             <td><a href="<?php echo base_url('surat_masuk/detail/'.$surat_masuk->id_surat_masuk) ?>" class="btn btn-link btn-info text-center" title="Jumlah Data "><i class="material-icons">remove_red_eye</i></a></td>
                                         </tr>
-                                         <?php endforeach ?>
+                                        <?php endforeach ?>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -297,7 +319,12 @@
                                         <th class="disabled-sorting text-center">Actions</th>
                                     </thead>
                                     <tbody>
-                                    <?php $no=0; foreach ($data_surat_keluar as $surat_keluar): ?>
+                                    <?php if($jml_grafik_surat_keluar1==0){ ?>
+                                        <tr class="text-center">
+                                            <td colspan="5">No data available in table</td>
+                                        </tr>
+                                    <?php }else{ ?>
+                                        <?php $no=0; foreach ($data_surat_keluar as $surat_keluar): ?>
                                         <tr>
                                             <td><?php echo ++$no; ?></td>
                                             <td><?php echo $surat_keluar->no_surat ?></td>
@@ -306,6 +333,7 @@
                                             <td><a href="<?php echo base_url('surat_keluar/detail/'.$surat_keluar->id_surat_keluar) ?>" class="btn btn-link btn-info text-center" title="Jumlah Data "><i class="material-icons">remove_red_eye</i></a></td>
                                         </tr>
                                         <?php endforeach ?>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -329,15 +357,25 @@ $(document).ready(function(){
             datasuratMasukCart = {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'],
                 series: [
-                    [<?php foreach ($data_grafik_surat_masuk as $grafik_surat_masuk) {
-                        for ($i=1; $i < 13; $i++) { 
-                            if ($grafik_surat_masuk->bulan==$i) {
-                                echo $grafik_surat_masuk->jumlah.",";
-                            }else{
+                    [
+                    <?php
+                        if($jml_grafik_surat_masuk1==0){
+                            for ($i=1; $i < 13; $i++) { 
                                 echo "0".",";
                             }
+                        }else{ 
+                            foreach ($data_grafik_surat_masuk as $grafik_surat_masuk) {
+                                for ($i=1; $i < 13; $i++) { 
+                                    if ($grafik_surat_masuk->bulan==$i) {
+                                        echo $grafik_surat_masuk->jumlah.",";
+                                    }else{
+                                        echo "0".",";
+                                    }
+                                }
+                            } 
                         }
-                    } ?>]
+                    ?>
+                    ]
                 ]
             };
             optionssuratMasukCart = {
@@ -345,7 +383,13 @@ $(document).ready(function(){
                     tension: 0
                 }),
                 low: 0,
-                high: <?php echo $jml_grafik_surat_masuk->jumlah*2; ?>,
+                high: <?php 
+                        if($jml_grafik_surat_masuk1==0){
+                            echo 10;
+                        }else{
+                            echo $jml_grafik_surat_masuk->jumlah*2; 
+                        }
+                      ?>,
                 chartPadding: {
                     top: 0,
                     right: 0,
@@ -359,15 +403,25 @@ $(document).ready(function(){
             datasuratKeluarCart = {
                 labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Des'],
                 series: [
-                    [<?php foreach ($data_grafik_surat_keluar as $grafik_surat_keluar) {
-                        for ($i=1; $i < 13; $i++) { 
-                            if ($grafik_surat_keluar->bulan==$i) {
-                                echo $grafik_surat_keluar->jumlah.",";
-                            }else{
+                    [
+                    <?php
+                        if($jml_grafik_surat_keluar1==0){
+                            for ($i=1; $i < 13; $i++) { 
                                 echo "0".",";
                             }
+                        }else{ 
+                            foreach ($data_grafik_surat_keluar as $grafik_surat_keluar) {
+                                for ($i=1; $i < 13; $i++) { 
+                                    if ($grafik_surat_keluar->bulan==$i) {
+                                        echo $grafik_surat_keluar->jumlah.",";
+                                    }else{
+                                        echo "0".",";
+                                    }
+                                }
+                            } 
                         }
-                    } ?>]
+                    ?>
+                    ]
                 ]
             };
             optionssuratKeluarCart = {
@@ -375,7 +429,12 @@ $(document).ready(function(){
                     tension: 0
                 }),
                 low: 0,
-                high: <?php echo $jml_grafik_surat_keluar->jumlah*2; ?>, 
+                high: <?php if($jml_grafik_surat_keluar1==0){
+                            echo 10;
+                        }else{
+                            echo $jml_grafik_surat_keluar->jumlah*2; 
+                        } 
+                      ?>, 
                 chartPadding: {
                     top: 0,
                     right: 0,

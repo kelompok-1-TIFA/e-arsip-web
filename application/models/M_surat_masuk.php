@@ -51,6 +51,11 @@ class M_surat_masuk extends CI_Model
     {
        return $this->db->query("SELECT YEAR(tgl_arsip) AS tahun, COUNT(*) AS jumlah FROM tb_surat_masuk WHERE YEAR(tgl_arsip)='$tahun' GROUP BY YEAR(tgl_arsip)")->row();
     }
+
+    function get_jumlah_grafik1($tahun)
+    {
+       return $this->db->query("SELECT YEAR(tgl_arsip) AS tahun, COUNT(*) AS jumlah FROM tb_surat_masuk WHERE YEAR(tgl_arsip)='$tahun' GROUP BY YEAR(tgl_arsip)")->num_rows();
+    }
     
     // get total rows
     function total_rows() {
