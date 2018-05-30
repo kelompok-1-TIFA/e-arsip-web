@@ -15,7 +15,20 @@ class Disposisi extends REST_Controller {
     function index_get(){
         if ($this->get('api')=="disposisiall") {
             $disposisi = $this->M_disposisi->get_all();
-            $this->response($disposisi, REST_Controller::HTTP_OK);
+            $jml_disposisi = $this->M_disposisi->total_rows();
+            $data = array(
+                'data'     => $disposisi,
+                'jml_data' => $jml_disposisi
+            );
+            $this->response($data, REST_Controller::HTTP_OK);
+        }elseif ($this->get('api')=="disposisiperbagian") {
+            $disposisi = $this->M_disposisi->get_by_bagian($this->get('id_bagian'));
+            $jml_disposisi = $this->M_disposisi->total_rows_perbagian($this->get('id_bagian'));
+            $data = array(
+                'data'     => $disposisi,
+                'jml_data' => $jml_disposisi
+            );
+            $this->response($data, REST_Controller::HTTP_OK);
         }elseif ($this->get('api')=="lembardisposisi") {
             # code...
         }

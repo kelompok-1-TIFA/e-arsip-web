@@ -16,7 +16,12 @@ class Notifikasi extends REST_Controller {
         if ($this->get('api')=="notifikasi") {
             $id_user_login=$this->get('id_user');
             $notifikasi = $this->M_notifikasi->get_where("WHERE id_user='$id_user_login' ORDER BY id_notif DESC")->result();
-            $this->response($notifikasi, REST_Controller::HTTP_OK);
+            $jml_notifikasi = $this->M_notifikasi->get_where("WHERE id_user='$id_user_login' ORDER BY id_notif DESC")->num_rows();;
+            $data = array(
+                'data'     => $notifikasi,
+                'jml_data' => $jml_notifikasi
+            );
+            $this->response($data, REST_Controller::HTTP_OK);
         }elseif ($this->get('api')=="lihat") {
             $id_notif=$this->get('id_notif');
             $this->M_notifikasi->delete($id_notif);
