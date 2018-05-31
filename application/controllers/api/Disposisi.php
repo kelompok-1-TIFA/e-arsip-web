@@ -30,14 +30,15 @@ class Disposisi extends REST_Controller {
             );
             $this->response($data, REST_Controller::HTTP_OK);
         }elseif ($this->get('api')=="lembardisposisi") {
-            # code...
+            $disposisi = $this->M_disposisi->get_by_id($this->get('id'));
+            $this->response($disposisi, REST_Controller::HTTP_OK);
         }
     }
 
-    /*function index_post(){
-        if ($this->post('api')=="login") {
+    function index_post(){
+        if ($this->post('api')=="mendisposisikan") {
             $this->response(['kode' => 1,'pesan' =>'Data berhasil diupdate!'], REST_Controller::HTTP_OK);
         }
-    }*/
+    }
 
 }
