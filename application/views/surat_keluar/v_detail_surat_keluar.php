@@ -75,7 +75,7 @@
                                         <img src="<?php echo base_url($file) ?>" width="100%" >
                                     </div>
                                 <?php }else{ ?>
-                                    <iframe class="col-md-10" src="http://docs.google.com/viewer?url=<?php echo base_url($file) ?>&embedded=true" style="border: none;min-height: 720px"></iframe> 
+                                    <iframe class="col-md-10" src="http://docs.google.com/viewer?url=<?php echo str_replace("https", "http", base_url($file)) ?>&embedded=true" style="border: none;min-height: 720px"></iframe> 
                                 <?php } ?>
                                 
                             </div>
