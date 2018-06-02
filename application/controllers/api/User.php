@@ -49,6 +49,8 @@ class User extends REST_Controller {
                 $message = array("success"=>3);
                 $this->response($message, REST_Controller::HTTP_OK);   
             }
+        }elseif (condition) {
+            # code...
         }
     }
 
@@ -56,41 +58,6 @@ class User extends REST_Controller {
     
     
     function index_put(){
-        $id = $this->put('id');
-        $data = $this->put('data');
-        $token = $this->put('token');
-        $lat = $this->put('lat');
-        $lang = $this->put('lang');
-        $where = array('id_user' => $id, );
-        $user_detail = $this->M_user->get_by_id($id);
-        if ($this->M_user->cek_user($where)->num_rows() > 0) {
-            if($user_detail->token != $token){
-                $this->response(['kode' => 0,'pesan' =>'Anda tidak memiliki akses!'], REST_Controller::HTTP_OK);
-            }else{
-                if ($data=="lokasi") {
-                    $data = array(
-                        'lat' => $lat,
-                        'lang' => $lang,
-                    );
-                    $this->M_user->update($id, $data);
-                    $this->response(['kode' => 1,'pesan' =>'Data berhasil diupdate!'], REST_Controller::HTTP_OK);
-                }elseif($data=="editprofile"){
-                    $data = array(
-                        'nama' => $this->input->put('nama'),
-                        'alamat' => $this->input->put('alamat'),
-                        'email' => $this->input->put('email'),
-                        'no_hp' => $this->input->put('no_hp'),
-                    );
-                    $this->M_user->update($id, $data);
-                    $this->response(['kode' => 1,'pesan' =>'Data berhasil diupdate!'], REST_Controller::HTTP_OK);
-                }
-            }
-        }else{
-            $this->response([
-                'kode' => 0,
-                'pesan' =>'Data kosong!'
-            ], REST_Controller::HTTP_OK);
-            
-        }
+       
     }
 }
