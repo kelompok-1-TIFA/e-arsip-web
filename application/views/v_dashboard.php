@@ -364,15 +364,16 @@ $(document).ready(function(){
                                 echo "0".",";
                             }
                         }else{ 
+                            $data = array();
+                            for ($i=0; $i < 12; $i++) { 
+                                $data[$i]=0;
+                            }
                             foreach ($data_grafik_surat_masuk as $grafik_surat_masuk) {
-                                for ($i=1; $i < 13; $i++) { 
-                                    if ($grafik_surat_masuk->bulan==$i) {
-                                        echo $grafik_surat_masuk->jumlah.",";
-                                    }else{
-                                        echo "0".",";
-                                    }
-                                }
-                            } 
+                                $data[$grafik_surat_masuk->bulan-1]=$grafik_surat_masuk->jumlah;
+                            }
+                            for ($i=0; $i < 12; $i++) { 
+                                echo $data[$i].",";
+                            }
                         }
                     ?>
                     ]
@@ -410,15 +411,16 @@ $(document).ready(function(){
                                 echo "0".",";
                             }
                         }else{ 
+                            $data = array();
+                            for ($i=0; $i < 12; $i++) { 
+                                $data[$i]=0;
+                            }
                             foreach ($data_grafik_surat_keluar as $grafik_surat_keluar) {
-                                for ($i=1; $i < 13; $i++) { 
-                                    if ($grafik_surat_keluar->bulan==$i) {
-                                        echo $grafik_surat_keluar->jumlah.",";
-                                    }else{
-                                        echo "0".",";
-                                    }
-                                }
-                            } 
+                                $data[$grafik_surat_keluar->bulan-1]=$grafik_surat_keluar->jumlah;
+                            }
+                            for ($i=0; $i < 12; $i++) { 
+                                echo $data[$i].",";
+                            }
                         }
                     ?>
                     ]
