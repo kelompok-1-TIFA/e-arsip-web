@@ -33,6 +33,7 @@ class M_disposisi extends CI_Model
     // get data by id
     function get_by_id($id)
     {
+        $this->db->join("tb_bagian","tb_bagian.id_bagian=tb_disposisi.id_bagian");
         $this->db->join("tb_surat_masuk","tb_surat_masuk.id_surat_masuk=tb_disposisi.id_surat_masuk");
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
