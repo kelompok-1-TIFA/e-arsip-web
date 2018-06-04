@@ -11,6 +11,8 @@ class Disposisi extends REST_Controller {
         parent::__construct();
         $this->load->model('M_disposisi');
         $this->load->model('M_user');
+        $this->load->model('M_surat_masuk');
+        $this->load->model('M_notifikasi');
     }
 
     function index_get(){

@@ -56,7 +56,7 @@
                                 <div class="form-check">
                                   <label class="form-check-label">
                                       <input class="form-check-input" type="checkbox" <?php if($id_bagian==$bagian->id_bagian){echo "checked";} ?> disabled>
-                                      Kepala <?php echo $bagian->bagian; ?>
+                                      <?php echo $bagian->bagian; ?>
                                       <span class="form-check-sign">
                                           <span class="check"></span>
                                       </span>
