@@ -10,6 +10,7 @@ class User extends REST_Controller {
     {
         parent::__construct();
         $this->load->model('M_user');
+        $this->load->model('M_pegawai');
     }
 
     function index_post(){
@@ -53,11 +54,37 @@ class User extends REST_Controller {
             # code...
         }
     }
-
-
     
-    
-    function index_put(){
-       
+    function index_get(){
+        if ($this->get('api')=="profile") {
+            $row = $this->M_pegawai->get_by_id($this->get('id'));
+            $this->load->library('encrypt'); 
+            $key = 'vyanarypratamabanyuwangi12345678';
+            $password_decrypt =  $this->encrypt->decode($row->password, $key);
+            if ($row) {
+                $data = array(
+                    'nip'                   => $row->nip,
+                    'id_bagian_pegawai'     => $row->id_bagian_pegawai,
+                    'bagian'                => $row->bagian,
+                    'id_jabatan_pegawai'    => $row->id_jabatan_pegawai,
+                    'niap'                  => $row->niap,
+                    'nama'                  => $row->nama,
+                    'jenis_kelamin'         => $row->jenis_kelamin,
+                    'tempat_lahir'          => $row->tempat_lahir,
+                    'tgl_lahir'             => $row->tgl_lahir,
+                    'agama'                 => $row->agama,
+                    'pangkat'               => $row->pangkat,
+                    'alamat'                => $row->alamat,
+                    'no_hp'                 => $row->no_hp,
+                    'pendidikan_terakhir'   => $row->pendidikan_terakhir,
+                    'sk_pengangkatan'       => $row->sk_pengangkatan,
+                    'foto'                  => $row->foto,
+                    'username'              => $row->username,
+                    'password'              => $password_decrypt,
+                    'level_user'            => $row->level_user,
+                );
+                $this->response($data, REST_Controller::HTTP_OK);   
+            }
+        }
     }
 }
