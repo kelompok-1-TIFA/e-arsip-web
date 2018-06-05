@@ -28,7 +28,7 @@
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach ($data_jenis_surat as $jenis_surat): ?>
-                                        <tr id="datanya">
+                                        <tr id="<?php echo $jenis_surat->id_jenis_surat; ?>">
                                             <td><?php echo ++$no; ?></td>
                                             <td><?php echo $jenis_surat->kode ?></td>
                                             <td><?php echo $jenis_surat->jenis_surat ?></td>
@@ -104,7 +104,7 @@ $(document).ready(function() {
                         confirmButtonClass: "btn btn-success",
                         buttonsStyling: false
                     })
-                    $("#datanya").fadeTo("slow", 0.7, function(){
+                    $("#"+id).fadeTo("slow", 0.7, function(){
                         $(this).remove();
                     })
                 },error:function(){

@@ -30,7 +30,7 @@
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach ($data_surat_keluar as $surat_keluar): ?>
-                                        <tr id="datanya">
+                                        <tr id="<?php echo $surat_keluar->id_surat_keluar ?>">
                                             <td><?php echo ++$no; ?></td>
                                             <td><?php echo $surat_keluar->no_surat ?></td>   
                                             <td><?php echo $surat_keluar->tujuan ?></td>
@@ -109,7 +109,7 @@ $(document).ready(function() {
                         confirmButtonClass: "btn btn-success",
                         buttonsStyling: false
                     })
-                    $("#datanya").fadeTo("slow", 0.7, function(){
+                    $("#"+id).fadeTo("slow", 0.7, function(){
                         $(this).remove();
                     })
                 },error:function(){

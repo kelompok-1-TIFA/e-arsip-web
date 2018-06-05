@@ -28,7 +28,7 @@
                                     </thead>
                                     <tbody>
                                         <?php $no=0; foreach ($data_jabatan as $jabatan): ?>
-                                        <tr id="datanya">
+                                        <tr id="<?php echo $jabatan->id_jabatan ?>">
                                             <td><?php echo ++$no; ?></td>
                                             <td><?php echo $jabatan->jabatan ?></td>   
                                             <td class="text-right td-actions">
@@ -103,7 +103,7 @@ $(document).ready(function() {
                         confirmButtonClass: "btn btn-success",
                         buttonsStyling: false
                     })
-                    $("#datanya").fadeTo("slow", 0.7, function(){
+                    $("#"+id).fadeTo("slow", 0.7, function(){
                         $(this).remove();
                     })
                 },error:function(){
