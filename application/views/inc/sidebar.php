@@ -26,7 +26,7 @@
                         <a class="username">
                             <span>
                                 <?php echo ucwords($this->session->userdata('nama')); ?><br>
-                                <font class="text-muted"><?php echo ucwords($this->session->userdata('jabatan')." ".$this->session->userdata('bagian')); ?></font>
+                                <font class="text-muted"><?php if($this->session->userdata('level_user')=="kepala bagian"){echo ucwords("Kepala ".$this->session->userdata('bagian'));}else{echo ucwords($this->session->userdata('jabatan')." ".$this->session->userdata('bagian'));}  ?></font>
                             </span>
                         </a>
                     </div>
@@ -243,13 +243,13 @@
                         </li>
                     <?php } ?>
                     <li class="nav-item <?php if($this->uri->segment(1)=="profile"){echo "active";}?>">
-                        <a class="nav-link" data-toggle="collapse" href="#setting">
+                        <a class="nav-link " data-toggle="collapse" href="#setting">
                             <i class="material-icons">settings</i>
                             <p> Setting
                                 <b class="caret"></b>
                             </p>
                         </a>
-                        <div class="collapse ml-4" id="setting">
+                        <div class="collapse ml-4 <?php if($this->uri->segment(1)=="profile"){echo "show";}?>" id="setting">
                             <ul class="nav">
                                 <li class="nav-item <?php if($this->uri->segment(1)=="profile"){echo "active";}?>">
                                     <a class="nav-link" href="<?php echo base_url('profile') ?>">

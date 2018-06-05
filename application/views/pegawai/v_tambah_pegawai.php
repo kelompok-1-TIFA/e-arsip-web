@@ -34,6 +34,7 @@
                                                     <?php foreach ($data_bagian as $bagian): ?>
                                                         <option value="<?php echo $bagian->id_bagian ?>"> <?php echo $bagian->bagian; ?></option>
                                                     <?php endforeach ?>
+                                                    <option value="1">Desa</option>
                                                 </select>
                                               </div>
                                             </div>

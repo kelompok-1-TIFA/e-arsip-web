@@ -18,32 +18,37 @@ class M_bagian extends CI_Model
     // get all
     function get_all()
     {
+        $this->db->where("bagian !=","Desa");
         $this->db->order_by($this->id, $this->order);
         return $this->db->get($this->table)->result();
     }
 
     function get_where($where)
     {
+        $this->db->where("bagian !=","Desa");
         return $this->db->query('select * from tb_bagian '.$where)->result();
     }
 
     // get data by id
     function get_by_id($id)
     {
+        $this->db->where("bagian !=","Desa");
         $this->db->where($this->id, $id);
         return $this->db->get($this->table)->row();
     }
     
     // get total rows
     function total_rows() {
+        $this->db->where("bagian !=","Desa");
     	$this->db->from($this->table);
         return $this->db->count_all_results();
     }
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0) {
+        $this->db->where("bagian !=","Desa");
         $this->db->order_by($this->id, $this->order);
-	   $this->db->limit($limit, $start);
+	    $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 
