@@ -108,6 +108,11 @@
             confirmButtonText: 'Yes, delete it!',
             buttonsStyling: false
         }).then(function(){
+            swal({
+                title: "Loading..",
+                text: "Tunggu Sebentar......",
+                showConfirmButton: false
+            });
             $.ajax({
                 url: "<?php echo base_url('surat_masuk/hapus') ?>",
                 type: "post",
