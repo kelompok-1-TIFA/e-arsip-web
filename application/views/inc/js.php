@@ -6,9 +6,6 @@
 <script src="<?php echo base_url() ?>assets/js/bootstrap-material-design.min.js"></script>
 <script src="<?php echo base_url() ?>assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 
-<!--  Google Maps Plugin  -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2Yno10-YTnLjjn_Vtk0V8cdcY5lC4plU"></script>
-
 <!--  Plugin for Date Time Picker and Full Calendar Plugin  -->
 <script src="<?php echo base_url() ?>assets/js/plugins/moment.min.js"></script>
 <!--	Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
