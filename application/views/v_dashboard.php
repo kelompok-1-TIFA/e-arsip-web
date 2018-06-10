@@ -348,7 +348,7 @@
     <!-- Content -->
 <?php $this->load->view('inc/footer'); ?>      
 <?php $this->load->view('inc/js'); ?>
-<?php if ($this->session->userdata('level_user')!="admin" and $this->session->userdata('level_user')!="sekertaris") { ?>
+<?php if ($this->session->userdata('level_user')!="admin" and $this->session->userdata('level_user')!="staf") { ?>
 <script type="text/javascript">
 
 $(document).ready(function(){
