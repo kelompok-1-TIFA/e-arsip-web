@@ -12,7 +12,7 @@
                           </div>
                           <h4 class="card-title"><?php echo $page_title; ?></h4>
                         </div>
-                        <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/editaction') ?>" class="form-horizontal">
+                        <form method="POST" action="<?php echo base_url($this->uri->segment(1).'/editaction') ?>" class="form-horizontal" enctype="multipart/form-data">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
@@ -75,7 +75,7 @@
                                                 <div class="form-group mt-0">
                                                     <select class="selectpicker" data-style="btn select-with-transition"  title="Pilih Jenis Kelamin" data-size="7" name="jenis_kelamin">
                                                         <option <?php if($jenis_kelamin=="Laki - Laki"){echo "SELECTED";} ?> value="Laki - Laki"> Laki - Laki </option>
-                                                        <option <?phpif($jenis_kelamin=="Perempuan"){echo "SELECTED";} ?> value="Perempuan"> Perempuan </option>
+                                                        <option <?php if($jenis_kelamin=="Perempuan"){echo "SELECTED";} ?> value="Perempuan"> Perempuan </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -114,7 +114,7 @@
                                             <div class="col-md-10">
                                               <div class="form-group ">
                                                 <label class="bmd-label-floating">Pangkat</label>
-                                                  <input type="text" "<?php echo $pangkat ?>" name="pangkat" class="form-control" required>
+                                                  <input type="text" value="<?php echo $pangkat ?>" name="pangkat" class="form-control" required>
                                               </div>
                                             </div>
                                         </div>
@@ -167,7 +167,7 @@
                                                         <span class="btn btn-rose btn-round btn-file">
                                                             <span class="fileinput-new">Pilih Foto</span>
                                                             <span class="fileinput-exists">Ganti Foto</span>
-                                                            <input type="file" name="file_foto" />
+                                                            <input accept="image/*" type="file" name="file_foto" />
                                                         </span>
                                                         <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Hapus</a>
                                                     </div>
@@ -211,8 +211,8 @@
                                                         <div class="form-group mt-0">
                                                             <select class="selectpicker" data-style="btn select-with-transition" title="Pilih Level User" data-size="7" name="level_user">
                                                                 <option <?php if($level_user=="kepala desa"){echo "SELECTED";} ?> value="kepala desa">Kepala Desa</option>
-                                                                <option <?php if($level_user=="sekertaris desa"){echo "SELECTED";} ?> value="sekertaris">Sekertaris Desa</option>
-                                                                <option <?php if($level_user=="kepala desa"){echo "SELECTED";} ?> value="kepala bagian">Kepala Bagian</option>
+                                                                <option <?php if($level_user=="sekertaris"){echo "SELECTED";} ?> value="sekertaris">Sekertaris Desa</option>
+                                                                <option <?php if($level_user=="kepala bagian"){echo "SELECTED";} ?> value="kepala bagian">Kepala Bagian</option>
                                                                 <option <?php if($level_user=="staf"){echo "SELECTED";} ?> value="staf">Staf</option>
                                                                 <option <?php if($level_user=="admin"){echo "SELECTED";} ?> value="admin">Admin</option>
                                                             </select>
