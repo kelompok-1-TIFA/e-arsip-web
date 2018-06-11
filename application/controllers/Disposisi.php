@@ -89,12 +89,13 @@ class Disposisi extends CI_Controller {
         $catatan= $this->input->post('catatan');
         $id_surat_masuk= $this->input->post('id');
         $data = array(
-            'id_disposisi'   => "",
-            'id_bagian'      => $id_bagian, 
-            'isi_disposisi'  => $isi_disposisi, 
-            'sifat'          => $sifat, 
-            'catatan'        => $catatan, 
-            'id_surat_masuk' => $id_surat_masuk, 
+            'id_disposisi'      => "",
+            'id_bagian'         => $id_bagian, 
+            'isi_disposisi'     => $isi_disposisi, 
+            'sifat'             => $sifat, 
+            'catatan'           => $catatan, 
+            'id_surat_masuk'    => $id_surat_masuk,
+            'tgl_disposisi'     => date("Y-m-d")
             );
         $result = $this->M_disposisi->insert($data);
         if($result>=0){
@@ -187,6 +188,7 @@ class Disposisi extends CI_Controller {
                 'asal_surat'                    => $row->asal_surat,
                 'tgl_arsip'                     => $row->tgl_arsip,
                 'tgl_surat'                     => $row->tgl_surat,
+                'tgl_disposisi'                 => $row->tgl_disposisi,
                 'nama_kepala_desa'              => $kepaladesa->nama,
                 'nip_kepala_desa'               => $kepaladesa->nip,
                 'data_bagian'                   => $this->M_bagian->get_all(),
@@ -222,7 +224,7 @@ class Disposisi extends CI_Controller {
                 'asal_surat'                    => $row->asal_surat,
                 'tgl_arsip'                     => $row->tgl_arsip,
                 'tgl_surat'                     => $row->tgl_surat,
-                'data_bagian'                   => $this->M_bagian->get_all(),
+                'tgl_disposisi'                 => $row->tgl_disposisi,
                 'nama_kepala_desa'              => $kepaladesa->nama,
                 'nip_kepala_desa'               => $kepaladesa->nip,
                 'data_bagian'                   => $this->M_bagian->get_all(),
@@ -243,6 +245,9 @@ class Disposisi extends CI_Controller {
     }
 
     public function hapus(){
+        if ($this->session->userdata('level_user')!="kepala desa") {
+            redirect(base_url());
+        }
         $id = $this->input->post("id");
         $result = $this->M_disposisi->delete($id);
         header('location:'.base_url().'disposisi'); 

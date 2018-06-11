@@ -14,7 +14,7 @@ class Surat_masuk extends CI_Controller {
             redirect(base_url(''));
         }
 
-        if ($this->session->userdata('level_user')=="admin" or $this->session->userdata('level_user')=="sekertaris" or $this->session->userdata('level_user')=="staf") {
+        if ($this->session->userdata('level_user')=="admin" or $this->session->userdata('level_user')=="staf") {
             redirect(base_url());
         }
 
@@ -31,6 +31,9 @@ class Surat_masuk extends CI_Controller {
     }
 
     public function tambah(){
+        if ($this->session->userdata('level_user')!="sekertaris") {
+            redirect(base_url());
+        }
         $data = array(
             'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
             'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
@@ -39,6 +42,9 @@ class Surat_masuk extends CI_Controller {
     }
 
     public function edit($id){
+        if ($this->session->userdata('level_user')!="sekertaris") {
+            redirect(base_url());
+        }
         $row = $this->M_surat_masuk->get_by_id($id);
         if ($row) {
             $data = array(
@@ -69,6 +75,9 @@ class Surat_masuk extends CI_Controller {
     }
 
     public function simpan(){
+        if ($this->session->userdata('level_user')!="sekertaris") {
+            redirect(base_url());
+        }
         $no_surat= $this->input->post('no_surat');
         $asal_surat= $this->input->post('asal_surat');
         $isi_singkat=$this->input->post('isi_singkat');
@@ -111,7 +120,7 @@ class Surat_masuk extends CI_Controller {
                 $datauser = $this->M_user->get_all();
                 $dataterakhir = $this->M_surat_masuk->get_satu_baru();
                 foreach ($datauser as $user) {
-                    if ($user->level_user=="kepala desa" or $user->level_user=="kepala bagian") {
+                    if ($user->level_user=="kepala desa" or $user->level_user=="sekertaris") {
                         $data_notif = array(
                             'id_notif'      => "",
                             'id_user'       => $user->id_user,
@@ -182,6 +191,9 @@ class Surat_masuk extends CI_Controller {
     }
 
     public function editaction(){
+        if ($this->session->userdata('level_user')!="sekertaris") {
+            redirect(base_url());
+        }
         $no_surat= $this->input->post('no_surat');
         $asal_surat= $this->input->post('asal_surat');
         $isi_singkat=$this->input->post('isi_singkat');
@@ -288,6 +300,9 @@ class Surat_masuk extends CI_Controller {
     }
 
     public function hapus(){
+        if ($this->session->userdata('level_user')!="sekertaris") {
+            redirect(base_url());
+        }
         $id = $this->input->post("id");
         $row = $this->M_surat_masuk->get_by_id($id);
         unlink(str_replace("%20", " ", $row->file));
@@ -309,7 +324,7 @@ class Surat_masuk extends CI_Controller {
                 'keterangan'        => $row->keterangan,
                 'file'              => $row->file,
                 'tgl_arsip'         => $row->tgl_arsip,
-                'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
+                'status_disposisi'  => $row->status_disposisi,
                 'page_title'        => ucwords($this->uri->segment(2)." ".str_replace("_", " ", $this->uri->segment(1))),
             );
             $this->load->view('surat_masuk/v_detail_surat_masuk', $data);

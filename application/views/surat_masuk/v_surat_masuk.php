@@ -13,9 +13,11 @@
                             <h4 class="card-title">Data <?php echo $page_title; ?></h4>
                         </div>
                         <div class="card-body">
+                            <?php if ($this->session->userdata('level_user')!="kepala desa") { ?>
                             <div class="toolbar">
                                 <a title="Tambah Data" href="<?php echo base_url('surat_masuk/tambah') ?>" class="btn btn-primary btn-round"><i class="material-icons">add</i> Tambah Data</a>
                             </div>
+                            <?php } ?>
                             <div class="material-datatables">
                                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                     <thead>
@@ -51,8 +53,10 @@
                                                 <?php  if ($surat_masuk->status_disposisi=="t" and $this->session->userdata('level_user')=="kepala desa") { ?>
                                                 <a href="<?php echo base_url('disposisi/mendisposisikan/'.$surat_masuk->id_surat_masuk) ?>" title="Disposisikan" class="btn btn-link btn-success"><i class="material-icons">send</i></a>
                                                 <?php } ?>
+                                                <?php if ($this->session->userdata('level_user')!="kepala desa") { ?>
                                                 <a href="<?php echo base_url('surat_masuk/edit/'.$surat_masuk->id_surat_masuk) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a onclick="deletedata(<?php echo $surat_masuk->id_surat_masuk.",'".$surat_masuk->no_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
+                                                <?php } ?>
                                                 <a href="<?php echo base_url('surat_masuk/detail/'.$surat_masuk->id_surat_masuk) ?>" title="Detail" class="btn btn-link btn-info"><i class="material-icons">remove_red_eye</i>
                                             </td>
                                         </tr>

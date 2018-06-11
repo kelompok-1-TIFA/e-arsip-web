@@ -17,27 +17,27 @@
                                 <div class="col-md-6">
                                     <table>
                                         <tr>
-                                            <td width="100px">Nomor Surat</td>
+                                            <td class="font-weight-bold" width="100px">Nomor Surat</td>
                                             <td width="10px">:</td>
                                             <td><?php echo $no_surat; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Bagian</td>
+                                            <td class="font-weight-bold">Bagian</td>
                                             <td>:</td>
                                             <td><?php echo $bagian; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Tujuan</td>
+                                            <td class="font-weight-bold">Tujuan</td>
                                             <td>:</td>
                                             <td><?php echo $tujuan; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Perihal</td>
+                                            <td class="font-weight-bold">Perihal</td>
                                             <td>:</td>
                                             <td><?php echo $perihal; ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Isi Singkat</td>
+                                            <td class="font-weight-bold">Isi Singkat</td>
                                             <td>:</td>
                                             <td><?php echo $isi_singkat; ?></td>
                                         </tr>
@@ -46,29 +46,29 @@
                                 <div class="col-md-6">
                                     <table>
                                         <tr>
-                                            <td>Jenis Surat</td>
+                                            <td class="font-weight-bold">Jenis Surat</td>
                                             <td>:</td>
                                             <td><?php echo $jenis_surat; ?></td>
                                         </tr>
                                         <tr>
-                                            <td width="100px">Tanggal Arsip</td>
+                                            <td class="font-weight-bold" width="100px">Tanggal Arsip</td>
                                             <td width="10px">:</td>
                                             <td><?php echo date("d F Y", strtotime($tgl_arsip)); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Tanggal Surat</td>
+                                            <td class="font-weight-bold">Tanggal Surat</td>
                                             <td>:</td>
                                             <td><?php echo date("d F Y", strtotime($tgl_surat)); ?></td>
                                         </tr>
                                         <tr>
-                                            <td>Keterangan</td>
+                                            <td class="font-weight-bold">Keterangan</td>
                                             <td>:</td>
                                             <td><?php echo $keterangan; ?></td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
-                            <div class="row justify-content-center mt-3">
+                            <div class="row justify-content-center mt-5">
                                 <?php $typefile=mime_content_type(str_replace("%20", " ", $file));
                                 if ($typefile=="image/jpg" or $typefile=="image/png" or $typefile=="image/jpeg" or $typefile=="image/gif" or $typefile=="image/JPG") { ?>
                                     <div class="col-md-10">
@@ -79,7 +79,7 @@
                                 <?php } ?>
                                 
                             </div>
-                            <div class="row justify-content-center mt-3">
+                            <div class="row justify-content-center mt-5">
                                 <div class="col-md-2">
                                     <a title="Download File" href="<?php echo base_url($file) ?>" class="btn btn-primary btn-round"><i class="material-icons"></i> Download File</a>
                                 </div>

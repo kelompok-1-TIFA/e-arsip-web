@@ -72,6 +72,9 @@ class Laporan_surat_keluar extends CI_Controller {
     }
 
     public function Laporan_harian_print(){
+        if ($this->session->userdata('level_user')!="sekertaris") {
+            redirect(base_url());
+        }
         $dari=$this->input->get('dari');
         $sampai=$this->input->get('sampai');
         $kepaladesa= $this->M_user->getwhere(array('level_user' => "kepala desa", ))->row();
@@ -91,6 +94,9 @@ class Laporan_surat_keluar extends CI_Controller {
         $this->load->view('laporan_surat_keluar/v_laporan_harian_surat_keluar_print',$data);
     }
     public function Laporan_bulanan_print(){
+        if ($this->session->userdata('level_user')!="sekertaris") {
+            redirect(base_url());
+        }
         $bulan=$this->input->get('bulan');
         $tahun=$this->input->get('tahun');
         $kepaladesa= $this->M_user->getwhere(array('level_user' => "kepala desa", ))->row();
@@ -110,6 +116,9 @@ class Laporan_surat_keluar extends CI_Controller {
         $this->load->view('laporan_surat_keluar/v_laporan_bulanan_surat_keluar_print',$data);
     }
     public function Laporan_tahunan_print(){
+        if ($this->session->userdata('level_user')!="sekertaris") {
+            redirect(base_url());
+        }
         $tahun=$this->input->get('tahun');
         $kepaladesa= $this->M_user->getwhere(array('level_user' => "kepala desa", ))->row();
         $sekertaris= $this->M_user->getwhere(array('level_user' => "sekertaris", ))->row();

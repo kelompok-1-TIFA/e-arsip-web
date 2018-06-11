@@ -39,6 +39,30 @@ class M_disposisi extends CI_Model
         return $this->db->get($this->table)->row();
     }
 
+    function get_grafik($tahun){
+        return $this->db->query("SELECT MONTH(tgl_disposisi) AS bulan, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' GROUP BY MONTH(tgl_disposisi)")->result();
+    }
+
+    function get_jumlah_grafik($tahun){
+       return $this->db->query("SELECT YEAR(tgl_disposisi) AS tahun, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' GROUP BY YEAR(tgl_disposisi)")->row();
+    }
+
+    function get_jumlah_grafik1($tahun){
+       return $this->db->query("SELECT YEAR(tgl_disposisi) AS tahun, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' GROUP BY YEAR(tgl_disposisi)")->num_rows();
+    }
+
+    function get_grafik_perbagian($tahun,$id){
+        return $this->db->query("SELECT MONTH(tgl_disposisi) AS bulan, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' and tb_disposisi.id_bagian='$id' GROUP BY MONTH(tgl_disposisi)")->result();
+    }
+
+    function get_jumlah_grafik_perbagian($tahun,$id){
+       return $this->db->query("SELECT YEAR(tgl_disposisi) AS tahun, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' and tb_disposisi.id_bagian='$id' GROUP BY YEAR(tgl_disposisi)")->row();
+    }
+
+    function get_jumlah_grafik_perbagian1($tahun,$id){
+       return $this->db->query("SELECT YEAR(tgl_disposisi) AS tahun, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' and tb_disposisi.id_bagian='$id' GROUP BY YEAR(tgl_disposisi)")->num_rows();
+    }
+
     function get_by_bagian($id)
     {
         $this->db->join("tb_surat_masuk","tb_surat_masuk.id_surat_masuk=tb_disposisi.id_surat_masuk");
@@ -62,8 +86,17 @@ class M_disposisi extends CI_Model
 
     // get data with limit and search
     function get_limit_data($limit, $start = 0) {
+        $this->db->join("tb_surat_masuk","tb_surat_masuk.id_surat_masuk=tb_disposisi.id_surat_masuk");
         $this->db->order_by($this->id, $this->order);
-	   $this->db->limit($limit, $start);
+	    $this->db->limit($limit, $start);
+        return $this->db->get($this->table)->result();
+    }
+
+    function get_limit_data_perbagian($id,$limit, $start = 0) {
+        $this->db->join("tb_surat_masuk","tb_surat_masuk.id_surat_masuk=tb_disposisi.id_surat_masuk");
+        $this->db->where('id_bagian', $id);
+        $this->db->order_by($this->id, $this->order);
+        $this->db->limit($limit, $start);
         return $this->db->get($this->table)->result();
     }
 

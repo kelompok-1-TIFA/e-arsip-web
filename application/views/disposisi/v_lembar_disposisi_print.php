@@ -75,7 +75,7 @@
             <div class="row my-4 justify-content-end">
                 <div class="col-3 text-center">
                     <p>
-                        Jember, <?php echo date("d F Y"); ?><br>
+                        Jember, <?php echo date("d F Y", strtotime($tgl_disposisi)); ?><br>
                         Kepala Desa
                     </p>
                     <br>

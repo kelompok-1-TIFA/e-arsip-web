@@ -22,20 +22,6 @@
                                       </div>
                                     </div>
                                 </div>
-                                <?php if($this->session->userdata("level_user")=="kepala desa"){ ?>
-                                <div class="row">
-                                    <label class="col-md-2 col-form-label font-weight-bold">Bagian</label>
-                                    <div class="col-md-10">
-                                        <div class="form-group">
-                                          <select class="selectpicker" name="id_bagian" data-style="btn select-with-transition" title="Pilih Bagian" data-size="7">
-                                                <?php foreach ($data_bagian as $bagian): ?>
-                                                    <option value="<?php echo $bagian->id_bagian ?>"> <?php echo $bagian->bagian; ?></option>
-                                                <?php endforeach ?>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <?php } ?>
                                 <div class="row">
                                     <label class="col-md-2 col-form-label font-weight-bold">Tujuan</label>
                                     <div class="col-md-10">

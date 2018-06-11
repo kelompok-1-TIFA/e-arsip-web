@@ -43,6 +43,7 @@
                                                 <a onclick="deletedata(<?php echo $disposisi->id_disposisi.",'".$disposisi->no_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
                                                 <?php } ?>
                                                 <a href="<?php echo base_url('disposisi/lembar_disposisi/'.$disposisi->id_disposisi) ?>" title="Lembar Disposisi" class="btn btn-link btn-info"><i class="material-icons">insert_drive_file</i></a>
+                                                <a href="<?php echo base_url('surat_masuk/detail/'.$disposisi->id_surat_masuk) ?>" title="Detail Surat Masuk" class="btn btn-link btn-info"><i class="material-icons">remove_red_eye</i>
                                             </td>
                                         </tr>
                                         <?php endforeach ?>

@@ -13,9 +13,11 @@
                             <h4 class="card-title">Data <?php echo $page_title; ?></h4>
                         </div>
                         <div class="card-body">
+                            <?php if ($this->session->userdata('level_user')!="kepala desa") { ?>
                             <div class="toolbar">
                                 <a title="Tambah Data" href="<?php echo base_url('surat_keluar/tambah') ?>" class="btn btn-primary btn-round"><i class="material-icons">add</i> Tambah Data</a>
                             </div>
+                            <?php } ?>
                             <div class="material-datatables">
                                 <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                                     <thead>
@@ -37,8 +39,10 @@
                                             <td><?php echo $surat_keluar->perihal ?></td>
                                             <td><?php echo date("d F Y", strtotime($surat_keluar->tgl_arsip)) ?></td>
                                             <td class="text-right td-actions">
+                                                <?php if ($this->session->userdata('level_user')!="kepala desa") { ?>
                                                 <a href="<?php echo base_url('surat_keluar/edit/'.$surat_keluar->id_surat_keluar) ?>" title="Edit" class="btn btn-link btn-warning"><i class="material-icons">mode_edit</i></a>
                                                 <a onclick="deletedata(<?php echo $surat_keluar->id_surat_keluar.",'".$surat_keluar->no_surat."'" ?>)" title="Hapus" class="btn btn-link btn-danger"><i class="material-icons">close</i></a>
+                                                <?php } ?>
                                                 <a href="<?php echo base_url('surat_keluar/detail/'.$surat_keluar->id_surat_keluar) ?>" title="Detail" class="btn btn-link btn-info"><i class="material-icons">remove_red_eye</i>
                                             </td>
                                         </tr>

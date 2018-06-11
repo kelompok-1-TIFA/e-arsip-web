@@ -66,7 +66,9 @@
                                     <div class="col-md-2">
                                         <div class="form-group">
                                             <button type="submit" name="proses" class="btn btn-primary btn-sm"><i class="material-icons">find_replace</i> Proses</button>
+                                            <?php if ($this->session->userdata('level_user')!="kepala desa") { ?>
                                             <a href="<?php echo base_url() ?>laporan_surat_keluar/laporan_bulanan_print?bulan=<?php echo $bulan ?>&tahun=<?php echo $tahun ?>" target="_blank" class="btn btn-info btn-sm"><i class="material-icons">print</i> Print</a>
+                                            <?php } ?>
                                         </div>
                                     </div>
                                 </div>

@@ -76,12 +76,6 @@
                             </div>
                         </li>
                     <?php }elseif ($this->session->userdata('level_user')=="kepala bagian") { ?>
-                        <li class="nav-item <?php if($this->uri->segment(1)=="surat_masuk"){echo "active";}?>">
-                            <a class="nav-link" href="<?php echo base_url('surat_masuk'); ?>">
-                                <i class="material-icons">archive</i>
-                                <p> Surat Masuk </p>
-                            </a>
-                        </li>
                         <li class="nav-item <?php if($this->uri->segment(1)=="surat_keluar"){echo "active";}?>">
                             <a class="nav-link" href="<?php echo base_url('surat_keluar') ?>">
                                 <i class="material-icons"><i class="material-icons">unarchive</i></i>
@@ -181,6 +175,12 @@
                             </a>
                         </li>
                     <?php }elseif ($this->session->userdata('level_user')=="sekertaris") { ?>
+                        <li class="nav-item <?php if($this->uri->segment(1)=="surat_masuk"){echo "active";}?>">
+                            <a class="nav-link" href="<?php echo base_url('surat_masuk'); ?>">
+                                <i class="material-icons">archive</i>
+                                <p> Surat Masuk </p>
+                            </a>
+                        </li>
                         <li class="nav-item <?php if($this->uri->segment(1)=="laporan_surat_masuk"){echo "active";}?>">
                             <a class="nav-link" data-toggle="collapse" href="#laporansuratmasuk">
                                 <i class="material-icons">assignment</i>

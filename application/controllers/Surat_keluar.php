@@ -35,6 +35,9 @@ class Surat_keluar extends CI_Controller {
     }
 
     public function tambah(){
+        if ($this->session->userdata('level_user')!="kepala bagian") {
+            redirect(base_url());
+        }
         $data = array(
             'data_jenis_surat'  => $this->M_jenis_surat->get_all(),
             'data_bagian'       => $this->M_bagian->get_all(),
@@ -44,6 +47,9 @@ class Surat_keluar extends CI_Controller {
     }
 
     public function edit($id){
+        if ($this->session->userdata('level_user')!="kepala bagian") {
+            redirect(base_url());
+        }
         $row = $this->M_surat_keluar->get_by_id($id);
         if ($row) {
             $data = array(
@@ -76,13 +82,11 @@ class Surat_keluar extends CI_Controller {
     }
 
     public function simpan(){
-
-        $no_surat= $this->input->post('no_surat');
-        if ($this->session->userdata("level_user")=="kepala bagian") {
-            $id_bagian= $this->session->userdata('id_bagian');
-        }else{
-            $id_bagian= $this->input->post('id_bagian');
+        if ($this->session->userdata('level_user')!="kepala bagian") {
+            redirect(base_url());
         }
+        $no_surat= $this->input->post('no_surat');
+        $id_bagian= $this->session->userdata('id_bagian');
         $tujuan=$this->input->post('tujuan');
         $isi_singkat=$this->input->post('isi_singkat');
         $id_jenis_surat=$this->input->post('id_jenis_surat');
@@ -168,12 +172,11 @@ class Surat_keluar extends CI_Controller {
     }
 
     public function editaction(){
-        $no_surat= $this->input->post('no_surat');
-        if ($this->session->userdata("level_user")=="kepala bagian") {
-            $id_bagian= $this->session->userdata('id_bagian');
-        }else{
-            $id_bagian= $this->input->post('id_bagian');
+        if ($this->session->userdata('level_user')!="kepala bagian") {
+            redirect(base_url());
         }
+        $no_surat= $this->input->post('no_surat');
+        $id_bagian= $this->session->userdata('id_bagian');
         $tujuan=$this->input->post('tujuan');
         $isi_singkat=$this->input->post('isi_singkat');
         $id_jenis_surat=$this->input->post('id_jenis_surat');
@@ -281,6 +284,9 @@ class Surat_keluar extends CI_Controller {
     }
 
     public function hapus(){
+        if ($this->session->userdata('level_user')!="kepala bagian") {
+            redirect(base_url());
+        }
         $id = $this->input->post("id");
         $row = $this->M_surat_keluar->get_by_id($id);
         unlink(str_replace("%20", " ", $row->file));
