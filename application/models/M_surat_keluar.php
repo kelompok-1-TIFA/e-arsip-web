@@ -57,12 +57,12 @@ class M_surat_keluar extends CI_Model
        return $this->db->query("SELECT YEAR(tgl_arsip) AS tahun, COUNT(*) AS jumlah FROM tb_surat_keluar WHERE YEAR(tgl_arsip)='$tahun' and id_bagian='$id' GROUP BY YEAR(tgl_arsip)")->row();
     }
 
-    function get_jumlah_grafik1($tahun){
-       return $this->db->query("SELECT YEAR(tgl_arsip) AS tahun, COUNT(*) AS jumlah FROM tb_surat_keluar WHERE YEAR(tgl_arsip)='$tahun' GROUP BY YEAR(tgl_arsip)")->num_rows();
+    function get_jumlah_grafik1($tahun,$bulan){
+       return $this->db->query("SELECT MONTH(tgl_arsip) AS bulan, COUNT(*) AS jumlah FROM tb_surat_keluar WHERE YEAR(tgl_arsip)='$tahun' and MONTH(tgl_arsip)='$bulan' GROUP BY YEAR(tgl_arsip)")->num_rows();
     }
 
-    function get_jumlah_grafik_perbagian1($tahun,$id){
-       return $this->db->query("SELECT YEAR(tgl_arsip) AS tahun, COUNT(*) AS jumlah FROM tb_surat_keluar WHERE YEAR(tgl_arsip)='$tahun' and id_bagian='$id' GROUP BY YEAR(tgl_arsip)")->num_rows();
+    function get_jumlah_grafik_perbagian1($tahun,$bulan,$id){
+       return $this->db->query("SELECT MONTH(tgl_arsip) AS bulan, COUNT(*) AS jumlah FROM tb_surat_keluar WHERE YEAR(tgl_arsip)='$tahun' and MONTH(tgl_arsip)='$bulan' and id_bagian='$id' GROUP BY YEAR(tgl_arsip)")->num_rows();
     }
 
     // get data by id

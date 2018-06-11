@@ -14,7 +14,7 @@ class Surat_masuk extends CI_Controller {
             redirect(base_url(''));
         }
 
-        if ($this->session->userdata('level_user')=="admin" or $this->session->userdata('level_user')=="staf") {
+        if ($this->session->userdata('level_user')=="admin") {
             redirect(base_url());
         }
 

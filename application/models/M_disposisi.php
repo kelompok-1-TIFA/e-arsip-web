@@ -47,8 +47,8 @@ class M_disposisi extends CI_Model
        return $this->db->query("SELECT YEAR(tgl_disposisi) AS tahun, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' GROUP BY YEAR(tgl_disposisi)")->row();
     }
 
-    function get_jumlah_grafik1($tahun){
-       return $this->db->query("SELECT YEAR(tgl_disposisi) AS tahun, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' GROUP BY YEAR(tgl_disposisi)")->num_rows();
+    function get_jumlah_grafik1($tahun,$bulan){
+       return $this->db->query("SELECT MONTH(tgl_disposisi) AS bulan, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' and MONTH(tgl_disposisi)='$bulan' GROUP BY YEAR(tgl_disposisi)")->num_rows();
     }
 
     function get_grafik_perbagian($tahun,$id){
@@ -59,8 +59,8 @@ class M_disposisi extends CI_Model
        return $this->db->query("SELECT YEAR(tgl_disposisi) AS tahun, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' and tb_disposisi.id_bagian='$id' GROUP BY YEAR(tgl_disposisi)")->row();
     }
 
-    function get_jumlah_grafik_perbagian1($tahun,$id){
-       return $this->db->query("SELECT YEAR(tgl_disposisi) AS tahun, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' and tb_disposisi.id_bagian='$id' GROUP BY YEAR(tgl_disposisi)")->num_rows();
+    function get_jumlah_grafik_perbagian1($tahun,$bulan,$id){
+       return $this->db->query("SELECT MONTH(tgl_disposisi) AS bulan, COUNT(*) AS jumlah FROM tb_disposisi WHERE YEAR(tgl_disposisi)='$tahun' and MONTH(tgl_disposisi)='$bulan' and tb_disposisi.id_bagian='$id' GROUP BY YEAR(tgl_disposisi)")->num_rows();
     }
 
     function get_by_bagian($id)

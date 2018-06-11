@@ -36,6 +36,7 @@ class Awal extends CI_Controller {
                 );
             }else{
                 $tahun=date("Y");
+                $bulan=date("m");
                 $jml_surat_masuk = $this->M_surat_masuk->total_rows();
                 if ($this->session->userdata('level_user')!="kepala desa" and $this->session->userdata('level_user')!="sekertaris") {
                     $jml_surat_keluar = $this->M_surat_keluar->total_rows_perbagian($this->session->userdata('id_bagian'));
@@ -44,12 +45,12 @@ class Awal extends CI_Controller {
                     $dt_surat_keluar = $this->M_surat_keluar->get_limit_data_perbagian($this->session->userdata('id_bagian'),3);
                     $dt_grafik_surat_keluar=$this->M_surat_keluar->get_grafik_perbagian($tahun,$this->session->userdata('id_bagian'));
                     $jml_grafik_surat_keluar=$this->M_surat_keluar->get_jumlah_grafik_perbagian($tahun,$this->session->userdata('id_bagian'));
-                    $jml_grafik_surat_keluar1=$this->M_surat_keluar->get_jumlah_grafik_perbagian1($tahun,$this->session->userdata('id_bagian'));
-                    
+                    $jml_grafik_surat_keluar1=$this->M_surat_keluar->get_jumlah_grafik_perbagian1($tahun,$bulan,$this->session->userdata('id_bagian'));
+
                     $dt_disposisi = $this->M_disposisi->get_limit_data_perbagian($this->session->userdata('id_bagian'),3);
                     $dt_grafik_disposisi=$this->M_disposisi->get_grafik_perbagian($tahun,$this->session->userdata('id_bagian'));
                     $jml_grafik_disposisi=$this->M_disposisi->get_jumlah_grafik_perbagian($tahun,$this->session->userdata('id_bagian'));
-                    $jml_grafik_disposisi1=$this->M_disposisi->get_jumlah_grafik_perbagian1($tahun,$this->session->userdata('id_bagian'));
+                    $jml_grafik_disposisi1=$this->M_disposisi->get_jumlah_grafik_perbagian1($tahun,$bulan,$this->session->userdata('id_bagian'));
                 }else{
                     $jml_surat_keluar = $this->M_surat_keluar->total_rows();
                     $jml_disposisi = $this->M_disposisi->total_rows();
@@ -57,18 +58,18 @@ class Awal extends CI_Controller {
                     $dt_surat_keluar = $this->M_surat_keluar->get_limit_data(3);
                     $dt_grafik_surat_keluar=$this->M_surat_keluar->get_grafik($tahun);
                     $jml_grafik_surat_keluar=$this->M_surat_keluar->get_jumlah_grafik($tahun);   
-                    $jml_grafik_surat_keluar1=$this->M_surat_keluar->get_jumlah_grafik1($tahun);
+                    $jml_grafik_surat_keluar1=$this->M_surat_keluar->get_jumlah_grafik1($tahun,$bulan);
 
                     $dt_disposisi = $this->M_disposisi->get_limit_data(3);
                     $dt_grafik_disposisi=$this->M_disposisi->get_grafik($tahun);
                     $jml_grafik_disposisi=$this->M_disposisi->get_jumlah_grafik($tahun);   
-                    $jml_grafik_disposisi1=$this->M_disposisi->get_jumlah_grafik1($tahun);     
+                    $jml_grafik_disposisi1=$this->M_disposisi->get_jumlah_grafik1($tahun,$bulan);     
                 }
                 $data = array(
                     'data_surat_masuk'          => $this->M_surat_masuk->get_limit_data(3),
                     'data_grafik_surat_masuk'   => $this->M_surat_masuk->get_grafik($tahun),
                     'jml_grafik_surat_masuk'    => $this->M_surat_masuk->get_jumlah_grafik($tahun),
-                    'jml_grafik_surat_masuk1'   => $this->M_surat_masuk->get_jumlah_grafik1($tahun),
+                    'jml_grafik_surat_masuk1'   => $this->M_surat_masuk->get_jumlah_grafik1($tahun,$bulan),
 
                     'data_surat_keluar'         => $dt_surat_keluar,
                     'data_grafik_surat_keluar'  => $dt_grafik_surat_keluar,
