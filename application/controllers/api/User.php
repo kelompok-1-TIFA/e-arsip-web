@@ -22,7 +22,7 @@ class User extends REST_Controller {
             $cek_fase_1 = $this->M_user->cek_login($where)->num_rows();
             $cek_fase_2 = $this->M_user->cek_login($where)->row();
             if($cek_fase_1 > 0){
-                if ($cek_fase_2->level_user=="admin" OR $cek_fase_2->level_user=="sekertaris") {
+                if ($cek_fase_2->level_user=="admin") {
                     $message = array("success"=>3);
                     $this->response($message, REST_Controller::HTTP_OK);   
                 }else{
@@ -38,6 +38,7 @@ class User extends REST_Controller {
                             'id_bagian'     => $cek_fase_2->id_bagian_pegawai,
                             'jabatan'       => $cek_fase_2->jabatan,
                             'bagian'        => $cek_fase_2->bagian,
+                            'token'         => $cek_fase_2->token,
                             'level_user'    => $cek_fase_2->level_user,
                         );
                         $message = array("success"=>1,"data_user"=>$data_session);
@@ -94,6 +95,8 @@ class User extends REST_Controller {
                 $this->response(['kode' => 2,'pesan' =>'Proses Gagal'], REST_Controller::HTTP_OK);
             }
             
+        }elseif ($api=="retoken") {
+            # code...
         }
     }
     

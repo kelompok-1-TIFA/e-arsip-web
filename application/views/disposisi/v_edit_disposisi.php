@@ -30,11 +30,12 @@
                                             <label class="col-md-2 col-form-label font-weight-bold"><i class="material-icons">my_location</i></label>
                                             <div class="col-md-10">
                                                 <div class="form-group ">
+                                                    <label class="bmd-label-floating">Sifat</label>
                                                     <select class="selectpicker" name="sifat" data-style="btn select-with-transition" title="Pilih Sifat" data-size="7">
-                                                       <option value="rahasia"<?php if($sifat=="rahasia") {echo "SELECTED"}?>>Rahasia</option>
-                                                       <option value="penting"<?php if($sifat=="penting") {echo "SELECTED"}?>>Penting</option>
-                                                       <option value="segera"<?php if($sifat=="segera") {echo "SELECTED"} ?>>Segera</option>
-                                                       <option value="biasa"<?php if($sifat=="biasa") {echo "SELECTED"} ?>>Biasa</option>
+                                                       <option value="Rahasia"<?php if($sifat=="Rahasia"){ echo "SELECTED"; }?>>Rahasia</option>
+                                                       <option value="Penting"<?php if($sifat=="Penting"){ echo "SELECTED"; }?>>Penting</option>
+                                                       <option value="Segera"<?php if($sifat=="Segera"){ echo "SELECTED"; } ?>>Segera</option>
+                                                       <option value="Biasa"<?php if($sifat=="Biasa"){ echo "SELECTED"; } ?>>Biasa</option>
                                                     </select>
                                                 </div>
                                             </div>
