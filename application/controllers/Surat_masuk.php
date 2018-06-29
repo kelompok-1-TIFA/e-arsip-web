@@ -119,8 +119,10 @@ class Surat_masuk extends CI_Controller {
             if($result>=0){
                 $datauser = $this->M_user->get_all();
                 $dataterakhir = $this->M_surat_masuk->get_satu_baru();
+                $to1="";
+                $data_notif = array();
                 foreach ($datauser as $user) {
-                    if ($user->level_user=="kepala desa" or $user->level_user=="sekertaris") {
+                    if ($user->level_user=="kepala desa") {
                         $data_notif = array(
                             'id_notif'      => "",
                             'id_user'       => $user->id_user,
@@ -129,37 +131,41 @@ class Surat_masuk extends CI_Controller {
                             'judul_notif'   => "Surat Masuk Baru ",
                             'isi_notif'     => "No. Surat ".$no_surat." Perihal ".$perihal,
                         );
-                        $this->M_notifikasi->insert($data_notif);    
+                        /*send notif to android*/
+                        $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
+                        $msg = array(
+                            'body'  => "No. Surat ".$no_surat." Perihal ".$perihal,
+                            'title' => "Surat Masuk Baru ",
+                            'sound' => 'default'
+                        );
+                        $dt = array(
+                            'id'            => $dataterakhir->id_surat_masuk,
+                            'jenis_notif'   => "surat masuk",
+                        );
+                        $notification = [
+                            "to"  => $user->token,
+                            'notification'      => $msg,
+                            'data'              => $dt
+                        ];
+
+                        $headers = [
+                            'Authorization: key=AAAABYQOPYQ:APA91bFyhxHctHnOWHt54CQXDk9CqwID4twwFuMFwaP3GoTJmhDBfwYT0HUhyEa-8W3szf9wHJbiDG9okjXwB3h1KIoX3eyewsxBw8XNA5_sWWwVCn4CmyPYcSaO7UeQX-KG5EYsB7DA',
+                            'Content-Type: application/json'
+                        ];
+
+                        $ch = curl_init();
+                        curl_setopt($ch, CURLOPT_URL,$fcmUrl);
+                        curl_setopt($ch, CURLOPT_POST, true);
+                        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($notification));
+                        $result = curl_exec($ch);
+                        curl_close($ch);
+                        /*send notif to android*/
+                        $this->M_notifikasi->insert($data_notif);   
                     }
                 }
-                /*send notif to android*/
-                /*$fcmUrl = 'https://fcm.googleapis.com/fcm/send';
-                $msg = array(
-                    'body'  => 'Body  Of Notification',
-                    'title' => 'Title Of Notification',
-                    'icon'  => 'myicon',
-                    'sound' => 'mySound'
-                  );
-                $notification = [
-                    "to" => '/topics/surat_masuk',
-                    'notification'  => $msg
-                ];
-
-                $headers = [
-                    'Authorization: key=AIzaSyAsOIHPNlalVqF-Eh3eSV8nl5XF_t6A3lU',
-                    'Content-Type: application/json'
-                ];
-
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL,$fcmUrl);
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($notification));
-                $result = curl_exec($ch);
-                curl_close($ch);*/
-                /*send notif to android*/
                 $this->session->set_flashdata("sukses", 'swal({
                     title: "Berhasi!",
                     text: "Data Berhasil diSimpan!",

@@ -129,7 +129,7 @@ class Surat_keluar extends CI_Controller {
                 $datauser = $this->M_user->get_where_default("LEFT JOIN tb_pegawai ON tb_pegawai.nip=tb_user.nip_user WHERE id_bagian_pegawai='$data[id_bagian]' or level_user = 'kepala desa'")->result();
                 $dataterakhir = $this->M_surat_keluar->get_satu_baru();
                 foreach ($datauser as $user) {
-                    if ($user->level_user=="kepala desa" or $user->level_user=="kepala bagian") {
+                    if ($user->level_user=="kepala desa") {
                         $data_notif = array(
                             'id_notif'      => "",
                             'id_user'       => $user->id_user,
@@ -138,6 +138,38 @@ class Surat_keluar extends CI_Controller {
                             'judul_notif'   => "Surat Keluar Baru ",
                             'isi_notif'     => "No. Surat ".$no_surat." Perihal ".$perihal,
                         );
+                        /*send notif to android*/
+                        $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
+                        $msg = array(
+                            'body'  => "No. Surat ".$no_surat." Perihal ".$perihal,
+                            'title' => "Surat Keluar Baru ",
+                            'sound' => 'default'
+                        );
+                        $dt = array(
+                            'id'            => $dataterakhir->id_surat_keluar,
+                            'jenis_notif'   => "surat keluar",
+                        );
+                        $notification = [
+                            "to"  => $user->token,
+                            'notification'      => $msg,
+                            'data'              => $dt
+                        ];
+
+                        $headers = [
+                            'Authorization: key=AAAABYQOPYQ:APA91bFyhxHctHnOWHt54CQXDk9CqwID4twwFuMFwaP3GoTJmhDBfwYT0HUhyEa-8W3szf9wHJbiDG9okjXwB3h1KIoX3eyewsxBw8XNA5_sWWwVCn4CmyPYcSaO7UeQX-KG5EYsB7DA',
+                            'Content-Type: application/json'
+                        ];
+
+                        $ch = curl_init();
+                        curl_setopt($ch, CURLOPT_URL,$fcmUrl);
+                        curl_setopt($ch, CURLOPT_POST, true);
+                        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($notification));
+                        $result = curl_exec($ch);
+                        curl_close($ch);
+                        /*send notif to android*/
                         $this->M_notifikasi->insert($data_notif);    
                     }
                 }

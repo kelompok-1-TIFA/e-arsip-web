@@ -79,7 +79,7 @@ class User extends REST_Controller {
             }else{
                 $this->response(['kode' => 2,'pesan' =>'Proses Gagal'], REST_Controller::HTTP_OK);
             }
-        }elseif($api=="ubahfoto"){
+        }else if($api=="ubahfoto"){
             $path="assets/uploads/foto_user/".$this->post('id').".jpeg";
             if (file_put_contents($path, base64_decode($this->post('foto')))) {
                 $data = array(
@@ -95,8 +95,17 @@ class User extends REST_Controller {
                 $this->response(['kode' => 2,'pesan' =>'Proses Gagal'], REST_Controller::HTTP_OK);
             }
             
-        }elseif ($api=="retoken") {
-            # code...
+        }else if ($api=="retoken") {
+            $data = array(
+                'token'  => $this->post('token')
+            );
+            $res = $this->M_user->update($this->post('id'),$data);
+            if($res>=0){
+                $this->response(['kode' => 1], REST_Controller::HTTP_OK);
+            }else{
+                $this->response(['kode' => 2,'pesan' =>'Proses Gagal'], REST_Controller::HTTP_OK);
+            }
+            echo "string";
         }
     }
     

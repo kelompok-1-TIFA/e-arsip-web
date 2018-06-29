@@ -103,7 +103,7 @@ class Disposisi extends CI_Controller {
             $dataterakhir = $this->M_disposisi->get_satu_baru();
             $datasurat = $this->M_surat_masuk->get_by_id($id_surat_masuk);
             foreach ($datauser as $user) {
-                if ($user->level_user=="kepala desa" or $user->level_user=="kepala bagian" or $user->level_user=="staf") {
+                if ($user->level_user=="kepala bagian" or $user->level_user=="staf") {
                     $data_notif = array(
                         'id_notif'      => "",
                         'id_user'       => $user->id_user,
@@ -112,6 +112,38 @@ class Disposisi extends CI_Controller {
                         'judul_notif'   => "Disposisi Baru ",
                         'isi_notif'     => "No. Surat ".$datasurat->no_surat." Isi Disposisi ".$dataterakhir->isi_disposisi,
                     );
+                    /*send notif to android*/
+                    $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
+                    $msg = array(
+                        'body'  => "No. Surat ".$no_surat." Perihal ".$perihal,
+                        'title' => "Disposisi Baru ",
+                        'sound' => 'default'
+                    );
+                    $dt = array(
+                        'id'            => $dataterakhir->id_disposisi,
+                        'jenis_notif'   => "disposisi",
+                    );
+                    $notification = [
+                        "to"  => $user->token,
+                        'notification'      => $msg,
+                        'data'              => $dt
+                    ];
+
+                    $headers = [
+                        'Authorization: key=AAAABYQOPYQ:APA91bFyhxHctHnOWHt54CQXDk9CqwID4twwFuMFwaP3GoTJmhDBfwYT0HUhyEa-8W3szf9wHJbiDG9okjXwB3h1KIoX3eyewsxBw8XNA5_sWWwVCn4CmyPYcSaO7UeQX-KG5EYsB7DA',
+                        'Content-Type: application/json'
+                    ];
+
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL,$fcmUrl);
+                    curl_setopt($ch, CURLOPT_POST, true);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($notification));
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+                    /*send notif to android*/
                     $this->M_notifikasi->insert($data_notif);    
                 }
             }
