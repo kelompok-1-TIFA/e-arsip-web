@@ -10,7 +10,7 @@
                             <div class="card-icon">
                                 <i class="material-icons">mail</i>
                             </div>
-                            <h4 class="card-title">Data</h4>
+                            <h4 class="card-title">Data <?php echo $page_title; ?></h4>
                         </div>
                         <div class="card-body">
                             <form action="<?php echo base_url() ?>laporan_surat_masuk/laporan_harian" method="POST">

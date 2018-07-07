@@ -44,7 +44,7 @@ class Surat_masuk extends REST_Controller {
 
             $jenis_surat_fix=str_replace(" ", "%20", $jenis_surat->jenis_surat);
 
-            $path='assets/uploads/file/'.$jenis_surat_fix.'/'.'Surat_Masuk_'.$no_surat.'jpeg';
+            $path='assets/uploads/file/'.$jenis_surat->jenis_surat.'/'.'Surat_Masuk_'.str_replace("/", "-", $no_surat).'.jpeg';
             if (file_put_contents($path, base64_decode($this->post('file')))) {
 
                 $data = array(  
@@ -58,7 +58,7 @@ class Surat_masuk extends REST_Controller {
                     'tgl_arsip'         => date("Y-m-d"),
                     'keterangan'        => $keterangan,
                     'file'              => $path,
-                    'nama_file'         => 'Surat_Masuk_'.$no_surat.'jpeg'
+                    'nama_file'         => 'Surat_Masuk_'.str_replace("/", "-", $no_surat).'.jpeg'
                 );
 
                 $result = $this->M_surat_masuk->insert($data);
@@ -112,12 +112,12 @@ class Surat_masuk extends REST_Controller {
                             $this->M_notifikasi->insert($data_notif);   
                         }
                     }
-                    $this->response(['kode' => 1,'pesan' =>'Data berhasil diSimpan!'], REST_Controller::HTTP_OK);
+                    $this->response(['kode' => 1, 'data' => $dataterakhir,'pesan' =>'Data Berhasil disimpan!'], REST_Controller::HTTP_OK);
                 }else{
                     $this->response(['kode' => 2,'pesan' =>'Data gagal diSimpan!'], REST_Controller::HTTP_OK);
                 }
             }else{
-                $this->response(['kode' => 2,'pesan' =>'Data gagal diSimpan!'], REST_Controller::HTTP_OK);
+                $this->response(['kode' => 3,'pesan' =>'Data gagal diSimpan1!'], REST_Controller::HTTP_OK);
             }
         }
     }

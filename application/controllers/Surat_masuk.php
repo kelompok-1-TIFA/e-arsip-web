@@ -95,6 +95,7 @@ class Surat_masuk extends CI_Controller {
             'allowed_types' => 'gif|jpg|JPG|png|jpeg|pdf|doc|docx',
             'max_size'      => '10240',
             'remove_space'  => TRUE,
+            'file_name'     => "Surat_Masuk_".str_replace("/", "-", $no_surat)
         );
         $this->load->library('upload', $config);
 
@@ -111,8 +112,8 @@ class Surat_masuk extends CI_Controller {
                 'tgl_surat'         => $tgl_surat,
                 'tgl_arsip'         => date("Y-m-d"),
                 'keterangan'        => $keterangan,
-                'file'              => 'assets/uploads/file/'.$jenis_surat_fix.'/'.'Surat_Masuk_'.$no_surat.$upload_data['file_ext'],
-                'nama_file'         => $upload_data['file_name']
+                'file'              => 'assets/uploads/file/'.$jenis_surat_fix.'/'.'Surat_Masuk_'.str_replace("/", "-", $no_surat).$upload_data['file_ext'],
+                'nama_file'         => str_replace("/", "-", $no_surat).$upload_data['file_ext']
             );
 
             $result = $this->M_surat_masuk->insert($data);
@@ -217,6 +218,7 @@ class Surat_masuk extends CI_Controller {
             'allowed_types' => 'gif|jpg|JPG|png|jpeg|pdf|doc|docx',
             'max_size'      => '10240',
             'remove_space'  => TRUE,
+            'file_name'     => "Surat_Masuk_".str_replace("/", "-", $no_surat)
         );
         $this->load->library('upload', $config);
 
@@ -233,8 +235,8 @@ class Surat_masuk extends CI_Controller {
                     'perihal'           => $perihal,
                     'tgl_surat'         => $tgl_surat,
                     'keterangan'        => $keterangan,
-                    'file'              => 'assets/uploads/file/'.$jenis_surat_fix.'/'.'Surat_Masuk_'.$no_surat.$upload_data['file_ext'],
-                    'nama_file'         => $upload_data['file_name']
+                    'file'              => 'assets/uploads/file/'.$jenis_surat_fix.'/'.'Surat_Masuk_'.str_replace("/", "-", $no_surat).$upload_data['file_ext'],
+                    'nama_file'         => str_replace("/", "-", $no_surat).$upload_data['file_ext']
                     
                 );
 

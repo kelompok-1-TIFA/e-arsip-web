@@ -80,14 +80,15 @@ class User extends REST_Controller {
                 $this->response(['kode' => 2,'pesan' =>'Proses Gagal'], REST_Controller::HTTP_OK);
             }
         }else if($api=="ubahfoto"){
-            $path="assets/uploads/foto_user/".$this->post('id').".jpeg";
+            $tgl_sekarang=date("ymdHis");
+            $path="assets/uploads/foto_user/".$this->post('id')."_".$tgl_sekarang.".jpeg";
             if (file_put_contents($path, base64_decode($this->post('foto')))) {
                 $data = array(
                     'foto'  => $path,
                 );
                 $res = $this->M_pegawai->update($this->post('id'),$data);
                 if($res>=0){
-                    $this->response(['kode' => 1,'data' => $res], REST_Controller::HTTP_OK);
+                    $this->response(['kode' => 1,'urlFoto' => $path], REST_Controller::HTTP_OK);
                 }else{
                     $this->response(['kode' => 2,'pesan' =>'Proses Gagal'], REST_Controller::HTTP_OK);
                 }   

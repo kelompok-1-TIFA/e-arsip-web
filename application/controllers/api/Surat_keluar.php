@@ -1,5 +1,4 @@
 <?php
-
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 // This can be removed if you use __autoload() in config.php OR use Modular Extensions
@@ -53,7 +52,7 @@ class Surat_keluar extends REST_Controller {
 
             $jenis_surat_fix=str_replace(" ", "%20", $jenis_surat->jenis_surat);
 
-            $path='assets/uploads/file/'.$jenis_surat_fix.'/'.'Surat_Keluar_'.$no_surat.'jpeg';
+            $path='assets/uploads/file/'.$jenis_surat->jenis_surat.'/'.'Surat_Keluar_'.str_replace("/", "-", $no_surat).'.jpeg';
             if (file_put_contents($path, base64_decode($this->post('file')))) {
                 $data = array(  
                     'id_surat_keluar'   => "",
@@ -67,7 +66,7 @@ class Surat_keluar extends REST_Controller {
                     'tgl_arsip'         => date("Y-m-d"),
                     'keterangan'        => $keterangan,
                     'file'              => $path,
-                    'nama_file'         => 'Surat_Keluar_'.$no_surat.'jpeg'
+                    'nama_file'         => 'Surat_Keluar_'.str_replace("/", "-", $no_surat).'.jpeg'
                 );
 
                 $result = $this->M_surat_keluar->insert($data);
@@ -119,11 +118,12 @@ class Surat_keluar extends REST_Controller {
                             $this->M_notifikasi->insert($data_notif);    
                         }
                     }
-                    $this->response(['kode' => 1,'pesan' =>'Data Berhasil disimpan!'], REST_Controller::HTTP_OK);
+                    $this->response(['kode' => 1, 'data' => $dataterakhir,'pesan' =>'Data Berhasil disimpan!'], REST_Controller::HTTP_OK);
                 }else{
-                    $this->response(['kode' => 2,'pesan' =>'Data gagal disimpan!'], REST_Controller::HTTP_OK);
+                    $this->response(['kode' => 3,'pesan' =>'Data gagal disimpan!'], REST_Controller::HTTP_OK);
                 }
             }else{
+                echo $this->post('file');
                 $this->response(['kode' => 2,'pesan' =>'Data gagal disimpan!'], REST_Controller::HTTP_OK);
             } 
         }
