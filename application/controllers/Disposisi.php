@@ -115,13 +115,16 @@ class Disposisi extends CI_Controller {
                     /*send notif to android*/
                     $fcmUrl = 'https://fcm.googleapis.com/fcm/send';
                     $msg = array(
-                        'body'  => "No. Surat ".$no_surat." Perihal ".$perihal,
+                        'body'  => "No. Surat ".$datasurat->no_surat." Isi Disposisi ".$dataterakhir->isi_disposisi,
                         'title' => "Disposisi Baru ",
                         'sound' => 'default'
                     );
                     $dt = array(
                         'id'            => $dataterakhir->id_disposisi,
                         'jenis_notif'   => "disposisi",
+                        'message'  => "No. Surat ".$datasurat->no_surat." Isi Disposisi ".$dataterakhir->isi_disposisi,
+                        'title' => "Disposisi Baru ",
+                        'sound' => 'default'
                     );
                     $notification = [
                         "to"  => $user->token,

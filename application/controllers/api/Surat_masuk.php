@@ -87,6 +87,9 @@ class Surat_masuk extends REST_Controller {
                             $dt = array(
                                 'id'            => $dataterakhir->id_surat_masuk,
                                 'jenis_notif'   => "surat masuk",
+                                'message'       => "No. Surat ".$no_surat." Perihal ".$perihal,
+                                'title'         => "Surat Masuk Baru ",
+                                'sound'         => 'default'
                             );
                             $notification = [
                                 "to"  => $user->token,
