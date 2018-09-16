@@ -81,7 +81,7 @@ class Pegawai extends CI_Controller {
         }
     }
 
-    function simpan(){
+    public function simpan(){
         $this->load->library('encrypt'); 
         $key = 'vyanarypratamabanyuwangi12345678';
         $config = array(
@@ -185,7 +185,7 @@ class Pegawai extends CI_Controller {
         }
     }
 
-    function editaction(){
+    public function editaction(){
         $this->load->library('encrypt'); 
         $key = 'vyanarypratamabanyuwangi12345678';
         $config = array(
@@ -348,7 +348,7 @@ class Pegawai extends CI_Controller {
         }
     }
 
-    function hapus(){
+    public function hapus(){
         $id = $this->input->post("id");
         $row = $this->M_pegawai->get_by_id($id);
         unlink($row->foto);

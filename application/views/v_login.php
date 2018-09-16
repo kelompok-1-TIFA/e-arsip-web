@@ -11,7 +11,7 @@
                         <div class="card card-login card-hidden">
                             <div class="card-header card-header-warning text-center">
                                 <h4 class="card-title font-weight-bold">E-Arsip</h4>
-                                <h5 class="caption">Kantor Desa Balung Kidul</h5>
+                                <h5 class="caption">Nama Perusahaan</h5>
                             </div>
                             <p class="card-description text-center">
                                 Sign in please
@@ -44,7 +44,7 @@
                             <hr>
                             <div class="card-footer justify-content-center">
                                 <p class="font-weight-bold">
-                                    Copyright &copy; 2018<a class="text-warning" href="#"> Kantor Desa Balung Kidul</a> 
+                                    Copyright &copy; 2018<a class="text-warning" href="#"> Nama Perusahaan</a> 
                                 </p>
                             </div>
                         </div>

@@ -10,7 +10,7 @@
 
             <div class="logo">
                 <a href="#" class="simple-text logo-mini">
-                    <img src="<?php echo base_url("assets/img/logo.png") ?>" width="30px">
+                    <img src="<?php echo base_url("assets/img/logo1.png") ?>" width="30px">
                 </a>
                 <a href="#" class="simple-text logo-normal">
                     E-ARSIP

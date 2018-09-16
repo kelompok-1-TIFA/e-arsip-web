@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url() ?>assets/img/logo.png" />
-    <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/img/logo.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url() ?>assets/img/logo1.png" />
+    <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/img/logo1.png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title><?php if($page_title!=" "){echo $page_title." | ";} ?> E-ARSIP </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -17,7 +17,7 @@
     <!-- Schema.org markup for Google+ -->
     <meta itemprop="name" content="E-ARSIP By Kelompok 1 TIF A 2016">
     <meta itemprop="description" content="Sistem Informasi Pengarsipan Surat Kantor Desa">
-    <meta itemprop="image" content="<?php echo base_url() ?>assets/img/logo.png">
+    <meta itemprop="image" content="<?php echo base_url() ?>assets/img/logo1.png">
     <!-- Bootstrap core CSS     -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
